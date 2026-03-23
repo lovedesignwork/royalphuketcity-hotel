@@ -426,7 +426,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Quick Links */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
         <Link
           href="/admin/inquiries"
           className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow group"
@@ -442,6 +442,25 @@ export default function AdminDashboard() {
                 Inquiries
               </h4>
               <p className="text-sm text-gray-500">Manage contact submissions</p>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/admin/downloads"
+          className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow group"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
+                Downloads
+              </h4>
+              <p className="text-sm text-gray-500">Manage PDF documents</p>
             </div>
           </div>
         </Link>

@@ -357,15 +357,15 @@ export default function MeetingEventsPage() {
                 </svg>
                 Inquiry for Event
               </Link>
-              <a 
-                href="#download-fact-sheet" 
+              <Link 
+                href="/download-fact-sheets" 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[#8B7355]/30 text-[--color-text-primary] font-medium tracking-wide uppercase text-sm hover:bg-[#8B7355]/10 hover:border-[#8B7355]/50 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                 </svg>
                 Download Fact Sheet
-              </a>
+              </Link>
             </div>
           </div>
         </div>

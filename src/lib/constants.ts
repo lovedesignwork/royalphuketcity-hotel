@@ -36,7 +36,19 @@ export const EXTERNAL_LINKS = {
 export const NAV_LINKS = {
   left: [
     { label: "Home", href: "/" },
-    { label: "Rooms & Suites", href: "/rooms-suites" },
+    {
+      label: "Rooms & Suites",
+      href: "/rooms-suites",
+      dropdown: [
+        { label: "All Rooms & Suites", href: "/rooms-suites" },
+        { label: "Premier Superior", href: "/premier-superior" },
+        { label: "Premier Superior Sea View", href: "/premier-superior-sea-view" },
+        { label: "Premier Deluxe", href: "/premier-deluxe" },
+        { label: "Premier Deluxe Sea View", href: "/premier-deluxe-sea-view" },
+        { label: "Suite Room", href: "/suite" },
+        { label: "Executive Suite", href: "/executive-suite" },
+      ],
+    },
     { label: "Facilities", href: "/facilities" },
     {
       label: "Wedding",
@@ -66,6 +78,7 @@ export const NAV_LINKS = {
         { label: "Concert & Live Show", href: "/meeting-events/concert-live-performance" },
         { label: "Stand-Up Comedy", href: "/meeting-events/stand-up-comedy" },
         { label: "Talk Show & Panel", href: "/meeting-events/talk-show-panel" },
+        { label: "Download Fact Sheets", href: "/download-fact-sheets" },
       ],
     },
     {

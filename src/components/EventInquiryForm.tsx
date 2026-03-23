@@ -107,19 +107,18 @@ export default function EventInquiryForm() {
     <section id="event-inquiry" className="py-20 md:py-28 bg-[--color-surface] scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
+          {/* Header - Outside the box */}
+          <div className="text-center mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary] mb-4">
+              Inquiry for Your Next Event
+            </h2>
+            <p className="text-[--color-text-secondary]">
+              Our dedicated meetings and events specialist is ready to guide you in planning and executing your event with precision
+            </p>
+          </div>
+
           {/* Form Container with Double Stroke - White outer, Gold inner */}
           <div className="relative outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
-            
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary] mb-4">
-                Inquiry for Your Next Event
-              </h2>
-              <p className="text-[--color-text-secondary]">
-                Our dedicated meetings and events specialist is ready to guide you in planning and executing your event with precision
-              </p>
-            </div>
-
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}

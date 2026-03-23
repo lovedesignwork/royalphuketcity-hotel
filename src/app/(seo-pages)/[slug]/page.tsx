@@ -2,8 +2,23 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { SEO_PAGES, SEO_PAGE_SLUGS, SeoPageData } from "@/lib/seo-pages-data";
+import { SEO_PAGES, SEO_PAGE_SLUGS, SeoPageData, FAQItem } from "@/lib/seo-pages-data";
 import HeroSection from "@/components/HeroSection";
+
+function generateFAQSchema(faqs: FAQItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -72,6 +87,16 @@ export default async function SeoPage({ params }: PageProps) {
         height="medium"
       />
 
+      {/* FAQ Schema for GEO */}
+      {pageData.geo?.faqs && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateFAQSchema(pageData.geo.faqs)),
+          }}
+        />
+      )}
+
       {/* Category Badge */}
       <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-6 py-4">
@@ -80,6 +105,29 @@ export default async function SeoPage({ params }: PageProps) {
           </span>
         </div>
       </div>
+
+      {/* TL;DR Summary - GEO Optimized */}
+      {pageData.geo?.tldr && (
+        <section className="py-8 bg-[#8B7355]/5 border-b border-[#8B7355]/10">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-[#8B7355] flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-[#8B7355] font-medium mb-2">Quick Summary</p>
+                  <p className="text-[--color-text-primary] leading-relaxed">{pageData.geo.tldr}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Introduction */}
       <section className="py-16 md:py-20 bg-white">
@@ -280,6 +328,87 @@ export default async function SeoPage({ params }: PageProps) {
           </Link>
         </div>
       </section>
+
+      {/* Key Takeaways - GEO Optimized */}
+      {pageData.geo?.keyTakeaways && (
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-10">
+                <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
+                  At a Glance
+                </p>
+                <h2 className="font-heading text-2xl md:text-3xl text-[--color-text-primary]">
+                  Key Takeaways
+                </h2>
+              </div>
+              <div className="grid gap-4">
+                {pageData.geo.keyTakeaways.map((takeaway, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 p-4 bg-[--color-surface] border-l-4 border-[#8B7355]"
+                  >
+                    <span className="flex-shrink-0 w-8 h-8 bg-[#8B7355] text-white flex items-center justify-center text-sm font-bold">
+                      {index + 1}
+                    </span>
+                    <p className="text-[--color-text-secondary] leading-relaxed pt-1">
+                      {takeaway}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ Section - GEO Optimized */}
+      {pageData.geo?.faqs && pageData.geo.faqs.length > 0 && (
+        <section className="py-16 md:py-20 bg-[--color-surface]">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
+                  Common Questions
+                </p>
+                <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary]">
+                  Frequently Asked Questions
+                </h2>
+              </div>
+              <div className="space-y-4">
+                {pageData.geo.faqs.map((faq, index) => (
+                  <details
+                    key={index}
+                    className="group bg-white border border-gray-200 hover:border-[#8B7355] transition-colors"
+                  >
+                    <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                      <h3 className="font-heading text-lg text-[--color-text-primary] pr-4">
+                        {faq.question}
+                      </h3>
+                      <span className="flex-shrink-0 w-8 h-8 border border-[#8B7355] flex items-center justify-center group-open:bg-[#8B7355] transition-colors">
+                        <svg
+                          className="w-4 h-4 text-[#8B7355] group-open:text-white transition-transform group-open:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </summary>
+                    <div className="px-6 pb-6 pt-0">
+                      <p className="text-[--color-text-secondary] leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Pages */}
       {relatedPages.length > 0 && (

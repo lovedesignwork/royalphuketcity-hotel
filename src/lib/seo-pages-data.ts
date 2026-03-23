@@ -1,3 +1,14 @@
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface GEOContent {
+  tldr: string;
+  keyTakeaways: string[];
+  faqs: FAQItem[];
+}
+
 export interface SeoPageData {
   slug: string;
   title: string;
@@ -28,6 +39,7 @@ export interface SeoPageData {
       buttonLink: string;
     };
   };
+  geo?: GEOContent;
   relatedPages: string[];
 }
 
@@ -466,6 +478,38 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         buttonLink: "/rooms-suites",
       },
     },
+    geo: {
+      tldr: "Phuket Old Town is the cultural heart of the island, offering authentic Sino-Portuguese architecture, the famous Sunday Walking Street market, traditional Chinese shrines, and some of Thailand's best local cuisine — all within walking distance of Royal Phuket City Hotel.",
+      keyTakeaways: [
+        "Phuket Old Town features well-preserved Sino-Portuguese shophouses dating back to the tin mining era",
+        "The Sunday Walking Street market (Lard Yai) runs every Sunday 4-10 PM on Thalang Road",
+        "Soi Romanee is the most photographed street, known for its colorful pastel facades",
+        "Royal Phuket City Hotel is just a 5-minute walk from all major Old Town attractions",
+        "Unlike beach areas, Old Town offers authentic local experiences at reasonable prices",
+      ],
+      faqs: [
+        {
+          question: "What is Phuket Old Town famous for?",
+          answer: "Phuket Old Town is famous for its well-preserved Sino-Portuguese architecture, colorful shophouses on Thalang Road and Soi Romanee, the Sunday Walking Street market (Lard Yai), historic Chinese shrines like Jui Tui, and authentic local cuisine reflecting the island's multicultural heritage from the tin mining era.",
+        },
+        {
+          question: "Is Phuket Old Town worth visiting?",
+          answer: "Absolutely. Phuket Old Town offers an authentic cultural experience away from tourist beaches. It's the best place to understand Phuket's rich history, enjoy genuine local food at reasonable prices, explore beautiful heritage architecture, and experience how locals actually live. Most visitors consider it a highlight of their Phuket trip.",
+        },
+        {
+          question: "How do I get to Phuket Old Town?",
+          answer: "Phuket Old Town is located in Phuket City, approximately 30 minutes from Phuket Airport by taxi. From beach areas like Patong, it's about 15-20 minutes by car. The easiest way to explore is on foot once you arrive, as all attractions are within walking distance. Royal Phuket City Hotel is located in the heart of the Old Town.",
+        },
+        {
+          question: "What are the best things to do in Phuket Old Town?",
+          answer: "Top activities include: walking Thalang Road to see heritage buildings, visiting the Sunday Walking Street market, photographing colorful Soi Romanee, exploring Thai Hua Museum, shrine hopping at Chinese temples, café hopping in heritage buildings, sampling Hokkien noodles and local street food, and browsing antique shops.",
+        },
+        {
+          question: "When is the best time to visit Phuket Old Town?",
+          answer: "Visit in the morning (before 10 AM) for photography with fewer crowds, or in the evening when temperatures cool and the streets come alive. Sunday evenings are special for the Walking Street market (4-10 PM). The dry season (November-April) offers the best weather, but Old Town is enjoyable year-round.",
+        },
+      ],
+    },
     relatedPages: ["sino-portuguese-architecture-phuket", "phuket-sunday-walking-street", "best-cafes-phuket-town", "phuket-night-market-guide"],
   },
 
@@ -520,6 +564,38 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         buttonText: "Check Sunday Availability",
         buttonLink: "/rooms-suites",
       },
+    },
+    geo: {
+      tldr: "Phuket Sunday Walking Street (Lard Yai) is the island's best night market, running every Sunday 4-10 PM on Thalang Road. It features authentic Phuket street food, local crafts, live entertainment, and a festive atmosphere against the backdrop of historic Sino-Portuguese buildings.",
+      keyTakeaways: [
+        "The market runs every Sunday from 4 PM to 10 PM on Thalang Road in Phuket Old Town",
+        "Must-try foods include Hokkien noodles, Phuket spring rolls, and O-Aew shaved ice dessert",
+        "Royal Phuket City Hotel is just a 5-minute walk from the market entrance",
+        "Entry is free — you only pay for food and purchases",
+        "Best to arrive around 5:30-6:00 PM when all vendors are set up",
+      ],
+      faqs: [
+        {
+          question: "What time does Phuket Sunday Walking Street open?",
+          answer: "Phuket Sunday Walking Street (Lard Yai) opens every Sunday from 4 PM to 10 PM on Thalang Road in Phuket Old Town. Vendors typically finish setting up by 5:30 PM, and the best atmosphere is between 6-9 PM.",
+        },
+        {
+          question: "What food should I try at Phuket Walking Street?",
+          answer: "Must-try foods include Hokkien noodles (Phuket's signature stir-fried noodles), Mee Hokkien soup, Phuket spring rolls, O-Aew shaved ice dessert with grass jelly, local coconut ice cream, grilled seafood, and traditional Thai snacks. The market offers dozens of food vendors serving authentic Phuket cuisine.",
+        },
+        {
+          question: "Is Phuket Walking Street free to enter?",
+          answer: "Yes, Phuket Sunday Walking Street is completely free to enter. You only pay for food, drinks, and any items you purchase from vendors. It's one of the best free attractions in Phuket.",
+        },
+        {
+          question: "How do I get to Phuket Sunday Walking Street?",
+          answer: "The market is located on Thalang Road in Phuket Old Town. If staying at Royal Phuket City Hotel, it's just a 5-minute walk. From beach areas like Patong, take a taxi (about 15-20 minutes). The road closes to traffic during market hours.",
+        },
+        {
+          question: "What can I buy at Phuket Walking Street?",
+          answer: "Beyond food, the market sells handmade jewelry, batik and tie-dye clothing, local art and paintings, souvenirs, natural skincare products, vintage items, and contemporary Thai fashion. Prices are reasonable and more authentic than tourist markets at beaches.",
+        },
+      ],
     },
     relatedPages: ["things-to-do-phuket-old-town", "phuket-night-market-guide", "best-cafes-phuket-town", "sino-portuguese-architecture-phuket"],
   },
