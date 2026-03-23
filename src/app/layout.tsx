@@ -4,6 +4,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { HotelJsonLd, LocalBusinessJsonLd } from "@/components/JsonLd";
+import { AnalyticsProvider } from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -77,9 +78,11 @@ export default function RootLayout({
         <LocalBusinessJsonLd />
       </head>
       <body className="antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <AnalyticsProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </AnalyticsProvider>
       </body>
     </html>
   );

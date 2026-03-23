@@ -2,12 +2,39 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection, SectionHeading, CTABanner } from "@/components";
-import { HOTEL_INFO } from "@/lib/constants";
+import { HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Discover Royal Phuket City Hotel - the first high-rise and tallest building near Phuket Old Town. A 4-star landmark offering 251 rooms, 5 restaurants, and world-class facilities.",
+    "Discover Royal Phuket City Hotel - Phuket's first high-rise and a landmark since 1995. 251 rooms, 5 restaurants, and world-class facilities in Phuket Old Town.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/about`,
+  },
+  openGraph: {
+    title: "About | Royal Phuket City Hotel",
+    description:
+      "Phuket's first high-rise and a landmark since 1995. 251 rooms and world-class facilities in Phuket Old Town.",
+    url: `${SITE_CONFIG.url}/about`,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Royal Phuket City Hotel",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Royal Phuket City Hotel",
+    description:
+      "Phuket's first high-rise and a landmark since 1995 in Phuket Old Town.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 const milestones = [

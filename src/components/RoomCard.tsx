@@ -19,7 +19,6 @@ interface RoomCardProps {
 export default function RoomCard({
   slug,
   name,
-  category,
   size,
   maxGuests,
   bedType,
@@ -37,7 +36,7 @@ export default function RoomCard({
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="group relative"
     >
-      <Link href={`/room/${slug}`} className="block">
+      <Link href={`/rooms-suites/${slug}`} className="block">
         {/* Image — tall portrait ratio for luxury feel */}
         <div className="relative aspect-[3/4] overflow-hidden">
           <Image
@@ -88,7 +87,22 @@ export default function RoomCard({
 
             {/* CTA */}
             <div className="flex items-center justify-between border-t border-white/20 pt-4">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-white/60">
+              <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-white/60">
+                {hasSeaView && (
+                  <svg
+                    className="w-4 h-4 text-[#8B7355]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2 13c.6.6 1.5 1 2.5 1 2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2c1 0 1.9-.4 2.5-1M2 17c.6.6 1.5 1 2.5 1 2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2c1 0 1.9-.4 2.5-1M2 9c.6.6 1.5 1 2.5 1 2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2c1 0 1.9-.4 2.5-1"
+                    />
+                  </svg>
+                )}
                 {views[0]}
               </span>
               <span className="inline-flex items-center gap-2 text-[#8B7355] text-[10px] tracking-[0.2em] uppercase font-medium group-hover:gap-3 transition-all duration-300">

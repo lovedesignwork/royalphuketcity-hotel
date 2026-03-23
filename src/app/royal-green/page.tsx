@@ -1,11 +1,39 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { HeroSection, SectionHeading, CTABanner } from "@/components";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Royal Green",
   description:
-    "Discover Royal Phuket City Hotel's commitment to sustainability. Our Royal Green initiative encompasses eco-friendly practices, waste reduction, and community engagement.",
+    "Royal Phuket City Hotel's commitment to sustainability. Eco-friendly practices, 30% energy reduction, water conservation, and Thai Green Hotel certification.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/royal-green`,
+  },
+  openGraph: {
+    title: "Royal Green | Royal Phuket City Hotel",
+    description:
+      "Our commitment to sustainability through eco-friendly practices and community engagement.",
+    url: `${SITE_CONFIG.url}/royal-green`,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Royal Green Sustainability Initiative",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Royal Green | Royal Phuket City Hotel",
+    description:
+      "Our commitment to sustainability through eco-friendly practices.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 const initiatives = [

@@ -1,12 +1,39 @@
 import { Metadata } from "next";
 import { HeroSection, SectionHeading } from "@/components";
 import ContactForm from "@/components/ContactForm";
-import { HOTEL_INFO, EXTERNAL_LINKS } from "@/lib/constants";
+import { HOTEL_INFO, EXTERNAL_LINKS, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Royal Phuket City Hotel. Get in touch for reservations, inquiries, or feedback. Located at 154 Phang-Nga Road, Phuket Old Town.",
+    "Contact Royal Phuket City Hotel for reservations and inquiries. Located at 154 Phang-Nga Road, Phuket Old Town. Call +66 76 233 355.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/contact`,
+  },
+  openGraph: {
+    title: "Contact | Royal Phuket City Hotel",
+    description:
+      "Get in touch for reservations, inquiries, or feedback. Located in Phuket Old Town.",
+    url: `${SITE_CONFIG.url}/contact`,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Contact Royal Phuket City Hotel",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Royal Phuket City Hotel",
+    description:
+      "Get in touch for reservations, inquiries, or feedback.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 export default function ContactPage() {

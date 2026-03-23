@@ -9,3 +9,6 @@ export { default as ImageGallery } from "./ImageGallery";
 export { default as RoomCard } from "./RoomCard";
 export { default as RestaurantCard } from "./RestaurantCard";
 export { default as TestimonialSlider } from "./TestimonialSlider";
+export { default as Breadcrumbs } from "./Breadcrumbs";
+export { default as AnnouncementSection } from "./AnnouncementSection";
+export { default as BlogSection } from "./BlogSection";

@@ -202,3 +202,108 @@ export function FAQJsonLd({ faqs }: FAQJsonLdProps) {
     />
   );
 }
+
+interface HotelRoomJsonLdProps {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+  bedType: string;
+  occupancy: number;
+  floorSize: string;
+  amenities: string[];
+}
+
+export function HotelRoomJsonLd({
+  name,
+  description,
+  image,
+  url,
+  bedType,
+  occupancy,
+  floorSize,
+  amenities,
+}: HotelRoomJsonLdProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "HotelRoom",
+    name,
+    description,
+    image,
+    url: `${SITE_CONFIG.url}${url}`,
+    bed: {
+      "@type": "BedDetails",
+      typeOfBed: bedType,
+    },
+    occupancy: {
+      "@type": "QuantitativeValue",
+      maxValue: occupancy,
+    },
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: parseInt(floorSize),
+      unitCode: "MTK",
+    },
+    amenityFeature: amenities.map((amenity) => ({
+      "@type": "LocationFeatureSpecification",
+      name: amenity,
+    })),
+    containedInPlace: {
+      "@type": "Hotel",
+      name: HOTEL_INFO.name,
+      url: SITE_CONFIG.url,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+interface EventVenueJsonLdProps {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+  maximumAttendeeCapacity: number;
+}
+
+export function EventVenueJsonLd({
+  name,
+  description,
+  image,
+  url,
+  maximumAttendeeCapacity,
+}: EventVenueJsonLdProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    name,
+    description,
+    image,
+    url: `${SITE_CONFIG.url}${url}`,
+    maximumAttendeeCapacity,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "154 Phang-Nga Road, Talad Yai",
+      addressLocality: "Muang",
+      addressRegion: "Phuket",
+      postalCode: "83000",
+      addressCountry: "TH",
+    },
+    containedInPlace: {
+      "@type": "Hotel",
+      name: HOTEL_INFO.name,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}

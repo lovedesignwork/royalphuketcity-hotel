@@ -12,6 +12,7 @@ interface HeroSectionProps {
   showReserveButton?: boolean;
   height?: "full" | "large" | "medium";
   overlay?: "dark" | "medium" | "light";
+  subtitleSize?: "default" | "large";
 }
 
 export default function HeroSection({
@@ -22,6 +23,7 @@ export default function HeroSection({
   showReserveButton = false,
   height = "full",
   overlay = "medium",
+  subtitleSize = "default",
 }: HeroSectionProps) {
   const heightClasses = {
     full: "h-screen",
@@ -59,7 +61,7 @@ export default function HeroSection({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {subtitle && (
-              <p className="label-accent text-white/80 mb-4">{subtitle}</p>
+              <p className={`text-white/80 mb-4 ${subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : "label-accent"}`}>{subtitle}</p>
             )}
 
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 max-w-4xl mx-auto">

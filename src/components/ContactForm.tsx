@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import CountryPhoneSelector from "./CountryPhoneSelector";
 
 interface FormData {
   name: string;
@@ -34,6 +35,10 @@ export default function ContactForm() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, phone: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -130,19 +135,14 @@ export default function ContactForm() {
         {/* Phone */}
         <div>
           <label
-            htmlFor="phone"
             className="block label-accent text-[--color-text-primary] mb-2"
           >
             Phone
           </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
+          <CountryPhoneSelector
             value={formData.phone}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
-            placeholder="+66 XX XXX XXXX"
+            onChange={handlePhoneChange}
+            defaultCountry="TH"
           />
         </div>
 
@@ -154,20 +154,30 @@ export default function ContactForm() {
           >
             Inquiry Type
           </label>
-          <select
-            id="inquiry_type"
-            name="inquiry_type"
-            value={formData.inquiry_type}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
-          >
-            <option value="general">General Inquiry</option>
-            <option value="reservation">Reservation</option>
-            <option value="corporate">Corporate / MICE</option>
-            <option value="wedding">Wedding</option>
-            <option value="dining">Dining Reservation</option>
-            <option value="feedback">Feedback</option>
-          </select>
+          <div className="relative">
+            <select
+              id="inquiry_type"
+              name="inquiry_type"
+              value={formData.inquiry_type}
+              onChange={handleChange}
+              className="w-full px-4 py-3 pr-10 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors appearance-none cursor-pointer"
+            >
+              <option value="general">General Inquiry</option>
+              <option value="reservation">Reservation</option>
+              <option value="corporate">Corporate / MICE</option>
+              <option value="wedding">Wedding</option>
+              <option value="dining">Dining Reservation</option>
+              <option value="feedback">Feedback</option>
+            </select>
+            <svg
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
         </div>
       </div>
 

@@ -1,11 +1,18 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components";
-import { HOTEL_INFO } from "@/lib/constants";
+import { HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Royal Phuket City Hotel privacy policy. Learn how we collect, use, and protect your personal information.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/privacy-policy`,
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function PrivacyPolicyPage() {

@@ -1,11 +1,18 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components";
-import { HOTEL_INFO } from "@/lib/constants";
+import { HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
     "Royal Phuket City Hotel cookie policy. Learn about how we use cookies and similar technologies on our website.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/cookie-policy`,
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function CookiePolicyPage() {

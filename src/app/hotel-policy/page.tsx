@@ -1,11 +1,18 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components";
-import { HOTEL_INFO } from "@/lib/constants";
+import { HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Hotel Policy",
   description:
     "Royal Phuket City Hotel policies including check-in/check-out times, cancellation policy, children policy, and house rules.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/hotel-policy`,
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const policies = [

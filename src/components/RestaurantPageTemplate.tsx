@@ -126,7 +126,7 @@ export default function RestaurantPageTemplate({
       </section>
 
       {/* Reservation CTA */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-[#8B7355]/10">
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-heading text-3xl md:text-4xl mb-4">
             Make a Reservation
@@ -144,7 +144,14 @@ export default function RestaurantPageTemplate({
                 Call to Reserve
               </a>
             )}
-            <ReserveButton />
+            <a
+              href="https://www.royalphuketcity.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center font-medium tracking-[0.15em] uppercase transition-all duration-300 px-6 py-3 text-xs bg-[#1a1a1a] text-white hover:bg-black"
+            >
+              Visit the Website
+            </a>
           </div>
         </div>
       </section>

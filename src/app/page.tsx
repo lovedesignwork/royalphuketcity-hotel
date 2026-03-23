@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,9 +8,44 @@ import {
   RestaurantCard,
   TestimonialSlider,
   CTABanner,
+  AnnouncementSection,
+  BlogSection,
 } from "@/components";
 import PhotoSlider from "@/components/PhotoSlider";
-import { ROOMS, RESTAURANTS, HOTEL_INFO } from "@/lib/constants";
+import { ROOMS, RESTAURANTS, HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
+  description:
+    "Experience luxury at Royal Phuket City Hotel, a premier 4-star hotel in Phuket Old Town. 251 elegant rooms, rooftop dining, 9 meeting rooms, and world-class facilities.",
+  alternates: {
+    canonical: SITE_CONFIG.url,
+  },
+  openGraph: {
+    title: "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
+    description:
+      "Experience luxury at Royal Phuket City Hotel, a premier 4-star hotel in Phuket Old Town. 251 elegant rooms, rooftop dining, and world-class facilities.",
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Royal Phuket City Hotel - Luxury Hotel in Phuket Old Town",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
+    description:
+      "Experience luxury at Royal Phuket City Hotel, a premier 4-star hotel in Phuket Old Town.",
+    images: ["/images/og-image.jpg"],
+  },
+};
 
 export default function HomePage() {
   return (
@@ -23,6 +59,9 @@ export default function HomePage() {
         showReserveButton
         height="full"
       />
+
+      {/* Special Announcement / Promotion Section */}
+      <AnnouncementSection />
 
       {/* Hotel Introduction */}
       <section className="py-20 md:py-28">
@@ -562,6 +601,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Blog Section */}
+      <BlogSection />
 
       {/* Testimonials */}
       <TestimonialSlider />

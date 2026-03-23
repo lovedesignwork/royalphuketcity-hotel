@@ -12,6 +12,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    let submissionId: string | null = null;
+
     // Initialize Supabase client if environment variables are set
     if (
       process.env.NEXT_PUBLIC_SUPABASE_URL &&
@@ -23,20 +25,27 @@ export async function POST(request: NextRequest) {
         process.env.SUPABASE_SERVICE_ROLE_KEY
       );
 
-      const { error: dbError } = await supabase.from("contact_submissions").insert([
-        {
-          name,
-          email,
-          phone: phone || null,
-          subject: subject || null,
-          message,
-          inquiry_type: inquiry_type || "general",
-          created_at: new Date().toISOString(),
-        },
-      ]);
+      const { data, error: dbError } = await supabase
+        .from("contact_submissions")
+        .insert([
+          {
+            name,
+            email,
+            phone: phone || null,
+            subject: subject || null,
+            message,
+            inquiry_type: inquiry_type || "general",
+            status: "new",
+            created_at: new Date().toISOString(),
+          },
+        ])
+        .select("id")
+        .single();
 
       if (dbError) {
         console.error("Supabase error:", dbError);
+      } else if (data) {
+        submissionId = data.id;
       }
     }
 
@@ -45,27 +54,116 @@ export async function POST(request: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(process.env.RESEND_API_KEY);
 
+      const isEventInquiry = inquiry_type === "event";
+      const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
+
+      // Send notification to admin
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
         to: ["reservation@royalphuketcity.com"],
         replyTo: email,
-        subject: `Contact Form: ${subject || "New Inquiry"} - ${inquiry_type || "General"}`,
+        subject: isEventInquiry 
+          ? `🎉 New Event Inquiry: ${subject || "Event Request"} - Ref: ${referenceNumber}`
+          : `Contact Form: ${subject || "New Inquiry"} - ${inquiry_type || "General"}`,
         html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-          <p><strong>Inquiry Type:</strong> ${inquiry_type || "General"}</p>
-          <p><strong>Subject:</strong> ${subject || "Not provided"}</p>
-          <hr />
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, "<br />")}</p>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #8B7355; padding: 20px; text-align: center;">
+              <h1 style="color: white; margin: 0;">Royal Phuket City Hotel</h1>
+            </div>
+            <div style="padding: 30px; background-color: #f9f9f9;">
+              <h2 style="color: #333; border-bottom: 2px solid #8B7355; padding-bottom: 10px;">
+                ${isEventInquiry ? "New Event Inquiry" : "New Contact Form Submission"}
+              </h2>
+              <p style="color: #666;"><strong>Reference Number:</strong> ${referenceNumber}</p>
+              <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Name:</td><td style="padding: 8px 0; color: #666;">${name}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #666;">${email}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #666;">${phone || "Not provided"}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Inquiry Type:</td><td style="padding: 8px 0; color: #666;">${inquiry_type || "General"}</td></tr>
+                ${subject ? `<tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Subject:</td><td style="padding: 8px 0; color: #666;">${subject}</td></tr>` : ""}
+              </table>
+              <div style="background-color: white; padding: 20px; border-left: 4px solid #8B7355; margin: 20px 0;">
+                <h3 style="color: #333; margin-top: 0;">Message / Details:</h3>
+                <p style="color: #666; line-height: 1.6;">${message.replace(/\n/g, "<br />")}</p>
+              </div>
+              <p style="color: #888; font-size: 12px; margin-top: 30px;">
+                Submitted on ${new Date().toLocaleString("en-US", { dateStyle: "full", timeStyle: "short" })}
+              </p>
+            </div>
+          </div>
+        `,
+      });
+
+      // Send confirmation email to the person who submitted the form
+      await resend.emails.send({
+        from: "Royal Phuket City Hotel <noreply@royalphuketcity.com>",
+        to: [email],
+        subject: isEventInquiry 
+          ? `Thank You for Your Event Inquiry - Royal Phuket City Hotel (Ref: ${referenceNumber})`
+          : `Thank You for Contacting Us - Royal Phuket City Hotel (Ref: ${referenceNumber})`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background-color: #8B7355; padding: 20px; text-align: center;">
+              <h1 style="color: white; margin: 0;">Royal Phuket City Hotel</h1>
+              <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0;">Phuket Old Town, Thailand</p>
+            </div>
+            <div style="padding: 30px; background-color: #ffffff;">
+              <h2 style="color: #8B7355; margin-top: 0;">Thank You, ${name}!</h2>
+              <p style="color: #666; line-height: 1.6;">
+                ${isEventInquiry 
+                  ? "We have received your event inquiry and our dedicated Meetings & Events team will review your request."
+                  : "We have received your message and a member of our team will get back to you shortly."
+                }
+              </p>
+              <div style="background-color: #f9f9f9; padding: 20px; margin: 20px 0; border: 1px solid #eee;">
+                <p style="margin: 0 0 10px 0; color: #333;"><strong>Your Reference Number:</strong></p>
+                <p style="margin: 0; color: #8B7355; font-size: 24px; font-weight: bold;">${referenceNumber}</p>
+                <p style="margin: 10px 0 0 0; color: #888; font-size: 12px;">Please quote this reference in any future correspondence.</p>
+              </div>
+              <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px;">Your Submission Details:</h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold; width: 120px;">Name:</td><td style="padding: 8px 0; color: #666;">${name}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #666;">${email}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #666;">${phone || "Not provided"}</td></tr>
+                ${subject ? `<tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Subject:</td><td style="padding: 8px 0; color: #666;">${subject}</td></tr>` : ""}
+              </table>
+              <div style="background-color: #faf9f7; padding: 15px; border-left: 3px solid #8B7355; margin: 20px 0;">
+                <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.6;">${message.replace(/\n/g, "<br />")}</p>
+              </div>
+              ${isEventInquiry ? `
+              <div style="background-color: #8B7355; color: white; padding: 20px; margin: 20px 0; text-align: center;">
+                <p style="margin: 0 0 10px 0; font-size: 14px;">Our events team typically responds within</p>
+                <p style="margin: 0; font-size: 24px; font-weight: bold;">24-48 Business Hours</p>
+              </div>
+              ` : ""}
+              <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+              <p style="color: #666; font-size: 14px; line-height: 1.6;">
+                If you have any urgent inquiries, please contact us directly:
+              </p>
+              <p style="color: #666; font-size: 14px;">
+                <strong>Phone:</strong> +66 76 233 333<br />
+                <strong>Email:</strong> reservation@royalphuketcity.com
+              </p>
+            </div>
+            <div style="background-color: #1a1a2e; padding: 20px; text-align: center;">
+              <p style="color: rgba(255,255,255,0.6); margin: 0; font-size: 12px;">
+                Royal Phuket City Hotel | 154 Phang Nga Road, Phuket Old Town 83000, Thailand
+              </p>
+              <p style="color: rgba(255,255,255,0.4); margin: 10px 0 0 0; font-size: 11px;">
+                This is an automated confirmation. Please do not reply to this email.
+              </p>
+            </div>
+          </div>
         `,
       });
     }
 
     return NextResponse.json(
-      { success: true, message: "Your message has been sent successfully." },
+      { 
+        success: true, 
+        message: "Your inquiry has been submitted successfully.",
+        referenceNumber: submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : null
+      },
       { status: 200 }
     );
   } catch (error) {

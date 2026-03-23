@@ -1,11 +1,39 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { HeroSection, SectionHeading, CTABanner } from "@/components";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Our Clients",
   description:
-    "Royal Phuket City Hotel is the trusted partner for leading corporations, government agencies, and organizations for meetings, events, and corporate stays.",
+    "Trusted by leading corporations, government agencies, and organizations for meetings, events, and corporate stays at Royal Phuket City Hotel.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/our-clients`,
+  },
+  openGraph: {
+    title: "Our Clients | Royal Phuket City Hotel",
+    description:
+      "Trusted partner for leading corporations and organizations for meetings and corporate stays.",
+    url: `${SITE_CONFIG.url}/our-clients`,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Our Clients - Royal Phuket City Hotel",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Clients | Royal Phuket City Hotel",
+    description:
+      "Trusted partner for leading corporations and organizations.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 const clientCategories = [
