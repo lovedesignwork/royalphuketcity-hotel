@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color Palette - Luxury Hotel Theme */
+  --color-background: #ffffff;
+  --color-surface: #fafafa;
+  --color-border: #e8e5e0;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b6b6b;
+  --color-accent: #8b7355;
+  --color-accent-hover: #705c42;
+
+  /* Font Families */
+  --font-heading: var(--font-marcellus), "Palatino Linotype", Palatino, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  /* Custom Spacing */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Accent Label Style */
+.label-accent {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Hairline Border */
+.hairline-border {
+  border: 1px solid var(--color-border);
+}
+
+.hairline-border-t {
+  border-top: 1px solid var(--color-border);
+}
+
+.hairline-border-b {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Button Base Styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  color: #ffffff;
+  background-color: var(--color-accent);
+}
+
+/* Image Hover Effect */
+.img-hover {
+  overflow: hidden;
+}
+
+.img-hover img {
+  transition: transform 0.6s ease;
+}
+
+.img-hover:hover img {
+  transform: scale(1.02);
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
