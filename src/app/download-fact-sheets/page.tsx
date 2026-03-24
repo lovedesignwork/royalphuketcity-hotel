@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import CountryPhoneSelector from "@/components/CountryPhoneSelector";
 
@@ -27,13 +28,29 @@ interface Document {
   languages: DocumentLanguage[];
 }
 
-const LANGUAGE_FLAGS: Record<string, string> = {
-  en: "🇬🇧",
-  ru: "🇷🇺",
-  zh: "🇨🇳",
-  ko: "🇰🇷",
-  vi: "🇻🇳",
+const LANGUAGE_FLAGS: Record<string, { code: string; name: string }> = {
+  en: { code: "gb", name: "United Kingdom" },
+  ru: { code: "ru", name: "Russia" },
+  zh: { code: "cn", name: "China" },
+  ko: { code: "kr", name: "South Korea" },
+  vi: { code: "vn", name: "Vietnam" },
 };
+
+function FlagIcon({ langCode, size = 24 }: { langCode: string; size?: number }) {
+  const flag = LANGUAGE_FLAGS[langCode];
+  if (!flag) return null;
+  
+  return (
+    <Image
+      src={`https://flagcdn.com/w40/${flag.code}.png`}
+      alt={flag.name}
+      width={size}
+      height={Math.round(size * 0.75)}
+      className="inline-block object-cover"
+      style={{ borderRadius: 2 }}
+    />
+  );
+}
 
 const DOCUMENT_PREVIEWS = [
   { id: "company-presentation", title: "Company Presentation", icon: "presentation" },
@@ -385,7 +402,7 @@ export default function DownloadFactSheetsPage() {
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 hover:border-[#8B7355] hover:bg-[#8B7355]/5 transition-colors text-sm"
                             >
-                              <span className="text-lg">{LANGUAGE_FLAGS[lang.code] || "📄"}</span>
+                              <FlagIcon langCode={lang.code} size={20} />
                               <span className="text-[--color-text-primary]">
                                 {lang.label}
                                 <span className="text-[--color-text-secondary] text-xs">
@@ -515,19 +532,19 @@ export default function DownloadFactSheetsPage() {
             </span>
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-2 text-[--color-text-primary]">
-                <span className="text-2xl">🇬🇧</span> English
+                <FlagIcon langCode="en" size={24} /> English
               </span>
               <span className="flex items-center gap-2 text-[--color-text-primary]">
-                <span className="text-2xl">🇷🇺</span> Russian
+                <FlagIcon langCode="ru" size={24} /> Russian
               </span>
               <span className="flex items-center gap-2 text-[--color-text-primary]">
-                <span className="text-2xl">🇨🇳</span> Chinese
+                <FlagIcon langCode="zh" size={24} /> Chinese
               </span>
               <span className="flex items-center gap-2 text-[--color-text-primary]">
-                <span className="text-2xl">🇰🇷</span> Korean
+                <FlagIcon langCode="ko" size={24} /> Korean
               </span>
               <span className="flex items-center gap-2 text-[--color-text-primary]">
-                <span className="text-2xl">🇻🇳</span> Vietnamese
+                <FlagIcon langCode="vi" size={24} /> Vietnamese
               </span>
             </div>
           </div>
