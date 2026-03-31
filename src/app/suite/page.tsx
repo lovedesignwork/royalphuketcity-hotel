@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ImageGallery, ReserveButton, CTABanner, Breadcrumbs } from "@/components";
+import { ImageGallery, ReserveButton, CTABanner, Breadcrumbs, RoomPhotoSlider } from "@/components";
 import { HotelRoomJsonLd } from "@/components/JsonLd";
 import { ROOM_DETAILS } from "@/lib/room-data";
 import { ROOMS, SITE_CONFIG } from "@/lib/constants";
@@ -55,17 +55,7 @@ export default function SuitePage() {
         amenities={room.amenities}
       />
 
-      <section className="relative h-[70vh] min-h-[500px]">
-        <Image
-          src={room.images[0].src}
-          alt={room.images[0].alt}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </section>
+      <RoomPhotoSlider photos={room.images} />
 
       <section className="py-12 bg-white hairline-border-b">
         <div className="container mx-auto px-6">
@@ -77,24 +67,18 @@ export default function SuitePage() {
           />
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <span className="label-accent text-[--color-accent] block mb-2">
-                {room.category}
-              </span>
-              <h1 className="font-heading text-4xl md:text-5xl mb-4">
+              <h1 className="font-heading text-4xl md:text-5xl">
                 {room.name}
               </h1>
-              <p className="text-[--color-text-secondary]">
-                {room.views.join(" • ")}
-              </p>
             </div>
             <ReserveButton size="large" />
           </div>
         </div>
       </section>
 
-      <section className="bg-white border-b border-[--color-border]">
+      <section className="bg-white border-b border-[#8B7355]/50">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[--color-border]">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#8B7355]/50">
             {[
               { label: "Room Size", value: room.size },
               { label: "Guests", value: `Up to ${room.maxGuests}` },
@@ -156,7 +140,7 @@ export default function SuitePage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-[--color-surface]">
+      <section className="py-20 md:py-28 bg-[--color-surface] lg:hidden">
         <div className="container mx-auto px-6">
           <h2 className="font-heading text-3xl text-center mb-12">Gallery</h2>
           <ImageGallery images={room.images} columns={4} />

@@ -61,15 +61,15 @@ export default function HeroSection({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {subtitle && (
-              <p className={`text-white/80 mb-4 ${subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : "label-accent"}`}>{subtitle}</p>
+              <p className={`text-white mb-4 drop-shadow-lg ${subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : "text-[19px] tracking-[0.15em] uppercase"}`}>{subtitle}</p>
             )}
 
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 max-w-4xl mx-auto">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 max-w-4xl mx-auto whitespace-pre-line drop-shadow-lg">
               {title}
             </h1>
 
             {description && (
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8">
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 drop-shadow-lg">
                 {description}
               </p>
             )}

@@ -12,3 +12,4 @@ export { default as TestimonialSlider } from "./TestimonialSlider";
 export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as AnnouncementSection } from "./AnnouncementSection";
 export { default as BlogSection } from "./BlogSection";
+export { default as RoomPhotoSlider } from "./RoomPhotoSlider";

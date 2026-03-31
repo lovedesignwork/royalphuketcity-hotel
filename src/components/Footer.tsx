@@ -175,11 +175,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {/* Hotel Info */}
           <div>
-            <h3 className="font-heading text-2xl text-[--color-text-primary] mb-6 tracking-wide">
-              ROYAL PHUKET CITY
-            </h3>
-            <p className="text-[--color-text-secondary] text-sm leading-relaxed">
-              Conveniently located in the major city of Phuket. This 4-Stars hotel is comfortable, sophisticated, luxurious accommodation, which offers the perfect place to stay for friends looking to see the city and couples on a romantic getaway and thanks to the adaptability of its 9 meeting rooms it&apos;s also a remarkable venue for those important business meetings, conferences and private events.
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo.svg"
+              alt="Royal Phuket City Hotel"
+              className="h-16 w-auto mb-6"
+            />
+            <p className="text-[--color-text-secondary] text-xs leading-relaxed">
+              A premier 4-star hotel in the heart of Phuket Old Town, offering 251 elegant rooms, world-class dining, and 9 versatile meeting spaces.
             </p>
           </div>
 

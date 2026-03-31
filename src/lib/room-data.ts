@@ -47,20 +47,40 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/01 Premier superior/Premier Superior 1.jpg",
         alt: "Premier Superior - Main View",
       },
       {
-        src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/01 Premier superior/Premier Superior 2.jpg",
         alt: "Premier Superior - Bed",
       },
       {
-        src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/01 Premier superior/Premier Superior 3.jpg",
         alt: "Premier Superior - Bathroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/01 Premier superior/Premier Superior 4.jpg",
         alt: "Premier Superior - View",
+      },
+      {
+        src: "/images/rooms/01 Premier superior/Premier Superior 5.jpg",
+        alt: "Premier Superior - Workspace",
+      },
+      {
+        src: "/images/rooms/01 Premier superior/Premier Superior 6.jpg",
+        alt: "Premier Superior - Details",
+      },
+      {
+        src: "/images/rooms/01 Premier superior/Premier Superior 7.jpg",
+        alt: "Premier Superior - Amenities",
+      },
+      {
+        src: "/images/rooms/01 Premier superior/Premier Superior 8.jpg",
+        alt: "Premier Superior - Interior",
+      },
+      {
+        src: "/images/rooms/01 Premier superior/Premier Superior 9.jpg",
+        alt: "Premier Superior - Window View",
       },
     ],
   },
@@ -96,20 +116,40 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 1.jpg",
         alt: "Premier Superior Sea View - Main",
       },
       {
-        src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 2.jpg",
         alt: "Premier Superior Sea View - Bedroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 3.jpg",
         alt: "Premier Superior Sea View - Bathroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 4.jpg",
         alt: "Premier Superior Sea View - View",
+      },
+      {
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 5.jpg",
+        alt: "Premier Superior Sea View - Workspace",
+      },
+      {
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 6.jpg",
+        alt: "Premier Superior Sea View - Details",
+      },
+      {
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 7.jpg",
+        alt: "Premier Superior Sea View - Amenities",
+      },
+      {
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 8.jpg",
+        alt: "Premier Superior Sea View - Interior",
+      },
+      {
+        src: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 9.jpg",
+        alt: "Premier Superior Sea View - Window View",
       },
     ],
   },
@@ -147,20 +187,40 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 1.jpg",
         alt: "Premier Deluxe - Main View",
       },
       {
-        src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 2.jpg",
         alt: "Premier Deluxe - Bedroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 3.jpg",
         alt: "Premier Deluxe - Bathroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 4.jpg",
         alt: "Premier Deluxe - View",
+      },
+      {
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 5.jpg",
+        alt: "Premier Deluxe - Workspace",
+      },
+      {
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 6.jpg",
+        alt: "Premier Deluxe - Details",
+      },
+      {
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 7.jpg",
+        alt: "Premier Deluxe - Amenities",
+      },
+      {
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 8.jpg",
+        alt: "Premier Deluxe - Interior",
+      },
+      {
+        src: "/images/rooms/03 Premier deluxe/Premier Deluxe 9.jpg",
+        alt: "Premier Deluxe - Window View",
       },
     ],
   },
@@ -198,20 +258,40 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view01_resize.jpg",
         alt: "Premier Deluxe Sea View - Main",
       },
       {
-        src: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view02_resize.jpg",
         alt: "Premier Deluxe Sea View - Bedroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view03_resize.jpg",
         alt: "Premier Deluxe Sea View - Bathroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view04_resize.jpg",
         alt: "Premier Deluxe Sea View - Living",
+      },
+      {
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view05_resize.jpg",
+        alt: "Premier Deluxe Sea View - Workspace",
+      },
+      {
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view06_resize.jpg",
+        alt: "Premier Deluxe Sea View - Details",
+      },
+      {
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view07_resize.jpg",
+        alt: "Premier Deluxe Sea View - Amenities",
+      },
+      {
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view08_resize.jpg",
+        alt: "Premier Deluxe Sea View - Interior",
+      },
+      {
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view09_resize.jpg",
+        alt: "Premier Deluxe Sea View - Window View",
       },
     ],
   },
@@ -251,20 +331,40 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/05 Suite/Suite01_resize.jpg",
         alt: "Suite - Main View",
       },
       {
-        src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/05 Suite/Suite02_resize.jpg",
         alt: "Suite - Bedroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/05 Suite/Suite03_resize.jpg",
         alt: "Suite - Bathroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/05 Suite/Suite04_resize.jpg",
         alt: "Suite - Living Area",
+      },
+      {
+        src: "/images/rooms/05 Suite/Suite05_resize.jpg",
+        alt: "Suite - Workspace",
+      },
+      {
+        src: "/images/rooms/05 Suite/Suite06_resize.jpg",
+        alt: "Suite - Details",
+      },
+      {
+        src: "/images/rooms/05 Suite/Suite07_resize.jpg",
+        alt: "Suite - Amenities",
+      },
+      {
+        src: "/images/rooms/05 Suite/Suite08_resize.jpg",
+        alt: "Suite - Interior",
+      },
+      {
+        src: "/images/rooms/05 Suite/Suite09_resize.jpg",
+        alt: "Suite - Window View",
       },
     ],
   },
@@ -307,20 +407,40 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop",
+        src: "/images/rooms/06 Executive suite/Executive Suites 1.jpg",
         alt: "Executive Suite - Main View",
       },
       {
-        src: "https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=1974&auto=format&fit=crop",
+        src: "/images/rooms/06 Executive suite/Executive Suites 2.jpg",
         alt: "Executive Suite - Bedroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/06 Executive suite/Executive Suites 3.jpg",
         alt: "Executive Suite - Bathroom",
       },
       {
-        src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/rooms/06 Executive suite/Executive Suites 4.jpg",
         alt: "Executive Suite - Living Area",
+      },
+      {
+        src: "/images/rooms/06 Executive suite/Executive Suites 5.jpg",
+        alt: "Executive Suite - Workspace",
+      },
+      {
+        src: "/images/rooms/06 Executive suite/Executive Suites 6.jpg",
+        alt: "Executive Suite - Details",
+      },
+      {
+        src: "/images/rooms/06 Executive suite/Executive Suites 7.jpg",
+        alt: "Executive Suite - Amenities",
+      },
+      {
+        src: "/images/rooms/06 Executive suite/Executive Suites 8.jpg",
+        alt: "Executive Suite - Interior",
+      },
+      {
+        src: "/images/rooms/06 Executive suite/Executive Suites 9.jpg",
+        alt: "Executive Suite - Window View",
       },
     ],
   },

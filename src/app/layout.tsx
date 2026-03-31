@@ -64,6 +64,11 @@ export const metadata: Metadata = {
   verification: {
     google: "google-site-verification-code",
   },
+  icons: {
+    icon: "/images/rpc-icon.svg",
+    shortcut: "/images/rpc-icon.svg",
+    apple: "/images/rpc-icon.svg",
+  },
 };
 
 export default function RootLayout({

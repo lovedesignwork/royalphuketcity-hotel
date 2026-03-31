@@ -119,3 +119,17 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-accent);
   color: #ffffff;
 }
+
+/* Slow Spin Animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}

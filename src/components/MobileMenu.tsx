@@ -40,7 +40,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <div className="p-6">
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
-                <h2 className="font-heading text-xl">Menu</h2>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/logo.svg"
+                  alt="Royal Phuket City Hotel"
+                  className="h-[70px] w-auto"
+                />
                 <button
                   onClick={onClose}
                   className="p-2 text-[--color-text-primary] hover:opacity-70"
@@ -163,6 +168,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               {/* Contact Info */}
               <div className="mt-8 pt-8 hairline-border-t">
+                <a
+                  href={EXTERNAL_LINKS.googleMaps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 text-xs tracking-[0.12em] uppercase font-medium border border-[--color-accent] text-[--color-accent] hover:bg-[--color-accent] hover:text-white transition-colors mb-4"
+                >
+                  Get Directions via Google Map
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
+                </a>
                 <p className="text-sm text-[--color-text-secondary] mb-2">
                   154 Phang-Nga Road, Talad Yai
                 </p>

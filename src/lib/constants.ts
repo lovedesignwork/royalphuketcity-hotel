@@ -122,7 +122,7 @@ export const ROOMS = [
     views: ["City View", "Mountain View"],
     shortDescription:
       "The perfect space and place for relaxing with city or mountain view options and full amenities.",
-    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/rooms/01 Premier superior/Premier Superior 1.jpg",
   },
   {
     slug: "premier-superior-partial-sea-view",
@@ -134,7 +134,7 @@ export const ROOMS = [
     views: ["Partial Sea View"],
     shortDescription:
       "Wake up to glimpses of the Andaman Sea from your elegantly appointed Premier Superior room.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 1.jpg",
   },
   {
     slug: "premier-deluxe",
@@ -146,7 +146,7 @@ export const ROOMS = [
     views: ["City View", "Mountain View"],
     shortDescription:
       "An ideal option for business travelers with everything you expect from a 4-star hotel including a sofa bed and free Wi-Fi.",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/rooms/03 Premier deluxe/Premier Deluxe 1.jpg",
   },
   {
     slug: "premier-deluxe-partial-sea-view",
@@ -158,7 +158,7 @@ export const ROOMS = [
     views: ["Partial Sea View"],
     shortDescription:
       "Elevated comfort with partial sea views and premium furnishings in 38 m² of luxury.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view01_resize.jpg",
   },
   {
     slug: "suite-room",
@@ -170,7 +170,7 @@ export const ROOMS = [
     views: ["City View", "Mountain View"],
     shortDescription:
       "Featuring an impressive living room, sofa bed, comfortable bathroom, and free Wi-Fi in 64 m² of luxury.",
-    image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=1974&auto=format&fit=crop",
+    image: "/images/rooms/05 Suite/Suite01_resize.jpg",
   },
   {
     slug: "executive-suite",
@@ -182,7 +182,7 @@ export const ROOMS = [
     views: ["City View", "Mountain View"],
     shortDescription:
       "A luxurious living room, sofa bed, comfortable bathroom with bathtub, and free Wi-Fi in 75 m² of ultimate luxury.",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop",
+    image: "/images/rooms/06 Executive suite/Executive Suites 7.jpg",
   },
 ] as const;
 

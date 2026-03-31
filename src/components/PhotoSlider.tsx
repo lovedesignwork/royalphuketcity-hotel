@@ -6,40 +6,60 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/RPC LS ROOM 1.jpg",
     alt: "Royal Phuket City Hotel",
   },
   {
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop",
-    alt: "Grand Ballroom",
+    src: "/images/HOTEL WEBSITE/RPC Lobby 2.jpg",
+    alt: "Hotel Lobby",
   },
   {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
-    alt: "Wedding Ceremony",
+    src: "/images/HOTEL WEBSITE/RPC Lobby 3.jpg",
+    alt: "Hotel Lobby",
   },
   {
-    src: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop",
-    alt: "Rooftop Swimming Pool",
+    src: "/images/HOTEL WEBSITE/RPC LS ROOM 41.jpg",
+    alt: "Luxury Suite",
   },
   {
-    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop",
-    alt: "Fine Dining Restaurant",
+    src: "/images/HOTEL WEBSITE/RPC Lobby 6.jpg",
+    alt: "Hotel Lobby Lounge",
   },
   {
-    src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/RPC LS ROOM 33.jpg",
     alt: "Luxury Guest Room",
   },
   {
-    src: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=2070&auto=format&fit=crop",
-    alt: "TWIST Rooftop Bar",
+    src: "/images/HOTEL WEBSITE/RPC LS ROOM 38.jpg",
+    alt: "Premium Room",
   },
   {
-    src: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop",
-    alt: "Spa & Wellness",
+    src: "/images/HOTEL WEBSITE/RPC LS ROOM 40.jpg",
+    alt: "Deluxe Room",
   },
   {
-    src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/RPC LS ROOM 14.jpg",
     alt: "Executive Suite",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Smart-Bus.jpeg",
+    alt: "Smart Bus",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/MTT1996.jpg",
+    alt: "MTT 1996",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Fitness.jpg",
+    alt: "Fitness Center",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Ballroom.jpg",
+    alt: "Grand Ballroom",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Bgz.jpg",
+    alt: "Hotel Facility",
   },
 ];
 
@@ -89,7 +109,9 @@ export default function PhotoSlider() {
                   alt={photos[getIndex(offset)].alt}
                   fill
                   className="object-cover"
-                  sizes="33vw"
+                  sizes="(max-width: 768px) 100vw, 700px"
+                  quality={100}
+                  unoptimized={!photos[getIndex(offset)].src.startsWith("http")}
                 />
               </div>
             ))}

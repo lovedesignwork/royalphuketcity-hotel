@@ -52,10 +52,9 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <HeroSection
-        title="Heritage Hospitality at Its Finest"
-        subtitle="Royal Phuket City Hotel"
-        description="Effortless Comfort, Exceptional Location"
-        image="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+        title={"EFFORTLESS COMFORT,\nEXCEPTIONAL LOCATION"}
+        subtitle="Heritage Hospitality at Its Finest"
+        image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
         showReserveButton
         height="full"
       />
@@ -120,8 +119,8 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
-                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop"
-                    alt="Hotel lobby"
+                    src="/images/HOTEL WEBSITE/Royal Phuket City Rooms Lifestyle 10.jpg"
+                    alt="Luxury Room"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
@@ -129,8 +128,8 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-square img-hover">
                   <Image
-                    src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop"
-                    alt="Hotel pool"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 15.jpg"
+                    alt="Room Lifestyle"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
@@ -140,8 +139,8 @@ export default function HomePage() {
               <div className="space-y-4 pt-8">
                 <div className="relative aspect-square img-hover">
                   <Image
-                    src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop"
-                    alt="Hotel room"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 12.jpg"
+                    alt="Hotel Room"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
@@ -149,8 +148,8 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
-                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
-                    alt="Hotel dining"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 11.jpg"
+                    alt="Royal Phuket City Hotel"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
@@ -175,18 +174,18 @@ export default function HomePage() {
               {/* Background image - building */}
               <div className="absolute left-0 bottom-0 w-[58%] aspect-[3/4] z-10">
                 <Image
-                  src="https://images.unsplash.com/photo-1563991655280-cb95c90ca2fb?q=80&w=1974&auto=format&fit=crop"
-                  alt="Phuket Old Town"
+                  src="/images/Hotel-Ext.jpg"
+                  alt="Royal Phuket City Hotel Exterior"
                   fill
                   className="object-cover shadow-xl"
                   sizes="30vw"
                 />
               </div>
-              {/* Foreground image - couple */}
+              {/* Foreground image - Old Town */}
               <div className="absolute right-0 top-0 w-[65%] aspect-[3/4] z-20 shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=2069&auto=format&fit=crop"
-                  alt="Guests at Royal Phuket City Hotel"
+                  src="/images/HOTEL WEBSITE/HKT Old Town.jpg"
+                  alt="Phuket Old Town"
                   fill
                   className="object-cover"
                   sizes="35vw"
@@ -271,15 +270,14 @@ export default function HomePage() {
       </section>
 
       {/* Rooms Section */}
-      {/* Gold separator with heart */}
+      {/* Gold separator with rotating icon */}
       <div className="relative flex items-center justify-center py-2 bg-white">
         <div className="absolute top-1/2 flex items-center justify-center" style={{left: 'calc((100% - 1488px) / 2)', width: '1488px'}}>
-          <div className="w-full h-[2px] bg-[#8B7355]" />
+          <div className="w-full h-px bg-[#8B7355]" />
         </div>
         <div className="relative z-10 bg-white px-4">
-          <svg className="w-6 h-6 text-[#8B7355]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" />
-          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/rpc-icon.svg" alt="" className="w-9 h-9 animate-spin-slow" />
         </div>
       </div>
 
@@ -330,7 +328,7 @@ export default function HomePage() {
               <div className="relative">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop"
+                    src="/images/HOTEL WEBSITE/Ballroom.jpg"
                     alt="Meetings & Events at Royal Phuket City Hotel"
                     fill
                     className="object-cover"
@@ -546,50 +544,96 @@ export default function HomePage() {
       {/* CTA Banner */}
       <CTABanner
         title="Comfort, Elegance, and Ocean Views"
-        subtitle="Book Your Stay"
-        image="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop"
+        description="The Royal Phuket City Hotel boasts an enviable location in a peaceful area, just 5 minutes from the city centre where you will be able enjoy the host of very different options from stylish boutiques to local markets."
+        image="/images/HOTEL WEBSITE/RPC-Pool-Wall-scaled.jpg"
+        tall
       />
 
       {/* Facilities Preview */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
-          <SectionHeading
-            label="Hotel Amenities"
-            title="Facilities & Services"
-            subtitle="Everything you need for a perfect stay, from our rooftop pool to our state-of-the-art fitness center."
-          />
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <span className="label-accent text-[--color-accent] block mb-3">
+              Hotel Amenities
+            </span>
+            <h2 className="font-heading text-4xl md:text-5xl mb-4">
+              Facilities & Services
+            </h2>
+            <p className="text-[--color-text-secondary] max-w-2xl mx-auto">
+              Everything you need for a perfect stay, from our rooftop pool to our state-of-the-art fitness center.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Facilities Grid - Vertical Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
-              { name: "Swimming Pool", icon: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" },
-              { name: "Fitness Center", icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" },
-              { name: "Spa & Wellness", icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" },
-              { name: "Meeting Rooms", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
-              { name: "Rooftop Bar", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-              { name: "Smart Bus", icon: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" },
-              { name: "EV Charger", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-              { name: "Concierge", icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" },
+              { 
+                name: "Swimming Pool", 
+                image: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&h=800&fit=crop",
+                description: "Rooftop infinity pool"
+              },
+              { 
+                name: "Fitness Center", 
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=800&fit=crop",
+                description: "24/7 modern gym"
+              },
+              { 
+                name: "Spa & Wellness", 
+                image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=800&fit=crop",
+                description: "Rejuvenating treatments"
+              },
+              { 
+                name: "Meeting Rooms", 
+                image: "https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=600&h=800&fit=crop",
+                description: "9 versatile spaces"
+              },
+              { 
+                name: "Rooftop Bar", 
+                image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&h=800&fit=crop",
+                description: "Panoramic city views"
+              },
+              { 
+                name: "Smart Bus", 
+                image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&h=800&fit=crop",
+                description: "Complimentary shuttle"
+              },
+              { 
+                name: "EV Charger", 
+                image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&h=800&fit=crop",
+                description: "Electric vehicle station"
+              },
+              { 
+                name: "Concierge", 
+                image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&h=800&fit=crop",
+                description: "24-hour service"
+              },
             ].map((facility) => (
               <div
                 key={facility.name}
-                className="text-center p-6 hairline-border hover:border-[--color-accent] transition-colors group"
+                className="group relative overflow-hidden bg-white"
               >
-                <svg
-                  className="w-8 h-8 mx-auto mb-4 text-[--color-accent]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d={facility.icon}
+                {/* Image Container */}
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image
+                    src={facility.image}
+                    alt={facility.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                </svg>
-                <p className="label-accent group-hover:text-[--color-accent] transition-colors">
-                  {facility.name}
-                </p>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  
+                  {/* Content Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <h3 className="font-heading text-white text-lg md:text-xl mb-1">
+                      {facility.name}
+                    </h3>
+                    <p className="text-white/70 text-xs md:text-sm tracking-wide">
+                      {facility.description}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

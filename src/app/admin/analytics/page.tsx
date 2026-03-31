@@ -190,7 +190,15 @@ export default function AnalyticsPage() {
             <div className="space-y-3">
               {stats.countryStats.slice(0, 8).map((country, index) => (
                 <div key={index} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-700">{country.country}</span>
+                  <span className="text-sm text-gray-700 flex items-center gap-2">
+                    {country.country === "Local" && (
+                      <span className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center text-xs">🏠</span>
+                    )}
+                    {country.country === "Unknown" && (
+                      <span className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center text-xs">❓</span>
+                    )}
+                    {country.country === "Local" ? "Local (Development)" : country.country}
+                  </span>
                   <span className="text-sm font-medium text-gray-900">
                     {country.count}
                   </span>
@@ -267,7 +275,15 @@ export default function AnalyticsPage() {
                         {visitor.browser || "-"}
                       </td>
                       <td className="py-3 pr-4 text-gray-500">
-                        {visitor.country || "-"}
+                        {visitor.country === "Local" ? (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-xs">
+                            <span>🏠</span> Local
+                          </span>
+                        ) : visitor.country === "Unknown" ? (
+                          <span className="text-gray-400">-</span>
+                        ) : (
+                          visitor.country || "-"
+                        )}
                       </td>
                       <td className="py-3 pr-4 text-gray-500 max-w-xs truncate">
                         {visitor.referrer || "Direct"}

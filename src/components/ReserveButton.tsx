@@ -24,7 +24,7 @@ export default function ReserveButton({
     outline:
       "border border-[--color-accent] text-[--color-accent] hover:bg-[--color-accent] hover:text-white",
     white:
-      "border border-white text-white hover:bg-white hover:text-[--color-text-primary]",
+      "border border-white text-white hover:bg-[--color-accent] hover:border-[--color-accent] hover:text-white drop-shadow-lg",
   };
 
   return (

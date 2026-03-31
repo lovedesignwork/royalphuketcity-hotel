@@ -38,17 +38,33 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { path, visitorId, referrer } = body;
 
+    // Get IP from various headers (Vercel, Cloudflare, or standard)
+    const vercelIp = request.headers.get("x-vercel-forwarded-for");
+    const cfIp = request.headers.get("cf-connecting-ip");
     const forwarded = request.headers.get("x-forwarded-for");
-    const ip = forwarded ? forwarded.split(",")[0] : request.headers.get("x-real-ip") || "unknown";
+    const realIp = request.headers.get("x-real-ip");
+    
+    const ip = vercelIp || cfIp || (forwarded ? forwarded.split(",")[0].trim() : null) || realIp || "unknown";
     const userAgent = request.headers.get("user-agent") || "";
 
     const { device, browser } = parseUserAgent(userAgent);
 
+    // Check if this is a local/development request
+    const isLocalhost = ip === "unknown" || ip === "127.0.0.1" || ip === "::1" || ip.startsWith("192.168.") || ip.startsWith("10.");
+
     // Try to get country from IP (basic geolocation)
-    let country = "Unknown";
+    let country = isLocalhost ? "Local" : "Unknown";
     let city = null;
 
-    if (ip && ip !== "unknown" && ip !== "127.0.0.1" && ip !== "::1") {
+    // Also try Vercel's geo headers first (fastest, no external API call)
+    const vercelCountry = request.headers.get("x-vercel-ip-country");
+    const vercelCity = request.headers.get("x-vercel-ip-city");
+    
+    if (vercelCountry) {
+      country = vercelCountry;
+      city = vercelCity || null;
+    } else if (!isLocalhost) {
+      // Fallback to ip-api.com for non-Vercel deployments
       try {
         const geoResponse = await fetch(`http://ip-api.com/json/${ip}?fields=country,city`);
         if (geoResponse.ok) {

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { HeroSection, SectionHeading, RoomCard } from "@/components";
-import { ROOMS, HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
+import { ROOMS, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Rooms & Suites",
@@ -43,29 +43,9 @@ export default function RoomsSuitesPage() {
         title="Rooms & Suites"
         subtitle="Accommodations"
         description="251 thoughtfully designed rooms with panoramic views"
-        image="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974&auto=format&fit=crop"
+        image="/images/rooms/Executive suite01 _resize.jpg"
         height="medium"
       />
-
-      {/* Check-in Info */}
-      <section className="py-8 bg-[--color-surface] hairline-border-b">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-            <div className="text-center">
-              <p className="label-accent text-[--color-text-secondary] mb-1">
-                Check-in
-              </p>
-              <p className="font-heading text-xl">{HOTEL_INFO.checkIn}</p>
-            </div>
-            <div className="text-center">
-              <p className="label-accent text-[--color-text-secondary] mb-1">
-                Check-out
-              </p>
-              <p className="font-heading text-xl">{HOTEL_INFO.checkOut}</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Rooms Listing */}
       <section className="py-20 md:py-28">
