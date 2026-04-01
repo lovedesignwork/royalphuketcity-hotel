@@ -103,7 +103,7 @@ export default function HotelPolicyPage() {
       <HeroSection
         title="Hotel Policy"
         subtitle="Guest Information"
-        image="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC-Main.jpg"
         height="medium"
         overlay="dark"
       />

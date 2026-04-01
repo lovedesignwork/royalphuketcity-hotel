@@ -118,7 +118,7 @@ export default function SustainabilityPage() {
         title="Sustainability"
         subtitle="Our Commitment"
         description="Building a greener future, one stay at a time"
-        image="https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2075&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC-Main.jpg"
         height="large"
       />
 
@@ -296,7 +296,7 @@ export default function SustainabilityPage() {
       <CTABanner
         title="Stay Sustainably with Us"
         subtitle="Book Your Green Getaway"
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC-Main.jpg"
       />
     </>
   );
