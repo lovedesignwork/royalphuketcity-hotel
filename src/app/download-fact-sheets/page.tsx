@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import CountryPhoneSelector from "@/components/CountryPhoneSelector";
 
@@ -431,12 +432,12 @@ export default function DownloadFactSheetsPage() {
                   <p className="text-[--color-text-secondary] mb-6">
                     Our team is currently preparing the documents. Please check back later.
                   </p>
-                  <a
+                  <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B7355] text-white font-medium tracking-wide uppercase text-sm hover:bg-[#7a6548] transition-colors"
                   >
                     Contact Us for Documents
-                  </a>
+                  </Link>
                 </div>
               )}
 
@@ -449,7 +450,7 @@ export default function DownloadFactSheetsPage() {
                   If you require additional materials or customized presentations for your specific needs, 
                   our team is ready to assist you.
                 </p>
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B7355] text-white font-medium tracking-wide uppercase text-sm hover:bg-[#7a6548] transition-colors"
                 >
@@ -457,7 +458,7 @@ export default function DownloadFactSheetsPage() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

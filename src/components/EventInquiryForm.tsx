@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import CountryPhoneSelector from "./CountryPhoneSelector";
 import CountrySelector from "./CountrySelector";
 import CalendarPicker from "./CalendarPicker";
@@ -374,12 +375,12 @@ export default function EventInquiryForm() {
                 >
                   Submit Another Inquiry
                 </button>
-                <a
+                <Link
                   href="/"
                   className="px-8 py-3 bg-[#1a1a2e] text-white font-medium tracking-wide hover:bg-[#2a2a3e] transition-colors text-center"
                 >
                   Return to Homepage
-                </a>
+                </Link>
               </div>
             </div>
           )}
