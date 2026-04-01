@@ -19,14 +19,18 @@ function SliderField({ label, value, min, max, step, suffix, onChange }: SliderF
   const pct = ((value - min) / (max - min)) * 100;
   return (
     <div>
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center justify-between mb-3">
         <label className="text-xs font-semibold text-gray-600 uppercase tracking-wider">{label}</label>
-        <span className="text-sm font-bold px-2.5 py-0.5 rounded-full bg-[#8B7355] text-white">
+        <span className="text-sm font-bold px-2.5 py-0.5 rounded-full bg-[#8B7355] text-white min-w-[48px] text-center">
           {value}{suffix}
         </span>
       </div>
-      <div className="relative h-2 bg-gray-200 rounded-full">
-        <div className="absolute left-0 top-0 h-2 rounded-full bg-[#8B7355]" style={{ width: `${pct}%` }} />
+      <div className="relative flex items-center h-6">
+        <div className="absolute inset-x-0 h-2 bg-gray-200 rounded-full pointer-events-none" />
+        <div
+          className="absolute left-0 h-2 rounded-full bg-[#8B7355] pointer-events-none"
+          style={{ width: `${pct}%` }}
+        />
         <input
           type="range"
           min={min}
@@ -34,11 +38,8 @@ function SliderField({ label, value, min, max, step, suffix, onChange }: SliderF
           step={step}
           value={value}
           onChange={(e) => onChange(parseInt(e.target.value))}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-        />
-        <div
-          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-md bg-[#8B7355]"
-          style={{ left: `calc(${pct}% - 8px)` }}
+          style={{ "--thumb-color": "#8B7355" } as React.CSSProperties}
+          className="kpi-slider relative w-full h-6 cursor-pointer appearance-none bg-transparent"
         />
       </div>
       <div className="flex justify-between mt-1">
