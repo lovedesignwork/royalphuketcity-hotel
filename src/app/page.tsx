@@ -119,16 +119,18 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
-                    src="/images/HOTEL WEBSITE/Royal Phuket City Rooms Lifestyle 10.jpg"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 19.jpg"
                     alt="Luxury Room"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
+                    quality={100}
+                    unoptimized
                   />
                 </div>
                 <div className="relative aspect-square img-hover">
                   <Image
-                    src="/images/HOTEL WEBSITE/RPC LS ROOM 15.jpg"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 47.jpg"
                     alt="Room Lifestyle"
                     fill
                     className="object-cover"
@@ -139,7 +141,7 @@ export default function HomePage() {
               <div className="space-y-4 pt-8">
                 <div className="relative aspect-square img-hover">
                   <Image
-                    src="/images/HOTEL WEBSITE/RPC LS ROOM 12.jpg"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 53.jpg"
                     alt="Hotel Room"
                     fill
                     className="object-cover"
@@ -148,11 +150,13 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
-                    src="/images/HOTEL WEBSITE/RPC LS ROOM 11.jpg"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 4.jpg"
                     alt="Royal Phuket City Hotel"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
+                    quality={100}
+                    unoptimized
                   />
                 </div>
               </div>
@@ -412,7 +416,7 @@ export default function HomePage() {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/HOTEL WEBSITE/Wedd.jpg"
                   alt="Wedding ceremony"
                   fill
                   className="object-cover"
@@ -427,7 +431,7 @@ export default function HomePage() {
             <div className="lg:col-span-3 flex flex-col gap-6">
               <div className="relative flex-1 min-h-[220px] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop"
+                  src="/images/HOTEL WEBSITE/Wedding/Resize/line_oa_chat_240912_092740_resize.jpg"
                   alt="Wedding reception"
                   fill
                   className="object-cover"
@@ -436,7 +440,7 @@ export default function HomePage() {
               </div>
               <div className="relative flex-1 min-h-[220px] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/HOTEL WEBSITE/Wedding/Resize/line_oa_chat_240912_092809_resize.jpg"
                   alt="Wedding details"
                   fill
                   className="object-cover"
@@ -483,9 +487,9 @@ export default function HomePage() {
           {/* Bottom — 3 venue cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             {[
-              { name: "Grand Ballroom", capacity: "Up to 500 guests", size: "800 sqm", image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop" },
-              { name: "Rooftop Terrace", capacity: "Up to 150 guests", size: "19th Floor", image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069&auto=format&fit=crop" },
-              { name: "Garden Pavilion", capacity: "Up to 200 guests", size: "Outdoor", image: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?q=80&w=2070&auto=format&fit=crop" },
+              { name: "Grand Ballroom", capacity: "Up to 500 guests", size: "800 sqm", image: "/images/HOTEL WEBSITE/Wedding/Resize/MTT1996_resize.jpg" },
+              { name: "Rooftop Terrace", capacity: "Up to 150 guests", size: "19th Floor", image: "/images/HOTEL WEBSITE/Wedding/Resize/2024.12.19 WD Cin+Ong @Royal-8434_resize.jpg" },
+              { name: "Garden Pavilion", capacity: "Up to 200 guests", size: "Outdoor", image: "/images/HOTEL WEBSITE/Wedding/Resize/line_oa_chat_240912_092755_resize.jpg" },
             ].map((venue) => (
               <div key={venue.name} className="group relative aspect-[16/9] overflow-hidden">
                 <Image

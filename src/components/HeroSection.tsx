@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import ReserveButton from "./ReserveButton";
+import SparkleOverlay from "./SparkleOverlay";
 
 interface HeroSectionProps {
   title: string;
@@ -13,6 +14,7 @@ interface HeroSectionProps {
   height?: "full" | "large" | "medium";
   overlay?: "dark" | "medium" | "light";
   subtitleSize?: "default" | "large";
+  showSparkles?: boolean;
 }
 
 export default function HeroSection({
@@ -24,6 +26,7 @@ export default function HeroSection({
   height = "full",
   overlay = "medium",
   subtitleSize = "default",
+  showSparkles = false,
 }: HeroSectionProps) {
   const heightClasses = {
     full: "h-screen",
@@ -52,6 +55,9 @@ export default function HeroSection({
       {/* Overlay */}
       <div className={`absolute inset-0 ${overlayClasses[overlay]}`} />
 
+      {/* Sparkle Effect */}
+      {showSparkles && <SparkleOverlay />}
+
       {/* Content */}
       <div className="relative h-full flex items-center justify-center">
         <div className="container mx-auto px-6 text-center text-white">
@@ -61,15 +67,15 @@ export default function HeroSection({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {subtitle && (
-              <p className={`text-white mb-4 drop-shadow-lg ${subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : "text-[19px] tracking-[0.15em] uppercase"}`}>{subtitle}</p>
+              <p className={`text-white mb-4 ${subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : "text-[19px] tracking-[0.15em] uppercase"}`} style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}>{subtitle}</p>
             )}
 
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 max-w-4xl mx-auto whitespace-pre-line drop-shadow-lg">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 max-w-4xl mx-auto whitespace-pre-line" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7), 0 4px 20px rgba(0,0,0,0.5)" }}>
               {title}
             </h1>
 
             {description && (
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 drop-shadow-lg">
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}>
                 {description}
               </p>
             )}

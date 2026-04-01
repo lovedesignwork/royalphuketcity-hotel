@@ -36,6 +36,8 @@ export default function FacilityImageCarousel({ images, alt }: FacilityImageCaro
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
+            quality={100}
+            unoptimized={!image.startsWith("http")}
           />
         </div>
       ))}

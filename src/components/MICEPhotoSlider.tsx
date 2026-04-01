@@ -6,40 +6,56 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop",
-    alt: "Conference Meeting",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-1.jpg",
+    alt: "Grand Ballroom Setup",
   },
   {
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
-    alt: "Grand Ballroom Event",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-2.jpg",
+    alt: "Banquet Event",
   },
   {
-    src: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069&auto=format&fit=crop",
-    alt: "Business Conference",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-3.jpg",
+    alt: "Conference Room",
   },
   {
-    src: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=2070&auto=format&fit=crop",
-    alt: "Corporate Presentation",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-4.jpg",
+    alt: "Meeting Setup",
   },
   {
-    src: "https://images.unsplash.com/photo-1560439514-4e9645039924?q=80&w=2070&auto=format&fit=crop",
-    alt: "Meeting Room Setup",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-5.jpg",
+    alt: "Event Hall",
   },
   {
-    src: "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-6.jpg",
     alt: "Gala Dinner",
   },
   {
-    src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop",
-    alt: "Cocktail Reception",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-7.jpg",
+    alt: "Corporate Event",
   },
   {
-    src: "https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=2070&auto=format&fit=crop",
-    alt: "Seminar Setup",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-8.jpg",
+    alt: "Ballroom Event",
   },
   {
-    src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop",
-    alt: "Event Celebration",
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-9.jpg",
+    alt: "Conference Setup",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-10.jpg",
+    alt: "Meeting Room",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-11.jpg",
+    alt: "Event Space",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-12.jpg",
+    alt: "Banquet Hall",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-13.jpg",
+    alt: "Grand Event",
   },
 ];
 

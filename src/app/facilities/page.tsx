@@ -44,9 +44,15 @@ const facilities = [
       "Start your day with a breathtaking breakfast experience on the 19th floor, the highest rooftop in Phuket Town. Enjoy panoramic views of the city and ocean as you savor a wide selection of Thai, Western, and local breakfast favorites, freshly prepared to delight every palate.",
     hours: "Breakfast Time 6:30 AM - 10:30 AM",
     images: [
-      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/NTWS8870_resize.jpg",
+      "/images/HOTEL WEBSITE/IMG_5221_resize.jpg",
+      "/images/HOTEL WEBSITE/IMG_5227_resize.jpg",
+      "/images/HOTEL WEBSITE/IMG_5226_resize.jpg",
+      "/images/HOTEL WEBSITE/IMG_5234_resize.jpg",
+      "/images/HOTEL WEBSITE/IMG_5236_resize.jpg",
+      "/images/HOTEL WEBSITE/NTWS8579_resize.jpg",
+      "/images/HOTEL WEBSITE/NTWS8680_resize.jpg",
+      "/images/HOTEL WEBSITE/NTWS8798_resize.jpg",
     ],
     features: [
       "Highest rooftop in Phuket Town",
@@ -62,9 +68,14 @@ const facilities = [
       "Welcome to The Atrium, our elegant hotel lobby at Royal Phuket City Hotel. With its spacious, relaxed atmosphere, live piano music, and a talented singer setting the tone, it's the perfect spot to enjoy a drink from the bar, catch up with friends, or simply unwind in style.",
     hours: "Lobby Open 24 Hours | Lounge Open 3 PM - 12 AM",
     images: [
-      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-1.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-11.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-5.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-9.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-10.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-4.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-2.jpg",
+      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-12.jpg",
     ],
     features: [
       "Live piano music",
@@ -80,9 +91,11 @@ const facilities = [
       "Stay active during your stay with complimentary access to our well-maintained Fitness Centre, exclusively for hotel guests. Located on the 3rd floor, it features a full range of modern equipment along with steam baths and sauna rooms. Our fitness centre is managed by Workout Club – Phuket's Leading Fitness Centre.",
     hours: "Open 7 AM - 9 PM | Free Use for Hotel Guests",
     images: [
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=2070&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_01.jpg",
+      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_06.jpg",
+      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_09.jpg",
+      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_07.jpg",
+      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_08.jpg",
     ],
     features: [
       "Modern equipment",
@@ -98,9 +111,12 @@ const facilities = [
       "Our spacious outdoor swimming pool on the 3rd floor offers a refreshing escape with separate areas for adults and children. Surrounded by a relaxing atmosphere, it's the perfect spot to unwind, take a dip, and enjoy the Phuket sunshine.",
     hours: "Open 7 AM - 9 PM",
     images: [
-      "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1562778612-e1e0cda9915c?q=80&w=2070&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/RPC Pool 01.jpeg",
+      "/images/HOTEL WEBSITE/RPC Pool 02.jpeg",
+      "/images/HOTEL WEBSITE/RPC Pool 03.jpeg",
+      "/images/HOTEL WEBSITE/RPC Pool 04.jpeg",
+      "/images/HOTEL WEBSITE/RPC Pool 05.jpeg",
+      "/images/HOTEL WEBSITE/Swimming-Pool-Royal-Phuket-City-2.jpg",
     ],
     features: [
       "Adult & children areas",
@@ -116,9 +132,14 @@ const facilities = [
       "Indulge in a tranquil spa experience designed to restore balance to both body and mind. With expert massage techniques and premium aromatic oils, our spa offers a serene escape that leaves you feeling refreshed, relaxed, and completely renewed.",
     hours: "Open 10 AM - 11 PM",
     images: [
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2070&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-3.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-4.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-5.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-6.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-7.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-8.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-9.jpg",
+      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-10.jpg",
     ],
     features: [
       "Expert massage techniques",
@@ -134,9 +155,16 @@ const facilities = [
       "Visit our in-house bakery, where our cake and pastry specialists craft delicious treats with exceptional quality and care. Beyond freshly baked goods, the shop also offers an inviting all-day dining menu perfect for any time of day.",
     hours: "Open 6:30 AM - 10 PM",
     images: [
-      "https://images.unsplash.com/photo-1517433670267-30f41c09d8b4?q=80&w=2080&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=2026&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/154-Bakery-1.jpg",
+      "/images/HOTEL WEBSITE/154-Bakery-2.jpg",
+      "/images/HOTEL WEBSITE/154-Bakery-3.jpg",
+      "/images/HOTEL WEBSITE/154-Bekery-01_resize.jpg",
+      "/images/HOTEL WEBSITE/154-Bekery-02_resize.jpg",
+      "/images/HOTEL WEBSITE/154-Bekery-03-2_resize.jpg",
+      "/images/HOTEL WEBSITE/154-Bekery-04-2_resize.jpg",
+      "/images/HOTEL WEBSITE/154-Bekery-05_resize.jpg",
+      "/images/HOTEL WEBSITE/97A6678_resize.jpg",
+      "/images/HOTEL WEBSITE/97A6736_resize.jpg",
     ],
     features: [
       "Fresh pastries daily",
@@ -152,9 +180,10 @@ const facilities = [
       "Enjoy hassle-free parking at Royal Phuket City Hotel with both indoor and outdoor spaces available, accommodating up to 350 cars. We also provide EV charging stations, ensuring convenience and comfort from the moment you arrive.",
     hours: "350 Car Parking Spaces Combined",
     images: [
-      "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2032&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=2070&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/RPC-CAR-PARK-1.jpg",
+      "/images/HOTEL WEBSITE/RPC-CAR-PARK-2.jpg",
+      "/images/HOTEL WEBSITE/RPC-CAR-PARK-4.jpg",
+      "/images/HOTEL WEBSITE/RPC-CAR-PARK-5.jpg",
     ],
     features: [
       "350 parking spaces",
@@ -170,9 +199,9 @@ const facilities = [
       "Getting around Phuket is easy with our free EV Phuket Shuttle Bus, which conveniently stops right at our hotel. For a more personalized experience, we also offer private island transfers with our comfortable mini bus service—perfect for exploring at your own pace.",
     hours: "Everyday 10 AM - 9 PM (every 15 minutes)",
     images: [
-      "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?q=80&w=2072&auto=format&fit=crop",
+      "/images/HOTEL WEBSITE/EV-Bus_resize-1.jpeg",
+      "/images/HOTEL WEBSITE/Hotel-Transportation-Van-Front_resize.jpg",
+      "/images/HOTEL WEBSITE/Hotel_Transportation-Van-Side_resize.jpg",
     ],
     features: [
       "Free EV shuttle bus",
@@ -264,7 +293,7 @@ export default function FacilitiesPage() {
       <CTABanner
         title="Experience Our World-Class Facilities"
         subtitle="Book Your Stay"
-        image="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC-Mainss.png"
       />
     </>
   );

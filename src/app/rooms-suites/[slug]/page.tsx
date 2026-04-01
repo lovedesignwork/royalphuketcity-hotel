@@ -275,7 +275,7 @@ export default async function RoomDetailPage({ params }: Props) {
             {otherRooms.map((otherRoom) => (
               <Link
                 key={otherRoom.slug}
-                href={`/rooms-suites/${otherRoom.slug}`}
+                href={`/${otherRoom.slug}`}
                 className="group block"
               >
                 <div className="relative aspect-[4/3] overflow-hidden mb-4">

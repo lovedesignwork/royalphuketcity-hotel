@@ -270,7 +270,7 @@ export default function MeetingEventsPage() {
         title="All-In-One Venue for All Kinds of Events"
         subtitle="Meeting & Events"
         description="Flexible, elegant, and fully-equipped spaces for every kind of event."
-        image="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/Banquet.jpg"
         height="medium"
       />
 
@@ -323,7 +323,7 @@ export default function MeetingEventsPage() {
             </div>
             <div className="relative aspect-[4/3] img-hover">
               <Image
-                src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069&auto=format&fit=crop"
+                src="/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-4.jpg"
                 alt="Conference room"
                 fill
                 className="object-cover"

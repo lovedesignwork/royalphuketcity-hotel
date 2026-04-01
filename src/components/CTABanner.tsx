@@ -22,13 +22,13 @@ export default function CTABanner({
   tall = false,
 }: CTABannerProps) {
   return (
-    <section className={`relative ${tall ? "py-48 md:py-64" : "py-24 md:py-32"}`}>
+    <section className={`relative ${tall ? "py-[350px] md:py-[430px]" : "py-24 md:py-32"}`}>
       {/* Background Image */}
       <Image
         src={image}
         alt={title}
         fill
-        className="object-cover"
+        className={`object-cover ${tall ? "object-top" : ""}`}
         sizes="100vw"
       />
 
@@ -49,7 +49,7 @@ export default function CTABanner({
           </h2>
 
           {description && (
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
               {description}
             </p>
           )}

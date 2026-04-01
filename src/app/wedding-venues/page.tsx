@@ -48,9 +48,10 @@ export default function WeddingVenuesPage() {
         title="The Venue of Your Dreams, The Service You Deserve"
         subtitle="Wedding Venues"
         description="Flexible Packages, Personal Touches, and Total Freedom"
-        image="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/WED.jpg"
         height="large"
         subtitleSize="large"
+        showSparkles
       />
 
       {/* Introduction */}
@@ -407,9 +408,9 @@ export default function WeddingVenuesPage() {
           <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/HOTEL WEBSITE/Wedd.jpg"
                   alt="Wedding couple first dance"
                   fill
                   className="object-cover"
@@ -479,7 +480,7 @@ export default function WeddingVenuesPage() {
       {/* Phuket's Most Loved Wedding Venue */}
       <section className="relative py-32 md:py-48">
         <Image
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+          src="/images/HOTEL WEBSITE/RPC wedding 545.jpg"
           alt="Wedding ceremony at Royal Phuket City Hotel"
           fill
           className="object-cover"
@@ -488,11 +489,11 @@ export default function WeddingVenuesPage() {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative container mx-auto px-6">
           <div className="text-center text-white max-w-4xl mx-auto">
-            <p className="label-accent text-white/70 mb-4">Fully Customizable Spaces and Bespoke Wedding Packages</p>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6">
+            <p className="label-accent mb-4" style={{ color: "#ffffff", textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}>Fully Customizable Spaces and Bespoke Wedding Packages</p>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7), 0 4px 20px rgba(0,0,0,0.5)" }}>
               Phuket&apos;s Most Loved<br />Wedding Venue
             </h2>
-            <p className="text-white/90 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            <p className="text-white/90 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}>
               Your wedding day should be as unique as your love story. From our exclusive 1600 sqm private ballroom to a stress-free planning process led by experienced consultants, we make sure every detail is perfect. Whether it&apos;s Thai or Chinese traditions, custom décor, or a specially crafted menu—everything is designed just for you.
             </p>
           </div>
@@ -508,7 +509,7 @@ export default function WeddingVenuesPage() {
               {/* Image */}
               <div className="relative min-h-[500px] lg:min-h-0 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/HOTEL WEBSITE/Wedding/Wedd.jpg"
                   alt="Wedding ceremony"
                   fill
                   className="object-cover"
