@@ -146,3 +146,66 @@ h1, h2, h3, h4, h5, h6 {
 .animate-spin-slow {
   animation: spin-slow 12s linear infinite;
 }
+
+/* KPI Calculator Range Slider Styles */
+.kpi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.kpi-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.kpi-slider::-moz-range-track {
+  height: 8px;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.kpi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--thumb-color, #8B7355);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  cursor: grab;
+  margin-top: -6px;
+}
+
+.kpi-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--thumb-color, #8B7355);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  cursor: grab;
+}
+
+.kpi-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+.kpi-slider:active::-moz-range-thumb {
+  cursor: grabbing;
+}
+
+.kpi-slider:focus {
+  outline: none;
+}
+
+.kpi-slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(139,115,85,0.2), 0 1px 4px rgba(0,0,0,0.25);
+}
+
+.kpi-slider:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(139,115,85,0.2), 0 1px 4px rgba(0,0,0,0.25);
+}

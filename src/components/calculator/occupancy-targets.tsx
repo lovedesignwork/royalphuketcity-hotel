@@ -86,47 +86,6 @@ export default function OccupancyTargets({ inputs, onChange }: Props) {
 
   return (
     <div className="space-y-5">
-      {/* Slider thumb styles — scoped via class */}
-      <style>{`
-        .kpi-slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background: var(--thumb-color);
-          border: 2px solid #fff;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-          cursor: pointer;
-          margin-top: -4px;
-        }
-        .kpi-slider::-moz-range-thumb {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background: var(--thumb-color);
-          border: 2px solid #fff;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-          cursor: pointer;
-        }
-        .kpi-slider::-webkit-slider-runnable-track {
-          height: 8px;
-          background: transparent;
-          border-radius: 4px;
-        }
-        .kpi-slider::-moz-range-track {
-          height: 8px;
-          background: transparent;
-          border-radius: 4px;
-        }
-        .kpi-slider:focus {
-          outline: none;
-        }
-        .kpi-slider:focus::-webkit-slider-thumb {
-          box-shadow: 0 0 0 3px rgba(139,115,85,0.25);
-        }
-      `}</style>
-
       <div>
         <h2 className="text-base font-bold text-gray-900 mb-1">Occupancy Targets</h2>
         <p className="text-sm text-gray-500">Set your current baseline and campaign goal.</p>
