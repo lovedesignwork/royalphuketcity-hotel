@@ -485,7 +485,7 @@ export default function HomePage() {
           {/* Bottom — 3 venue cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             {[
-              { name: "Grand Ballroom", capacity: "Up to 500 guests", size: "800 sqm", image: "/images/HOTEL WEBSITE/Wedding/Resize/MTT1996_resize.jpg" },
+              { name: "Grand Ballroom", capacity: "Up to 2,300 guests", size: "1,637 Sq.m", image: "/images/HOTEL WEBSITE/Wedding/Resize/MTT1996_resize.jpg" },
               { name: "Rooftop Terrace", capacity: "Up to 150 guests", size: "19th Floor", image: "/images/HOTEL WEBSITE/Restaurant/_DSC0516 copy_resize.jpg" },
               { name: "Garden Pavilion", capacity: "Up to 200 guests", size: "Outdoor", image: "/images/HOTEL WEBSITE/Restaurant/Yan Long 008_resize.jpg" },
             ].map((venue) => (
