@@ -102,12 +102,12 @@ export default async function WeddingTypePage({
       {/* Why Choose Us */}
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
-          <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
+          <div className="outline outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src={weddingType.traditions[0]?.image || weddingType.heroImage}
+                  src={weddingType.whyChooseUsImage || weddingType.traditions[0]?.image || weddingType.heroImage}
                   alt={`${weddingType.title} at Royal Phuket City Hotel`}
                   fill
                   className="object-cover"
@@ -182,6 +182,8 @@ export default async function WeddingTypePage({
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 33vw"
+                  quality={100}
+                  unoptimized
                 />
               </div>
             ))}
@@ -192,7 +194,7 @@ export default async function WeddingTypePage({
       {/* CTA Section */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <Image
-          src={weddingType.heroImage}
+          src={weddingType.ctaImage || weddingType.heroImage}
           alt={weddingType.title}
           fill
           className="object-cover"

@@ -27,7 +27,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Corporate Conference",
     subtitle: "Professional Spaces for Impactful Business Gatherings",
     label: "Corporate Excellence",
-    heroImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_TS_L01_panel_stage_wide.jpg",
     metaDescription: "Host your corporate conference in Phuket at Royal Phuket City Hotel. Professional venues accommodating up to 2,300 guests with state-of-the-art AV equipment, dedicated event teams, and 27+ years of MICE experience.",
     seoKeywords: ["corporate conference Phuket", "business conference venue Thailand", "conference hotel Phuket", "corporate meeting venue Phuket", "MICE conference Phuket", "annual conference venue Thailand", "corporate event space Phuket"],
     description: [
@@ -90,7 +90,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Seminar & Workshop",
     subtitle: "Interactive Learning Environments for Professional Development",
     label: "Knowledge Exchange",
-    heroImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_SW_L03_hands_collaboration_closeup.jpg",
     metaDescription: "Organize professional seminars and workshops in Phuket at Royal Phuket City Hotel. Flexible classroom setups, presentation technology, and expert event support for training sessions up to 800 attendees.",
     seoKeywords: ["seminar venue Phuket", "workshop space Thailand", "training room Phuket", "professional development venue", "corporate training Phuket", "seminar room rental Phuket", "educational workshop venue"],
     description: [
@@ -154,7 +154,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Product Launch",
     subtitle: "Make Your Brand Debut Unforgettable",
     label: "Brand Reveal",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/F45_PL_L02_presenter_product_medium.jpg",
     metaDescription: "Launch your product in style at Royal Phuket City Hotel. Dramatic reveal venues, LED displays, professional staging, and complete event production for impactful brand launches in Phuket.",
     seoKeywords: ["product launch venue Phuket", "brand launch event Thailand", "product reveal space", "launch event venue Phuket", "corporate launch party", "new product event Phuket", "brand activation venue"],
     description: [
@@ -218,7 +218,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Gala Dinner & Awards",
     subtitle: "Celebrate Excellence in Grand Style",
     label: "Celebration of Excellence",
-    heroImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/F45_GA_L04_gala_table_medium.jpg",
     metaDescription: "Host prestigious gala dinners and award ceremonies in Phuket at Royal Phuket City Hotel. Elegant ballroom settings, gourmet dining, and professional event production for up to 1,000 banquet guests.",
     seoKeywords: ["gala dinner venue Phuket", "award ceremony Thailand", "corporate awards event", "black tie event venue Phuket", "annual dinner venue", "gala event Phuket", "awards night venue Thailand"],
     description: [
@@ -282,7 +282,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Stand-Up Comedy Show",
     subtitle: "Where Laughter Takes Center Stage",
     label: "Entertainment",
-    heroImage: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_SU_L02_comedian_punchline_medium.jpg",
     metaDescription: "Host stand-up comedy shows and entertainment events in Phuket at Royal Phuket City Hotel. Theatre-style seating for 2,300, professional stage and sound systems, and full production support.",
     seoKeywords: ["stand-up comedy venue Phuket", "comedy show Thailand", "entertainment venue Phuket", "live performance space", "comedy night venue", "stand-up show Phuket", "live entertainment Phuket"],
     description: [
@@ -346,7 +346,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Religious & Spiritual Ceremony",
     subtitle: "Sacred Spaces for Meaningful Gatherings",
     label: "Spiritual Events",
-    heroImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/F45_CC_P01_speaker_portrait.jpg",
     metaDescription: "Host religious ceremonies and spiritual gatherings in Phuket at Royal Phuket City Hotel. Respectful facilities for Buddhist ceremonies, prayer meetings, and faith-based events.",
     seoKeywords: ["religious ceremony venue Phuket", "spiritual event Thailand", "Buddhist ceremony venue", "prayer meeting hall", "faith event Phuket", "religious gathering venue", "ceremony hall Thailand"],
     description: [
@@ -410,7 +410,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Exhibition & Trade Show",
     subtitle: "Showcase Your Business to the World",
     label: "Business Showcase",
-    heroImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_EX_L01_tradeshow_floor_wide.jpg",
     metaDescription: "Host exhibitions and trade shows in Phuket at Royal Phuket City Hotel. 1,637 sqm exhibition space, drive-in access for large displays, and complete trade show infrastructure.",
     seoKeywords: ["exhibition venue Phuket", "trade show Thailand", "expo venue Phuket", "business exhibition", "trade fair venue", "exhibition hall Phuket", "trade show space Thailand"],
     description: [
@@ -474,7 +474,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Concert & Live Performance",
     subtitle: "Where Music Comes Alive",
     label: "Live Entertainment",
-    heroImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/F45_CN_L02_performer_medium.jpg",
     metaDescription: "Host concerts and live performances in Phuket at Royal Phuket City Hotel. Professional stage, concert sound systems, and capacity for 2,300 guests for memorable musical events.",
     seoKeywords: ["concert venue Phuket", "live performance Thailand", "music venue Phuket", "entertainment hall", "live music Phuket", "concert hall Thailand", "performance venue Phuket"],
     description: [
@@ -538,7 +538,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Company Party & Celebration",
     subtitle: "Celebrate Your Team's Success",
     label: "Team Celebration",
-    heroImage: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_TS_P01_host_mic_portrait.jpg",
     metaDescription: "Host memorable company parties and celebrations in Phuket at Royal Phuket City Hotel. Year-end parties, staff appreciation events, and themed celebrations for up to 1,000 guests.",
     seoKeywords: ["company party venue Phuket", "corporate celebration Thailand", "year-end party venue", "staff party Phuket", "company celebration", "corporate party Thailand", "team celebration venue"],
     description: [
@@ -602,7 +602,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Government & Official Meeting",
     subtitle: "Professional Venues for Public Sector Excellence",
     label: "Official Events",
-    heroImage: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?q=80&w=2072&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_SW_P01_participant_focused_portrait.jpg",
     metaDescription: "Host government meetings and official events in Phuket at Royal Phuket City Hotel. Secure facilities, professional protocols, and capacity for large-scale public sector gatherings.",
     seoKeywords: ["government meeting venue Phuket", "official event Thailand", "public sector venue", "government conference Phuket", "official meeting hall", "GCC venue Thailand", "government seminar Phuket"],
     description: [
@@ -666,7 +666,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Talk Show & Panel Discussion",
     subtitle: "Where Ideas Meet Audience",
     label: "Thought Leadership",
-    heroImage: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/MTG_MW_10_emcee_energy_medium.jpg",
     metaDescription: "Host professional talk shows and panel discussions in Phuket at Royal Phuket City Hotel. Broadcast-ready facilities, panel staging, and live streaming capabilities for thought leadership events.",
     seoKeywords: ["talk show venue Phuket", "panel discussion Thailand", "forum venue Phuket", "thought leadership event", "speaker panel venue", "debate venue Phuket", "discussion forum Thailand"],
     description: [
@@ -730,7 +730,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Graduation Ceremony",
     subtitle: "Celebrating Academic Achievement",
     label: "Academic Milestone",
-    heroImage: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_GR_L03_diploma_hands_closeup.jpg",
     metaDescription: "Host graduation ceremonies in Phuket at Royal Phuket City Hotel. Professional staging, comfortable seating for 2,300 guests, and complete ceremony support for academic institutions.",
     seoKeywords: ["graduation ceremony venue Phuket", "commencement hall Thailand", "university graduation venue", "school graduation Phuket", "academic ceremony hall", "graduation event venue", "convocation hall Thailand"],
     description: [
@@ -794,7 +794,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Team Building Event",
     subtitle: "Strengthen Bonds, Build Better Teams",
     label: "Team Development",
-    heroImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
+    heroImage: "/images/HOTEL WEBSITE/EVT_TS_P02_guest_speaking_portrait.jpg",
     metaDescription: "Organize team building events in Phuket at Royal Phuket City Hotel. Indoor and outdoor activities, facilitated programs, and complete logistics for corporate team development.",
     seoKeywords: ["team building venue Phuket", "corporate team event Thailand", "team building activities Phuket", "corporate outing venue", "team development event", "company team building", "group activities Phuket"],
     description: [

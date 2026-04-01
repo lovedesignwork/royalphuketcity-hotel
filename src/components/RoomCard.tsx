@@ -53,7 +53,7 @@ export default function RoomCard({
           {/* Sea View badge */}
           {hasSeaView && (
             <div className="absolute top-5 right-5 z-10">
-              <span className="bg-[#8B7355] text-white px-3 py-1.5 text-[9px] tracking-[0.2em] uppercase font-medium">
+              <span className="bg-[#8B7355] text-white px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase font-medium">
                 Partial Sea View
               </span>
             </div>
@@ -62,7 +62,7 @@ export default function RoomCard({
           {/* Content overlaid on image */}
           <div className="absolute inset-x-0 bottom-0 z-10 p-7">
             {/* Room details — always visible */}
-            <div className="flex items-center gap-2 text-[10px] text-white/60 tracking-[0.15em] uppercase mb-3">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-white/60 tracking-[0.12em] uppercase mb-3">
               <span>{size}</span>
               <span className="text-[#8B7355]">·</span>
               <span>{maxGuests} Guests</span>
@@ -78,8 +78,8 @@ export default function RoomCard({
               {name}
             </h3>
 
-            {/* Description — slides up on hover */}
-            <div className="overflow-hidden max-h-0 group-hover:max-h-20 transition-all duration-500 ease-out">
+            {/* Description — always visible on mobile, slides up on hover on desktop */}
+            <div className="overflow-hidden max-h-20 md:max-h-0 md:group-hover:max-h-20 transition-all duration-500 ease-out">
               <p className="text-white/70 text-sm leading-relaxed mb-4">
                 {shortDescription}
               </p>
@@ -87,7 +87,7 @@ export default function RoomCard({
 
             {/* CTA */}
             <div className="flex items-center justify-between border-t border-white/20 pt-4">
-              <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-white/60">
+              <span className="inline-flex items-center gap-2 text-white/60 text-xs tracking-[0.15em] uppercase">
                 {hasSeaView && (
                   <svg
                     className="w-4 h-4 text-[#8B7355]"
@@ -105,7 +105,7 @@ export default function RoomCard({
                 )}
                 {views[0]}
               </span>
-              <span className="inline-flex items-center gap-2 text-[#8B7355] text-[10px] tracking-[0.2em] uppercase font-medium group-hover:gap-3 transition-all duration-300">
+              <span className="inline-flex items-center gap-2 text-[#8B7355] text-xs tracking-[0.15em] uppercase font-medium group-hover:gap-3 transition-all duration-300">
                 Explore
                 <svg
                   className="w-3.5 h-3.5"

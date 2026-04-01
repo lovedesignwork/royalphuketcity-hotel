@@ -22,7 +22,7 @@ export default function CTABanner({
   tall = false,
 }: CTABannerProps) {
   return (
-    <section className={`relative ${tall ? "py-[350px] md:py-[430px]" : "py-24 md:py-32"}`}>
+    <section className={`relative ${tall ? "py-32 md:py-[350px] lg:py-[430px]" : "py-24 md:py-32"}`}>
       {/* Background Image */}
       <Image
         src={image}
@@ -36,7 +36,7 @@ export default function CTABanner({
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className={`relative container mx-auto px-6 ${tall ? "-mt-[150px]" : ""}`}>
+      <div className={`relative container mx-auto px-6 ${tall ? "md:-mt-[150px]" : ""}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -118,8 +118,18 @@ export default function WeddingInquiryForm() {
             </p>
           </div>
 
-          {/* Form Container with Double Stroke - White outer, Gold inner */}
-          <div className="relative outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
+          {/* Form Container with Elegant Wedding Frame */}
+          <div className="relative bg-white p-8 md:p-12 border border-[#8B7355]/30">
+            {/* Decorative Corner Elements */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#8B7355]" />
+            <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-[#8B7355]" />
+            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-[#8B7355]" />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#8B7355]" />
+            {/* Inner decorative corners */}
+            <div className="absolute top-3 left-3 w-8 h-8 border-t border-l border-[#8B7355]/50" />
+            <div className="absolute top-3 right-3 w-8 h-8 border-t border-r border-[#8B7355]/50" />
+            <div className="absolute bottom-3 left-3 w-8 h-8 border-b border-l border-[#8B7355]/50" />
+            <div className="absolute bottom-3 right-3 w-8 h-8 border-b border-r border-[#8B7355]/50" />
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
             {/* Your Name */}

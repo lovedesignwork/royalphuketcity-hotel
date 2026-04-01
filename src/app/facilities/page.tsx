@@ -50,9 +50,6 @@ const facilities = [
       "/images/HOTEL WEBSITE/IMG_5226_resize.jpg",
       "/images/HOTEL WEBSITE/IMG_5234_resize.jpg",
       "/images/HOTEL WEBSITE/IMG_5236_resize.jpg",
-      "/images/HOTEL WEBSITE/NTWS8579_resize.jpg",
-      "/images/HOTEL WEBSITE/NTWS8680_resize.jpg",
-      "/images/HOTEL WEBSITE/NTWS8798_resize.jpg",
     ],
     features: [
       "Highest rooftop in Phuket Town",
@@ -68,14 +65,12 @@ const facilities = [
       "Welcome to The Atrium, our elegant hotel lobby at Royal Phuket City Hotel. With its spacious, relaxed atmosphere, live piano music, and a talented singer setting the tone, it's the perfect spot to enjoy a drink from the bar, catch up with friends, or simply unwind in style.",
     hours: "Lobby Open 24 Hours | Lounge Open 3 PM - 12 AM",
     images: [
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-1.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-11.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-5.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-9.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-10.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-4.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-2.jpg",
-      "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-12.jpg",
+      "/images/HOTEL WEBSITE/RPC Lobby 1.jpg",
+      "/images/HOTEL WEBSITE/RPC Lobby 2.jpg",
+      "/images/HOTEL WEBSITE/RPC Lobby 3.jpg",
+      "/images/HOTEL WEBSITE/RPC Lobby 4.jpg",
+      "/images/HOTEL WEBSITE/RPC Lobby 5.jpg",
+      "/images/HOTEL WEBSITE/RPC Lobby 6.jpg",
     ],
     features: [
       "Live piano music",
@@ -91,11 +86,16 @@ const facilities = [
       "Stay active during your stay with complimentary access to our well-maintained Fitness Centre, exclusively for hotel guests. Located on the 3rd floor, it features a full range of modern equipment along with steam baths and sauna rooms. Our fitness centre is managed by Workout Club – Phuket's Leading Fitness Centre.",
     hours: "Open 7 AM - 9 PM | Free Use for Hotel Guests",
     images: [
-      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_01.jpg",
-      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_06.jpg",
-      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_09.jpg",
-      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_07.jpg",
-      "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_08.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 001.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 002.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 003.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 004.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 005.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 006.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 007.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 008.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 009.jpg",
+      "/images/HOTEL WEBSITE/Club Asia 010.jpg",
     ],
     features: [
       "Modern equipment",
@@ -132,14 +132,13 @@ const facilities = [
       "Indulge in a tranquil spa experience designed to restore balance to both body and mind. With expert massage techniques and premium aromatic oils, our spa offers a serene escape that leaves you feeling refreshed, relaxed, and completely renewed.",
     hours: "Open 10 AM - 11 PM",
     images: [
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-3.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-4.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-5.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-6.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-7.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-8.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-9.jpg",
-      "/images/HOTEL WEBSITE/Royal-Wellness-Spa-10.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 001.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 002.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 003.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 004.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 006.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 008.jpg",
+      "/images/HOTEL WEBSITE/Royal SPa 009.jpg",
     ],
     features: [
       "Expert massage techniques",
@@ -220,7 +219,7 @@ export default function FacilitiesPage() {
         title="Everything You Need, All in One Place"
         subtitle="Facilities That Elevate Every Moment"
         description="Enjoy complete in-house facilities designed to meet all your needs."
-        image="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC Wide.jpg"
         height="medium"
       />
 
@@ -271,7 +270,7 @@ export default function FacilitiesPage() {
                     </p>
 
                     {/* Features */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {facility.features.map((feature) => (
                         <div key={feature} className="flex items-center gap-3">
                           <svg className="w-4 h-4 text-[#8B7355] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">

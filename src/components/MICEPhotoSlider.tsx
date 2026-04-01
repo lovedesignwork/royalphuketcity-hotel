@@ -6,56 +6,56 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const photos = [
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-1.jpg",
-    alt: "Grand Ballroom Setup",
+    src: "/images/HOTEL WEBSITE/MTG_NM_W08_ballroom_highangle_wide.jpg",
+    alt: "Grand Ballroom High Angle",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-2.jpg",
-    alt: "Banquet Event",
+    src: "/images/HOTEL WEBSITE/MTG_NM_W04_ballroom_classroom_wide.jpg",
+    alt: "Ballroom Classroom Setup",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-3.jpg",
-    alt: "Conference Room",
+    src: "/images/HOTEL WEBSITE/MTG_NM_W06_stage_POV_wide.jpg",
+    alt: "Stage POV View",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-4.jpg",
-    alt: "Meeting Setup",
+    src: "/images/HOTEL WEBSITE/EVT_GA_L01_gala_room_wide.jpg",
+    alt: "Gala Room",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-5.jpg",
-    alt: "Event Hall",
+    src: "/images/HOTEL WEBSITE/MTG_NM_W05_cocktail_setup_wide.jpg",
+    alt: "Cocktail Setup",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-6.jpg",
-    alt: "Gala Dinner",
+    src: "/images/HOTEL WEBSITE/MTG_NM_W03_stage_LED_wide.jpg",
+    alt: "Stage LED Setup",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-7.jpg",
-    alt: "Corporate Event",
+    src: "/images/HOTEL WEBSITE/F45_PL_L01_launch_wide.jpg",
+    alt: "Product Launch Event",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-8.jpg",
-    alt: "Ballroom Event",
+    src: "/images/HOTEL WEBSITE/EVT_TS_L01_panel_stage_wide.jpg",
+    alt: "Panel Stage Event",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-9.jpg",
-    alt: "Conference Setup",
+    src: "/images/HOTEL WEBSITE/EVT_SW_L01_workshop_room_wide.jpg",
+    alt: "Workshop Room",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-10.jpg",
-    alt: "Meeting Room",
+    src: "/images/HOTEL WEBSITE/MTG_MW_16_cocktail_group_laugh_medium.jpg",
+    alt: "Cocktail Group",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-11.jpg",
-    alt: "Event Space",
+    src: "/images/HOTEL WEBSITE/F45_GA_L04_gala_table_medium.jpg",
+    alt: "Gala Table Setup",
   },
   {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-12.jpg",
-    alt: "Banquet Hall",
-  },
-  {
-    src: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-13.jpg",
+    src: "/images/HOTEL WEBSITE/EVT_GA_L01_gala_room_wide.jpg",
     alt: "Grand Event",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/EVT_CN_L01_concert_stage_crowd_wide.jpg",
+    alt: "Concert Stage",
   },
 ];
 

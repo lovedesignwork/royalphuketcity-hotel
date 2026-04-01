@@ -43,7 +43,7 @@ export default function DiningPage() {
         title="Dining"
         subtitle="Culinary Experiences"
         description="Five distinctive venues, endless culinary discoveries"
-        image="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/Restaurant/TWIST_001-_resize.jpg"
         height="medium"
       />
 
@@ -90,9 +90,9 @@ export default function DiningPage() {
               <div className="space-y-4 text-[--color-text-secondary]">
                 <p>
                   Enjoy the comfort of dining in your room with our
-                  comprehensive 24-hour in-room dining service. Our menu
-                  features a selection of dishes from all our restaurants,
-                  ensuring you can savor your favorites any time of day.
+                  in-room dining service. Our menu features a selection
+                  of dishes from our restaurants, ensuring you can savor
+                  your favorites during dining hours.
                 </p>
                 <p>
                   Whether it&apos;s a late-night snack, breakfast in bed, or a
@@ -115,7 +115,7 @@ export default function DiningPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  <span>Available 24 hours</span>
+                  <span>Serves: Brunch, Lunch, Dinner, Snacks</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <svg
@@ -131,39 +131,7 @@ export default function DiningPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  <span>Full restaurant menu selection</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <svg
-                    className="w-5 h-5 text-[--color-accent]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span>Dietary accommodations available</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <svg
-                    className="w-5 h-5 text-[--color-accent]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span>Special occasion setups</span>
+                  <span>Hours: 11 AM – 10 PM</span>
                 </div>
               </div>
             </div>
@@ -172,7 +140,7 @@ export default function DiningPage() {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=2070&auto=format&fit=crop')",
+                    "url('/images/HOTEL WEBSITE/Restaurant/154.jpg')",
                 }}
               />
             </div>

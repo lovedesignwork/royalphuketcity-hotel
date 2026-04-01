@@ -73,10 +73,10 @@ export default function WeddingVenuesPage() {
       <WeddingPhotoSlider />
 
       {/* CTA - Plan Your Wedding */}
-      <section className="py-16 md:py-20 bg-[--color-surface]">
+      <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           {/* Double Stroke Container - White outer, Gold inner */}
-          <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
+          <div className="outline outline-[4px] md:outline-[8px] lg:outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="text-center lg:text-left">
                 <p className="label-accent text-[#8B7355] mb-2">Start Planning Today</p>
@@ -97,15 +97,15 @@ export default function WeddingVenuesPage() {
                   </svg>
                   Inquiry for Wedding
                 </Link>
-                <a 
-                  href="#download-brochure" 
+                <Link 
+                  href="/download-fact-sheets" 
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[#8B7355]/30 text-[--color-text-primary] font-medium tracking-wide uppercase text-sm hover:bg-[#8B7355]/10 hover:border-[#8B7355]/50 transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                   </svg>
                   Download Brochure
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -183,11 +183,13 @@ export default function WeddingVenuesPage() {
               <article className="relative h-full overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
-                    alt="Engagement Ceremony Phuket"
+                    src="/images/HOTEL WEBSITE/Wedding/WED_ENG_P02_couple_laugh_portrait.jpg"
+                    alt="Engagement Ceremony at Royal Phuket City"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={100}
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -212,11 +214,13 @@ export default function WeddingVenuesPage() {
               <article className="relative h-full overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop"
-                    alt="Thai Wedding Ceremony Phuket"
+                    src="/images/HOTEL WEBSITE/Wedding/WED_THAI_P02_couple_wai_portrait.jpg"
+                    alt="Thai Wedding Ceremony at Royal Phuket City"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={100}
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -241,11 +245,13 @@ export default function WeddingVenuesPage() {
               <article className="relative h-full overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop"
-                    alt="Chinese Wedding Banquet Phuket"
+                    src="/images/HOTEL WEBSITE/Wedding/WED_CHN_P02_couple_firstlook_portrait.jpg"
+                    alt="Chinese Wedding Banquet at Royal Phuket City"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={100}
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -270,11 +276,13 @@ export default function WeddingVenuesPage() {
               <article className="relative h-full overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?q=80&w=2070&auto=format&fit=crop"
-                    alt="Muslim Wedding Nikah Phuket"
+                    src="/images/HOTEL WEBSITE/Wedding/WED_MUS_P02_couple_tender_portrait.jpg"
+                    alt="Muslim Wedding at Royal Phuket City"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={100}
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -299,11 +307,13 @@ export default function WeddingVenuesPage() {
               <article className="relative h-full overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop"
-                    alt="Western Wedding Reception Phuket"
+                    src="/images/HOTEL WEBSITE/Wedding/WED_WES_P02_champagne_toast_portrait.jpg"
+                    alt="Western Wedding Reception at Royal Phuket City"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={100}
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -328,11 +338,13 @@ export default function WeddingVenuesPage() {
               <article className="relative h-full overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2069&auto=format&fit=crop"
-                    alt="LGBTQ Wedding Celebration Phuket"
+                    src="/images/HOTEL WEBSITE/Wedding/WED_LGBT_P01_twobrides_cheektop_portrait.jpg"
+                    alt="LGBTQ+ Wedding Celebration at Royal Phuket City"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={100}
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -359,8 +371,8 @@ export default function WeddingVenuesPage() {
       <section className="relative py-24 md:py-32 overflow-hidden">
         {/* Background Image */}
         <Image
-          src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=2070&auto=format&fit=crop"
-          alt="Wedding after-party celebration"
+          src="/images/HOTEL WEBSITE/Wedding/Resize/2024.12.19 WD Cin+Ong @Royal-10365_resize.jpg"
+          alt="Wedding celebration at Royal Phuket City"
           fill
           className="object-cover"
           sizes="100vw"
@@ -372,14 +384,14 @@ export default function WeddingVenuesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
             <div>
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white italic mb-8 leading-tight">
+              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                 Dance, Toast and<br />Unwind in Style
               </h2>
             </div>
             
             {/* Right Content */}
             <div>
-              <h3 className="font-heading text-2xl md:text-3xl text-[#8B7355] mb-4">
+              <h3 className="font-heading text-2xl md:text-3xl text-white mb-4">
                 After-Party — Keep the Celebration Going
               </h3>
               <p className="text-white/80 leading-relaxed mb-8">
@@ -389,11 +401,13 @@ export default function WeddingVenuesPage() {
               {/* After-Party Image */}
               <div className="relative aspect-video overflow-hidden border-4 border-[#8B7355]">
                 <Image
-                  src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
-                  alt="Nightclub after-party"
+                  src="/images/HOTEL WEBSITE/Wedding/MTT1996_resize.jpg"
+                  alt="Wedding celebration at Royal Phuket City"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={100}
+                  unoptimized
                 />
               </div>
             </div>
@@ -405,7 +419,7 @@ export default function WeddingVenuesPage() {
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           {/* Double Stroke Container - White outer, Gold inner */}
-          <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
+          <div className="outline outline-[4px] md:outline-[8px] lg:outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Image */}
               <div className="relative aspect-[4/5] overflow-hidden">
@@ -477,7 +491,7 @@ export default function WeddingVenuesPage() {
         </div>
       </section>
 
-      {/* Phuket's Most Loved Wedding Venue */}
+      {/* Phuket&apos;s Most Loved Wedding Venue */}
       <section className="relative py-32 md:py-48">
         <Image
           src="/images/HOTEL WEBSITE/RPC wedding 545.jpg"
@@ -504,16 +518,18 @@ export default function WeddingVenuesPage() {
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           {/* Double Stroke Container - White outer, Gold inner */}
-          <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
+          <div className="outline outline-[4px] md:outline-[8px] lg:outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
               {/* Image */}
               <div className="relative min-h-[500px] lg:min-h-0 overflow-hidden">
                 <Image
-                  src="/images/HOTEL WEBSITE/Wedding/Wedd.jpg"
+                  src="/images/HOTEL WEBSITE/Wedding/MTT2447_resize.jpg"
                   alt="Wedding ceremony"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={100}
+                  unoptimized
                 />
               </div>
 
@@ -538,18 +554,17 @@ export default function WeddingVenuesPage() {
                 />
               </div>
 
-              {/* Why Choose Us */}
+              {/* Our Certifications */}
               <div>
-                <h3 className="font-heading text-xl text-[--color-text-primary] mb-5">Why Choose Us?</h3>
+                <h3 className="font-heading text-xl text-[--color-text-primary] mb-5">Our Certifications</h3>
                 <ul className="space-y-3">
                   {[
-                    "27+ years of professional wedding experience",
-                    "Elegant high ceilings with gorgeous chandeliers",
-                    "On-site banquet, catering, tech, and security teams",
-                    "Décor that lends itself to any color and floor plan you choose",
-                    "Dance Floor customized to your needs",
-                    "Spacious, private Bridal Suite with your own private restroom",
-                    "Over 350 parking spaces for guests",
+                    "ASEAN MICE Venue Standard certified",
+                    "Thailand MICE Venue Standard by TCEB",
+                    "Green Hotel certified for sustainability",
+                    "SHA Plus certified for health & safety",
+                    "Halal certified kitchen available",
+                    "ISO 22483 certified for event excellence",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-[#8B7355] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -588,8 +603,8 @@ export default function WeddingVenuesPage() {
             <div className="border border-gray-200 p-6 group hover:border-[#8B7355] transition-colors bg-white hover:shadow-lg">
               <div className="relative aspect-video mb-5 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop"
-                  alt="Phuket Old Town location"
+                  src="/images/HOTEL WEBSITE/HKT Old Town.jpg"
+                  alt="Phuket Old Town near Royal Phuket City Hotel"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -597,7 +612,7 @@ export default function WeddingVenuesPage() {
               </div>
               <h3 className="font-heading text-xl text-[--color-text-primary] mb-3">Best Location</h3>
               <p className="text-[--color-text-secondary] text-sm leading-relaxed">
-                We are just steps away from Phuket Old Town — a safe, walkable and vibrant heritage district filled with culture, cafés, local restaurants and street food. It&apos;s perfect for combining business with leisure in one trip.
+                We are just steps away from Phuket Old Town — a safe, walkable and vibrant heritage district filled with culture, cafés, local restaurants and street food. It&apos;s perfect for combining celebration with exploration.
               </p>
             </div>
 
@@ -605,8 +620,8 @@ export default function WeddingVenuesPage() {
             <div className="border border-gray-200 p-6 group hover:border-[#8B7355] transition-colors bg-white hover:shadow-lg">
               <div className="relative aspect-video mb-5 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2069&auto=format&fit=crop"
-                  alt="Professional wedding team"
+                  src="/images/HOTEL WEBSITE/Wedding/Resize/Royal PHoto SHoot035_resize.jpg"
+                  alt="Professional wedding team at Royal Phuket City"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -614,7 +629,7 @@ export default function WeddingVenuesPage() {
               </div>
               <h3 className="font-heading text-xl text-[--color-text-primary] mb-3">Great Value</h3>
               <p className="text-[--color-text-secondary] text-sm leading-relaxed">
-                We combine premium comfort, a prime location and warm service at a very competitive price, so your company gets exceptional value for every baht spent.
+                We combine premium comfort, a prime location and warm service at a very competitive price, so you get exceptional value for every baht spent on your special day.
               </p>
             </div>
 
@@ -622,8 +637,8 @@ export default function WeddingVenuesPage() {
             <div className="border border-gray-200 p-6 group hover:border-[#8B7355] transition-colors bg-white hover:shadow-lg">
               <div className="relative aspect-video mb-5 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2076&auto=format&fit=crop"
-                  alt="Flexible wedding planning"
+                  src="/images/HOTEL WEBSITE/Wedding/Resize/line_oa_chat_240912_092752_resize.jpg"
+                  alt="Flexible wedding planning at Royal Phuket City"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -631,7 +646,7 @@ export default function WeddingVenuesPage() {
               </div>
               <h3 className="font-heading text-xl text-[--color-text-primary] mb-3">Flexibility Comes First</h3>
               <p className="text-[--color-text-secondary] text-sm leading-relaxed">
-                Room layouts, packages, and pricing are all flexible. We shape each event around your goals and budget for a smooth experience. High-speed internet, on-site tech support, and hybrid-meeting equipment are available when needed.
+                Room layouts, packages, and pricing are all flexible. We shape each wedding around your vision and budget for a smooth experience. Your day, your way.
               </p>
             </div>
 
@@ -639,8 +654,8 @@ export default function WeddingVenuesPage() {
             <div className="border border-gray-200 p-6 group hover:border-[#8B7355] transition-colors bg-white hover:shadow-lg">
               <div className="relative aspect-video mb-5 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
-                  alt="Wedding catering food"
+                  src="/images/HOTEL WEBSITE/Restaurant/YanLong.jpg"
+                  alt="Wedding catering at Royal Phuket City"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -656,8 +671,8 @@ export default function WeddingVenuesPage() {
             <div className="border border-gray-200 p-6 group hover:border-[#8B7355] transition-colors bg-white hover:shadow-lg">
               <div className="relative aspect-video mb-5 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop"
-                  alt="Grand ballroom capacity"
+                  src="/images/HOTEL WEBSITE/Ballroom.jpg"
+                  alt="Grand ballroom at Royal Phuket City"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -665,7 +680,7 @@ export default function WeddingVenuesPage() {
               </div>
               <h3 className="font-heading text-xl text-[--color-text-primary] mb-3">Large-Scale Capacity</h3>
               <p className="text-[--color-text-secondary] text-sm leading-relaxed">
-                We offer a large grand ballroom for up to 2,300 guests, plus 9-11 meeting and function rooms all on a single level — ideal for large celebrations, parallel sessions and breakouts. With over 20 years of experience, our dedicated team knows how to design and run smooth large-scale events.
+                We offer a large grand ballroom for up to 2,300 guests, plus 9-11 meeting and function rooms all on a single level — ideal for large celebrations, parallel sessions and breakouts. With over 27 years of experience, our dedicated team knows how to design and run smooth large-scale events.
               </p>
             </div>
 
@@ -735,8 +750,8 @@ export default function WeddingVenuesPage() {
       {/* MICE CTA */}
       <section className="relative py-24 md:py-32">
         <Image
-          src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop"
-          alt="Meeting and events venue"
+          src="/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-5.jpg"
+          alt="Meeting and events venue at Royal Phuket City"
           fill
           className="object-cover"
           sizes="100vw"

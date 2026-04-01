@@ -122,7 +122,7 @@ export default async function MiceEventTypePage({ params }: PageProps) {
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-[--color-surface] p-8 md:p-12">
+            <div className="outline outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-[--color-surface] p-8 md:p-12">
               <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4 text-center">
                 Your Trusted Partner
               </p>
@@ -249,21 +249,50 @@ export default async function MiceEventTypePage({ params }: PageProps) {
               Gallery
             </h2>
           </div>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {eventData.gallery.map((image, index) => (
-              <div key={index} className="relative aspect-[4/3] overflow-hidden group">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-px">
+            {[
+              "/images/HOTEL WEBSITE/MTG_NM_W02_ballroom_banquet_wide.jpg",
+              "/images/HOTEL WEBSITE/EVT_CN_L01_concert_stage_crowd_wide.jpg",
+              "/images/HOTEL WEBSITE/F45_GA_L01_gala_room_wide.jpg",
+              "/images/HOTEL WEBSITE/EVT_SW_L01_workshop_room_wide.jpg",
+              "/images/HOTEL WEBSITE/MTG_NM_W04_ballroom_classroom_wide.jpg",
+              "/images/HOTEL WEBSITE/F45_CN_L01_concert_wide.jpg",
+              "/images/HOTEL WEBSITE/EVT_EX_L01_tradeshow_floor_wide.jpg",
+              "/images/HOTEL WEBSITE/MTG_MW_20_standing_ovation_medium.jpg",
+              "/images/HOTEL WEBSITE/F45_SW_L01_workshop_wide.jpg",
+              "/images/HOTEL WEBSITE/EVT_TS_L01_panel_stage_wide.jpg",
+              "/images/HOTEL WEBSITE/F45_EX_L01_tradeshow_wide.jpg",
+              "/images/HOTEL WEBSITE/MTG_NM_W03_stage_LED_wide.jpg",
+              "/images/HOTEL WEBSITE/EVT_CC_L02_presenter_screen_medium.jpg",
+              "/images/HOTEL WEBSITE/F45_GA_L04_gala_table_medium.jpg",
+              "/images/HOTEL WEBSITE/MTG_MW_02_audience_stagelevel_medium.jpg",
+              "/images/HOTEL WEBSITE/EVT_CN_L02_performer_mic_medium.jpg",
+              "/images/HOTEL WEBSITE/F45_CC_L03_audience_closeup.jpg",
+              "/images/HOTEL WEBSITE/EVT_EX_L02_booth_interaction_medium.jpg",
+              "/images/HOTEL WEBSITE/MTG_NM_M16_floral_centrepiece_medium.jpg",
+              "/images/HOTEL WEBSITE/F45_CN_L02_performer_medium.jpg",
+              "/images/HOTEL WEBSITE/MTG_MW_07_gala_conversation_closeup.jpg",
+              "/images/HOTEL WEBSITE/F45_GA_L02_trophy_handshake_medium.jpg",
+              "/images/HOTEL WEBSITE/EVT_SW_L01_workshop_room_wide.jpg",
+
+              "/images/HOTEL WEBSITE/MTG_MW_08_workshop_leanin_closeup.jpg",
+              "/images/HOTEL WEBSITE/F45_CN_L03_audience_cheering_closeup.jpg",
+            ].map((image, index) => (
+              <div key={index} className="relative aspect-square overflow-hidden group">
                 <Image
                   src={image}
                   alt={`${eventData.title} - Image ${index + 1}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 33vw, 20vw"
+                  quality={100}
+                  unoptimized
                 />
               </div>
             ))}
           </div>
-        </div>
       </section>
 
       {/* CTA Section */}

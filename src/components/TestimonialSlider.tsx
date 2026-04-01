@@ -65,7 +65,7 @@ export default function TestimonialSlider() {
     <section className="relative py-20 md:py-28 overflow-hidden">
       {/* Background Image */}
       <Image
-        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+        src="/images/HOTEL WEBSITE/RPCHotel.jpg"
         alt="Royal Phuket City Hotel"
         fill
         className="object-cover"

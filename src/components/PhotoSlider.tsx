@@ -96,14 +96,14 @@ export default function PhotoSlider() {
           <motion.div
             key={current}
             custom={direction}
-            initial={{ x: direction > 0 ? "33.333%" : "-33.333%", opacity: 0.6 }}
+            initial={{ x: direction > 0 ? "100%" : "-100%", opacity: 0.6 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction > 0 ? "-33.333%" : "33.333%", opacity: 0.6 }}
+            exit={{ x: direction > 0 ? "-100%" : "100%", opacity: 0.6 }}
             transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
-            className="grid grid-cols-3 w-full"
+            className="grid grid-cols-1 md:grid-cols-3 w-full"
           >
             {[0, 1, 2].map((offset) => (
-              <div key={offset} className="relative aspect-[4/3]">
+              <div key={offset} className={`relative aspect-[4/3] ${offset > 0 ? "hidden md:block" : ""}`}>
                 <Image
                   src={photos[getIndex(offset)].src}
                   alt={photos[getIndex(offset)].alt}

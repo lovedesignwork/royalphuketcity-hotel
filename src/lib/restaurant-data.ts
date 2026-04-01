@@ -38,20 +38,52 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop",
-        alt: "Yan Long Restaurant Interior",
+        src: "/images/HOTEL WEBSITE/Restaurant/YL Main_resize.jpg",
+        alt: "Yan Long Restaurant Main Dining Room",
       },
       {
-        src: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=2070&auto=format&fit=crop",
-        alt: "Dim Sum Selection",
+        src: "/images/HOTEL WEBSITE/Restaurant/CU01_business_hands_chopsticks_H.jpg",
+        alt: "Business Dining at Yan Long",
       },
       {
-        src: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2070&auto=format&fit=crop",
-        alt: "Chinese Cuisine",
+        src: "/images/HOTEL WEBSITE/Restaurant/CU08_peking_duck_carve_H.jpg",
+        alt: "Peking Duck Carving",
       },
       {
-        src: "https://images.unsplash.com/photo-1555126634-323283e090fa?q=80&w=2070&auto=format&fit=crop",
-        alt: "Private Dining Room",
+        src: "/images/HOTEL WEBSITE/Restaurant/CU10_corporate_toast_closeup_H.jpg",
+        alt: "Corporate Toast",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/FK19_full_family_silk_H.jpg",
+        alt: "Family Dining at Yan Long",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/MD04_mother_serving_main_H.jpg",
+        alt: "Mother Serving Guests",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/MD09_women_executives_silk_H.jpg",
+        alt: "Executive Dining",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L02_private_room_setup_L.jpg",
+        alt: "Private Room Setup",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L12_banquet_dishes_overhead_L.jpg",
+        alt: "Banquet Dishes",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L13_ceiling_lanterns_lookup_L.jpg",
+        alt: "Traditional Ceiling Lanterns",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L14_tea_pouring_wide_L.jpg",
+        alt: "Traditional Tea Service",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L18_light_atmosphere_L.jpg",
+        alt: "Restaurant Atmosphere",
       },
     ],
   },
@@ -79,20 +111,84 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST_001-_resize.jpg",
         alt: "TWIST Rooftop Bar",
       },
       {
-        src: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2074&auto=format&fit=crop",
-        alt: "Evening Ambiance",
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 001.jpg",
+        alt: "TWIST Rooftop View",
       },
       {
-        src: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=2069&auto=format&fit=crop",
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 005.jpg",
+        alt: "Rooftop Dining",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 006.jpg",
+        alt: "Evening Atmosphere",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 008.jpg",
+        alt: "Cocktail Bar",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 009.jpg",
+        alt: "Sunset Views",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 011.jpg",
+        alt: "Rooftop Lounge",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 012.jpg",
+        alt: "City Views",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 013.jpg",
+        alt: "Fine Dining",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 014.jpg",
+        alt: "Night Ambiance",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 016.jpg",
         alt: "Craft Cocktails",
       },
       {
-        src: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070&auto=format&fit=crop",
-        alt: "Fine Dining Experience",
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 017.jpg",
+        alt: "Terrace Seating",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 018.jpg",
+        alt: "Premium Dining",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 019.jpg",
+        alt: "Panoramic Views",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 020.jpg",
+        alt: "Rooftop Experience",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 024.jpg",
+        alt: "Sky Bar",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 025.jpg",
+        alt: "Romantic Setting",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 042.jpg",
+        alt: "Outdoor Terrace",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 044.jpg",
+        alt: "Night Views",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 045.jpg",
+        alt: "Rooftop Bar Atmosphere",
       },
     ],
   },
@@ -120,20 +216,28 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop",
+        src: "/images/HOTEL WEBSITE/Restaurant/154 Main.jpg",
         alt: "Good Eatz 154 Restaurant",
       },
       {
-        src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop",
-        alt: "Breakfast Buffet",
-      },
-      {
-        src: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?q=80&w=2070&auto=format&fit=crop",
-        alt: "Thai Cuisine",
-      },
-      {
-        src: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=2065&auto=format&fit=crop",
+        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 04.jpg",
         alt: "Fresh Pastries",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 05.jpg",
+        alt: "All-Day Dining",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 06.jpg",
+        alt: "Restaurant Interior",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 07.jpg",
+        alt: "Dining Experience",
+      },
+      {
+        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 08.jpg",
+        alt: "Food Selection",
       },
     ],
   },

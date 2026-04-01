@@ -32,7 +32,7 @@ export default function RestaurantPageTemplate({
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white">
-            <span className="label-accent text-white/80 block mb-4">
+            <span className="label-accent text-white block mb-4">
               {restaurant.cuisine} Cuisine
             </span>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl max-w-4xl">
@@ -179,9 +179,6 @@ export default function RestaurantPageTemplate({
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <span className="label-accent text-white/80 block mb-2">
-                      {other.cuisine}
-                    </span>
                     <h3 className="font-heading text-2xl md:text-3xl">
                       {other.name}
                     </h3>

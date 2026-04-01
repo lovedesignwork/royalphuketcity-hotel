@@ -6,40 +6,60 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const photos = [
   {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
-    alt: "Wedding Ceremony",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin+Ong @Royal-10365_resize.jpg",
+    alt: "Wedding Ceremony at Royal Phuket City",
   },
   {
-    src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin+Ong @Royal-8363_resize.jpg",
     alt: "Wedding Reception",
   },
   {
-    src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069&auto=format&fit=crop",
-    alt: "Outdoor Wedding",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin+Ong @Royal-8434_resize.jpg",
     alt: "Wedding Celebration",
   },
   {
-    src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/28 July 2022_0003_resize.jpg",
     alt: "Wedding Couple",
   },
   {
-    src: "https://images.unsplash.com/photo-1507504031003-b417f8f32a3e?q=80&w=2070&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/28 July 2022_0159_resize.jpg",
+    alt: "Wedding Party",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/28 July 2022_0163_resize.jpg",
+    alt: "Wedding Venue",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/line_oa_chat_240912_092740_resize.jpg",
     alt: "Wedding Decor",
   },
   {
-    src: "https://images.unsplash.com/photo-1470290449668-02dd93d9420a?q=80&w=2070&auto=format&fit=crop",
-    alt: "Wedding Table Setting",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/line_oa_chat_240912_092748_resize.jpg",
+    alt: "Wedding Setup",
   },
   {
-    src: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=2070&auto=format&fit=crop",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/MTT2436_resize.jpg",
     alt: "Wedding Dance",
   },
   {
-    src: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2069&auto=format&fit=crop",
-    alt: "Wedding Venue",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/S__30400856_resize.jpg",
+    alt: "Wedding Table Setting",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/S__44949510_resize.jpg",
+    alt: "Wedding Ballroom",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/S__44949516_resize.jpg",
+    alt: "Wedding Flowers",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/WeddingDay-314_resize.jpg",
+    alt: "Wedding First Dance",
+  },
+  {
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/WeddingDay-434_resize.jpg",
+    alt: "Wedding Memories",
   },
 ];
 
@@ -87,6 +107,8 @@ export default function WeddingPhotoSlider() {
                   fill
                   className="object-cover"
                   sizes="33vw"
+                  quality={100}
+                  unoptimized
                 />
               </div>
             ))}

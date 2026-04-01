@@ -30,7 +30,7 @@ export const EXTERNAL_LINKS = {
   tripadvisor:
     "https://www.tripadvisor.com/Hotel_Review-g1215781-d309104-Reviews-Royal_Phuket_City_Hotel-Phuket_Town_Phuket.html",
   googleMaps:
-    "https://www.google.com/maps/place/Royal+Phuket+City+Hotel/@7.882943,98.394902,17z",
+    "https://maps.app.goo.gl/3Q65GyZvmkpR9DfGA",
 } as const;
 
 export const NAV_LINKS = {
@@ -78,6 +78,7 @@ export const NAV_LINKS = {
         { label: "Concert & Live Show", href: "/meeting-events/concert-live-performance" },
         { label: "Stand-Up Comedy", href: "/meeting-events/stand-up-comedy" },
         { label: "Talk Show & Panel", href: "/meeting-events/talk-show-panel" },
+        { label: "Graduation Ceremony", href: "/meeting-events/graduation-ceremony" },
         { label: "Download Fact Sheets", href: "/download-fact-sheets" },
       ],
     },
@@ -231,7 +232,7 @@ export const RESTAURANTS = [
     hours: "11:00 AM – 10:00 PM",
     shortDescription:
       "Authentic Cantonese cuisine with dim sum specialties and private dining rooms.",
-    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/HOTEL WEBSITE/Restaurant/YanLong_L01_full_dining_room_L.jpg",
   },
   {
     slug: "twist-rooftop-restaurant-bar",
@@ -241,7 +242,7 @@ export const RESTAURANTS = [
     hours: "5:00 PM – 12:00 AM",
     shortDescription:
       "Rooftop dining with panoramic views, craft cocktails, and international cuisine.",
-    image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/HOTEL WEBSITE/Restaurant/Twist ROoftop.jpg",
   },
   {
     slug: "good-eatz-154",
@@ -251,7 +252,7 @@ export const RESTAURANTS = [
     hours: "6:00 AM – 10:00 PM",
     shortDescription:
       "All-day dining featuring Thai favorites and international breakfast buffet.",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/HOTEL WEBSITE/Restaurant/RPC_LM06_mixed_tourists_goodeatz_lunch_L.jpg",
   },
 ] as const;
 

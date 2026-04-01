@@ -323,7 +323,7 @@ export default function MeetingEventsPage() {
             </div>
             <div className="relative aspect-[4/3] img-hover">
               <Image
-                src="/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-4.jpg"
+                src="/images/HOTEL WEBSITE/MTG_MW_14_champagne_clink_closeup.jpg"
                 alt="Conference room"
                 fill
                 className="object-cover"
@@ -414,12 +414,12 @@ export default function MeetingEventsPage() {
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           {/* Double Stroke Container - White outer, Gold inner */}
-          <div className="outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
+          <div className="outline outline-[4px] md:outline-[8px] lg:outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Image */}
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/images/conference-speaker.png"
+                  src="/images/HOTEL WEBSITE/EVT_GA_P01_winner_trophy_portrait.jpg"
                   alt="Conference speaker presentation"
                   fill
                   className="object-cover"
@@ -505,6 +505,7 @@ export default function MeetingEventsPage() {
           </div>
 
           {/* Meeting Room Capacities Table */}
+          <p className="text-xs text-gray-400 mb-2 md:hidden">← Scroll to see all columns</p>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[1000px]">
               {/* Header */}
@@ -967,7 +968,7 @@ export default function MeetingEventsPage() {
       {/* Wedding Venue CTA */}
       <section className="relative py-24 md:py-32">
         <Image
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+          src="/images/HOTEL WEBSITE/F45_CN_L03_audience_cheering_closeup.jpg"
           alt="Wedding venue"
           fill
           className="object-cover"

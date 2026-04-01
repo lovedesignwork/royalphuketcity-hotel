@@ -5,26 +5,26 @@ import Image from "next/image";
 
 const galleryImages = [
   // Row 1
-  { src: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", alt: "Wedding ceremony setup" },
-  { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop", alt: "Wedding reception" },
-  { src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop", alt: "Wedding ballroom" },
-  { src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800&auto=format&fit=crop", alt: "Wedding couple" },
-  { src: "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?q=80&w=800&auto=format&fit=crop", alt: "Wedding decorations" },
-  { src: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=800&auto=format&fit=crop", alt: "Wedding celebration" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-1725_resize.jpg", alt: "Wedding ceremony" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-3988_resize.jpg", alt: "Wedding reception" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-5388_resize.jpg", alt: "Wedding ballroom" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-6625_resize.jpg", alt: "Wedding couple" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin+Ong @Royal-10365_resize.jpg", alt: "Wedding decorations" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin+Ong @Royal-10468_resize.jpg", alt: "Wedding celebration" },
   // Row 2
-  { src: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=800&auto=format&fit=crop", alt: "Wedding dance" },
-  { src: "https://images.unsplash.com/photo-1507504031003-b417f9ba3d2d?q=80&w=800&auto=format&fit=crop", alt: "Wedding flowers" },
-  { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=800&auto=format&fit=crop", alt: "Wedding table setting" },
-  { src: "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=800&auto=format&fit=crop", alt: "Wedding venue" },
-  { src: "https://images.unsplash.com/photo-1513623954568-86f4e880c0e7?q=80&w=800&auto=format&fit=crop", alt: "Wedding cake" },
-  { src: "https://images.unsplash.com/photo-1525772764200-be829a350797?q=80&w=800&auto=format&fit=crop", alt: "Wedding rings" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin+Ong @Royal-8363_resize.jpg", alt: "Wedding dance" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin+Ong @Royal-8404_resize.jpg", alt: "Wedding flowers" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin+Ong @Royal-8434_resize.jpg", alt: "Wedding table setting" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0001_resize.jpg", alt: "Wedding venue" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0003_resize.jpg", alt: "Wedding guests" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0007_resize.jpg", alt: "Wedding rings" },
   // Row 3
-  { src: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?q=80&w=800&auto=format&fit=crop", alt: "Wedding bouquet" },
-  { src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", alt: "Wedding party" },
-  { src: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800&auto=format&fit=crop", alt: "Wedding toast" },
-  { src: "https://images.unsplash.com/photo-1505932794465-147d1f1b2c97?q=80&w=800&auto=format&fit=crop", alt: "Wedding dinner" },
-  { src: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=800&auto=format&fit=crop", alt: "Wedding guests" },
-  { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop", alt: "Wedding celebration" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0029_resize.jpg", alt: "Wedding bouquet" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0108_resize.jpg", alt: "Wedding party" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0159_resize.jpg", alt: "Wedding toast" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0163_resize.jpg", alt: "Wedding dinner" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/28 July 2022_0169_resize.jpg", alt: "Wedding moments" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/line_oa_chat_240912_092740_resize.jpg", alt: "Wedding celebration" },
 ];
 
 export default function WeddingGallery() {
@@ -82,6 +82,8 @@ export default function WeddingGallery() {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 16.66vw, 16.66vw"
+                quality={100}
+                unoptimized
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                 <svg 
@@ -155,12 +157,14 @@ export default function WeddingGallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={galleryImages[currentIndex].src.replace("w=800", "w=1600")}
+              src={galleryImages[currentIndex].src}
               alt={galleryImages[currentIndex].alt}
               fill
               className="object-contain"
               sizes="100vw"
               priority
+              quality={100}
+              unoptimized
             />
           </div>
 

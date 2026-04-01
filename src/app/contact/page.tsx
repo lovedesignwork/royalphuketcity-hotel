@@ -44,7 +44,7 @@ export default function ContactPage() {
         title="Contact Us"
         subtitle="Get in Touch"
         description="We're here to help with your inquiries"
-        image="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
         height="medium"
       />
 
@@ -255,7 +255,7 @@ export default function ContactPage() {
       {/* Map */}
       <section className="h-[400px] md:h-[500px] relative">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.7484686277076!2d98.39271851478486!3d7.882942994359892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30502f8a7e5d6c79%3A0x5c0e9e5c0e9e5c0e!2sRoyal%20Phuket%20City%20Hotel!5e0!3m2!1sen!2sth!4v1616161616161!5m2!1sen!2sth"
+          src="https://maps.google.com/maps?q=Royal+Phuket+City+Hotel,+154+Phang-Nga+Road,+Phuket&t=&z=16&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0 }}

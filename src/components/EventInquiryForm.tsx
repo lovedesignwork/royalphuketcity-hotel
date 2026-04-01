@@ -119,7 +119,7 @@ export default function EventInquiryForm() {
           </div>
 
           {/* Form Container with Double Stroke - White outer, Gold inner */}
-          <div className="relative outline outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
+          <div className="relative outline outline-[4px] md:outline-[8px] lg:outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}

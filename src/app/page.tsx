@@ -119,7 +119,7 @@ export default function HomePage() {
               <div className="space-y-4">
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
-                    src="/images/HOTEL WEBSITE/RPC LS ROOM 19.jpg"
+                    src="/images/HOTEL WEBSITE/RPCH 027.jpg"
                     alt="Luxury Room"
                     fill
                     className="object-cover"
@@ -150,7 +150,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
-                    src="/images/HOTEL WEBSITE/RPC LS ROOM 4.jpg"
+                    src="/images/HOTEL WEBSITE/RPC LS ROOM 19.jpg"
                     alt="Royal Phuket City Hotel"
                     fill
                     className="object-cover"
@@ -202,12 +202,12 @@ export default function HomePage() {
               <p className="label-accent text-[--color-accent] mb-3">
                 The Best of 4-Stars Hotel in
               </p>
-              <h2 className="font-heading text-[47px] text-[--color-text-primary] mb-6 leading-none">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[47px] text-[--color-text-primary] mb-6 leading-none">
                 Phuket Old Town
               </h2>
-              <p className="text-[--color-text-secondary] leading-relaxed mb-10 max-w-lg">
-                The Royal Phuket City Hotel, a leading Phuket Old Town Hotel, boasts an enviable location in a peaceful area, just 5 minutes from the city centre where you will be able to enjoy a host of very different options from stylish boutiques to local markets.
-              </p>
+                <p className="text-[--color-text-secondary] leading-relaxed mb-10 max-w-lg">
+                  The Royal Phuket City Hotel, a leading Phuket Old Town Hotel, boasts an enviable location in a peaceful area, just 5 minutes from the city centre where you&apos;ll be able to enjoy a host of very different options from stylish boutiques to local markets.
+                </p>
 
               {/* USP List */}
               <div className="space-y-7">
@@ -275,13 +275,11 @@ export default function HomePage() {
 
       {/* Rooms Section */}
       {/* Gold separator with rotating icon */}
-      <div className="relative flex items-center justify-center py-2 bg-white">
-        <div className="absolute top-1/2 flex items-center justify-center" style={{left: 'calc((100% - 1488px) / 2)', width: '1488px'}}>
-          <div className="w-full h-px bg-[#8B7355]" />
-        </div>
+      <div className="relative flex items-center justify-center py-2 bg-white overflow-hidden">
+        <div className="absolute top-1/2 left-6 right-6 h-px bg-[#8B7355]" />
         <div className="relative z-10 bg-white px-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/rpc-icon.svg" alt="" className="w-9 h-9 animate-spin-slow" />
+          <img src="/images/rpc-icon.svg" alt="" className="w-9 h-9 animate-spin-slow" aria-hidden="true" />
         </div>
       </div>
 
@@ -367,7 +365,7 @@ export default function HomePage() {
                   ].map((stat) => (
                     <div key={stat.label}>
                       <p className="font-heading text-3xl text-[#8B7355]">{stat.value}</p>
-                      <p className="label-accent text-[10px] mt-1">{stat.label}</p>
+                      <p className="label-accent text-[10px] sm:text-xs mt-1">{stat.label}</p>
                     </div>
                   ))}
                 </div>
@@ -488,8 +486,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             {[
               { name: "Grand Ballroom", capacity: "Up to 500 guests", size: "800 sqm", image: "/images/HOTEL WEBSITE/Wedding/Resize/MTT1996_resize.jpg" },
-              { name: "Rooftop Terrace", capacity: "Up to 150 guests", size: "19th Floor", image: "/images/HOTEL WEBSITE/Wedding/Resize/2024.12.19 WD Cin+Ong @Royal-8434_resize.jpg" },
-              { name: "Garden Pavilion", capacity: "Up to 200 guests", size: "Outdoor", image: "/images/HOTEL WEBSITE/Wedding/Resize/line_oa_chat_240912_092755_resize.jpg" },
+              { name: "Rooftop Terrace", capacity: "Up to 150 guests", size: "19th Floor", image: "/images/HOTEL WEBSITE/Restaurant/_DSC0516 copy_resize.jpg" },
+              { name: "Garden Pavilion", capacity: "Up to 200 guests", size: "Outdoor", image: "/images/HOTEL WEBSITE/Restaurant/Yan Long 008_resize.jpg" },
             ].map((venue) => (
               <div key={venue.name} className="group relative aspect-[16/9] overflow-hidden">
                 <Image
@@ -574,43 +572,43 @@ export default function HomePage() {
             {[
               { 
                 name: "Swimming Pool", 
-                image: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&h=800&fit=crop",
+                image: "/images/HOTEL WEBSITE/RPCH 033.jpg",
                 description: "Rooftop infinity pool"
               },
               { 
                 name: "Fitness Center", 
-                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=800&fit=crop",
+                image: "/images/HOTEL WEBSITE/RPCH 032.jpg",
                 description: "24/7 modern gym"
               },
               { 
                 name: "Spa & Wellness", 
-                image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=800&fit=crop",
+                image: "/images/HOTEL WEBSITE/Royal SPa 020.jpg",
                 description: "Rejuvenating treatments"
               },
               { 
                 name: "Meeting Rooms", 
-                image: "https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=600&h=800&fit=crop",
+                image: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-1.jpg",
                 description: "9 versatile spaces"
               },
               { 
                 name: "Rooftop Bar", 
-                image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&h=800&fit=crop",
+                image: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 030.jpg",
                 description: "Panoramic city views"
               },
               { 
                 name: "Smart Bus", 
-                image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&h=800&fit=crop",
+                image: "/images/HOTEL WEBSITE/Smart-Bus.jpeg",
                 description: "Complimentary shuttle"
               },
               { 
-                name: "EV Charger", 
-                image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&h=800&fit=crop",
-                description: "Electric vehicle station"
+                name: "Lobby & Lounge", 
+                image: "/images/HOTEL WEBSITE/RPCH 028.jpg",
+                description: "Elegant welcome"
               },
               { 
-                name: "Concierge", 
-                image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&h=800&fit=crop",
-                description: "24-hour service"
+                name: "Parking", 
+                image: "/images/HOTEL WEBSITE/RPC-CAR-PARK-1.jpg",
+                description: "350+ indoor spaces"
               },
             ].map((facility) => (
               <div
@@ -650,8 +648,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <BlogSection />
+      {/* Blog Section - hidden, uncomment to show */}
+      {/* <BlogSection /> */}
 
       {/* Testimonials */}
       <TestimonialSlider />

@@ -47,8 +47,8 @@ export default function Header() {
             <div className="h-7 pt-1" />
 
             {/* Gold separator line - same width as nav */}
-            <div className="flex justify-center">
-              <div className="w-[804px] h-px bg-[#8b7355]" />
+            <div className="flex justify-center px-6">
+              <div className="w-full max-w-3xl h-px bg-[#8b7355]" />
             </div>
 
             {/* Row 2: Navigation centered */}
