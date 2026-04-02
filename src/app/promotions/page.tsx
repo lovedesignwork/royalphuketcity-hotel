@@ -26,26 +26,12 @@ export default function PromotionsPage() {
   return (
     <main>
       <HeroSection
-        title="Special Offers"
-        subtitle="Promotions"
+        title="Exceptional Value for Your Stay"
+        subtitle="Exclusive Deals"
+        description="Take advantage of our carefully curated promotions designed to make your Phuket experience even more memorable."
         image="/images/HOTEL WEBSITE/RPC-Main.jpg"
         height="small"
       />
-
-      {/* Intro */}
-      <section className="bg-white py-16 md:py-20">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#8B7355] mb-4">
-            Exclusive Deals
-          </p>
-          <h2 className="font-heading text-3xl md:text-4xl text-gray-900 mb-6">
-            Exceptional Value for Your Stay
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Take advantage of our carefully curated promotions designed to make your Phuket experience even more memorable. From seasonal escapes to romantic getaways, find the perfect offer for your next visit.
-          </p>
-        </div>
-      </section>
 
       {/* Promotions Grid */}
       <section className="bg-[#FAF8F5] py-16 md:py-24">
