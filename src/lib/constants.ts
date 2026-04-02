@@ -333,7 +333,7 @@ export const PROMOTIONS = [
     category: "Family",
     validFrom: "2026-04-01",
     validUntil: "2026-05-31",
-    image: "/images/HOTEL WEBSITE/Restaurant/RPC_LM06_mixed_tourists_goodeatz_lunch_L.jpg",
+    image: "/images/promotions/RPC LS ROOM 21.jpg",
     shortDescription: "Perfect for Thai families during school break! Enjoy quality time together with spacious rooms, kids' activities, and family-friendly dining.",
     highlights: [
       "Spacious Premier Deluxe room for the family",
@@ -362,7 +362,7 @@ export const PROMOTIONS = [
     category: "Extended Stay",
     validFrom: "2026-01-01",
     validUntil: "2026-12-31",
-    image: "/images/HOTEL WEBSITE/RPC-Main.jpg",
+    image: "/images/promotions/RPC LS ROOM 23.jpg",
     shortDescription: "Make Royal Phuket City your home away from home. Special rates for extended stays with flexible options — with or without breakfast.",
     highlights: [
       "30-night stay with breakfast: ฿54,450 (฿1,815/night)",
@@ -391,7 +391,7 @@ export const PROMOTIONS = [
     category: "Seasonal",
     validFrom: "2026-04-12",
     validUntil: "2026-04-16",
-    image: "/images/HOTEL WEBSITE/RPC-Main.jpg",
+    image: "/images/promotions/RPC LS ROOM 38.jpg",
     shortDescription: "Celebrate Songkran in the heart of Phuket Old Town! Your perfect base camp for Thailand's biggest water festival with everything you need to join the fun.",
     highlights: [
       "Comfortable room accommodation",
