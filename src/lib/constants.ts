@@ -350,8 +350,8 @@ export const PROMOTIONS = [
       "Minimum 2-night stay required",
       "Subject to availability",
     ],
-    price: "From ฿2,199/night",
-    originalPrice: "฿2,800/night",
+    price: "From ฿1,800/night",
+    originalPrice: "",
     bookingCode: "FAMILYBREAK",
   },
   {
@@ -379,8 +379,8 @@ export const PROMOTIONS = [
       "Room type subject to availability",
       "Additional guests charged separately",
     ],
-    price: "From ฿1,412/night",
-    originalPrice: "฿2,200/night",
+    price: "30 Nights: ฿38,500 (฿1,283/night)",
+    originalPrice: "Not including breakfast",
     bookingCode: "MONTHLYSTAY",
   },
   {

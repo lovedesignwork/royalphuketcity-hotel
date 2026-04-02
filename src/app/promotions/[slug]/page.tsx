@@ -142,8 +142,10 @@ export default async function PromotionDetailPage({ params }: PageProps) {
 
                   {/* Price */}
                   <div className="text-center pb-5 border-b border-gray-200">
-                    <p className="text-gray-500 text-sm mb-1">Join our membership to get</p>
-                    <p className="text-3xl font-bold text-[#8B7355]">{promo.price}</p>
+                    <p className="text-2xl font-bold text-[#8B7355]">{promo.price}</p>
+                    {promo.originalPrice && (
+                      <p className="text-gray-500 text-sm mt-1">{promo.originalPrice}</p>
+                    )}
                   </div>
 
                   {/* CTA Buttons */}
