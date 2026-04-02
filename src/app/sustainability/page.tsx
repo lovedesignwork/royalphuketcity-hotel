@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection, CTABanner } from "@/components";
-import { SITE_CONFIG, EXTERNAL_LINKS } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Sustainability",
