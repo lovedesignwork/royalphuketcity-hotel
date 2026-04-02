@@ -124,7 +124,7 @@ export default function PromotionsPage() {
       <CTABanner
         title="Can't Find What You're Looking For?"
         description="Contact our team for personalized offers and group bookings."
-        image="/images/HOTEL WEBSITE/Restaurant/Twist ROoftop.jpg"
+        image="/images/HOTEL WEBSITE/RPC-Wide.jpg"
       />
     </main>
   );
