@@ -46,10 +46,6 @@ const photos = [
     alt: "Smart Bus",
   },
   {
-    src: "/images/HOTEL WEBSITE/MTT1996.jpg",
-    alt: "MTT 1996",
-  },
-  {
     src: "/images/HOTEL WEBSITE/Fitness.jpg",
     alt: "Fitness Center",
   },
