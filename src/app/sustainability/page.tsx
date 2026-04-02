@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroSection, SectionHeading, CTABanner } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { HeroSection, CTABanner } from "@/components";
+import { SITE_CONFIG, EXTERNAL_LINKS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Sustainability",
   description:
-    "Royal Phuket City Hotel's commitment to sustainability. Thai Green Hotel certified, eco-friendly practices, and community engagement programs.",
+    "Royal Phuket City Hotel's commitment to sustainability. Green Key certified, ESG practices, and sustainable tourism initiatives.",
   alternates: {
     canonical: `${SITE_CONFIG.url}/sustainability`,
   },
@@ -17,14 +17,6 @@ export const metadata: Metadata = {
       "Our commitment to sustainability through eco-friendly practices and community engagement.",
     url: `${SITE_CONFIG.url}/sustainability`,
     siteName: SITE_CONFIG.name,
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Sustainability at Royal Phuket City Hotel",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -33,80 +25,77 @@ export const metadata: Metadata = {
     title: "Sustainability | Royal Phuket City Hotel",
     description:
       "Our commitment to sustainability through eco-friendly practices.",
-    images: ["/images/og-image.jpg"],
   },
 };
 
-const sustainabilityPillars = [
-  {
-    title: "Environmental Conservation",
-    description:
-      "We minimize our environmental footprint through energy efficiency, water conservation, and waste reduction programs.",
-    initiatives: [
-      "LED lighting and smart climate control systems",
-      "Solar panels contributing to energy needs",
-      "Low-flow fixtures and rainwater harvesting",
-      "Comprehensive recycling and composting programs",
-      "Elimination of single-use plastics",
-    ],
-    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-    image:
-      "https://images.unsplash.com/photo-1518173946687-a4c036bc0654?q=80&w=1974&auto=format&fit=crop",
-  },
-  {
-    title: "Community Engagement",
-    description:
-      "We actively support and invest in the local community, creating opportunities and fostering sustainable development.",
-    initiatives: [
-      "Local hiring and career development programs",
-      "Partnership with local farmers and suppliers",
-      "Support for local schools and education",
-      "Community event sponsorships",
-      "Cultural preservation initiatives",
-    ],
-    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-    image:
-      "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    title: "Responsible Operations",
-    description:
-      "Every aspect of our operations is guided by principles of sustainability, from procurement to guest services.",
-    initiatives: [
-      "Green procurement policies",
-      "Staff sustainability training",
-      "Energy and water usage monitoring",
-      "Sustainable cleaning products",
-      "Digital transformation to reduce paper",
-    ],
-    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-    image:
-      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop",
-  },
-];
-
-const achievements = [
-  { value: "30%", label: "Energy reduction since 2020" },
-  { value: "40%", label: "Water savings achieved" },
-  { value: "60%", label: "Waste diverted from landfill" },
-  { value: "70%", label: "Ingredients sourced locally" },
-];
-
 const certifications = [
   {
-    name: "Thailand Green Hotel",
-    level: "Gold Level Certification",
-    year: "2020",
+    name: "Green Hotel",
+    description: "Thailand Green Hotel certification for sustainable practices",
   },
   {
-    name: "SHA Plus",
-    level: "Safety & Health Administration",
-    year: "2021",
+    name: "STAR",
+    description: "Sustainable Tourism Accreditation Recognition",
   },
   {
-    name: "EarthCheck",
-    level: "Bronze Benchmark",
-    year: "2023",
+    name: "TSEMS",
+    description: "Thailand Sustainable Event Management Standard",
+  },
+];
+
+const guestActions = [
+  {
+    title: "Set air conditioning to 25°C",
+    description:
+      "This is the ideal temperature for both comfort and energy efficiency.",
+    icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+  },
+  {
+    title: "Reuse towels during your stay",
+    description:
+      "Help us conserve water and reduce detergent use by using your towels more than once.",
+    icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+  },
+  {
+    title: "Be mindful of water usage",
+    description:
+      "Every effort, big or small, helps preserve this precious resource.",
+    icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+  },
+];
+
+const discoverLinks = [
+  {
+    title: "About our hotel policy",
+    href: "/about",
+  },
+  {
+    title: "Natural attraction around our hotel",
+    href: "/facilities",
+  },
+  {
+    title: "Activities around us",
+    href: "/facilities",
+  },
+  {
+    title: "Cultural and historical attractions around us",
+    href: "/about",
+  },
+  {
+    title: "Local Market & Shopping Mall",
+    href: "/about",
+  },
+  {
+    title: "Michelin Restaurant around us",
+    href: "/dining",
+  },
+  {
+    title: "Public Transportation in Phuket",
+    href: "/contact",
+  },
+  {
+    title: "Our Certificate",
+    href: "/sustainability",
   },
 ];
 
@@ -116,179 +105,348 @@ export default function SustainabilityPage() {
       {/* Hero Section */}
       <HeroSection
         title="Sustainability"
-        subtitle="Our Commitment"
+        subtitle="Green Key Certified"
         description="Building a greener future, one stay at a time"
         image="/images/HOTEL WEBSITE/RPC-Main.jpg"
         height="large"
       />
 
-      {/* Introduction */}
+      {/* Green Key Section */}
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <SectionHeading
-              label="Our Vision"
-              title="Hospitality with Purpose"
-            />
-            <p className="text-[--color-text-secondary] text-lg">
-              At Royal Phuket City Hotel, we believe that luxury and
-              sustainability can coexist harmoniously. Our comprehensive
-              sustainability program reflects our deep commitment to protecting
-              the environment, supporting our community, and preserving the
-              natural beauty of Phuket for generations to come.
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-[#8b7355] font-medium">
+                International Certification
+              </span>
+              <h2 className="font-heading text-3xl md:text-4xl mt-3 mb-6">
+                Green Key
+              </h2>
+            </div>
+
+            <div className="prose prose-lg max-w-none text-gray-600 space-y-6">
+              <p>
+                Green Key is a voluntary eco-certification programme for
+                hotels, hostels, campsites, holiday parks, small accommodations
+                as well as conference centres, attractions and restaurants.
+              </p>
+
+              <p>
+                The Green Key certification is based on compliance with strict
+                internationally recognised criteria in the areas of
+                environmental management (water, energy, waste, cleaning, etc.)
+                and sustainability education (staff, guests, suppliers, etc.).
+              </p>
+
+              <p>
+                Compliance with the criteria is confirmed through a rigorous
+                application process and third-party verified after regular
+                on-site audits. The certification is valid for one year at a
+                time.
+              </p>
+
+              <p>
+                Currently (May 2023), there are more than 6,000 establishments
+                in 70 countries certified with the Green Key.
+              </p>
+
+              <p>
+                Green Key is endorsed by various institutional partners,
+                international hotel chain and tour operator partners and
+                cooperating with a range of web partners.
+              </p>
+
+              <p>
+                The Green Key programme is managed by the international charity,
+                the Foundation for Environmental Education (FEE) and its
+                national member organisations.
+              </p>
+
+              <p>
+                For more information, please have a look at the Green Key
+                website (
+                <a
+                  href="http://www.greenkey.global"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#8b7355] hover:underline"
+                >
+                  www.greenkey.global
+                </a>
+                ) or contact via e-mail (
+                <a
+                  href="mailto:info@fee.global"
+                  className="text-[#8b7355] hover:underline"
+                >
+                  info@fee.global
+                </a>
+                ).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Executive Summary */}
+      <section className="py-20 md:py-28 bg-[#FAF8F5]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="text-[11px] tracking-[0.2em] uppercase text-[#8b7355] font-medium">
+              Executive Summary
+            </span>
+            <p className="text-gray-600 text-lg mt-6 leading-relaxed">
+              Royal Phuket City Hotel is committed to conducting its business by
+              combining excellence in service with a strong focus on
+              Environmental, Social, and Governance (ESG) practices, creating
+              value for its stakeholders while continuously adapting to ensure
+              the sustainability of the organization.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Achievement Stats */}
-      <section className="py-20 md:py-28 bg-[--color-surface]">
+      {/* Vision & Mission */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {achievements.map((stat) => (
-              <div key={stat.label}>
-                <p className="font-heading text-4xl md:text-5xl text-[--color-accent]">
-                  {stat.value}
-                </p>
-                <p className="label-accent mt-2">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-[#8b7355] font-medium">
+                Our Sustainability
+              </span>
+              <h2 className="font-heading text-3xl md:text-4xl mt-3">
+                Vision & Mission
+              </h2>
+            </div>
 
-      {/* Sustainability Pillars */}
-      <section className="pb-20 md:pb-28">
-        {sustainabilityPillars.map((pillar, index) => (
-          <div
-            key={pillar.title}
-            className={`py-20 md:py-28 ${
-              index % 2 === 1 ? "bg-[--color-surface]" : ""
-            }`}
-          >
-            <div className="container mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="relative aspect-[4/3] img-hover">
-                    <Image
-                      src={pillar.image}
-                      alt={pillar.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 flex items-center justify-center bg-[--color-accent]/10 rounded-full">
-                      <svg
-                        className="w-6 h-6 text-[--color-accent]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d={pillar.icon}
-                        />
-                      </svg>
-                    </div>
-                    <span className="label-accent text-[--color-accent]">
-                      Sustainability Pillar
-                    </span>
-                  </div>
-                  <h2 className="font-heading text-3xl md:text-4xl mb-4">
-                    {pillar.title}
-                  </h2>
-                  <p className="text-[--color-text-secondary] mb-6">
-                    {pillar.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {pillar.initiatives.map((initiative) => (
-                      <li
-                        key={initiative}
-                        className="flex items-start gap-3 text-[--color-text-secondary]"
-                      >
-                        <svg
-                          className="w-5 h-5 text-[--color-accent] flex-shrink-0 mt-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {initiative}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {/* Vision */}
+              <div className="bg-white p-8 border border-gray-200 rounded-lg">
+                <h3 className="font-heading text-2xl mb-4 text-[#8b7355]">
+                  Vision
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We take pride in supporting and participating in
+                  sustainability initiatives. We are committed to being a leader
+                  in sustainable hotel services in Phuket by creating a balance
+                  between excellence in service, business growth, and the
+                  conservation of natural resources, thereby delivering value to
+                  future generations.
+                </p>
+              </div>
+
+              {/* Mission */}
+              <div className="bg-white p-8 border border-gray-200 rounded-lg">
+                <h3 className="font-heading text-2xl mb-4 text-[#8b7355]">
+                  Mission
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We implement an ESG strategy reflects our belief that we all
+                  share one Earth. We pursue sustainability by partnering with
+                  eco-friendly organizations, engaging our team in green
+                  initiatives, and inviting our guests to join us. Staying with
+                  us is more than relaxation—it&apos;s a sustainable experience
+                  that care, social development, and good governance.
+                </p>
               </div>
             </div>
           </div>
-        ))}
+        </div>
       </section>
 
-      {/* Certifications */}
-      <section className="py-20 md:py-28 bg-[--color-surface]">
+      {/* The Pride of RPC - Certifications */}
+      <section className="py-20 md:py-28 bg-[#FAF8F5]">
         <div className="container mx-auto px-6">
-          <SectionHeading
-            label="Recognition"
-            title="Certifications & Awards"
-            subtitle="Our sustainability efforts have been recognized by leading environmental bodies."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {certifications.map((cert) => (
-              <div
-                key={cert.name}
-                className="bg-white p-8 hairline-border text-center"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-[--color-accent] rounded-full">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-heading text-xl mb-1">{cert.name}</h3>
-                <p className="text-sm text-[--color-text-secondary] mb-2">
-                  {cert.level}
-                </p>
-                <p className="label-accent text-[--color-accent]">
-                  Since {cert.year}
-                </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-[#8b7355] font-medium">
+                The Pride of RPC
+              </span>
+              <h2 className="font-heading text-3xl md:text-4xl mt-3 mb-6">
+                Our Certifications
+              </h2>
+              <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                The hotel has implemented an ESG strategy in order to meet both
+                international and national standards, demonstrating a tangible
+                commitment to sustainability. We take pride in having received
+                various certifications in recognition of these efforts.
+              </p>
+            </div>
+
+            {/* Certificate Image */}
+            <div className="mb-12">
+              <div className="relative aspect-[16/9] max-w-2xl mx-auto">
+                <Image
+                  src="/images/HOTEL WEBSITE/certificates.jpg"
+                  alt="Royal Phuket City Hotel Certifications"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 672px"
+                  quality={100}
+                />
               </div>
-            ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {certifications.map((cert) => (
+                <div
+                  key={cert.name}
+                  className="bg-white p-6 text-center border border-gray-200 rounded-lg"
+                >
+                  <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-[#8b7355] rounded-full">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-xl mb-2">{cert.name}</h3>
+                  <p className="text-sm text-gray-500">{cert.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-gray-600 text-center mt-8 leading-relaxed">
+              In addition, the hotel remains committed to continuously elevating
+              its standards. We are currently in the process of obtaining Green
+              Hotel Plus and Green Key certifications, both of which are
+              internationally recognized standards that place strong emphasis on
+              rigorous and sustainable environmental practices.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Learn More */}
+      {/* Green Stay Initiative */}
       <section className="py-20 md:py-28">
-        <div className="container mx-auto px-6 text-center">
-          <SectionHeading
-            label="Learn More"
-            title="Explore Our Green Initiatives"
-            subtitle="Discover more about our comprehensive sustainability programs."
-          />
-          <Link href="/royal-green" className="btn-primary">
-            Visit Royal Green
-          </Link>
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-[#8b7355] font-medium">
+                Smart Meetings, Sustainable Choices
+              </span>
+              <h2 className="font-heading text-3xl md:text-4xl mt-3 mb-6">
+                The Green Stay Initiative
+              </h2>
+            </div>
+
+            <div className="prose prose-lg max-w-none text-gray-600 space-y-6 mb-12">
+              <p>
+                The Green Stay Initiative embodies our dedication to providing a
+                sustainable hospitality experience that honors both your comfort
+                and the well-being of our planet. Through this program, we
+                invite you to join us in embracing eco-friendly practices in
+                every guest room, making it easy for you to support
+                environmental conservation during your stay.
+              </p>
+
+              <p>
+                Key features of the initiative include setting the room
+                temperature to an optimal 25°C to reduce energy consumption
+                while ensuring a comfortable environment. We also encourage
+                towel reuse, helping to minimize unnecessary laundry and
+                conserve both water and cleaning agents. Additionally, we
+                promote mindful water usage throughout your visit, safeguarding
+                one of Earth&apos;s most precious resources.
+              </p>
+
+              <p>
+                Every mindful choice—whether adjusting the air conditioning,
+                reusing towels, or conserving water—contributes to reducing our
+                collective environmental impact. Together, we can foster a more
+                responsible, eco-conscious travel experience—today and for the
+                future.
+              </p>
+            </div>
+
+            {/* Discover More Links */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {discoverLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="bg-[#FAF8F5] p-4 text-center border border-gray-200 rounded-lg hover:border-[#8b7355] transition-colors group"
+                >
+                  <h4 className="text-sm font-medium text-gray-700 group-hover:text-[#8b7355] transition-colors">
+                    {link.title}
+                  </h4>
+                  <span className="text-[10px] tracking-[0.15em] uppercase text-[#8b7355] mt-2 inline-block">
+                    Discover More
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Comfort & Care */}
+      <section className="py-20 md:py-28 bg-[#FAF8F5]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl mb-6">
+                Comfort & Care for You and the Planet
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                At Royal Phuket City Hotel, our Green Stay Initiative is
+                designed to reduce our environmental impact while ensuring you
+                enjoy the same level of comfort and hospitality you expect from
+                us. We invite you, our valued guest, to join us in adopting
+                simple, mindful habits that make a big difference for the
+                environment.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {guestActions.map((action) => (
+                <div
+                  key={action.title}
+                  className="bg-white p-6 border border-gray-200 rounded-lg text-center"
+                >
+                  <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-[#8b7355]/10 rounded-full">
+                    <svg
+                      className="w-7 h-7 text-[#8b7355]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d={action.icon}
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="font-heading text-lg mb-2">{action.title}</h3>
+                  <p className="text-sm text-gray-500">{action.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <p className="text-gray-600 leading-relaxed mb-8">
+                By participating in the Green Stay Initiative, you&apos;re not
+                just enjoying a relaxing stay—you&apos;re also supporting a
+                sustainable future. Every small action, multiplied by many,
+                leads to real and meaningful change. Together, we can make
+                responsible travel a reality and leave a positive impact on our
+                planet.
+              </p>
+
+              <Link href="/contact" className="btn-primary">
+                Contact Us
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -296,7 +454,7 @@ export default function SustainabilityPage() {
       <CTABanner
         title="Stay Sustainably with Us"
         subtitle="Book Your Green Getaway"
-        image="/images/HOTEL WEBSITE/RPC-Main.jpg"
+        image="/images/HOTEL WEBSITE/RPC-Wide.jpg"
       />
     </>
   );
