@@ -11,7 +11,7 @@ interface HeroSectionProps {
   description?: string;
   image: string;
   showReserveButton?: boolean;
-  height?: "full" | "large" | "medium";
+  height?: "full" | "large" | "medium" | "small";
   overlay?: "dark" | "medium" | "light";
   subtitleSize?: "default" | "large";
   showSparkles?: boolean;
@@ -32,6 +32,7 @@ export default function HeroSection({
     full: "h-screen",
     large: "h-[85vh]",
     medium: "h-[60vh]",
+    small: "h-[35vh]",
   };
 
   const overlayClasses = {
@@ -41,7 +42,7 @@ export default function HeroSection({
   };
 
   return (
-    <section className={`relative ${heightClasses[height]} min-h-[500px]`}>
+    <section className={`relative ${heightClasses[height]} ${height === "small" ? "min-h-[280px]" : "min-h-[500px]"}`}>
       {/* Background Image */}
       <Image
         src={image}

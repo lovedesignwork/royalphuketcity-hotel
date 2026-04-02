@@ -29,6 +29,7 @@ export default function PromotionsPage() {
         title="Special Offers"
         subtitle="Promotions"
         image="/images/HOTEL WEBSITE/RPC-Main.jpg"
+        height="small"
       />
 
       {/* Intro */}
