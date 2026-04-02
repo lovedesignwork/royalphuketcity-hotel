@@ -44,7 +44,6 @@ const facilities = [
       "Start your day with a breathtaking breakfast experience on the 19th floor, the highest rooftop in Phuket Town. Enjoy panoramic views of the city and ocean as you savor a wide selection of Thai, Western, and local breakfast favorites, freshly prepared to delight every palate.",
     hours: "Breakfast Time 6:30 AM - 10:30 AM",
     images: [
-      "/images/HOTEL WEBSITE/NTWS8870_resize.jpg",
       "/images/HOTEL WEBSITE/IMG_5221_resize.jpg",
       "/images/HOTEL WEBSITE/IMG_5227_resize.jpg",
       "/images/HOTEL WEBSITE/IMG_5226_resize.jpg",

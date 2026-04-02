@@ -103,8 +103,6 @@ export const NAV_LINKS = {
       href: "/about",
       dropdown: [
         { label: "Royal Green", href: "/royal-green" },
-        { label: "Our Clients", href: "/our-clients" },
-        { label: "Artist Story", href: "/artist-story" },
         { label: "Sustainability", href: "/sustainability" },
         { label: "Blog", href: "/blog" },
       ],
