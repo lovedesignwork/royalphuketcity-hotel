@@ -304,7 +304,7 @@ export const PROMOTIONS = [
     category: "Membership",
     validFrom: "2026-01-01",
     validUntil: "2026-12-31",
-    image: "/images/HOTEL WEBSITE/RPC-Main.jpg",
+    image: "/images/promotions/RPC LS ROOM 15.jpg",
     shortDescription: "Join our exclusive membership program and enjoy 5% off on all room bookings, plus member-only perks and priority access to special offers.",
     highlights: [
       "5% discount on all room bookings",
