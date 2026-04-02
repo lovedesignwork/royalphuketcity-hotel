@@ -46,15 +46,13 @@ export default function Header() {
             {/* Row 1: Spacer for location text */}
             <div className="h-7 pt-1" />
 
-            {/* Gold separator line - same width as nav */}
-            <div className="flex justify-center px-6">
-              <div className="w-full max-w-3xl h-px bg-[#8b7355]" />
-            </div>
-
-            {/* Row 2: Navigation centered */}
+            {/* Row 2: Navigation centered with gold separator line above */}
             <div className="flex items-center justify-center h-10 pb-1">
-              {/* Navigation - Centered (with padding to account for logo and button) */}
-              <nav className="flex items-center justify-center gap-5 xl:gap-6">
+              <div className="flex flex-col items-center">
+                {/* Gold separator line - matches nav width */}
+                <div className="w-full h-px bg-[#8b7355] mb-2" />
+                {/* Navigation - Centered (with padding to account for logo and button) */}
+                <nav className="flex items-center justify-center gap-5 xl:gap-6">
                 {allNavLinks.map((link) => {
                   const hasDropdown = "dropdown" in link && link.dropdown;
                   return (
@@ -106,6 +104,7 @@ export default function Header() {
                   );
                 })}
               </nav>
+              </div>
             </div>
           </div>
         </div>
