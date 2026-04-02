@@ -139,18 +139,6 @@ export const ROOMS = [
     image: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 1.jpg",
   },
   {
-    slug: "premier-superior-sea-view",
-    name: "Premier Superior - Sea View",
-    category: "Premier",
-    size: "30 sqm",
-    maxGuests: 3,
-    bedType: "King or Twin",
-    views: ["Partial Sea View"],
-    shortDescription:
-      "Wake up to stunning sea vistas from your elegantly appointed Premier Superior room with panoramic windows.",
-    image: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 1.jpg",
-  },
-  {
     slug: "premier-deluxe",
     name: "Premier Deluxe",
     category: "Premier",
@@ -175,18 +163,6 @@ export const ROOMS = [
     image: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view01_resize.jpg",
   },
   {
-    slug: "premier-deluxe-sea-view",
-    name: "Premier Deluxe - Sea View",
-    category: "Premier",
-    size: "38 sqm",
-    maxGuests: 3,
-    bedType: "King or Twin",
-    views: ["Partial Sea View"],
-    shortDescription:
-      "Elevated comfort meets stunning sea vistas with 38 sqm of refined living space and panoramic windows.",
-    image: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view01_resize.jpg",
-  },
-  {
     slug: "suite-room",
     name: "Suite Room",
     category: "Suite",
@@ -196,18 +172,6 @@ export const ROOMS = [
     views: ["City View", "Mountain View"],
     shortDescription:
       "Featuring an impressive living room, sofa bed, comfortable bathroom, and free Wi-Fi in 64 m² of luxury.",
-    image: "/images/rooms/05 Suite/Suite01_resize.jpg",
-  },
-  {
-    slug: "suite",
-    name: "Suite Room",
-    category: "Suite",
-    size: "64 sqm",
-    maxGuests: 3,
-    bedType: "King Bed",
-    views: ["City View", "Mountain View"],
-    shortDescription:
-      "Spacious 64 sqm suite with separate living area, king bed, and panoramic city views for ultimate comfort.",
     image: "/images/rooms/05 Suite/Suite01_resize.jpg",
   },
   {
