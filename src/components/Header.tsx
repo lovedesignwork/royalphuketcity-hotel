@@ -18,20 +18,15 @@ export default function Header() {
         {/* Desktop Header - Two Rows with Logo spanning full height */}
         <div className="hidden lg:block">
           <div className="container mx-auto px-6 relative">
-            {/* Logo - Spans full header height */}
-            <Link href="/" className="absolute left-6 top-1/2 -translate-y-1/2 z-10 py-1.5">
+            {/* Logo - Positioned on the left */}
+            <Link href="/" className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/logo.svg"
                 alt="Royal Phuket City Hotel"
-                className="h-14 w-auto"
+                className="h-12 w-auto"
               />
             </Link>
-
-            {/* Location text - Centered in header */}
-            <span className="absolute left-1/2 -translate-x-1/2 top-2 text-[9px] tracking-[0.15em] uppercase text-gray-500">
-              Phuket Old Town, Phuket – Thailand
-            </span>
 
             {/* Reserve Button - Vertically centered on right */}
             <a
@@ -43,8 +38,12 @@ export default function Header() {
               Reserve Now
             </a>
 
-            {/* Row 1: Spacer for location text */}
-            <div className="h-5 pt-1" />
+            {/* Row 1: Location text centered */}
+            <div className="h-6 flex items-center justify-center">
+              <span className="text-[9px] tracking-[0.15em] uppercase text-gray-500">
+                Phuket Old Town, Phuket – Thailand
+              </span>
+            </div>
 
             {/* Row 2: Navigation centered with gold separator line above */}
             <div className="flex items-center justify-center pb-2">
