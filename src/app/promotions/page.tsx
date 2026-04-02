@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 import CTABanner from "@/components/CTABanner";
-import { PROMOTIONS, EXTERNAL_LINKS } from "@/lib/constants";
+import { PROMOTIONS } from "@/lib/constants";
 
 function isPromotionActive(validUntil: string): boolean {
   return new Date(validUntil) >= new Date();
@@ -121,16 +121,7 @@ export default function PromotionsPage() {
       {/* CTA */}
       <CTABanner
         title="Can't Find What You're Looking For?"
-        subtitle="Contact our team for personalized offers and group bookings."
-        primaryButton={{
-          text: "Contact Us",
-          href: "/contact",
-        }}
-        secondaryButton={{
-          text: "Book Direct",
-          href: EXTERNAL_LINKS.booking,
-          external: true,
-        }}
+        description="Contact our team for personalized offers and group bookings."
         image="/images/HOTEL WEBSITE/Restaurant/Twist ROoftop.jpg"
       />
     </main>
