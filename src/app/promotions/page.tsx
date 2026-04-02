@@ -57,15 +57,6 @@ export default function PromotionsPage() {
                       {promo.tagline}
                     </span>
                   </div>
-                  {/* Price overlay */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                    <div className="flex items-end justify-between">
-                      <div>
-                        <p className="text-white/60 text-xs line-through">{promo.originalPrice}</p>
-                        <p className="text-white text-lg font-bold">{promo.price}</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Content */}
