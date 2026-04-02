@@ -48,14 +48,13 @@ export default function Header() {
 
             {/* Row 2: Navigation centered with gold separator line above */}
             <div className="flex items-center justify-center pb-2">
-              <div className="flex flex-col items-center mx-auto" style={{ maxWidth: "calc(100% - 320px)" }}>
+              <div className="flex flex-col items-center mx-auto" style={{ maxWidth: "calc(100% - 280px)" }}>
                 {/* Gold separator line - matches nav width */}
                 <div className="w-full h-px bg-[#8b7355] mb-2" />
                 {/* Navigation - Centered (with padding to account for logo and button) */}
-                <nav className="flex items-center justify-center gap-3 lg:gap-4 xl:gap-6 flex-wrap">
+                <nav className="flex items-center justify-center gap-2 lg:gap-3 xl:gap-5">
                 {allNavLinks.map((link) => {
                   const hasDropdown = "dropdown" in link && link.dropdown;
-                  const isMultiWord = link.label.includes("&");
                   return (
                     <div
                       key={link.href}
@@ -65,23 +64,11 @@ export default function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`text-[10px] xl:text-[11px] tracking-[0.12em] uppercase font-medium text-gray-700 hover:text-[#8b7355] transition-colors flex items-center gap-0.5 ${isMultiWord ? "text-center leading-tight" : "whitespace-nowrap"}`}
+                        className="text-[8px] lg:text-[9px] xl:text-[11px] tracking-[0.1em] xl:tracking-[0.12em] uppercase font-medium text-gray-700 hover:text-[#8b7355] transition-colors flex items-center gap-0.5 whitespace-nowrap"
                       >
-                        {isMultiWord ? (
-                          <span className="flex flex-col items-center xl:flex-row xl:gap-1">
-                            {link.label.split(" & ").map((part, i) => (
-                              <span key={i}>
-                                {part}
-                                {i === 0 && <span className="xl:hidden"><br /></span>}
-                                {i === 0 && <span className="hidden xl:inline">&nbsp;&amp;&nbsp;</span>}
-                              </span>
-                            ))}
-                          </span>
-                        ) : (
-                          link.label
-                        )}
+                        {link.label}
                         {hasDropdown && (
-                          <svg className="w-2.5 h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-2 h-2 xl:w-2.5 xl:h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
                         )}
