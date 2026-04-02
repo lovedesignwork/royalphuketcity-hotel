@@ -169,7 +169,7 @@ export const ROOMS = [
     size: "64 sqm",
     maxGuests: 3,
     bedType: "Double Bed",
-    views: ["City View", "Mountain View"],
+    views: ["Partial Sea View"],
     shortDescription:
       "Featuring an impressive living room, sofa bed, comfortable bathroom, and free Wi-Fi in 64 m² of luxury.",
     image: "/images/rooms/05 Suite/Suite01_resize.jpg",
@@ -181,7 +181,7 @@ export const ROOMS = [
     size: "75 sqm",
     maxGuests: 3,
     bedType: "Double Beds",
-    views: ["City View", "Mountain View"],
+    views: ["Partial Sea View"],
     shortDescription:
       "A luxurious living room, sofa bed, comfortable bathroom with bathtub, and free Wi-Fi in 75 m² of ultimate luxury.",
     image: "/images/rooms/06 Executive suite/Executive Suites 7.jpg",
