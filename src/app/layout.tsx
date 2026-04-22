@@ -3,6 +3,7 @@ import { marcellus, inter } from "@/lib/fonts";
 import { SITE_CONFIG } from "@/lib/constants";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 import { HotelJsonLd, LocalBusinessJsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/Analytics";
 import "./globals.css";
@@ -87,6 +88,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <CookieConsent />
         </AnalyticsProvider>
       </body>
     </html>
