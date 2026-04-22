@@ -6,15 +6,15 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const photos = [
   {
-    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin+Ong @Royal-10365_resize.jpg",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin-Ong Royal-10365_resize.jpg",
     alt: "Wedding Ceremony at Royal Phuket City",
   },
   {
-    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin+Ong @Royal-8363_resize.jpg",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin-Ong Royal-8363_resize.jpg",
     alt: "Wedding Reception",
   },
   {
-    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin+Ong @Royal-8434_resize.jpg",
+    src: "/images/HOTEL WEBSITE/Wedding/Gallery/2024.12.19 WD Cin-Ong Royal-8434_resize.jpg",
     alt: "Wedding Celebration",
   },
   {

@@ -371,7 +371,7 @@ export default function WeddingVenuesPage() {
       <section className="relative py-24 md:py-32 overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/HOTEL WEBSITE/Wedding/Resize/2024.12.19 WD Cin+Ong @Royal-10365_resize.jpg"
+          src="/images/HOTEL WEBSITE/Wedding/Resize/2024.12.19 WD Cin-Ong Royal-10365_resize.jpg"
           alt="Wedding celebration at Royal Phuket City"
           fill
           className="object-cover"
