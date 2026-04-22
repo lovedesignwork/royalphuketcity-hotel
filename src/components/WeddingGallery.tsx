@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const galleryImages = [
   // Row 1
-  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-1725_resize.jpg", alt: "Wedding ceremony" },
-  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-3988_resize.jpg", alt: "Wedding reception" },
-  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-5388_resize.jpg", alt: "Wedding ballroom" },
-  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya & Apinut @Royal Phuket City-6625_resize.jpg", alt: "Wedding couple" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya and Apinut Royal Phuket City-1725_resize.jpg", alt: "Wedding ceremony" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya and Apinut Royal Phuket City-3988_resize.jpg", alt: "Wedding reception" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya and Apinut Royal Phuket City-5388_resize.jpg", alt: "Wedding ballroom" },
+  { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/14.March.2025 Thananya and Apinut Royal Phuket City-6625_resize.jpg", alt: "Wedding couple" },
   { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin-Ong Royal-10365_resize.jpg", alt: "Wedding decorations" },
   { src: "/images/HOTEL WEBSITE/Wedding/AllGallery/2024.12.19 WD Cin-Ong Royal-10468_resize.jpg", alt: "Wedding celebration" },
   // Row 2

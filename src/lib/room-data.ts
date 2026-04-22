@@ -274,23 +274,23 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
         alt: "Premier Deluxe Sea View - Living",
       },
       {
-        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view05_resize.jpg",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view 05_resize.jpg",
         alt: "Premier Deluxe Sea View - Workspace",
       },
       {
-        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view06_resize.jpg",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view 06_resize.jpg",
         alt: "Premier Deluxe Sea View - Details",
       },
       {
-        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view07_resize.jpg",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view 07_resize.jpg",
         alt: "Premier Deluxe Sea View - Amenities",
       },
       {
-        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view08_resize.jpg",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view 08_resize.jpg",
         alt: "Premier Deluxe Sea View - Interior",
       },
       {
-        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view09_resize.jpg",
+        src: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view 09_resize.jpg",
         alt: "Premier Deluxe Sea View - Window View",
       },
     ],

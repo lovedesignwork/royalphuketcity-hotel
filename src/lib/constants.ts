@@ -222,37 +222,37 @@ export const FACILITIES = [
   {
     name: "Rooftop Breakfast",
     description: "Start your day with breathtaking views from the 19th floor.",
-    image: "/images/facilities/rooftop-breakfast.jpg",
+    image: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 005.jpg",
   },
   {
     name: "Swimming Pool",
     description: "Outdoor pool with sun loungers and poolside service.",
-    image: "/images/facilities/swimming-pool.jpg",
+    image: "/images/HOTEL WEBSITE/RPC Pool 01.jpeg",
   },
   {
     name: "Fitness Center",
     description: "State-of-the-art equipment available 24 hours.",
-    image: "/images/facilities/fitness-center.jpg",
+    image: "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_07.jpg",
   },
   {
     name: "Spa & Massage",
     description: "Rejuvenating treatments inspired by Thai wellness traditions.",
-    image: "/images/facilities/spa.jpg",
+    image: "/images/HOTEL WEBSITE/Royal-Wellness-Spa-7.jpg",
   },
   {
     name: "Atrium Lounge",
     description: "Elegant space for afternoon tea and light refreshments.",
-    image: "/images/facilities/atrium-lounge.jpg",
+    image: "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-1.jpg",
   },
   {
     name: "Smart Bus",
     description: "Complimentary shuttle service to popular destinations.",
-    image: "/images/facilities/smart-bus.jpg",
+    image: "/images/HOTEL WEBSITE/Smart-Bus.jpeg",
   },
   {
     name: "EV Charger",
     description: "Electric vehicle charging stations for eco-conscious travelers.",
-    image: "/images/facilities/ev-charger.jpg",
+    image: "/images/HOTEL WEBSITE/EV-Bus_resize-1.jpeg",
   },
 ] as const;
 
