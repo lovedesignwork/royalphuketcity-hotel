@@ -57,10 +57,14 @@ export async function POST(request: NextRequest) {
       const isEventInquiry = inquiry_type === "event";
       const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
 
-      // Send notification to admin
+      // Send notification to admin (reservation, marketing, sales)
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
-        to: ["reservation@royalphuketcity.com"],
+        to: [
+          "reservation@royalphuketcity.com",
+          "marketing@royalphuketcity.com",
+          "sales@royalphuketcity.com",
+        ],
         replyTo: email,
         subject: isEventInquiry 
           ? `🎉 New Event Inquiry: ${subject || "Event Request"} - Ref: ${referenceNumber}`
