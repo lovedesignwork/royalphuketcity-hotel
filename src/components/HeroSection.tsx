@@ -29,7 +29,7 @@ export default function HeroSection({
   showSparkles = false,
 }: HeroSectionProps) {
   const heightClasses = {
-    full: "h-screen",
+    full: "h-screen md:h-[75vh]",
     large: "h-[85vh]",
     medium: "h-[60vh]",
     small: "h-[35vh]",
@@ -60,7 +60,7 @@ export default function HeroSection({
       {showSparkles && <SparkleOverlay />}
 
       {/* Content */}
-      <div className="relative h-full flex items-center justify-center">
+      <div className="relative h-full flex items-center justify-center md:pb-[300px]">
         <div className="container mx-auto px-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
