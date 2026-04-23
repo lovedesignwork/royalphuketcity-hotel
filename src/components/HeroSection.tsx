@@ -59,9 +59,10 @@ export default function HeroSection({
       {/* Sparkle Effect */}
       {showSparkles && <SparkleOverlay />}
 
-      {/* Content - on the homepage (full height) we shift content up by ~150px on desktop */}
+      {/* Content - guarantee 120px (mobile) / 180px (desktop) clearance below sticky header.
+          On the homepage (full height) we additionally shift content up by ~150px on desktop. */}
       <div
-        className={`relative h-full flex items-center justify-center ${
+        className={`relative h-full flex items-center justify-center pt-[120px] md:pt-[180px] ${
           height === "full" ? "md:pb-[300px]" : ""
         }`}
       >
