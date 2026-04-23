@@ -241,12 +241,31 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <SectionHeading
-                label="Send a Message"
-                title="How Can We Help?"
-                align="left"
-              />
-              <ContactForm />
+              <div className="relative bg-[#FAF8F5] border border-[#8B7355]/30 p-6 sm:p-10 md:p-12">
+                {/* Decorative outer corners */}
+                <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#8B7355]" />
+                <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#8B7355]" />
+                <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#8B7355]" />
+                <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#8B7355]" />
+                {/* Inner accent corners */}
+                <div className="absolute top-2.5 left-2.5 w-6 h-6 border-t border-l border-[#8B7355]/40" />
+                <div className="absolute top-2.5 right-2.5 w-6 h-6 border-t border-r border-[#8B7355]/40" />
+                <div className="absolute bottom-2.5 left-2.5 w-6 h-6 border-b border-l border-[#8B7355]/40" />
+                <div className="absolute bottom-2.5 right-2.5 w-6 h-6 border-b border-r border-[#8B7355]/40" />
+
+                {/* Heading */}
+                <div className="mb-8 text-center">
+                  <p className="text-[#8B7355] text-xs tracking-[0.3em] uppercase mb-3">
+                    Send a Message
+                  </p>
+                  <h2 className="font-heading text-2xl md:text-3xl text-[--color-text-primary] mb-3">
+                    How Can We Help?
+                  </h2>
+                  <div className="w-12 h-px bg-[#8B7355] mx-auto" />
+                </div>
+
+                <ContactForm />
+              </div>
             </div>
           </div>
         </div>
