@@ -32,7 +32,10 @@ export default function RestaurantPageTemplate({
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white">
-            <span className="label-accent text-white block mb-4">
+            <span
+              className="label-accent block mb-4"
+              style={{ color: "#ffffff", textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}
+            >
               {restaurant.cuisine} Cuisine
             </span>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl max-w-4xl">
