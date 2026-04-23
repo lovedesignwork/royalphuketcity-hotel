@@ -100,8 +100,9 @@ export const NAV_LINKS = {
     },
     {
       label: "About",
-      href: "/about",
+      href: "#",
       dropdown: [
+        { label: "Artist", href: "/artist" },
         { label: "Royal Green", href: "/royal-green" },
         { label: "Sustainability", href: "/sustainability" },
       ],

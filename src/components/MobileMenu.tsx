@@ -111,13 +111,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                               className="overflow-hidden"
                             >
                               <div className="pb-4 pl-4 space-y-3">
-                                <Link
-                                  href={link.href}
-                                  onClick={onClose}
-                                  className="block text-sm text-[--color-text-secondary] hover:text-[--color-accent]"
-                                >
-                                  View All
-                                </Link>
+                                {link.href !== "#" && (
+                                  <Link
+                                    href={link.href}
+                                    onClick={onClose}
+                                    className="block text-sm text-[--color-text-secondary] hover:text-[--color-accent]"
+                                  >
+                                    View All
+                                  </Link>
+                                )}
                                 {link.dropdown.map((item) => (
                                   <Link
                                     key={item.href}

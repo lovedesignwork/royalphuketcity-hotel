@@ -61,17 +61,30 @@ export default function Header() {
                       onMouseEnter={() => hasDropdown && setActiveDropdown(link.label)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
-                      <Link
-                        href={link.href}
-                        className="text-[8px] lg:text-[9px] xl:text-[11px] tracking-[0.1em] xl:tracking-[0.12em] uppercase font-medium text-gray-700 hover:text-[#8b7355] transition-colors flex items-center gap-0.5 whitespace-nowrap"
-                      >
-                        {link.label}
-                        {hasDropdown && (
-                          <svg className="w-2 h-2 xl:w-2.5 xl:h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        )}
-                      </Link>
+                      {link.href === "#" ? (
+                        <button
+                          className="text-[8px] lg:text-[9px] xl:text-[11px] tracking-[0.1em] xl:tracking-[0.12em] uppercase font-medium text-gray-700 hover:text-[#8b7355] transition-colors flex items-center gap-0.5 whitespace-nowrap cursor-default"
+                        >
+                          {link.label}
+                          {hasDropdown && (
+                            <svg className="w-2 h-2 xl:w-2.5 xl:h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          )}
+                        </button>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-[8px] lg:text-[9px] xl:text-[11px] tracking-[0.1em] xl:tracking-[0.12em] uppercase font-medium text-gray-700 hover:text-[#8b7355] transition-colors flex items-center gap-0.5 whitespace-nowrap"
+                        >
+                          {link.label}
+                          {hasDropdown && (
+                            <svg className="w-2 h-2 xl:w-2.5 xl:h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          )}
+                        </Link>
+                      )}
 
                       {/* Dropdown */}
                       {hasDropdown && (

@@ -204,7 +204,7 @@ export default function DownloadFactSheetsPage() {
       <HeroSection
         title="Downloads"
         subtitle="Brochures & Fact Sheets"
-        image="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
         height="medium"
       />
 

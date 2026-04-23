@@ -35,10 +35,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/good-eatz-154", changeFrequency: "weekly", priority: 0.7 },
 
     // About section
-    { route: "/about", changeFrequency: "monthly", priority: 0.6 },
+    { route: "/artist", changeFrequency: "monthly", priority: 0.6 },
     { route: "/royal-green", changeFrequency: "monthly", priority: 0.5 },
     { route: "/our-clients", changeFrequency: "monthly", priority: 0.5 },
-    { route: "/artist-story", changeFrequency: "monthly", priority: 0.5 },
     { route: "/sustainability", changeFrequency: "monthly", priority: 0.5 },
 
     // Contact

@@ -241,7 +241,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="relative bg-[#FAF8F5] border border-[#8B7355]/30 p-6 sm:p-10 md:p-12">
+              <div className="relative bg-white border border-[#8B7355]/30 p-6 sm:p-10 md:p-12">
                 {/* Decorative outer corners */}
                 <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#8B7355]" />
                 <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#8B7355]" />

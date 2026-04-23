@@ -37,54 +37,29 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
       "Group Banquet Menus",
     ],
     images: [
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/YL Main_resize.jpg",
-        alt: "Yan Long Restaurant Main Dining Room",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/CU01_business_hands_chopsticks_H.jpg",
-        alt: "Business Dining at Yan Long",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/CU08_peking_duck_carve_H.jpg",
-        alt: "Peking Duck Carving",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/CU10_corporate_toast_closeup_H.jpg",
-        alt: "Corporate Toast",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/FK19_full_family_silk_H.jpg",
-        alt: "Family Dining at Yan Long",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/MD04_mother_serving_main_H.jpg",
-        alt: "Mother Serving Guests",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/MD09_women_executives_silk_H.jpg",
-        alt: "Executive Dining",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L02_private_room_setup_L.jpg",
-        alt: "Private Room Setup",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L12_banquet_dishes_overhead_L.jpg",
-        alt: "Banquet Dishes",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L13_ceiling_lanterns_lookup_L.jpg",
-        alt: "Traditional Ceiling Lanterns",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L14_tea_pouring_wide_L.jpg",
-        alt: "Traditional Tea Service",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/YanLong_L18_light_atmosphere_L.jpg",
-        alt: "Restaurant Atmosphere",
-      },
+      { src: "/images/YL/20200828_170433_resize.jpg", alt: "Yan Long Restaurant" },
+      { src: "/images/YL/28 July 2022_0184_resize.jpg", alt: "Yan Long Dining" },
+      { src: "/images/YL/28 July 2022_0185_resize.jpg", alt: "Yan Long Ambiance" },
+      { src: "/images/YL/28 July 2022_0189_resize.jpg", alt: "Yan Long Interior" },
+      { src: "/images/YL/28 July 2022_0190_resize.jpg", alt: "Yan Long Experience" },
+      { src: "/images/YL/5_resize.jpg", alt: "Yan Long Cuisine" },
+      { src: "/images/YL/ok hires_resize.jpg", alt: "Yan Long Dish" },
+      { src: "/images/YL/Royal PHoto SHoot1405 copy_resize.jpg", alt: "Yan Long Photo" },
+      { src: "/images/YL/_DSF1834_resize.jpg", alt: "Yan Long Food" },
+      { src: "/images/YL/_DSF1836_resize.jpg", alt: "Yan Long Menu" },
+      { src: "/images/YL/_DSF1839_resize.jpg", alt: "Yan Long Dishes" },
+      { src: "/images/YL/_DSF1849_resize.jpg", alt: "Yan Long Cantonese" },
+      { src: "/images/YL/_DSF1853_resize.jpg", alt: "Yan Long Dim Sum" },
+      { src: "/images/YL/_DSF1869_resize.jpg", alt: "Yan Long Banquet" },
+      { src: "/images/YL/_DSF1875_resize.jpg", alt: "Yan Long Private Room" },
+      { src: "/images/YL/_DSF1878_resize.jpg", alt: "Yan Long Tea" },
+      { src: "/images/YL/_DSF1882_resize.jpg", alt: "Yan Long Seafood" },
+      { src: "/images/YL/_DSF1884_resize.jpg", alt: "Yan Long Specialties" },
+      { src: "/images/YL/_DSF1890_resize.jpg", alt: "Yan Long Atmosphere" },
+      { src: "/images/YL/_DSF7297 copy_resize.jpg", alt: "Yan Long Setting" },
+      { src: "/images/YL/_MG_8224_resize.jpg", alt: "Yan Long Elegance" },
+      { src: "/images/YL/YL-thai-1.jpg", alt: "Yan Long Traditional" },
+      { src: "/images/YL/YL-thai-2.jpg", alt: "Yan Long Heritage" },
     ],
   },
   "twist-rooftop-restaurant-bar": {
@@ -215,30 +190,21 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
       "Dietary Accommodations",
     ],
     images: [
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/154 Main.jpg",
-        alt: "Good Eatz 154 Restaurant",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 04.jpg",
-        alt: "Fresh Pastries",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 05.jpg",
-        alt: "All-Day Dining",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 06.jpg",
-        alt: "Restaurant Interior",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 07.jpg",
-        alt: "Dining Experience",
-      },
-      {
-        src: "/images/HOTEL WEBSITE/Restaurant/154 Good Eatz 08.jpg",
-        alt: "Food Selection",
-      },
+      { src: "/images/154/154-01.jpg", alt: "Good Eatz 154 Restaurant" },
+      { src: "/images/154/154-02.jpg", alt: "Good Eatz 154 Dining" },
+      { src: "/images/154/154-03.jpg", alt: "Good Eatz 154 Menu" },
+      { src: "/images/154/154-04.jpg", alt: "Good Eatz 154 Food" },
+      { src: "/images/154/154-05.jpg", alt: "Good Eatz 154 Interior" },
+      { src: "/images/154/154-06.jpg", alt: "Good Eatz 154 Ambiance" },
+      { src: "/images/154/154-07.jpg", alt: "Good Eatz 154 Breakfast" },
+      { src: "/images/154/154-08.jpg", alt: "Good Eatz 154 Buffet" },
+      { src: "/images/154/154-09.jpg", alt: "Good Eatz 154 Thai Cuisine" },
+      { src: "/images/154/154-10.jpg", alt: "Good Eatz 154 International" },
+      { src: "/images/154/154-11.jpg", alt: "Good Eatz 154 Dishes" },
+      { src: "/images/154/154-12.jpg", alt: "Good Eatz 154 Experience" },
+      { src: "/images/154/154-13.jpg", alt: "Good Eatz 154 Selection" },
+      { src: "/images/154/154-14.jpg", alt: "Good Eatz 154 Flavors" },
+      { src: "/images/154/154-15.jpg", alt: "Good Eatz 154 Culinary" },
     ],
   },
 };

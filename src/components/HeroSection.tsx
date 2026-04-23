@@ -43,7 +43,7 @@ export default function HeroSection({
 
   const innerWrapperClass =
     height === "full"
-      ? "pt-[120px] md:pt-[180px] md:pb-[300px]"
+      ? "py-[100px] md:py-[120px]"
       : "py-6 md:py-8";
 
   const titleClass =
@@ -71,7 +71,7 @@ export default function HeroSection({
       {/* Sparkle Effect */}
       {showSparkles && <SparkleOverlay />}
 
-      {/* Content: homepage uses extra pb to lift copy; other heights get top padding so nothing sits under the sticky header. */}
+      {/* Content: symmetric vertical padding keeps text vertically centered while guaranteeing clearance below the sticky header. */}
       <div className={`relative h-full flex items-center justify-center ${innerWrapperClass}`}>
         <div className="container mx-auto px-6 text-center text-white">
           <motion.div
