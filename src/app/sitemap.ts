@@ -21,13 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/wedding-venues", changeFrequency: "weekly", priority: 0.8 },
     { route: "/meeting-events", changeFrequency: "weekly", priority: 0.8 },
 
-    // Room pages - flat URLs matching WordPress structure
-    { route: "/premier-superior", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/premier-superior-sea-view", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/premier-deluxe", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/premier-deluxe-sea-view", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/suite", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/executive-suite", changeFrequency: "weekly", priority: 0.7 },
+    // Room pages - canonical URLs via the dynamic /rooms-suites/[slug] route
+    { route: "/rooms-suites/premier-superior", changeFrequency: "weekly", priority: 0.7 },
+    { route: "/rooms-suites/premier-superior-partial-sea-view", changeFrequency: "weekly", priority: 0.7 },
+    { route: "/rooms-suites/premier-deluxe", changeFrequency: "weekly", priority: 0.7 },
+    { route: "/rooms-suites/premier-deluxe-partial-sea-view", changeFrequency: "weekly", priority: 0.7 },
+    { route: "/rooms-suites/suite-room", changeFrequency: "weekly", priority: 0.7 },
+    { route: "/rooms-suites/executive-suite", changeFrequency: "weekly", priority: 0.7 },
 
     // Restaurant pages
     { route: "/yan-long-chinese-restaurant", changeFrequency: "weekly", priority: 0.7 },

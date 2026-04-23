@@ -36,7 +36,7 @@ export default function RoomCard({
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="group relative"
     >
-      <Link href={`/${slug}`} className="block">
+      <Link href={`/rooms-suites/${slug}`} className="block">
         {/* Image — tall portrait ratio for luxury feel */}
         <div className="relative aspect-[3/4] overflow-hidden">
           <Image

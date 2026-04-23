@@ -59,8 +59,12 @@ export default function HeroSection({
       {/* Sparkle Effect */}
       {showSparkles && <SparkleOverlay />}
 
-      {/* Content */}
-      <div className="relative h-full flex items-center justify-center md:pb-[300px]">
+      {/* Content - on the homepage (full height) we shift content up by ~150px on desktop */}
+      <div
+        className={`relative h-full flex items-center justify-center ${
+          height === "full" ? "md:pb-[300px]" : ""
+        }`}
+      >
         <div className="container mx-auto px-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
