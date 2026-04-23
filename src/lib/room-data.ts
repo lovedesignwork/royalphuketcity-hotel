@@ -84,8 +84,8 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       },
     ],
   },
-  "premier-superior-sea-view": {
-    slug: "premier-superior-sea-view",
+  "premier-superior-partial-sea-view": {
+    slug: "premier-superior-partial-sea-view",
     name: "Premier Superior - Partial Sea View",
     category: "Partial Sea View",
     size: "32 sqm",
@@ -224,8 +224,8 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       },
     ],
   },
-  "premier-deluxe-sea-view": {
-    slug: "premier-deluxe-sea-view",
+  "premier-deluxe-partial-sea-view": {
+    slug: "premier-deluxe-partial-sea-view",
     name: "Premier Deluxe - Partial Sea View",
     category: "Partial Sea View",
     size: "38 sqm",
@@ -295,8 +295,8 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       },
     ],
   },
-  "suite": {
-    slug: "suite",
+  "suite-room": {
+    slug: "suite-room",
     name: "Suite",
     category: "Suite",
     size: "52 sqm",
