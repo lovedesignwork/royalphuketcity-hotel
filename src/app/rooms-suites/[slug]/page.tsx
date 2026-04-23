@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   ImageGallery,
   ReserveButton,
-  CTABanner,
   Breadcrumbs,
   RoomPhotoSlider,
 } from "@/components";
@@ -179,12 +178,6 @@ export default async function RoomDetailPage({ params }: Props) {
           <ImageGallery images={room.images} columns={4} />
         </div>
       </section>
-
-      <CTABanner
-        title="Ready to Book Your Stay?"
-        subtitle="Reserve Now"
-        image="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop"
-      />
 
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-6">
