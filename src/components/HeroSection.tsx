@@ -41,8 +41,20 @@ export default function HeroSection({
     light: "bg-black/20",
   };
 
+  const innerWrapperClass =
+    height === "full"
+      ? "pt-[120px] md:pt-[180px] md:pb-[300px]"
+      : "pt-24 md:pt-28 lg:pt-[7.5rem] pb-6 md:pb-8";
+
+  const titleClass =
+    height === "small"
+      ? "font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-3 sm:mb-4 max-w-4xl mx-auto whitespace-pre-line leading-tight"
+      : height === "medium"
+        ? "font-heading text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal mb-5 max-w-4xl mx-auto whitespace-pre-line"
+        : "font-heading text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal mb-6 max-w-4xl mx-auto whitespace-pre-line";
+
   return (
-    <section className={`relative ${heightClasses[height]} ${height === "small" ? "min-h-[280px]" : "min-h-[500px]"}`}>
+    <section className={`relative ${heightClasses[height]} ${height === "small" ? "min-h-[300px] md:min-h-[320px]" : "min-h-[500px]"}`}>
       {/* Background Image */}
       <Image
         src={image}
@@ -59,13 +71,8 @@ export default function HeroSection({
       {/* Sparkle Effect */}
       {showSparkles && <SparkleOverlay />}
 
-      {/* Content - centered vertically. On the homepage (full height) we shift content
-          up by ~150px on desktop using pb-[300px] + matching pt to keep header clearance. */}
-      <div
-        className={`relative h-full flex items-center justify-center ${
-          height === "full" ? "pt-[120px] md:pt-[180px] md:pb-[300px]" : ""
-        }`}
-      >
+      {/* Content: homepage uses extra pb to lift copy; other heights get top padding so nothing sits under the sticky header. */}
+      <div className={`relative h-full flex items-center justify-center ${innerWrapperClass}`}>
         <div className="container mx-auto px-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -73,15 +80,27 @@ export default function HeroSection({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {subtitle && (
-              <p className={`text-white mb-4 ${subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : "text-[19px] tracking-[0.15em] uppercase"}`} style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}>{subtitle}</p>
+              <p
+                className={`text-white ${
+                  height === "small" ? "mb-2 text-xs sm:text-sm tracking-[0.12em] uppercase" : "mb-4"
+                } ${height !== "small" && subtitleSize === "large" ? "text-2xl tracking-wide uppercase" : ""} ${height !== "small" && subtitleSize !== "large" ? "text-[19px] tracking-[0.15em] uppercase" : ""}`}
+                style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}
+              >
+                {subtitle}
+              </p>
             )}
 
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 max-w-4xl mx-auto whitespace-pre-line" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7), 0 4px 20px rgba(0,0,0,0.5)" }}>
+            <h1 className={titleClass} style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7), 0 4px 20px rgba(0,0,0,0.5)" }}>
               {title}
             </h1>
 
             {description && (
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}>
+              <p
+                className={`text-white/90 max-w-2xl mx-auto ${
+                  height === "small" ? "text-sm sm:text-base md:text-lg mb-4 md:mb-6" : "text-lg md:text-xl mb-8"
+                }`}
+                style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}
+              >
                 {description}
               </p>
             )}
