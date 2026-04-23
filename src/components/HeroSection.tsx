@@ -44,7 +44,7 @@ export default function HeroSection({
   const innerWrapperClass =
     height === "full"
       ? "pt-[120px] md:pt-[180px] md:pb-[300px]"
-      : "pt-24 md:pt-28 lg:pt-[7.5rem] pb-6 md:pb-8";
+      : "py-6 md:py-8";
 
   const titleClass =
     height === "small"
