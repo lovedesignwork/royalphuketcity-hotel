@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { HeroSection, SectionHeading } from "@/components";
+import ArtworkMasonry from "@/components/ArtworkMasonry";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -55,8 +56,8 @@ const artists: Artist[] = [
       { src: "/images/Artist/chng-kiah-kiean/work-1.jpg", title: "Yaowarad Road, Phuket (2014)" },
       { src: "/images/Artist/chng-kiah-kiean/work-2.jpg", title: "Ban Zan, Phuket (2014)" },
       { src: "/images/Artist/chng-kiah-kiean/work-3.jpg", title: "Fishing Village, Sirea Island, Phuket (2014)" },
-      { src: "/images/Artist/chng-kiah-kiean/work-4.jpg", title: "The Big Lobster, Phang Nga Road, Phuket (2017)" },
       { src: "/images/Artist/chng-kiah-kiean/work-5.jpg", title: "The Chartered Bank, Phuket Road (2017)" },
+      { src: "/images/Artist/chng-kiah-kiean/work-4.jpg", title: "The Big Lobster, Phang Nga Road, Phuket (2017)" },
     ],
   },
   {
@@ -121,7 +122,7 @@ export default function ArtistPage() {
             {artists.map((artist, index) => (
               <article key={artist.name} className="py-16 md:py-20">
                 {/* Artist header: portrait + bio */}
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-start mb-12 md:mb-16">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-center mb-12 md:mb-16">
                   <div className="lg:col-span-2">
                     <div className="relative aspect-[4/5] overflow-hidden bg-[--color-surface]">
                       <Image
@@ -161,35 +162,11 @@ export default function ArtistPage() {
                   <h3 className="font-heading text-xl md:text-2xl mb-6 text-center">
                     Selected Works
                   </h3>
-                  <div
-                    className={`grid gap-4 md:gap-6 ${
-                      artist.works.length === 1
-                        ? "grid-cols-1 max-w-3xl mx-auto"
-                        : artist.works.length <= 3
-                          ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
-                          : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                    }`}
-                  >
-                    {artist.works.map((work) => (
-                      <figure
-                        key={work.src}
-                        className="group relative overflow-hidden bg-[--color-surface]"
-                      >
-                        <div className="relative aspect-[4/5]">
-                          <Image
-                            src={work.src}
-                            alt={`${work.title} by ${artist.name}`}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                          />
-                        </div>
-                        <figcaption className="p-3 text-xs md:text-sm text-[--color-text-secondary] text-center">
-                          {work.title}
-                        </figcaption>
-                      </figure>
-                    ))}
-                  </div>
+                  <ArtworkMasonry
+                    works={artist.works}
+                    artistName={artist.name}
+                    showCaptions={artist.name !== "Pitirat Yosawat"}
+                  />
                 </div>
 
                 {/* Divider between artists (not after the last one) */}

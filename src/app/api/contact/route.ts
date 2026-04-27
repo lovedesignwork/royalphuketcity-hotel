@@ -1,5 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Every inquiry form on the site (contact, wedding, event, download-fact-sheets,
+// and any future form) MUST be routed through this endpoint so notifications
+// always reach all three mailboxes. Do NOT remove or narrow this list without
+// sign-off from the hotel team.
+const ADMIN_RECIPIENTS = [
+  "reservation@royalphuketcity.com",
+  "sales@royalphuketcity.com",
+  "marketing@royalphuketcity.com",
+] as const;
+
+// The General Manager wants visibility on high-touch inquiries (weddings &
+// events). Added on top of ADMIN_RECIPIENTS for those inquiry types only.
+const GM_RECIPIENT = "gm@royalphuketcity.com";
+const GM_CC_INQUIRY_TYPES = new Set(["event", "wedding"]);
+
+const PRIMARY_REPLY_MAILBOX = "reservation@royalphuketcity.com";
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -55,20 +72,26 @@ export async function POST(request: NextRequest) {
       const resend = new Resend(process.env.RESEND_API_KEY);
 
       const isEventInquiry = inquiry_type === "event";
+      const isWeddingInquiry = inquiry_type === "wedding";
       const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
 
-      // Send notification to admin (reservation, marketing, sales)
+      // Wedding & event inquiries also CC the General Manager.
+      const adminRecipients = GM_CC_INQUIRY_TYPES.has(inquiry_type)
+        ? [...ADMIN_RECIPIENTS, GM_RECIPIENT]
+        : [...ADMIN_RECIPIENTS];
+
+      // Send notification to admin (reservation, sales, marketing — plus GM
+      // for weddings & events). replyTo is the customer's email so staff
+      // pressing "Reply" in their inbox replies directly to the customer.
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
-        to: [
-          "reservation@royalphuketcity.com",
-          "marketing@royalphuketcity.com",
-          "sales@royalphuketcity.com",
-        ],
+        to: adminRecipients,
         replyTo: email,
-        subject: isEventInquiry 
-          ? `🎉 New Event Inquiry: ${subject || "Event Request"} - Ref: ${referenceNumber}`
-          : `Contact Form: ${subject || "New Inquiry"} - ${inquiry_type || "General"}`,
+        subject: isWeddingInquiry
+          ? `💍 New Wedding Inquiry: ${subject || "Wedding Request"} - Ref: ${referenceNumber}`
+          : isEventInquiry
+            ? `🎉 New Event Inquiry: ${subject || "Event Request"} - Ref: ${referenceNumber}`
+            : `Contact Form: ${subject || "New Inquiry"} - ${inquiry_type || "General"}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background-color: #8B7355; padding: 20px; text-align: center;">
@@ -98,10 +121,13 @@ export async function POST(request: NextRequest) {
         `,
       });
 
-      // Send confirmation email to the person who submitted the form
+      // Send confirmation email to the person who submitted the form.
+      // replyTo points at the reservation mailbox so if the customer hits
+      // Reply on the auto-confirmation it reaches the hotel (not noreply@).
       await resend.emails.send({
         from: "Royal Phuket City Hotel <noreply@royalphuketcity.com>",
         to: [email],
+        replyTo: PRIMARY_REPLY_MAILBOX,
         subject: isEventInquiry 
           ? `Thank You for Your Event Inquiry - Royal Phuket City Hotel (Ref: ${referenceNumber})`
           : `Thank You for Contacting Us - Royal Phuket City Hotel (Ref: ${referenceNumber})`,
