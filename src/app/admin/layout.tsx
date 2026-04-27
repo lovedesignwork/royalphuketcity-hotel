@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 function NavLink({
   href,
@@ -41,6 +43,45 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const [currentUser, setCurrentUser] = useState<{
+    email: string;
+    role: "superadmin" | "admin";
+  } | null>(null);
+
+  useEffect(() => {
+    if (pathname === "/admin/login") return;
+    let cancelled = false;
+    (async () => {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user || cancelled) return;
+      const { data } = await supabase
+        .from("admin_users")
+        .select("email, role")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (!cancelled && data) {
+        setCurrentUser({ email: data.email, role: data.role });
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [pathname]);
+
+  const handleLogout = async () => {
+    await fetch("/api/admin/auth/logout", { method: "POST" });
+    window.location.href = "/admin/login";
+  };
+
+  // Login page renders without the dashboard chrome (sidebar, top bar).
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
+
   return (
     <div className="fixed inset-0 flex bg-gray-50 z-[9999]">
       {/* Left Sidebar */}
@@ -141,6 +182,15 @@ export default function AdminLayout({
             Configuration
           </p>
           <NavLink
+            href="/admin/users"
+            label="Users"
+            icon={
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 3a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            }
+          />
+          <NavLink
             href="/admin/settings"
             label="Settings"
             icon={
@@ -199,7 +249,7 @@ export default function AdminLayout({
               </h1>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-500">
+              <span className="hidden md:inline text-sm text-gray-500">
                 {new Date().toLocaleDateString("en-US", {
                   weekday: "long",
                   year: "numeric",
@@ -207,6 +257,25 @@ export default function AdminLayout({
                   day: "numeric",
                 })}
               </span>
+              {currentUser && (
+                <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
+                  <div className="text-right">
+                    <p className="text-sm font-medium text-gray-900 leading-tight">
+                      {currentUser.email}
+                    </p>
+                    <p className="text-xs text-gray-500 leading-tight">
+                      {currentUser.role === "superadmin" ? "Superadmin" : "Admin"}
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                    title="Sign out"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </header>

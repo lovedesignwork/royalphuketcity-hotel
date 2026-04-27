@@ -28,6 +28,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# Supabase CLI internal state (do not commit)
+/supabase/.temp/
+/supabase/.branches/
+
 # Env files
 .env
 .env*.local
