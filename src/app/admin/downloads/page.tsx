@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface DocumentFile {
@@ -44,13 +45,45 @@ const DOCUMENT_TYPES: DocumentType[] = [
   },
 ];
 
-const LANGUAGES = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "ru", label: "Russian", flag: "🇷🇺" },
-  { code: "zh", label: "Chinese", flag: "🇨🇳" },
-  { code: "ko", label: "Korean", flag: "🇰🇷" },
-  { code: "vi", label: "Vietnamese", flag: "🇻🇳" },
+// Map our internal language code -> ISO 3166-1 alpha-2 country code used by flagcdn.com.
+// We render real PNG flag images (not emoji) so flags display consistently across
+// every OS and browser, including Windows where regional indicator emoji often
+// fall back to the bare letters (e.g. "CN" instead of 🇨🇳).
+const LANGUAGES: Array<{
+  code: string;
+  label: string;
+  flagCode: string;
+  flagName: string;
+}> = [
+  { code: "en", label: "English", flagCode: "gb", flagName: "United Kingdom" },
+  { code: "th", label: "Thai", flagCode: "th", flagName: "Thailand" },
+  { code: "ru", label: "Russian", flagCode: "ru", flagName: "Russia" },
+  { code: "zh", label: "Chinese", flagCode: "cn", flagName: "China" },
+  { code: "ko", label: "Korean", flagCode: "kr", flagName: "South Korea" },
+  { code: "vi", label: "Vietnamese", flagCode: "vn", flagName: "Vietnam" },
 ];
+
+function FlagIcon({
+  flagCode,
+  flagName,
+  size = 20,
+}: {
+  flagCode: string;
+  flagName: string;
+  size?: number;
+}) {
+  return (
+    <Image
+      src={`https://flagcdn.com/w40/${flagCode}.png`}
+      alt={flagName}
+      width={size}
+      height={Math.round(size * 0.75)}
+      className="inline-block object-cover align-middle"
+      style={{ borderRadius: 2 }}
+      unoptimized
+    />
+  );
+}
 
 function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 Bytes";
@@ -260,19 +293,22 @@ export default function AdminDownloadsPage() {
         ) : (
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-6 bg-gray-50 border-b border-gray-200">
+            <div className="grid grid-cols-7 bg-gray-50 border-b border-gray-200">
               <div className="p-4 font-medium text-gray-700">Document Type</div>
               {LANGUAGES.map((lang) => (
-                <div key={lang.code} className="p-4 font-medium text-gray-700 text-center">
-                  <span className="text-lg mr-1">{lang.flag}</span>
-                  {lang.label}
+                <div
+                  key={lang.code}
+                  className="p-4 font-medium text-gray-700 text-center flex items-center justify-center gap-2"
+                >
+                  <FlagIcon flagCode={lang.flagCode} flagName={lang.flagName} size={20} />
+                  <span>{lang.label}</span>
                 </div>
               ))}
             </div>
 
             {/* Table Body */}
             {DOCUMENT_TYPES.map((docType) => (
-              <div key={docType.id} className="grid grid-cols-6 border-b border-gray-100 last:border-b-0">
+              <div key={docType.id} className="grid grid-cols-7 border-b border-gray-100 last:border-b-0">
                 {/* Document Type Info */}
                 <div className="p-4 bg-gray-50">
                   <p className="font-medium text-gray-900">{docType.title}</p>
@@ -419,8 +455,16 @@ export default function AdminDownloadsPage() {
                             {docType?.title || file.document_type}
                           </td>
                           <td className="px-4 py-3 text-sm text-gray-600">
-                            <span className="mr-1">{lang?.flag}</span>
-                            {lang?.label || file.language_code}
+                            <span className="inline-flex items-center gap-2">
+                              {lang ? (
+                                <FlagIcon
+                                  flagCode={lang.flagCode}
+                                  flagName={lang.flagName}
+                                  size={18}
+                                />
+                              ) : null}
+                              {lang?.label || file.language_code}
+                            </span>
                           </td>
                           <td className="px-4 py-3 text-sm text-gray-600">
                             {formatFileSize(file.file_size)}

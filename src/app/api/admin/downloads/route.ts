@@ -108,6 +108,7 @@ export async function POST(request: NextRequest) {
     // Get language label
     const languageLabels: Record<string, string> = {
       en: "English",
+      th: "Thai",
       ru: "Russian",
       zh: "Chinese",
       ko: "Korean",

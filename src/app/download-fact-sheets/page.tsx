@@ -31,6 +31,7 @@ interface Document {
 
 const LANGUAGE_FLAGS: Record<string, { code: string; name: string }> = {
   en: { code: "gb", name: "United Kingdom" },
+  th: { code: "th", name: "Thailand" },
   ru: { code: "ru", name: "Russia" },
   zh: { code: "cn", name: "China" },
   ko: { code: "kr", name: "South Korea" },
@@ -534,6 +535,9 @@ export default function DownloadFactSheetsPage() {
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-2 text-[--color-text-primary]">
                 <FlagIcon langCode="en" size={24} /> English
+              </span>
+              <span className="flex items-center gap-2 text-[--color-text-primary]">
+                <FlagIcon langCode="th" size={24} /> Thai
               </span>
               <span className="flex items-center gap-2 text-[--color-text-primary]">
                 <FlagIcon langCode="ru" size={24} /> Russian
