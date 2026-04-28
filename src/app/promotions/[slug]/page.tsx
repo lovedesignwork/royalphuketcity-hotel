@@ -148,6 +148,18 @@ export default async function PromotionDetailPage({ params }: PageProps) {
                     )}
                   </div>
 
+                  {/* Booking Code */}
+                  {promo.bookingCode && (
+                    <div className="text-center bg-white border-2 border-dashed border-[#8B7355]/40 rounded-lg px-4 py-4">
+                      <p className="text-[10px] tracking-[0.18em] uppercase text-gray-500 mb-1.5">
+                        Apply code
+                      </p>
+                      <p className="font-mono text-2xl font-bold text-[#8B7355] tracking-[0.15em]">
+                        {promo.bookingCode}
+                      </p>
+                    </div>
+                  )}
+
                   {/* CTA Buttons */}
                   <div className="space-y-3 pt-2">
                     <a
