@@ -548,9 +548,10 @@ export default function WeddingVenuesPage() {
                 <Image
                   src="/images/certificates.png"
                   alt="Certifications - ASEAN MICE Venue, TCEB, Halal, Green Hotel, Safe Travels, SHA Plus"
-                  width={500}
-                  height={80}
-                  className="h-14 md:h-16 w-auto object-contain"
+                  width={1600}
+                  height={256}
+                  sizes="(min-width: 1024px) 640px, 100vw"
+                  className="w-full h-auto object-contain"
                 />
               </div>
 
