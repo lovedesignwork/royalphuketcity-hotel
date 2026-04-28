@@ -440,7 +440,7 @@ export default function MeetingEventsPage() {
                 {/* Certification Logos */}
                 <div className="mb-10">
                   <Image
-                    src="/images/certifications.png"
+                    src="/images/certificates.png"
                     alt="Certifications - ASEAN MICE Venue, TCEB, Halal, Green Hotel, Safe Travels, SHA Plus"
                     width={500}
                     height={80}

@@ -546,7 +546,7 @@ export default function WeddingVenuesPage() {
               {/* Certification Logos */}
               <div className="mb-10">
                 <Image
-                  src="/images/certifications.png"
+                  src="/images/certificates.png"
                   alt="Certifications - ASEAN MICE Venue, TCEB, Halal, Green Hotel, Safe Travels, SHA Plus"
                   width={500}
                   height={80}
@@ -701,7 +701,7 @@ export default function WeddingVenuesPage() {
             <div className="border border-gray-200 p-6 group hover:border-[#8B7355] transition-colors bg-white hover:shadow-lg">
               <div className="relative aspect-video mb-5 overflow-hidden flex items-center justify-center bg-[--color-surface] p-4">
                 <Image
-                  src="/images/certifications.png"
+                  src="/images/certificates.png"
                   alt="TCEB and Tourism Certifications"
                   width={300}
                   height={100}
