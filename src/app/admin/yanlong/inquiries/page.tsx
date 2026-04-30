@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-interface YanLongSubmission {
+interface Inquiry {
   id: string;
   name: string;
   email: string;
@@ -10,10 +10,12 @@ interface YanLongSubmission {
   subject?: string;
   message: string;
   inquiry_type?: string;
+  inquiry_type_label?: string;
+  country?: string;
   status?: string;
   notes?: string;
-  metadata?: { inquiryTypeLabel?: string; country?: string };
   created_at: string;
+  updated_at?: string;
 }
 
 function StatusBadge({ status }: { status?: string }) {
@@ -32,21 +34,21 @@ function StatusBadge({ status }: { status?: string }) {
 }
 
 function InquiryModal({
-  submission,
+  inquiry,
   onClose,
   onUpdate,
 }: {
-  submission: YanLongSubmission;
+  inquiry: Inquiry;
   onClose: () => void;
   onUpdate: (id: string, status: string, notes: string) => void;
 }) {
-  const [status, setStatus] = useState(submission.status || "new");
-  const [notes, setNotes] = useState(submission.notes || "");
+  const [status, setStatus] = useState(inquiry.status || "new");
+  const [notes, setNotes] = useState(inquiry.notes || "");
   const [saving, setSaving] = useState(false);
 
   async function handleSave() {
     setSaving(true);
-    await onUpdate(submission.id, status, notes);
+    await onUpdate(inquiry.id, status, notes);
     setSaving(false);
     onClose();
   }
@@ -72,38 +74,38 @@ function InquiryModal({
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-xs text-gray-500 uppercase">Name</span>
-                <p className="text-gray-900 font-medium">{submission.name}</p>
+                <p className="text-gray-900 font-medium">{inquiry.name}</p>
               </div>
               <div>
                 <span className="text-xs text-gray-500 uppercase">Email</span>
-                <a href={`mailto:${submission.email}`} className="text-[#8B7355] hover:underline block">
-                  {submission.email}
+                <a href={`mailto:${inquiry.email}`} className="text-[#8B7355] hover:underline block">
+                  {inquiry.email}
                 </a>
               </div>
               <div>
                 <span className="text-xs text-gray-500 uppercase">Phone</span>
-                <p className="text-gray-900">{submission.phone || "-"}</p>
+                <p className="text-gray-900">{inquiry.phone || "-"}</p>
               </div>
               <div>
                 <span className="text-xs text-gray-500 uppercase">Inquiry type</span>
                 <p className="text-gray-900 capitalize">
-                  {submission.metadata?.inquiryTypeLabel || submission.inquiry_type || "General"}
+                  {inquiry.inquiry_type_label || inquiry.inquiry_type || "General"}
                 </p>
               </div>
               <div className="col-span-2">
                 <span className="text-xs text-gray-500 uppercase">Subject</span>
-                <p className="text-gray-900">{submission.subject || "-"}</p>
+                <p className="text-gray-900">{inquiry.subject || "-"}</p>
               </div>
               <div className="col-span-2">
                 <span className="text-xs text-gray-500 uppercase">Received</span>
-                <p className="text-gray-900">{new Date(submission.created_at).toLocaleString()}</p>
+                <p className="text-gray-900">{new Date(inquiry.created_at).toLocaleString()}</p>
               </div>
             </div>
 
             <div>
               <span className="text-xs text-gray-500 uppercase block mb-2">Message</span>
               <div className="bg-gray-50 rounded-lg p-4 text-gray-700 whitespace-pre-wrap text-sm">
-                {submission.message}
+                {inquiry.message}
               </div>
             </div>
 
@@ -124,8 +126,8 @@ function InquiryModal({
               <div>
                 <label className="text-xs text-gray-500 uppercase block mb-2">Quick action</label>
                 <a
-                  href={`mailto:${submission.email}?subject=Re: ${submission.subject || "Your inquiry"}`}
-                  className="block w-full px-4 py-2 bg-[#8B7355] text-white rounded-lg hover:bg-[#6d5a43] transition-colors text-center text-sm"
+                  href={`mailto:${inquiry.email}?subject=Re: ${inquiry.subject || "Your inquiry"}`}
+                  className="block w-full px-4 py-2 bg-[#8B7355] text-white rounded-lg hover:bg-[#6d5a43] text-center text-sm"
                 >
                   Reply via Email
                 </a>
@@ -161,31 +163,29 @@ function InquiryModal({
 }
 
 export default function YanLongInquiriesPage() {
-  const [submissions, setSubmissions] = useState<YanLongSubmission[]>([]);
+  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [statusFilter, setStatusFilter] = useState("all");
-  const [selected, setSelected] = useState<YanLongSubmission | null>(null);
+  const [typeFilter, setTypeFilter] = useState("all");
+  const [selected, setSelected] = useState<Inquiry | null>(null);
 
   useEffect(() => {
     fetchData();
-  }, [page, statusFilter]);
+  }, [page, statusFilter, typeFilter]);
 
   async function fetchData() {
     setLoading(true);
     try {
-      const params = new URLSearchParams({
-        kind: "inquiries",
-        page: page.toString(),
-        limit: "20",
-      });
+      const params = new URLSearchParams({ page: page.toString(), limit: "20" });
       if (statusFilter !== "all") params.set("status", statusFilter);
-      const res = await fetch(`/api/admin/yanlong?${params}`);
+      if (typeFilter !== "all") params.set("inquiry_type", typeFilter);
+      const res = await fetch(`/api/admin/yanlong/inquiries?${params}`);
       if (res.ok) {
         const data = await res.json();
-        setSubmissions(data.submissions);
+        setInquiries(data.submissions);
         setTotal(data.total);
         setTotalPages(data.totalPages);
       }
@@ -195,7 +195,7 @@ export default function YanLongInquiriesPage() {
   }
 
   async function handleUpdate(id: string, status: string, notes: string) {
-    const res = await fetch("/api/admin/yanlong", {
+    const res = await fetch("/api/admin/yanlong/inquiries", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, status, notes }),
@@ -205,11 +205,11 @@ export default function YanLongInquiriesPage() {
 
   async function handleDelete(id: string) {
     if (!confirm("Delete this inquiry?")) return;
-    const res = await fetch(`/api/admin/yanlong?id=${id}`, { method: "DELETE" });
+    const res = await fetch(`/api/admin/yanlong/inquiries?id=${id}`, { method: "DELETE" });
     if (res.ok) fetchData();
   }
 
-  const newCount = submissions.filter((s) => s.status === "new" || !s.status).length;
+  const newCount = inquiries.filter((s) => s.status === "new" || !s.status).length;
 
   return (
     <div className="space-y-6">
@@ -231,24 +231,40 @@ export default function YanLongInquiriesPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-4 flex gap-3">
-        {["all", "new", "read", "replied", "archived"].map((s) => (
-          <button
-            key={s}
-            onClick={() => {
-              setStatusFilter(s);
-              setPage(1);
-            }}
-            className={`px-4 py-2 rounded-lg text-sm capitalize transition-colors ${
-              statusFilter === s
-                ? "bg-[#8B7355] text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            {s}
-          </button>
-        ))}
-        <button onClick={fetchData} className="ml-auto p-2 hover:bg-gray-100 rounded-lg">
+      <div className="bg-white rounded-xl border border-gray-200 p-4 flex flex-wrap gap-3">
+        <div className="flex gap-2">
+          {["all", "new", "read", "replied", "archived"].map((s) => (
+            <button
+              key={s}
+              onClick={() => {
+                setStatusFilter(s);
+                setPage(1);
+              }}
+              className={`px-4 py-2 rounded-lg text-sm capitalize transition-colors ${
+                statusFilter === s
+                  ? "bg-[#8B7355] text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+        <select
+          value={typeFilter}
+          onChange={(e) => {
+            setTypeFilter(e.target.value);
+            setPage(1);
+          }}
+          className="px-4 py-2 border border-gray-300 rounded-lg text-sm"
+        >
+          <option value="all">All types</option>
+          <option value="general">General</option>
+          <option value="event">Event</option>
+          <option value="wedding">Wedding</option>
+          <option value="reservation">Reservation inquiry</option>
+        </select>
+        <button onClick={fetchData} className="ml-auto p-2 hover:bg-gray-100 rounded-lg" title="Refresh">
           <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
@@ -260,7 +276,7 @@ export default function YanLongInquiriesPage() {
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin w-8 h-8 border-2 border-[#8B7355] border-t-transparent rounded-full" />
           </div>
-        ) : submissions.length === 0 ? (
+        ) : inquiries.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64 text-gray-500">
             <svg className="w-12 h-12 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -282,7 +298,7 @@ export default function YanLongInquiriesPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {submissions.map((s) => (
+                {inquiries.map((s) => (
                   <tr
                     key={s.id}
                     onClick={() => setSelected(s)}
@@ -302,7 +318,7 @@ export default function YanLongInquiriesPage() {
                       <p className="text-sm text-gray-500 max-w-xs truncate">{s.message}</p>
                     </td>
                     <td className="px-6 py-4 capitalize text-sm text-gray-700">
-                      {s.metadata?.inquiryTypeLabel || s.inquiry_type || "-"}
+                      {s.inquiry_type_label || s.inquiry_type || "-"}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                       {new Date(s.created_at).toLocaleDateString()}
@@ -352,9 +368,7 @@ export default function YanLongInquiriesPage() {
                   >
                     Previous
                   </button>
-                  <span className="text-sm text-gray-600">
-                    Page {page} of {totalPages}
-                  </span>
+                  <span className="text-sm text-gray-600">Page {page} of {totalPages}</span>
                   <button
                     onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                     disabled={page === totalPages}
@@ -371,7 +385,7 @@ export default function YanLongInquiriesPage() {
 
       {selected && (
         <InquiryModal
-          submission={selected}
+          inquiry={selected}
           onClose={() => setSelected(null)}
           onUpdate={handleUpdate}
         />

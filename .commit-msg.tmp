@@ -1,10 +1,10 @@
-Add Yan Long section to admin dashboard
+Wire Yan Long admin section to dedicated DB tables
 
-- /admin/yanlong/reservations — booking requests from yanlongphuket.com
-- /admin/yanlong/inquiries — general contact messages
-- /api/admin/yanlong — CRUD endpoint for contact_submissions scoped to source='yanlong'
-- Sidebar: new Yan Long section with Reservations + Inquiries links
-- DB migration: adds source (text) and metadata (jsonb) columns to
-  contact_submissions, plus RLS insert policy for public form submissions
-- scripts/apply-yanlong-migration.mjs verifies the migration and runs a
-  round-trip insert/delete test
+- API: split into /api/admin/yanlong/reservations and /api/admin/yanlong/inquiries
+  each targeting its own table (yanlong_reservations / yanlong_contact_submissions)
+- Reservations page: displays typed columns (date, time, guests, service,
+  occasion, seating_preference, special_requests)
+- Inquiries page: adds inquiry_type filter (general/event/wedding/reservation)
+- Removed obsolete shared-table migration + scripts
+- All DB changes applied via Supabase MCP (yanlong_admin_fields,
+  yanlong_reservations_status_values, yanlong_grant_anon_insert)
