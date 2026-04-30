@@ -1,0 +1,10 @@
+Add Yan Long section to admin dashboard
+
+- /admin/yanlong/reservations — booking requests from yanlongphuket.com
+- /admin/yanlong/inquiries — general contact messages
+- /api/admin/yanlong — CRUD endpoint for contact_submissions scoped to source='yanlong'
+- Sidebar: new Yan Long section with Reservations + Inquiries links
+- DB migration: adds source (text) and metadata (jsonb) columns to
+  contact_submissions, plus RLS insert policy for public form submissions
+- scripts/apply-yanlong-migration.mjs verifies the migration and runs a
+  round-trip insert/delete test
