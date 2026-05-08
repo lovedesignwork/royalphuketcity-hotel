@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
@@ -113,6 +113,7 @@ export default function DownloadFactSheetsPage() {
   const [error, setError] = useState("");
   const [documents, setDocuments] = useState<Document[]>([]);
   const [isLoadingDocs, setIsLoadingDocs] = useState(false);
+  const formLoadedAt = useRef(Date.now());
 
   const fetchDocuments = useCallback(async () => {
     setIsLoadingDocs(true);
@@ -170,6 +171,11 @@ export default function DownloadFactSheetsPage() {
     setIsSubmitting(true);
     setError("");
 
+    // Get honeypot value
+    const form = e.target as HTMLFormElement;
+    const honeypotInput = form.querySelector('input[name="_hp"]') as HTMLInputElement;
+    const honeypotValue = honeypotInput?.value || "";
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -181,8 +187,12 @@ export default function DownloadFactSheetsPage() {
           subject: "Download Request - Fact Sheets & Presentations",
           message: `Company: ${formData.companyName || "N/A"}\n\nRequested access to download company documents.`,
           inquiry_type: "download",
+          _hp: honeypotValue,
+          _ts: formLoadedAt.current,
         }),
       });
+
+      const data = await response.json();
 
       if (response.ok) {
         setIsUnlocked(true);
@@ -191,7 +201,7 @@ export default function DownloadFactSheetsPage() {
           timestamp: new Date().toISOString(),
         }));
       } else {
-        setError("Something went wrong. Please try again.");
+        setError(data.error || "Something went wrong. Please try again.");
       }
     } catch {
       setError("Something went wrong. Please try again.");
@@ -304,6 +314,12 @@ export default function DownloadFactSheetsPage() {
                       placeholder="Enter your company name (optional)"
                       className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
                     />
+                  </div>
+
+                  {/* Honeypot field - hidden from humans */}
+                  <div className="absolute -left-[9999px]" aria-hidden="true">
+                    <label htmlFor="_hp_download">Leave empty</label>
+                    <input type="text" id="_hp_download" name="_hp" tabIndex={-1} autoComplete="off" />
                   </div>
 
                   {/* Error Message */}

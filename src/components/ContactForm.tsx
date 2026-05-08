@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import CountryPhoneSelector from "./CountryPhoneSelector";
 
 interface FormData {
@@ -27,6 +27,7 @@ export default function ContactForm() {
     "idle"
   );
   const [errorMessage, setErrorMessage] = useState("");
+  const formLoadedAt = useRef(Date.now());
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -46,13 +47,22 @@ export default function ContactForm() {
     setStatus("loading");
     setErrorMessage("");
 
+    // Get honeypot value
+    const form = e.target as HTMLFormElement;
+    const honeypotInput = form.querySelector('input[name="_hp"]') as HTMLInputElement;
+    const honeypotValue = honeypotInput?.value || "";
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _hp: honeypotValue,
+          _ts: formLoadedAt.current,
+        }),
       });
 
       const data = await response.json();
@@ -63,6 +73,7 @@ export default function ContactForm() {
 
       setStatus("success");
       setFormData(initialFormData);
+      formLoadedAt.current = Date.now();
     } catch (error) {
       setStatus("error");
       setErrorMessage(
@@ -217,6 +228,18 @@ export default function ContactForm() {
           rows={6}
           className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors resize-none"
           placeholder="Your message..."
+        />
+      </div>
+
+      {/* Honeypot field - hidden from humans, bots will fill it */}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label htmlFor="_hp">Leave this empty</label>
+        <input
+          type="text"
+          id="_hp"
+          name="_hp"
+          tabIndex={-1}
+          autoComplete="off"
         />
       </div>
 

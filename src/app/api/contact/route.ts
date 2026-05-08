@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { validateAntiSpam } from "@/lib/antispam";
 
 // Every inquiry form on the site (contact, wedding, event, download-fact-sheets,
 // and any future form) MUST be routed through this endpoint so notifications
@@ -20,7 +21,34 @@ const PRIMARY_REPLY_MAILBOX = "reservation@royalphuketcity.com";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, subject, message, inquiry_type } = body;
+    const {
+      name,
+      email,
+      phone,
+      subject,
+      message,
+      inquiry_type,
+      // Anti-spam fields
+      _hp,
+      _ts,
+    } = body;
+
+    // Anti-spam validation
+    const spamCheck = await validateAntiSpam({
+      honeypot: _hp,
+      formLoadedAt: _ts,
+      message,
+      email,
+      name,
+    });
+
+    if (!spamCheck.passed) {
+      console.log(`Spam blocked: ${spamCheck.reason} - ${email}`);
+      return NextResponse.json(
+        { error: spamCheck.reason || "Your submission was blocked" },
+        { status: 400 }
+      );
+    }
 
     if (!name || !email || !message) {
       return NextResponse.json(

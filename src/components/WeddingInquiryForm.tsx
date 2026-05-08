@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import CountryPhoneSelector from "./CountryPhoneSelector";
 import CountrySelector from "./CountrySelector";
@@ -32,6 +32,7 @@ export default function WeddingInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null);
+  const formLoadedAt = useRef(Date.now());
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -57,6 +58,11 @@ export default function WeddingInquiryForm() {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    // Get honeypot value
+    const form = e.target as HTMLFormElement;
+    const honeypotInput = form.querySelector('input[name="_hp"]') as HTMLInputElement;
+    const honeypotValue = honeypotInput?.value || "";
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -68,6 +74,8 @@ export default function WeddingInquiryForm() {
           subject: `Wedding Inquiry - ${formData.fullName} & ${formData.partnerName} on ${formData.weddingDate}`,
           message: `Partner Name: ${formData.partnerName}\nCountry: ${formData.country}\nWedding Date: ${formData.weddingDate}\nNumber of Guests: ${formData.numberOfGuests}\n\nWedding Details:\n${formData.weddingDetails}`,
           inquiry_type: "wedding",
+          _hp: honeypotValue,
+          _ts: formLoadedAt.current,
         }),
       });
 
@@ -89,6 +97,7 @@ export default function WeddingInquiryForm() {
           numberOfGuests: 100,
           weddingDetails: "",
         });
+        formLoadedAt.current = Date.now();
       } else {
         setSubmitStatus("error");
       }
@@ -266,6 +275,12 @@ export default function WeddingInquiryForm() {
                 className="flex-1 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors resize-none"
                 placeholder="Share your wedding vision, theme preferences, special requirements, or any questions you have..."
               />
+            </div>
+
+            {/* Honeypot field - hidden from humans */}
+            <div className="absolute -left-[9999px]" aria-hidden="true">
+              <label htmlFor="_hp_wedding">Leave empty</label>
+              <input type="text" id="_hp_wedding" name="_hp" tabIndex={-1} autoComplete="off" />
             </div>
 
             {/* Submit Button */}
