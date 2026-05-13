@@ -138,30 +138,78 @@ export default function AdminDownloadsPage() {
     setError("");
     setSuccess("");
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("document_type", documentType);
-    formData.append("language_code", languageCode);
+    // Validate file type
+    if (file.type !== "application/pdf") {
+      setError("Only PDF files are allowed");
+      setUploadingFor(null);
+      return;
+    }
+
+    // Validate file size (30MB max)
+    const maxSize = 30 * 1024 * 1024;
+    if (file.size > maxSize) {
+      setError("File size must be less than 30MB");
+      setUploadingFor(null);
+      return;
+    }
 
     try {
-      const response = await fetch("/api/admin/downloads", {
+      // Step 1: Get signed upload URL from our API
+      const signedUrlResponse = await fetch("/api/admin/downloads", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "get-signed-url",
+          document_type: documentType,
+          language_code: languageCode,
+          file_name: file.name,
+          file_size: file.size,
+        }),
       });
 
-      if (response.ok) {
-        setSuccess(`Successfully uploaded ${file.name}`);
-        fetchFiles();
-      } else {
-        const text = await response.text();
-        try {
-          const data = JSON.parse(text);
-          setError(data.error || `Upload failed (${response.status})`);
-        } catch {
-          console.error("Non-JSON response:", text);
-          setError(`Upload failed (${response.status}): ${text.slice(0, 100)}`);
-        }
+      if (!signedUrlResponse.ok) {
+        const errorData = await signedUrlResponse.json();
+        throw new Error(errorData.error || "Failed to get upload URL");
       }
+
+      const { signedUrl, storagePath } = await signedUrlResponse.json();
+
+      // Step 2: Upload directly to Supabase Storage (bypasses Vercel size limits)
+      const uploadResponse = await fetch(signedUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/pdf",
+        },
+        body: file,
+      });
+
+      if (!uploadResponse.ok) {
+        const errorText = await uploadResponse.text();
+        console.error("Direct upload failed:", errorText);
+        throw new Error(`Upload to storage failed (${uploadResponse.status})`);
+      }
+
+      // Step 3: Confirm upload and save metadata
+      const confirmResponse = await fetch("/api/admin/downloads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "confirm-upload",
+          storage_path: storagePath,
+          document_type: documentType,
+          language_code: languageCode,
+          file_name: file.name,
+          file_size: file.size,
+        }),
+      });
+
+      if (!confirmResponse.ok) {
+        const errorData = await confirmResponse.json();
+        throw new Error(errorData.error || "Failed to confirm upload");
+      }
+
+      setSuccess(`Successfully uploaded ${file.name}`);
+      fetchFiles();
     } catch (err) {
       console.error("Upload error:", err);
       if (err instanceof TypeError && err.message.includes("fetch")) {

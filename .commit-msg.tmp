@@ -1,10 +1,1 @@
-feat(antispam): add passive anti-spam protection to all forms
-
-- Add honeypot fields (hidden inputs that bots fill)
-- Add time-based validation (reject submissions < 3 seconds)
-- Add content pattern filtering (excessive URLs, spam keywords)
-- Add disposable email blocking
-- Add name validation
-
-Removed Cloudflare Turnstile per user request - keeping only
-passive protections that don't require external services.
+fix(uploads): improve error handling and diagnostics
