@@ -258,7 +258,7 @@ export default function AdminDownloadsPage() {
           <ul className="text-sm text-blue-800 space-y-1">
             <li>• Click on any cell to upload a PDF file for that document and language</li>
             <li>• Uploading a new file will automatically replace the existing one</li>
-            <li>• Only PDF files are accepted (max 50MB)</li>
+            <li>• Only PDF files are accepted (max 30MB)</li>
             <li>• Not all languages need to have files - empty cells are fine</li>
           </ul>
         </div>
