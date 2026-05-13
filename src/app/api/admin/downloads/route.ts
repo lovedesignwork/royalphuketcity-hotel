@@ -31,12 +31,24 @@ export async function GET() {
 // POST - Upload a new file
 export async function POST(request: NextRequest) {
   try {
+    console.log("Upload request received");
+    
     const formData = await request.formData();
     const file = formData.get("file") as File;
     const documentType = formData.get("document_type") as string;
     const languageCode = formData.get("language_code") as string;
 
+    console.log("Form data parsed:", { 
+      hasFile: !!file, 
+      fileName: file?.name,
+      fileSize: file?.size,
+      fileType: file?.type,
+      documentType, 
+      languageCode 
+    });
+
     if (!file || !documentType || !languageCode) {
+      console.log("Missing fields:", { file: !!file, documentType: !!documentType, languageCode: !!languageCode });
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -80,14 +92,14 @@ export async function POST(request: NextRequest) {
     const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
     const storagePath = `${documentType}/${languageCode}/${timestamp}-${sanitizedFileName}`;
 
-    // Convert file to buffer
+    // Convert file to Uint8Array for upload
     const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    const uint8Array = new Uint8Array(arrayBuffer);
 
     // Upload to Supabase Storage
     const { error: uploadError } = await supabase.storage
       .from(BUCKET_NAME)
-      .upload(storagePath, buffer, {
+      .upload(storagePath, uint8Array, {
         contentType: "application/pdf",
         upsert: true,
       });
@@ -95,7 +107,7 @@ export async function POST(request: NextRequest) {
     if (uploadError) {
       console.error("Storage upload error:", uploadError);
       return NextResponse.json(
-        { error: "Failed to upload file to storage" },
+        { error: `Storage error: ${uploadError.message}` },
         { status: 500 }
       );
     }
@@ -144,7 +156,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, file: newFile });
   } catch (error) {
     console.error("Error uploading file:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ error: `Server error: ${errorMessage}` }, { status: 500 });
   }
 }
 

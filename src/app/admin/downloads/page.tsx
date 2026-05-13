@@ -153,12 +153,23 @@ export default function AdminDownloadsPage() {
         setSuccess(`Successfully uploaded ${file.name}`);
         fetchFiles();
       } else {
-        const data = await response.json();
-        setError(data.error || "Failed to upload file");
+        const text = await response.text();
+        try {
+          const data = JSON.parse(text);
+          setError(data.error || `Upload failed (${response.status})`);
+        } catch {
+          console.error("Non-JSON response:", text);
+          setError(`Upload failed (${response.status}): ${text.slice(0, 100)}`);
+        }
       }
     } catch (err) {
       console.error("Upload error:", err);
-      setError("Failed to upload file");
+      if (err instanceof TypeError && err.message.includes("fetch")) {
+        setError("Network error - please check your connection and try again");
+      } else {
+        const errorMessage = err instanceof Error ? err.message : "Unknown error";
+        setError(`Upload error: ${errorMessage}`);
+      }
     } finally {
       setUploadingFor(null);
     }
