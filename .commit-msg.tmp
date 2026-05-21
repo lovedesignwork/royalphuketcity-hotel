@@ -1,1 +1,7 @@
-fix(uploads): improve error handling and diagnostics
+Implement direct Supabase uploads to bypass Vercel body size limit
+
+- Add signed URL generation for direct browser-to-Supabase uploads
+- Client now uploads directly to Supabase Storage (bypasses 4.5MB limit)
+- 3-step flow: get signed URL -> upload to storage -> confirm metadata
+- Keeps legacy direct upload as fallback for small files
+- Supports up to 30MB file uploads without Vercel restrictions
