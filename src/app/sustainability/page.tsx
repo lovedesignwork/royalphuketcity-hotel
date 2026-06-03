@@ -67,35 +67,35 @@ const guestActions = [
 const discoverLinks = [
   {
     title: "About our hotel policy",
-    href: "/about",
+    href: "/hotel-policy",
   },
   {
-    title: "Natural attraction around our hotel",
-    href: "/facilities",
+    title: "Natural Attractions Around Our Hotel",
+    href: "/sustainability/natural-attractions",
   },
   {
-    title: "Activities around us",
-    href: "/facilities",
+    title: "Activities Around Us",
+    href: "/sustainability/activities",
   },
   {
-    title: "Cultural and historical attractions around us",
-    href: "/about",
+    title: "Cultural & Historical Attractions",
+    href: "/sustainability/cultural-historical",
   },
   {
-    title: "Local Market & Shopping Mall",
-    href: "/about",
+    title: "Local Markets & Shopping",
+    href: "/things-to-do-phuket-old-town",
   },
   {
-    title: "Michelin Restaurant around us",
-    href: "/dining",
+    title: "Michelin Restaurants Around Us",
+    href: "/sustainability/michelin-restaurants",
   },
   {
     title: "Public Transportation in Phuket",
-    href: "/contact",
+    href: "/sustainability/transportation",
   },
   {
-    title: "Our Certificate",
-    href: "/sustainability",
+    title: "Our Certifications",
+    href: "#certifications",
   },
 ];
 
@@ -254,7 +254,7 @@ export default function SustainabilityPage() {
       </section>
 
       {/* The Pride of RPC - Certifications */}
-      <section className="py-20 md:py-28 bg-[#FAF8F5]">
+      <section id="certifications" className="py-20 md:py-28 bg-[#FAF8F5]">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -320,6 +320,21 @@ export default function SustainabilityPage() {
               internationally recognized standards that place strong emphasis on
               rigorous and sustainable environmental practices.
             </p>
+
+            {/* Partner & Certification Logos Banner */}
+            <div className="mt-12">
+              <div className="relative w-full">
+                <Image
+                  src="/images/logo/Picture2.gif"
+                  alt="Royal Phuket City Hotel Partner and Certification Logos"
+                  width={5170}
+                  height={497}
+                  className="w-full h-auto object-contain"
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  unoptimized
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
