@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
         deviceStats: [],
         countryStats: [],
         hourlyStats: [],
+        downloadsStats: null,
       });
     }
 
@@ -116,6 +117,87 @@ export async function GET(request: NextRequest) {
       views,
     }));
 
+    // Downloads Page Stats (special section for /download-fact-sheets)
+    const downloadPageViews = pageViews?.filter(
+      (pv) => pv.path === "/download-fact-sheets" || pv.path === "/sales-kit"
+    ) || [];
+
+    const downloadVisitorIds = new Set(
+      downloadPageViews.map((pv) => pv.visitor_id).filter(Boolean)
+    );
+
+    // Country breakdown for downloads
+    const downloadCountryMap: Record<string, number> = {};
+    downloadPageViews.forEach((pv) => {
+      const country = pv.country || "Unknown";
+      downloadCountryMap[country] = (downloadCountryMap[country] || 0) + 1;
+    });
+    const downloadCountryStats = Object.entries(downloadCountryMap)
+      .map(([country, count]) => ({ country, count }))
+      .sort((a, b) => b.count - a.count);
+
+    // Device breakdown for downloads
+    const downloadDeviceMap: Record<string, number> = {};
+    downloadPageViews.forEach((pv) => {
+      const device = pv.device || "Unknown";
+      downloadDeviceMap[device] = (downloadDeviceMap[device] || 0) + 1;
+    });
+    const downloadDeviceStats = Object.entries(downloadDeviceMap)
+      .map(([device, count]) => ({ device, count }))
+      .sort((a, b) => b.count - a.count);
+
+    // Browser breakdown for downloads
+    const downloadBrowserMap: Record<string, number> = {};
+    downloadPageViews.forEach((pv) => {
+      const browser = pv.browser || "Unknown";
+      downloadBrowserMap[browser] = (downloadBrowserMap[browser] || 0) + 1;
+    });
+    const downloadBrowserStats = Object.entries(downloadBrowserMap)
+      .map(([browser, count]) => ({ browser, count }))
+      .sort((a, b) => b.count - a.count);
+
+    // Referrer breakdown for downloads
+    const downloadReferrerMap: Record<string, number> = {};
+    downloadPageViews.forEach((pv) => {
+      const referrer = pv.referrer || "Direct";
+      downloadReferrerMap[referrer] = (downloadReferrerMap[referrer] || 0) + 1;
+    });
+    const downloadReferrerStats = Object.entries(downloadReferrerMap)
+      .map(([referrer, count]) => ({ referrer, count }))
+      .sort((a, b) => b.count - a.count);
+
+    // Daily breakdown for downloads (for trend chart)
+    const downloadDailyMap: Record<string, number> = {};
+    downloadPageViews.forEach((pv) => {
+      const date = new Date(pv.created_at).toISOString().split("T")[0];
+      downloadDailyMap[date] = (downloadDailyMap[date] || 0) + 1;
+    });
+    const downloadDailyStats = Object.entries(downloadDailyMap)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    // Recent visitors to downloads page
+    const downloadRecentVisitors = downloadPageViews.slice(0, 50).map((pv) => ({
+      id: pv.id,
+      timestamp: pv.created_at,
+      country: pv.country,
+      city: pv.city,
+      device: pv.device,
+      browser: pv.browser,
+      referrer: pv.referrer,
+    }));
+
+    const downloadsStats = {
+      totalViews: downloadPageViews.length,
+      uniqueVisitors: downloadVisitorIds.size,
+      countryStats: downloadCountryStats,
+      deviceStats: downloadDeviceStats,
+      browserStats: downloadBrowserStats,
+      referrerStats: downloadReferrerStats,
+      dailyStats: downloadDailyStats,
+      recentVisitors: downloadRecentVisitors,
+    };
+
     return NextResponse.json({
       totalPageViews: totalPageViews || 0,
       uniqueVisitors,
@@ -124,6 +206,7 @@ export async function GET(request: NextRequest) {
       deviceStats,
       countryStats,
       hourlyStats,
+      downloadsStats,
     });
   } catch (error) {
     console.error("Error fetching detailed stats:", error);
