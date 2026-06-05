@@ -4,5 +4,12 @@
       "maxDuration": 60,
       "memory": 1024
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/sales-kit",
+      "destination": "/download-fact-sheets",
+      "permanent": true
+    }
+  ]
 }
