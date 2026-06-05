@@ -25,15 +25,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/sales-kit",
-        destination: "/download-fact-sheets",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 export default nextConfig;
