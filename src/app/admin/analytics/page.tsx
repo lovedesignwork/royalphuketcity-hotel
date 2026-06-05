@@ -329,7 +329,7 @@ export default function AnalyticsPage() {
                           <div
                             className="bg-[#8B7355] h-1.5 rounded-full"
                             style={{
-                              width: `${(device.count / stats.downloadsStats.totalViews) * 100}%`,
+                              width: `${(device.count / (stats.downloadsStats?.totalViews || 1)) * 100}%`,
                             }}
                           />
                         </div>
