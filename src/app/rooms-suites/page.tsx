@@ -159,10 +159,10 @@ export default function RoomsSuitesPage() {
                 ),
               },
               {
-                name: "24-Hour Room Service",
+                name: "Room Service",
                 icon: (
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 0a7 7 0 017 7H5a7 7 0 017-7zM5 11h14M4 11h16v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-1zM8 15v4m8-4v4M3 19h18" />
                   </svg>
                 ),
               },

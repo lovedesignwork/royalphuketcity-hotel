@@ -3,12 +3,13 @@ import { validateAntiSpam } from "@/lib/antispam";
 
 // Every inquiry form on the site (contact, wedding, event, download-fact-sheets,
 // and any future form) MUST be routed through this endpoint so notifications
-// always reach all three mailboxes. Do NOT remove or narrow this list without
+// always reach all four mailboxes. Do NOT remove or narrow this list without
 // sign-off from the hotel team.
 const ADMIN_RECIPIENTS = [
   "reservation@royalphuketcity.com",
   "sales@royalphuketcity.com",
   "marketing@royalphuketcity.com",
+  "puttipop.l@royalphuketcity.com",
 ] as const;
 
 // The General Manager wants visibility on high-touch inquiries (weddings &

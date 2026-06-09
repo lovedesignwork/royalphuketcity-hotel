@@ -21,7 +21,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     category: "Premier",
     size: "30 sqm",
     maxGuests: 2,
-    bedType: "King or Twin",
+    bedType: "Twin",
     views: ["City View"],
     description: [
       "Our Premier Superior rooms offer elegant comfort with contemporary design, featuring warm wood accents and windows that flood the space with natural light.",
@@ -29,8 +29,8 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "Wake up to stunning views of Phuket Old Town and enjoy in-room amenities designed for both relaxation and productivity.",
     ],
     amenities: [
-      "King or Twin Bed",
-      "30 sqm Living Space",
+      "Twin Bed",
+      "30 sqm Space",
       "City View",
       "Rain Shower",
       "Premium Bath Amenities",
@@ -42,7 +42,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "Coffee & Tea Making",
       "Bathrobes & Slippers",
       "Daily Housekeeping",
-      "24-Hour Room Service",
+      "Room Service",
     ],
     images: [
       {
@@ -98,7 +98,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     amenities: [
       "King or Twin Bed",
-      "30 sqm Living Space",
+      "30 sqm Space",
       "Partial Sea View",
       "Rain Shower",
       "Premium Bath Amenities",
@@ -110,7 +110,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "Coffee & Tea Making",
       "Bathrobes & Slippers",
       "Daily Housekeeping",
-      "24-Hour Room Service",
+      "Room Service",
     ],
     images: [
       {
@@ -162,11 +162,10 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     description: [
       "Our Premier Deluxe rooms offer enhanced space and premium touches, perfect for guests seeking a more refined experience with 38 square meters of elegant living space.",
       "Each room features upgraded furnishings, a dedicated seating area, and panoramic windows offering stunning views of Phuket's historic cityscape.",
-      "Enjoy premium amenities including a marble bathroom with rain shower and complimentary mini bar refreshments.",
     ],
     amenities: [
       "King or Twin Bed",
-      "38 sqm Living Space",
+      "38 sqm Space",
       "Panoramic Windows",
       "City View",
       "Marble Bathroom",
@@ -176,11 +175,11 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "High-Speed WiFi",
       "Seating Area",
       "Work Desk",
-      "Mini Bar (Welcome Drinks)",
+      "Mini Bar",
       "In-Room Safe",
       "Bathrobes & Slippers",
       "Daily Housekeeping",
-      "24-Hour Room Service",
+      "Room Service",
     ],
     images: [
       {
@@ -236,7 +235,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     amenities: [
       "King or Twin Bed",
-      "38 sqm Living Space",
+      "38 sqm Space",
       "Panoramic Windows",
       "Partial Sea View",
       "Marble Bathroom",
@@ -246,11 +245,11 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "High-Speed WiFi",
       "Seating Area",
       "Work Desk",
-      "Mini Bar (Welcome Drinks)",
+      "Mini Bar",
       "In-Room Safe",
       "Bathrobes & Slippers",
       "Daily Housekeeping",
-      "24-Hour Room Service",
+      "Room Service",
     ],
     images: [
       {
@@ -306,7 +305,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     amenities: [
       "King Bed",
-      "64 sqm Living Space",
+      "64 sqm Space",
       "Separate Living Room",
       "Panoramic City View",
       "Designer Bathroom",
@@ -377,7 +376,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     ],
     amenities: [
       "King Bed",
-      "75 sqm Living Space",
+      "75 sqm Space",
       "Panoramic Windows",
       "Sea & City Views",
       "Separate Living & Dining Area",
@@ -394,7 +393,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "Luxury Bathrobes & Slippers",
       "Priority Restaurant Reservations",
       "Daily Housekeeping",
-      "24-Hour Room Service",
+      "Room Service",
     ],
     images: [
       {

@@ -276,7 +276,7 @@ export default function SustainabilityPage() {
             <div className="mb-12">
               <div className="relative aspect-[16/9] max-w-2xl mx-auto">
                 <Image
-                  src="/images/HOTEL WEBSITE/certificates.jpg"
+                  src="/images/Picture2.gif"
                   alt="Royal Phuket City Hotel Certifications"
                   fill
                   className="object-contain"
