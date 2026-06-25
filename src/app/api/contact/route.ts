@@ -3,19 +3,15 @@ import { validateAntiSpam } from "@/lib/antispam";
 
 // Every inquiry form on the site (contact, wedding, event, download-fact-sheets,
 // and any future form) MUST be routed through this endpoint so notifications
-// always reach all four mailboxes. Do NOT remove or narrow this list without
+// always reach all five mailboxes. Do NOT remove or narrow this list without
 // sign-off from the hotel team.
 const ADMIN_RECIPIENTS = [
   "reservation@royalphuketcity.com",
   "sales@royalphuketcity.com",
   "marketing@royalphuketcity.com",
   "puttipop.l@royalphuketcity.com",
+  "gm@royalphuketcity.com",
 ] as const;
-
-// The General Manager wants visibility on high-touch inquiries (weddings &
-// events). Added on top of ADMIN_RECIPIENTS for those inquiry types only.
-const GM_RECIPIENT = "gm@royalphuketcity.com";
-const GM_CC_INQUIRY_TYPES = new Set(["event", "wedding"]);
 
 const PRIMARY_REPLY_MAILBOX = "reservation@royalphuketcity.com";
 
@@ -104,17 +100,12 @@ export async function POST(request: NextRequest) {
       const isWeddingInquiry = inquiry_type === "wedding";
       const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
 
-      // Wedding & event inquiries also CC the General Manager.
-      const adminRecipients = GM_CC_INQUIRY_TYPES.has(inquiry_type)
-        ? [...ADMIN_RECIPIENTS, GM_RECIPIENT]
-        : [...ADMIN_RECIPIENTS];
-
-      // Send notification to admin (reservation, sales, marketing — plus GM
-      // for weddings & events). replyTo is the customer's email so staff
-      // pressing "Reply" in their inbox replies directly to the customer.
+      // Send notification to all admin recipients. replyTo is the customer's
+      // email so staff pressing "Reply" in their inbox replies directly to
+      // the customer.
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
-        to: adminRecipients,
+        to: [...ADMIN_RECIPIENTS],
         replyTo: email,
         subject: isWeddingInquiry
           ? `💍 New Wedding Inquiry: ${subject || "Wedding Request"} - Ref: ${referenceNumber}`

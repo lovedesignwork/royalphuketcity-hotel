@@ -113,7 +113,6 @@ const facilities = [
     ],
     features: [
       "Modern equipment",
-      "Steam bath & sauna",
       "Complimentary for guests",
       "Managed by Workout Club",
     ],
