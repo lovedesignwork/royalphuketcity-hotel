@@ -4,17 +4,18 @@ import { SITE_CONFIG } from "@/lib/constants";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
-import { HotelJsonLd, LocalBusinessJsonLd } from "@/components/JsonLd";
+import { HotelJsonLd, LocalBusinessJsonLd, WebSiteJsonLd, OrganizationJsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: `${SITE_CONFIG.name} | Luxury Hotel in Phuket Old Town`,
+    default: `${SITE_CONFIG.name} | Luxury 4-Star Hotel in Phuket Old Town`,
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
-  metadataBase: new URL(SITE_CONFIG.url),
+  applicationName: SITE_CONFIG.name,
   keywords: [
     "Royal Phuket City Hotel",
     "Phuket hotel",
@@ -23,28 +24,37 @@ export const metadata: Metadata = {
     "4-star hotel Thailand",
     "Phuket accommodation",
     "hotel near Phuket Old Town",
+    "Phuket wedding venue",
+    "Phuket meeting rooms",
+    "rooftop restaurant Phuket",
   ],
-  authors: [{ name: "Royal Phuket City Hotel" }],
+  authors: [{ name: "Royal Phuket City Hotel", url: SITE_CONFIG.url }],
   creator: "Royal Phuket City Hotel",
+  publisher: "Royal Phuket City Hotel",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    title: SITE_CONFIG.name,
-    description: SITE_CONFIG.description,
-    url: SITE_CONFIG.url,
+    type: "website",
     siteName: SITE_CONFIG.name,
     locale: "en_US",
-    type: "website",
+    url: SITE_CONFIG.url,
+    title: `${SITE_CONFIG.name} | Luxury 4-Star Hotel in Phuket Old Town`,
+    description: SITE_CONFIG.description,
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Royal Phuket City Hotel",
+        alt: "Royal Phuket City Hotel - Luxury 4-Star Hotel in Phuket Old Town",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE_CONFIG.name,
+    title: `${SITE_CONFIG.name} | Luxury 4-Star Hotel in Phuket Old Town`,
     description: SITE_CONFIG.description,
     images: ["/images/og-image.jpg"],
   },
@@ -60,7 +70,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: SITE_CONFIG.url,
+    canonical: "/",
   },
   verification: {
     google: "google-site-verification-code",
@@ -70,6 +80,7 @@ export const metadata: Metadata = {
     shortcut: "/images/rpc-icon.svg",
     apple: "/images/rpc-icon.svg",
   },
+  category: "travel",
 };
 
 export default function RootLayout({
@@ -80,6 +91,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${marcellus.variable} ${inter.variable}`}>
       <head>
+        <WebSiteJsonLd />
+        <OrganizationJsonLd />
         <HotelJsonLd />
         <LocalBusinessJsonLd />
       </head>

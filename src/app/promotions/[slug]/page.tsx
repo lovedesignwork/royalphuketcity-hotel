@@ -1,7 +1,9 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { PROMOTIONS, EXTERNAL_LINKS } from "@/lib/constants";
+import { PROMOTIONS, EXTERNAL_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { OfferJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,7 +26,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const promo = PROMOTIONS.find((p) => p.slug === slug);
 
@@ -35,8 +37,33 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${promo.title} | Promotions | Royal Phuket City Hotel`,
+    title: `${promo.title} | Promotions`,
     description: promo.shortDescription,
+    alternates: {
+      canonical: `/promotions/${slug}`,
+    },
+    openGraph: {
+      title: `${promo.title} | Royal Phuket City Hotel`,
+      description: promo.shortDescription,
+      url: `${SITE_CONFIG.url}/promotions/${slug}`,
+      siteName: SITE_CONFIG.name,
+      images: [
+        {
+          url: promo.image,
+          width: 1200,
+          height: 630,
+          alt: promo.title,
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${promo.title} | Royal Phuket City Hotel`,
+      description: promo.shortDescription,
+      images: [promo.image],
+    },
   };
 }
 
@@ -52,6 +79,22 @@ export default async function PromotionDetailPage({ params }: PageProps) {
 
   return (
     <main>
+      <OfferJsonLd
+        name={promo.title}
+        description={promo.shortDescription}
+        url={`/promotions/${slug}`}
+        image={promo.image}
+        price={promo.price}
+        validFrom={promo.validFrom}
+        validThrough={promo.validUntil}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Promotions", url: "/promotions" },
+          { name: promo.title, url: `/promotions/${slug}` },
+        ]}
+      />
       {/* Hero Image */}
       <section className="relative h-[50vh] min-h-[400px]">
         <Image

@@ -1,58 +1,118 @@
-import { MetadataRoute } from "next";
-import { SITE_CONFIG } from "@/lib/constants";
+import type { MetadataRoute } from "next";
+import { SITE_CONFIG, ROOMS, RESTAURANTS, PROMOTIONS } from "@/lib/constants";
 
-type SitemapEntry = {
-  route: string;
-  changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
-  priority: number;
-};
-
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_CONFIG.url;
+  const now = new Date();
 
-  const pages: SitemapEntry[] = [
+  // Static pages with their priorities and change frequencies
+  const staticPages: MetadataRoute.Sitemap = [
     // Homepage - highest priority
-    { route: "", changeFrequency: "daily", priority: 1.0 },
+    { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1.0 },
 
-    // Core pages - high priority
-    { route: "/rooms-suites", changeFrequency: "weekly", priority: 0.9 },
-    { route: "/dining", changeFrequency: "weekly", priority: 0.8 },
-    { route: "/facilities", changeFrequency: "weekly", priority: 0.8 },
-    { route: "/wedding-venues", changeFrequency: "weekly", priority: 0.8 },
-    { route: "/meeting-events", changeFrequency: "weekly", priority: 0.8 },
-
-    // Room pages - canonical URLs via the dynamic /rooms-suites/[slug] route
-    { route: "/rooms-suites/premier-superior", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/rooms-suites/premier-superior-partial-sea-view", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/rooms-suites/premier-deluxe", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/rooms-suites/premier-deluxe-partial-sea-view", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/rooms-suites/suite-room", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/rooms-suites/executive-suite", changeFrequency: "weekly", priority: 0.7 },
-
-    // Restaurant pages
-    { route: "/yan-long-chinese-restaurant", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/twist-rooftop-restaurant-bar", changeFrequency: "weekly", priority: 0.7 },
-    { route: "/good-eatz-154", changeFrequency: "weekly", priority: 0.7 },
-
-    // About section
-    { route: "/artist", changeFrequency: "monthly", priority: 0.6 },
-    { route: "/royal-green", changeFrequency: "monthly", priority: 0.5 },
-    { route: "/our-clients", changeFrequency: "monthly", priority: 0.5 },
-    { route: "/sustainability", changeFrequency: "monthly", priority: 0.5 },
+    // Core booking pages - high priority
+    { url: `${baseUrl}/rooms-suites`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/promotions`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/dining`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/facilities`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/wedding-venues`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/meeting-events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
     // Contact
-    { route: "/contact", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/download-fact-sheets`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
 
-    // Policy pages - low priority, excluded from main navigation
-    { route: "/hotel-policy", changeFrequency: "yearly", priority: 0.3 },
-    { route: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
-    { route: "/cookie-policy", changeFrequency: "yearly", priority: 0.3 },
+    // About section
+    { url: `${baseUrl}/artist`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/artist-story`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${baseUrl}/royal-green`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${baseUrl}/our-clients`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${baseUrl}/sustainability`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+
+    // Sustainability sub-pages
+    { url: `${baseUrl}/sustainability/activities`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${baseUrl}/sustainability/cultural-historical`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${baseUrl}/sustainability/michelin-restaurants`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${baseUrl}/sustainability/natural-attractions`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${baseUrl}/sustainability/transportation`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+
+    // Blog
+    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+
+    // Policy pages - low priority
+    { url: `${baseUrl}/hotel-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/cookie-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/terms-conditions`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/disclaimer`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/accessibility`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  return pages.map((page) => ({
-    url: `${baseUrl}${page.route}`,
-    lastModified: new Date(),
-    changeFrequency: page.changeFrequency,
-    priority: page.priority,
+  // Dynamic room pages
+  const roomPages: MetadataRoute.Sitemap = ROOMS.map((room) => ({
+    url: `${baseUrl}/rooms-suites/${room.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
+
+  // Dynamic restaurant pages
+  const restaurantPages: MetadataRoute.Sitemap = RESTAURANTS.map((restaurant) => ({
+    url: `${baseUrl}/${restaurant.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // Dynamic promotion pages
+  const promotionPages: MetadataRoute.Sitemap = PROMOTIONS.map((promo) => ({
+    url: `${baseUrl}/promotions/${promo.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  // Wedding venue type pages
+  const weddingTypes = [
+    "engagement-ceremony",
+    "thai-wedding",
+    "chinese-wedding",
+    "muslim-wedding",
+    "western-wedding",
+    "lgbtq-wedding",
+  ];
+  const weddingPages: MetadataRoute.Sitemap = weddingTypes.map((type) => ({
+    url: `${baseUrl}/wedding-venues/${type}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // Meeting & event type pages
+  const eventTypes = [
+    "corporate-conference",
+    "seminar-workshop",
+    "product-launch",
+    "gala-dinner-award",
+    "exhibition-trade-show",
+    "concert-live-performance",
+    "stand-up-comedy",
+    "talk-show-panel",
+    "graduation-ceremony",
+  ];
+  const eventPages: MetadataRoute.Sitemap = eventTypes.map((type) => ({
+    url: `${baseUrl}/meeting-events/${type}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticPages,
+    ...roomPages,
+    ...restaurantPages,
+    ...promotionPages,
+    ...weddingPages,
+    ...eventPages,
+  ];
 }

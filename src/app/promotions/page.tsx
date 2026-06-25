@@ -15,9 +15,30 @@ function formatValidityPeriod(validFrom: string, validUntil: string): string {
   return `${from.toLocaleDateString("en-US", options)} – ${until.toLocaleDateString("en-US", options)}`;
 }
 
-export const metadata = {
-  title: "Promotions & Special Offers | Royal Phuket City Hotel",
+import { Metadata } from "next";
+import { SITE_CONFIG } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "Promotions & Special Offers",
   description: "Discover exclusive promotions and special offers at Royal Phuket City Hotel. Save on room rates, packages, and experiences in Phuket Old Town.",
+  alternates: {
+    canonical: "/promotions",
+  },
+  openGraph: {
+    title: "Promotions & Special Offers | Royal Phuket City Hotel",
+    description: "Discover exclusive promotions and special offers at Royal Phuket City Hotel. Save on room rates, packages, and experiences.",
+    url: `${SITE_CONFIG.url}/promotions`,
+    siteName: SITE_CONFIG.name,
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Royal Phuket City Hotel Promotions" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Promotions & Special Offers | Royal Phuket City Hotel",
+    description: "Discover exclusive promotions and special offers at Royal Phuket City Hotel.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 export default function PromotionsPage() {

@@ -1,5 +1,80 @@
 import { HOTEL_INFO, EXTERNAL_LINKS, SITE_CONFIG } from "@/lib/constants";
 
+// Reusable JSON-LD component for any schema type
+export function JsonLd({ data }: { data: Record<string, unknown> }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+// WebSite schema with SearchAction (enables sitelinks searchbox)
+export function WebSiteJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_CONFIG.url}/#website`,
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+    description: SITE_CONFIG.description,
+    publisher: {
+      "@id": `${SITE_CONFIG.url}/#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_CONFIG.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+    inLanguage: "en-US",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// Organization schema (referenced by other schemas)
+export function OrganizationJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_CONFIG.url}/#organization`,
+    name: HOTEL_INFO.name,
+    url: SITE_CONFIG.url,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_CONFIG.url}/images/rpc-icon.svg`,
+    },
+    sameAs: [
+      EXTERNAL_LINKS.facebook,
+      EXTERNAL_LINKS.instagram,
+      EXTERNAL_LINKS.tripadvisor,
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: HOTEL_INFO.phone,
+      contactType: "reservations",
+      email: HOTEL_INFO.email,
+      availableLanguage: ["English", "Thai"],
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export function HotelJsonLd() {
   const schema = {
     "@context": "https://schema.org",
@@ -297,6 +372,118 @@ export function EventVenueJsonLd({
     containedInPlace: {
       "@type": "Hotel",
       name: HOTEL_INFO.name,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// Article/BlogPosting schema for blog posts
+interface ArticleJsonLdProps {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  datePublished: string;
+  dateModified: string;
+  authorName?: string;
+}
+
+export function ArticleJsonLd({
+  title,
+  description,
+  url,
+  image,
+  datePublished,
+  dateModified,
+  authorName = "Royal Phuket City Hotel",
+}: ArticleJsonLdProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url: `${SITE_CONFIG.url}${url}`,
+    image: image.startsWith("http") ? image : `${SITE_CONFIG.url}${image}`,
+    datePublished,
+    dateModified,
+    author: {
+      "@type": "Organization",
+      name: authorName,
+      url: SITE_CONFIG.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: HOTEL_INFO.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_CONFIG.url}/images/rpc-icon.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_CONFIG.url}${url}`,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// Offer schema for promotions
+interface OfferJsonLdProps {
+  name: string;
+  description: string;
+  url: string;
+  image: string;
+  price: string;
+  priceCurrency?: string;
+  validFrom: string;
+  validThrough: string;
+}
+
+export function OfferJsonLd({
+  name,
+  description,
+  url,
+  image,
+  price,
+  priceCurrency = "THB",
+  validFrom,
+  validThrough,
+}: OfferJsonLdProps) {
+  // Extract numeric price from string like "From ฿2,200 / 2 nights"
+  const numericPrice = price.replace(/[^0-9]/g, "") || "0";
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    name,
+    description,
+    url: `${SITE_CONFIG.url}${url}`,
+    image: image.startsWith("http") ? image : `${SITE_CONFIG.url}${image}`,
+    price: numericPrice,
+    priceCurrency,
+    validFrom,
+    validThrough,
+    availability: "https://schema.org/InStock",
+    seller: {
+      "@type": "Hotel",
+      name: HOTEL_INFO.name,
+      url: SITE_CONFIG.url,
+    },
+    itemOffered: {
+      "@type": "LodgingReservation",
+      name,
     },
   };
 
