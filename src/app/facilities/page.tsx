@@ -97,7 +97,7 @@ const facilities = [
     name: "Fitness Centre",
     location: "3rd Floor - Workout Club",
     description:
-      "Stay active during your stay with complimentary access to our well-maintained Fitness Centre, exclusively for hotel guests. Located on the 3rd floor, it features a full range of modern equipment along with steam baths and sauna rooms. Our fitness centre is managed by Workout Club – Phuket's Leading Fitness Centre.",
+      "Stay active during your stay with complimentary access to our well-maintained Fitness Centre, exclusively for hotel guests. Located on the 3rd floor, it features a full range of modern equipment. Our fitness centre is managed by Workout Club – Phuket's Leading Fitness Centre.",
     hours: "Open 7 AM - 9 PM | Free Use for Hotel Guests",
     images: [
       "/images/HOTEL WEBSITE/Club Asia 001.jpg",
