@@ -85,7 +85,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
   },
   "premier-superior-partial-sea-view": {
     slug: "premier-superior-partial-sea-view",
-    name: "Premier Superior - Partial Sea View",
+    name: "Premier Superior Sea View",
     category: "Partial Sea View",
     size: "30 sqm",
     maxGuests: 2,
@@ -222,7 +222,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
   },
   "premier-deluxe-partial-sea-view": {
     slug: "premier-deluxe-partial-sea-view",
-    name: "Premier Deluxe - Partial Sea View",
+    name: "Premier Deluxe Sea View",
     category: "Partial Sea View",
     size: "38 sqm",
     maxGuests: 2,

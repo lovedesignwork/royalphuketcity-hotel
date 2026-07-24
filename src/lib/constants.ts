@@ -42,9 +42,9 @@ export const NAV_LINKS = {
       dropdown: [
         { label: "All Rooms & Suites", href: "/rooms-suites" },
         { label: "Premier Superior", href: "/rooms-suites/premier-superior" },
-        { label: "Premier Superior Partial Sea View", href: "/rooms-suites/premier-superior-partial-sea-view" },
+        { label: "Premier Superior Sea View", href: "/rooms-suites/premier-superior-partial-sea-view" },
         { label: "Premier Deluxe", href: "/rooms-suites/premier-deluxe" },
-        { label: "Premier Deluxe Partial Sea View", href: "/rooms-suites/premier-deluxe-partial-sea-view" },
+        { label: "Premier Deluxe Sea View", href: "/rooms-suites/premier-deluxe-partial-sea-view" },
         { label: "Suite Room", href: "/rooms-suites/suite-room" },
         { label: "Executive Suite", href: "/rooms-suites/executive-suite" },
       ],
@@ -126,7 +126,7 @@ export const ROOMS = [
   },
   {
     slug: "premier-superior-partial-sea-view",
-    name: "Premier Superior - Partial Sea View",
+    name: "Premier Superior Sea View",
     category: "Premier",
     size: "30 sqm",
     maxGuests: 2,
@@ -150,7 +150,7 @@ export const ROOMS = [
   },
   {
     slug: "premier-deluxe-partial-sea-view",
-    name: "Premier Deluxe - Partial Sea View",
+    name: "Premier Deluxe Sea View",
     category: "Premier",
     size: "38 sqm",
     maxGuests: 2,
