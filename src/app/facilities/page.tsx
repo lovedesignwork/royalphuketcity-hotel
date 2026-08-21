@@ -161,31 +161,6 @@ const facilities = [
     ],
   },
   {
-    name: "Bakery Shop",
-    location: "G Floor - 154 Bakery",
-    description:
-      "Visit our in-house bakery, where our cake and pastry specialists craft delicious treats with exceptional quality and care. Beyond freshly baked goods, the shop also offers an inviting all-day dining menu perfect for any time of day.",
-    hours: "Open 6:30 AM - 10 PM",
-    images: [
-      "/images/HOTEL WEBSITE/154-Bakery-1.jpg",
-      "/images/HOTEL WEBSITE/154-Bakery-2.jpg",
-      "/images/HOTEL WEBSITE/154-Bakery-3.jpg",
-      "/images/HOTEL WEBSITE/154-Bekery-01_resize.jpg",
-      "/images/HOTEL WEBSITE/154-Bekery-02_resize.jpg",
-      "/images/HOTEL WEBSITE/154-Bekery-03-2_resize.jpg",
-      "/images/HOTEL WEBSITE/154-Bekery-04-2_resize.jpg",
-      "/images/HOTEL WEBSITE/154-Bekery-05_resize.jpg",
-      "/images/HOTEL WEBSITE/97A6678_resize.jpg",
-      "/images/HOTEL WEBSITE/97A6736_resize.jpg",
-    ],
-    features: [
-      "Fresh pastries daily",
-      "All-day dining menu",
-      "Quality ingredients",
-      "Take-away available",
-    ],
-  },
-  {
     name: "Indoor & Outdoor Parking",
     location: "EV Car Charging Station Available",
     description:
