@@ -80,7 +80,6 @@ src/
 | `/dining` | Dining overview |
 | `/yan-long-chinese-restaurant` | Yan Long restaurant |
 | `/twist-rooftop-restaurant-bar` | TWIST rooftop |
-| `/good-eatz-154` | Good Eatz 154 |
 | `/facilities` | Hotel facilities |
 | `/wedding-venues` | Wedding venues |
 | `/meeting-events` | Meeting & Events |

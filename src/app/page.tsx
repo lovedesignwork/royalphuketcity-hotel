@@ -530,7 +530,7 @@ export default function HomePage() {
             </div>
             <p className="text-[--color-text-secondary] max-w-xl mx-auto text-base leading-relaxed">
               From authentic Cantonese cuisine to rooftop cocktails with panoramic views,
-              discover our five distinctive venues.
+              discover our distinctive venues.
             </p>
           </div>
 

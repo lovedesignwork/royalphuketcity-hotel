@@ -5,14 +5,14 @@ import { RESTAURANTS, SITE_CONFIG } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Dining",
   description:
-    "Discover five distinctive dining venues at Royal Phuket City Hotel. From authentic Cantonese at Yan Long to rooftop cocktails at TWIST with panoramic views.",
+    "Discover the dining venues at Royal Phuket City Hotel. From authentic Cantonese at Yan Long to rooftop cocktails at TWIST with panoramic views.",
   alternates: {
     canonical: `${SITE_CONFIG.url}/dining`,
   },
   openGraph: {
     title: "Dining | Royal Phuket City Hotel",
     description:
-      "Five distinctive dining venues from authentic Cantonese cuisine to rooftop cocktails with panoramic views.",
+      "Distinctive dining venues from authentic Cantonese cuisine to rooftop cocktails with panoramic views.",
     url: `${SITE_CONFIG.url}/dining`,
     siteName: SITE_CONFIG.name,
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dining | Royal Phuket City Hotel",
     description:
-      "Five distinctive dining venues from authentic Cantonese cuisine to rooftop cocktails.",
+      "Distinctive dining venues from authentic Cantonese cuisine to rooftop cocktails.",
     images: ["/images/og-image.jpg"],
   },
 };
@@ -42,7 +42,7 @@ export default function DiningPage() {
       <HeroSection
         title="Dining"
         subtitle="Culinary Experiences"
-        description="Five distinctive venues, endless culinary discoveries"
+        description="Distinctive venues, endless culinary discoveries"
         image="/images/HOTEL WEBSITE/Restaurant/TWIST_001-_resize.jpg"
         height="medium"
       />
@@ -57,7 +57,7 @@ export default function DiningPage() {
             />
             <p className="text-[--color-text-secondary] text-lg">
               From authentic Cantonese dim sum to sunset cocktails with
-              panoramic views, our five dining venues offer diverse culinary
+              panoramic views, our dining venues offer diverse culinary
               experiences to satisfy every palate. Each restaurant is helmed by
               passionate chefs dedicated to crafting memorable dishes using the
               finest local and imported ingredients.
@@ -140,7 +140,7 @@ export default function DiningPage() {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('/images/HOTEL WEBSITE/Restaurant/154.jpg')",
+                    "url('/images/HOTEL WEBSITE/Restaurant/YanLong_L12_banquet_dishes_overhead_L.jpg')",
                 }}
               />
             </div>

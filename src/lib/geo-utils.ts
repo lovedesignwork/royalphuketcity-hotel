@@ -191,7 +191,7 @@ export const HOTEL_FAQS: FAQItem[] = [
   {
     question: "What dining options are available at Royal Phuket City Hotel?",
     answer:
-      "The hotel features multiple dining venues including Yan Long Chinese Restaurant (authentic Cantonese cuisine), TWIST Rooftop Restaurant & Bar (panoramic views and cocktails), and Good Eatz 154 (all-day dining).",
+      "The hotel features Yan Long Chinese Restaurant (authentic Cantonese cuisine) and TWIST Rooftop Restaurant & Bar (panoramic views and cocktails), along with an in-house bakery and 24-hour in-room dining.",
   },
   {
     question: "Can Royal Phuket City Hotel host weddings?",

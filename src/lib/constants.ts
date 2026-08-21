@@ -95,7 +95,6 @@ export const NAV_LINKS = {
           label: "TWIST Rooftop Restaurant & Bar",
           href: "/twist-rooftop-restaurant-bar",
         },
-        { label: "Good Eatz 154", href: "/good-eatz-154" },
       ],
     },
     {
@@ -206,16 +205,6 @@ export const RESTAURANTS = [
     shortDescription:
       "Rooftop dining with panoramic views, craft cocktails, and international cuisine.",
     image: "/images/HOTEL WEBSITE/Restaurant/Twist ROoftop.jpg",
-  },
-  {
-    slug: "good-eatz-154",
-    name: "Good Eatz 154",
-    cuisine: "Thai & International",
-    floor: "Ground Floor",
-    hours: "6:00 AM – 10:00 PM",
-    shortDescription:
-      "All-day dining featuring Thai favorites and international breakfast buffet.",
-    image: "/images/HOTEL WEBSITE/Restaurant/RPC_LM06_mixed_tourists_goodeatz_lunch_L.jpg",
   },
 ] as const;
 

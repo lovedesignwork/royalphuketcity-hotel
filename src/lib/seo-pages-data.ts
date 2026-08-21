@@ -678,7 +678,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         description: [
           "Royal Phuket City Hotel is ideally positioned for exploring Phuket Old Town's cafe scene. Our central location places you within a 5-10 minute walk of all the best coffee destinations, allowing you to maximize your cafe-hopping time without worrying about transportation or parking.",
           "After a morning of exploring cafes, return to the hotel for a refreshing swim in our pool or a rest in your comfortable room before heading out for an afternoon coffee session. Our concierge can provide a custom cafe map highlighting the current local favorites and hidden gems.",
-          "Many of our guests begin their day with breakfast at Good Eatz 154 or our main restaurant, then venture out to explore the heritage cafes before the afternoon heat sets in. The combination of hotel comfort and Old Town accessibility makes Royal Phuket City the smart choice for coffee lovers.",
+          "Many of our guests begin their day with breakfast at the hotel, then venture out to explore the heritage cafes before the afternoon heat sets in. The combination of hotel comfort and Old Town accessibility makes Royal Phuket City the smart choice for coffee lovers.",
         ],
         walkingTime: "5-10 minutes to main cafe area",
         highlights: [
