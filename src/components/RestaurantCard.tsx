@@ -38,7 +38,7 @@ export default function RestaurantCard({
           alt={name}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1088px) 50vw, 496px"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500" />
       </Link>

@@ -69,7 +69,7 @@ export default function DiningPage() {
       {/* Restaurants */}
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
             {RESTAURANTS.map((restaurant) => (
               <RestaurantCard key={restaurant.slug} {...restaurant} />
             ))}
