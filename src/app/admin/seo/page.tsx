@@ -171,11 +171,14 @@ function StatCard({
 // ---------------------------------------------------------------------------
 type Tab = "rankings" | "console" | "monthly";
 
+// Flip to true to bring back the Keyword Rankings + Search Console tabs.
+const SHOW_TRACKING_TABS = false;
+
 export default function SeoPage() {
   const [stats, setStats] = useState<SeoStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [range, setRange] = useState("30d");
-  const [tab, setTab] = useState<Tab>("rankings");
+  const [tab, setTab] = useState<Tab>(SHOW_TRACKING_TABS ? "rankings" : "monthly");
   const [syncing, setSyncing] = useState(false);
   const [syncMsg, setSyncMsg] = useState<string | null>(null);
 
@@ -354,8 +357,12 @@ export default function SeoPage() {
       {/* Tabs */}
       <div className="flex gap-1 border-b border-gray-200">
         {([
-          ["rankings", "Keyword Rankings"],
-          ["console", "Search Console"],
+          ...(SHOW_TRACKING_TABS
+            ? ([
+                ["rankings", "Keyword Rankings"],
+                ["console", "Search Console"],
+              ] as [Tab, string][])
+            : []),
           ["monthly", "Monthly Report"],
         ] as [Tab, string][]).map(([id, label]) => (
           <button
