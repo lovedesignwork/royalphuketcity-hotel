@@ -208,7 +208,7 @@ const BRANDS: BrandProfile[] = [
     name: "Royal Wellness Spa",
     domain: "royalwellnessspaphuket.com",
     seed: 113,
-    start: { year: 2025, month: 11 }, // Dec 2025 — recently launched
+    start: { year: 2026, month: 4 }, // May 2026 — recently launched
     clicksRange: [58, 192],
     imprRange: [5600, 16800],
     positionRange: [57.4, 17.6],
