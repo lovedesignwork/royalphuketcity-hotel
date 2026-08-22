@@ -307,24 +307,26 @@ export default function SeoPage() {
             Google keyword positions & Search Console performance
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <select
-            value={range}
-            onChange={(e) => setRange(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none"
-          >
-            <option value="7d">📅 Last 7 Days</option>
-            <option value="30d">📅 Last 30 Days</option>
-            <option value="90d">📅 Last 90 Days</option>
-          </select>
-          <button
-            onClick={() => runSync(false)}
-            disabled={syncing}
-            className="px-4 py-2 bg-[#8B7355] text-white rounded-lg hover:bg-[#75613f] transition-colors disabled:opacity-60 text-sm font-medium"
-          >
-            {syncing ? "Syncing…" : "Sync now"}
-          </button>
-        </div>
+        {SHOW_TRACKING_TABS && (
+          <div className="flex items-center gap-3">
+            <select
+              value={range}
+              onChange={(e) => setRange(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none"
+            >
+              <option value="7d">📅 Last 7 Days</option>
+              <option value="30d">📅 Last 30 Days</option>
+              <option value="90d">📅 Last 90 Days</option>
+            </select>
+            <button
+              onClick={() => runSync(false)}
+              disabled={syncing}
+              className="px-4 py-2 bg-[#8B7355] text-white rounded-lg hover:bg-[#75613f] transition-colors disabled:opacity-60 text-sm font-medium"
+            >
+              {syncing ? "Syncing…" : "Sync now"}
+            </button>
+          </div>
+        )}
       </div>
 
       {syncMsg && (
@@ -355,29 +357,27 @@ export default function SeoPage() {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-gray-200">
-        {([
-          ...(SHOW_TRACKING_TABS
-            ? ([
-                ["rankings", "Keyword Rankings"],
-                ["console", "Search Console"],
-              ] as [Tab, string][])
-            : []),
-          ["monthly", "Monthly Report"],
-        ] as [Tab, string][]).map(([id, label]) => (
-          <button
-            key={id}
-            onClick={() => setTab(id)}
-            className={`px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors ${
-              tab === id
-                ? "border-[#8B7355] text-[#8B7355]"
-                : "border-transparent text-gray-500 hover:text-gray-800"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      {SHOW_TRACKING_TABS && (
+        <div className="flex gap-1 border-b border-gray-200">
+          {([
+            ["rankings", "Keyword Rankings"],
+            ["console", "Search Console"],
+            ["monthly", "Monthly Report"],
+          ] as [Tab, string][]).map(([id, label]) => (
+            <button
+              key={id}
+              onClick={() => setTab(id)}
+              className={`px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors ${
+                tab === id
+                  ? "border-[#8B7355] text-[#8B7355]"
+                  : "border-transparent text-gray-500 hover:text-gray-800"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {tab === "rankings" && (
         <RankingsTab
@@ -734,22 +734,24 @@ function MonthlyTab({
   if (!hasRealData) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-end gap-2">
-          <button
-            onClick={emailReport}
-            disabled={emailing}
-            className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
-          >
-            {emailing ? "Sending…" : "Email report now"}
-          </button>
-          <button
-            onClick={onBackfill}
-            disabled={syncing}
-            className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
-          >
-            {syncing ? "Importing…" : "Backfill 90 days of history"}
-          </button>
-        </div>
+        {SHOW_TRACKING_TABS && (
+          <div className="flex items-center justify-end gap-2">
+            <button
+              onClick={emailReport}
+              disabled={emailing}
+              className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
+            >
+              {emailing ? "Sending…" : "Email report now"}
+            </button>
+            <button
+              onClick={onBackfill}
+              disabled={syncing}
+              className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
+            >
+              {syncing ? "Importing…" : "Backfill 90 days of history"}
+            </button>
+          </div>
+        )}
         {emailMsg && (
           <div className="rounded-lg border border-[#8B7355]/30 bg-[#8B7355]/5 px-4 py-2.5 text-sm text-gray-700">
             {emailMsg}
