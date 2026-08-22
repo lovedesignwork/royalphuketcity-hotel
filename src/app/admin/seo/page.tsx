@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import ReactCountryFlag from "react-country-flag";
+import BrandMonthlyReports from "./monthly-report";
 
 // ---------------------------------------------------------------------------
 // Types (mirror /api/admin/seo/stats)
@@ -48,9 +50,9 @@ interface SeoStats {
 
 const BRAND = "#8B7355";
 
-const LOCATION_FLAGS: Record<string, string> = {
-  Thailand: "🇹🇭",
-  "United States": "🇺🇸",
+const LOCATION_CODES: Record<string, string> = {
+  Thailand: "TH",
+  "United States": "US",
 };
 
 // ---------------------------------------------------------------------------
@@ -520,10 +522,19 @@ function RankingsTab({
                 <tr key={kw.id} className={kw.active ? "" : "opacity-50"}>
                   <td className="px-4 py-3">
                     <div className="font-medium text-gray-900">{kw.keyword}</div>
-                    <div className="text-xs text-gray-400">
-                      {LOCATION_FLAGS[kw.location] ? `${LOCATION_FLAGS[kw.location]} ` : ""}
-                      {kw.location}
-                      {kw.target_url ? ` · ${kw.target_url}` : ""}
+                    <div className="text-xs text-gray-400 flex items-center gap-1.5">
+                      {LOCATION_CODES[kw.location] && (
+                        <ReactCountryFlag
+                          countryCode={LOCATION_CODES[kw.location]}
+                          svg
+                          style={{ width: "1.2em", height: "0.9em", borderRadius: "2px" }}
+                          title={kw.location}
+                        />
+                      )}
+                      <span>
+                        {kw.location}
+                        {kw.target_url ? ` · ${kw.target_url}` : ""}
+                      </span>
                     </div>
                   </td>
                   <td className="px-4 py-3 text-center">
@@ -709,6 +720,39 @@ function MonthlyTab({
   }
 
   const trend = stats?.monthlyTrend || [];
+  const hasRealData = trend.some((m) => m.clicks > 0 || m.impressions > 0);
+
+  // Until real Search Console history accumulates, show the sample report so
+  // the team can see what the monthly report will look like.
+  if (!hasRealData) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-end gap-2">
+          <button
+            onClick={emailReport}
+            disabled={emailing}
+            className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
+          >
+            {emailing ? "Sending…" : "Email report now"}
+          </button>
+          <button
+            onClick={onBackfill}
+            disabled={syncing}
+            className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
+          >
+            {syncing ? "Importing…" : "Backfill 90 days of history"}
+          </button>
+        </div>
+        {emailMsg && (
+          <div className="rounded-lg border border-[#8B7355]/30 bg-[#8B7355]/5 px-4 py-2.5 text-sm text-gray-700">
+            {emailMsg}
+          </div>
+        )}
+        <BrandMonthlyReports />
+      </div>
+    );
+  }
+
   const current = trend[trend.length - 1];
   const previous = trend[trend.length - 2];
   const maxImpr = Math.max(1, ...trend.map((m) => m.impressions));
