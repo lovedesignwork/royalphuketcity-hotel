@@ -48,6 +48,11 @@ interface SeoStats {
 
 const BRAND = "#8B7355";
 
+const LOCATION_FLAGS: Record<string, string> = {
+  Thailand: "🇹🇭",
+  "United States": "🇺🇸",
+};
+
 // ---------------------------------------------------------------------------
 // Small presentational helpers
 // ---------------------------------------------------------------------------
@@ -251,10 +256,11 @@ export default function SeoPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        setSyncMsg(
-          `Synced: ${data.gscRowsUpserted} Search Console rows, ${data.ranksRecorded}/${data.keywordsChecked} keyword ranks.` +
-            (data.errors?.length ? ` (${data.errors.length} warning(s))` : "")
-        );
+        let msg = `Synced: ${data.gscRowsUpserted} Search Console rows, ${data.ranksRecorded}/${data.keywordsChecked} keyword ranks.`;
+        if (data.errors?.length) {
+          msg += ` Warnings: ${data.errors.join(" | ")}`;
+        }
+        setSyncMsg(msg);
         await fetchStats();
       } else {
         setSyncMsg(data.error || "Sync failed");
@@ -302,9 +308,9 @@ export default function SeoPage() {
             onChange={(e) => setRange(e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none"
           >
-            <option value="7d">Last 7 Days</option>
-            <option value="30d">Last 30 Days</option>
-            <option value="90d">Last 90 Days</option>
+            <option value="7d">📅 Last 7 Days</option>
+            <option value="30d">📅 Last 30 Days</option>
+            <option value="90d">📅 Last 90 Days</option>
           </select>
           <button
             onClick={() => runSync(false)}
@@ -471,8 +477,8 @@ function RankingsTab({
               onChange={(e) => setNewLocation(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-[#8B7355]"
             >
-              <option value="Thailand">Thailand</option>
-              <option value="United States">United States</option>
+              <option value="Thailand">🇹🇭 Thailand</option>
+              <option value="United States">🇺🇸 United States</option>
             </select>
           </div>
           <button
@@ -515,6 +521,7 @@ function RankingsTab({
                   <td className="px-4 py-3">
                     <div className="font-medium text-gray-900">{kw.keyword}</div>
                     <div className="text-xs text-gray-400">
+                      {LOCATION_FLAGS[kw.location] ? `${LOCATION_FLAGS[kw.location]} ` : ""}
                       {kw.location}
                       {kw.target_url ? ` · ${kw.target_url}` : ""}
                     </div>
