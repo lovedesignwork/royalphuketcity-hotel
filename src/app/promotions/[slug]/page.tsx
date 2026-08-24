@@ -7,7 +7,6 @@ import { OfferJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 import { getLocale } from "@/lib/i18n/get-locale";
 import { localizeHref } from "@/lib/i18n/path";
 import {
-  formatPromoPeriod,
   getLocalizedPromotion,
   getLocalizedPromotions,
   getPromotionsPageCopy,

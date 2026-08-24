@@ -389,7 +389,15 @@ const en = {
   },
 };
 
-const th: { [K in keyof typeof en]: any } = {
+type DictionaryShape<T> = T extends string
+  ? string
+  : T extends readonly (infer U)[]
+    ? DictionaryShape<U>[]
+    : T extends object
+      ? { [K in keyof T]: DictionaryShape<T[K]> }
+      : T;
+
+const th: DictionaryShape<typeof en> = {
   meta: {
     titleDefault: "โรงแรมรอยัล ภูเก็ต ซิตี้ | โรงแรม 4 ดาว ใจกลางเมืองเก่าภูเก็ต",
     titleTemplate: "%s | โรงแรมรอยัล ภูเก็ต ซิตี้",
@@ -777,7 +785,7 @@ const th: { [K in keyof typeof en]: any } = {
   },
 };
 
-export type Dictionary = typeof en;
+export type Dictionary = DictionaryShape<typeof en>;
 
 export const dictionaries: Record<Locale, Dictionary> = { en, th };
 
