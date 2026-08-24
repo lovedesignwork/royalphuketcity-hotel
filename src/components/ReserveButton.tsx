@@ -1,4 +1,7 @@
+"use client";
+
 import { EXTERNAL_LINKS } from "@/lib/constants";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 interface ReserveButtonProps {
   variant?: "primary" | "outline" | "white";
@@ -11,8 +14,12 @@ export default function ReserveButton({
   size = "default",
   className = "",
 }: ReserveButtonProps) {
+  const { locale, t } = useLocale();
+  const isThai = locale === "th";
+
   const baseClasses =
-    "inline-flex items-center justify-center font-medium tracking-[0.15em] uppercase transition-all duration-300";
+    "inline-flex items-center justify-center font-medium transition-all duration-300";
+  const tracking = isThai ? "" : "tracking-[0.15em] uppercase";
 
   const sizeClasses = {
     default: "px-6 py-3 text-xs",
@@ -32,9 +39,9 @@ export default function ReserveButton({
       href={EXTERNAL_LINKS.booking}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={`${baseClasses} ${tracking} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
     >
-      Reserve Now
+      {t.common.reserve}
     </a>
   );
 }

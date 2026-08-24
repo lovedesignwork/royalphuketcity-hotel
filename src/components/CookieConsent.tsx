@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import LocaleLink from "@/components/i18n/LocaleLink";
 
 const STORAGE_KEY = "rpc-cookie-consent";
 
 export default function CookieConsent() {
+  const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -38,7 +40,7 @@ export default function CookieConsent() {
       <div
         role="dialog"
         aria-live="polite"
-        aria-label="Cookie consent"
+        aria-label={t.cookie.aria}
         className="md:hidden fixed inset-x-0 bottom-0 z-[9998] animate-cookie-slide-up"
       >
         <div className="bg-[#1a1a1a] text-white px-4 py-3 safe-area-pb">
@@ -62,13 +64,13 @@ export default function CookieConsent() {
                 <circle cx="15" cy="10" r="0.9" fill="currentColor" />
               </svg>
               <p className="text-xs text-white/90 leading-tight">
-                We use cookies.{" "}
-                <Link
+                {t.cookie.mobile}{" "}
+                <LocaleLink
                   href="/cookie-policy"
                   className="underline text-[#C4A777]"
                 >
-                  Learn more
-                </Link>
+                  {t.cookie.learnMore}
+                </LocaleLink>
               </p>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
@@ -77,14 +79,14 @@ export default function CookieConsent() {
                 onClick={() => handleChoice("declined")}
                 className="text-xs text-white/60 hover:text-white px-2 py-1.5 transition-colors"
               >
-                Decline
+                {t.cookie.decline}
               </button>
               <button
                 type="button"
                 onClick={() => handleChoice("accepted")}
                 className="text-xs font-medium bg-[#C4A777] text-[#1a1a1a] px-4 py-1.5 rounded-full hover:bg-[#d4b787] transition-colors"
               >
-                Accept
+                {t.cookie.accept}
               </button>
             </div>
           </div>
@@ -95,7 +97,7 @@ export default function CookieConsent() {
       <div
         role="dialog"
         aria-live="polite"
-        aria-label="Cookie consent"
+        aria-label={t.cookie.aria}
         className="hidden md:block fixed left-6 bottom-6 max-w-md z-[9998] animate-cookie-in"
       >
         <div className="bg-white border border-black/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.25)] p-6">
@@ -121,15 +123,13 @@ export default function CookieConsent() {
             </div>
             <div className="flex-1">
               <p className="text-sm leading-relaxed text-[--color-text-primary]">
-                We use cookies to enhance your browsing experience and analyse site
-                traffic. See our{" "}
-                <Link
+                {t.cookie.desktop}{" "}
+                <LocaleLink
                   href="/cookie-policy"
                   className="underline decoration-[#8B7355]/40 underline-offset-2 hover:text-[#8B7355] transition-colors"
                 >
-                  Cookie Policy
-                </Link>
-                .
+                  {t.cookie.policy}
+                </LocaleLink>
               </p>
             </div>
           </div>
@@ -140,14 +140,14 @@ export default function CookieConsent() {
               onClick={() => handleChoice("declined")}
               className="text-xs tracking-wide uppercase text-[--color-text-secondary] hover:text-[--color-text-primary] px-3 py-2 transition-colors"
             >
-              Decline
+              {t.cookie.decline}
             </button>
             <button
               type="button"
               onClick={() => handleChoice("accepted")}
               className="text-xs tracking-wide uppercase bg-[#8B7355] text-white px-5 py-2.5 hover:bg-[#7a6548] transition-colors"
             >
-              Accept
+              {t.cookie.accept}
             </button>
           </div>
         </div>

@@ -1,179 +1,193 @@
-import Link from "next/link";
 import { HOTEL_INFO, EXTERNAL_LINKS } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { getDictionary } from "@/lib/i18n/messages";
+import { localizeHref } from "@/lib/i18n/path";
+import LocaleFooterLink from "./FooterLink";
 
-const seoLinks = {
+const seoHrefs = {
   phuketHotel1: [
-    { label: "Phuket Old Town Hotel", href: "/phuket-old-town-hotel" },
-    { label: "4-Star Hotel in Phuket", href: "/4-star-hotel-phuket" },
-    { label: "Luxury Hotel Phuket City", href: "/luxury-hotel-phuket-city" },
-    { label: "Best Hotel Near Phuket Town", href: "/best-hotel-phuket-town" },
-    { label: "Phuket City Center Hotel", href: "/phuket-city-center-hotel" },
+    "/phuket-old-town-hotel",
+    "/4-star-hotel-phuket",
+    "/luxury-hotel-phuket-city",
+    "/best-hotel-phuket-town",
+    "/phuket-city-center-hotel",
   ],
   phuketHotel2: [
-    { label: "Budget Friendly Hotel Phuket", href: "/budget-friendly-hotel-phuket" },
-    { label: "Family Hotel in Phuket", href: "/family-hotel-phuket" },
-    { label: "Business Hotel Phuket", href: "/business-hotel-phuket" },
-    { label: "Hotel with Pool Phuket Town", href: "/hotel-with-pool-phuket-town" },
-    { label: "Heritage Hotel Phuket", href: "/heritage-hotel-phuket" },
+    "/budget-friendly-hotel-phuket",
+    "/family-hotel-phuket",
+    "/business-hotel-phuket",
+    "/hotel-with-pool-phuket-town",
+    "/heritage-hotel-phuket",
   ],
   whereToGo: [
-    { label: "Things to Do in Phuket Old Town", href: "/things-to-do-phuket-old-town" },
-    { label: "Phuket Sunday Walking Street", href: "/phuket-sunday-walking-street" },
-    { label: "Sino-Portuguese Architecture Phuket", href: "/sino-portuguese-architecture-phuket" },
-    { label: "Best Cafes in Phuket Town", href: "/best-cafes-phuket-town" },
-    { label: "Phuket Night Market Guide", href: "/phuket-night-market-guide" },
+    "/things-to-do-phuket-old-town",
+    "/phuket-sunday-walking-street",
+    "/sino-portuguese-architecture-phuket",
+    "/best-cafes-phuket-town",
+    "/phuket-night-market-guide",
   ],
   wedding: [
-    { label: "Wedding Venue Phuket City", href: "/wedding-venues" },
-    { label: "Ballroom Wedding Phuket", href: "/wedding-venues" },
-    { label: "Grand Wedding Hall Thailand", href: "/wedding-venues" },
-    { label: "Thai Wedding Ceremony Venue", href: "/wedding-venues/thai-wedding" },
-    { label: "Chinese Wedding Banquet Phuket", href: "/wedding-venues/chinese-wedding" },
+    "/wedding-venues",
+    "/wedding-venues",
+    "/wedding-venues",
+    "/wedding-venues/thai-wedding",
+    "/wedding-venues/chinese-wedding",
   ],
   mice: [
-    { label: "Corporate Conference Phuket", href: "/meeting-events/corporate-conference" },
-    { label: "Seminar & Workshop Venue", href: "/meeting-events/seminar-workshop" },
-    { label: "Product Launch Phuket", href: "/meeting-events/product-launch" },
-    { label: "Gala Dinner Venue", href: "/meeting-events/gala-dinner-award" },
-    { label: "Exhibition Hall Phuket", href: "/meeting-events/exhibition-trade-show" },
+    "/meeting-events/corporate-conference",
+    "/meeting-events/seminar-workshop",
+    "/meeting-events/product-launch",
+    "/meeting-events/gala-dinner-award",
+    "/meeting-events/exhibition-trade-show",
   ],
   restaurant: [
-    { label: "Chinese Restaurant Phuket", href: "/yan-long-chinese-restaurant" },
-    { label: "Dim Sum Phuket Town", href: "/yan-long-chinese-restaurant" },
-    { label: "Best Restaurant in Phuket City", href: "/dining" },
-    { label: "Rooftop Bar Phuket Town", href: "/twist-rooftop-restaurant-bar" },
-    { label: "Cantonese Food Phuket", href: "/yan-long-chinese-restaurant" },
+    "/yan-long-chinese-restaurant",
+    "/yan-long-chinese-restaurant",
+    "/dining",
+    "/twist-rooftop-restaurant-bar",
+    "/yan-long-chinese-restaurant",
   ],
 };
 
-export default function Footer() {
+const seoLabelsEn = {
+  phuketHotel1: [
+    "Phuket Old Town Hotel",
+    "4-Star Hotel in Phuket",
+    "Luxury Hotel Phuket City",
+    "Best Hotel Near Phuket Town",
+    "Phuket City Center Hotel",
+  ],
+  phuketHotel2: [
+    "Budget Friendly Hotel Phuket",
+    "Family Hotel in Phuket",
+    "Business Hotel Phuket",
+    "Hotel with Pool Phuket Town",
+    "Heritage Hotel Phuket",
+  ],
+  whereToGo: [
+    "Things to Do in Phuket Old Town",
+    "Phuket Sunday Walking Street",
+    "Sino-Portuguese Architecture Phuket",
+    "Best Cafes in Phuket Town",
+    "Phuket Night Market Guide",
+  ],
+  wedding: [
+    "Wedding Venue Phuket City",
+    "Ballroom Wedding Phuket",
+    "Grand Wedding Hall Thailand",
+    "Thai Wedding Ceremony Venue",
+    "Chinese Wedding Banquet Phuket",
+  ],
+  mice: [
+    "Corporate Conference Phuket",
+    "Seminar & Workshop Venue",
+    "Product Launch Phuket",
+    "Gala Dinner Venue",
+    "Exhibition Hall Phuket",
+  ],
+  restaurant: [
+    "Chinese Restaurant Phuket",
+    "Dim Sum Phuket Town",
+    "Best Restaurant in Phuket City",
+    "Rooftop Bar Phuket Town",
+    "Cantonese Food Phuket",
+  ],
+};
+
+const seoLabelsTh = {
+  phuketHotel1: [
+    "โรงแรมเมืองเก่าภูเก็ต",
+    "โรงแรม 4 ดาวในภูเก็ต",
+    "โรงแรมหรูกลางเมืองภูเก็ต",
+    "โรงแรมใกล้ภูเก็ตทาวน์",
+    "โรงแรมใจกลางเมืองภูเก็ต",
+  ],
+  phuketHotel2: [
+    "โรงแรมภูเก็ตราคาย่อมเยา",
+    "โรงแรมครอบครัวภูเก็ต",
+    "โรงแรมธุรกิจภูเก็ต",
+    "โรงแรมมีสระว่ายน้ำภูเก็ตทาวน์",
+    "โรงแรมสไตล์มรดกภูเก็ต",
+  ],
+  whereToGo: [
+    "เที่ยวเมืองเก่าภูเก็ต",
+    "ถนนคนเดินวันอาทิตย์ภูเก็ต",
+    "สถาปัตยกรรมชิโนโปรตุกีส",
+    "คาเฟ่ในภูเก็ตทาวน์",
+    "ตลาดกลางคืนภูเก็ต",
+  ],
+  wedding: [
+    "สถานที่แต่งงานภูเก็ตเมือง",
+    "งานแต่งบอลรูมภูเก็ต",
+    "ห้องจัดงานแต่งใหญ่",
+    "สถานที่พิธีแต่งงานไทย",
+    "งานเลี้ยงแต่งงานจีนภูเก็ต",
+  ],
+  mice: [
+    "สัมมนาองค์กรภูเก็ต",
+    "สถานที่สัมมนาและเวิร์กช็อป",
+    "งานเปิดตัวสินค้าภูเก็ต",
+    "สถานที่จัดกาล่าดินเนอร์",
+    "ห้องจัดงานแสดงสินค้าภูเก็ต",
+  ],
+  restaurant: [
+    "ร้านอาหารจีนภูเก็ต",
+    "ติ่มซำภูเก็ตทาวน์",
+    "ร้านอาหารในเมืองภูเก็ต",
+    "รูฟท็อปบาร์ภูเก็ตทาวน์",
+    "อาหารกวางตุ้งภูเก็ต",
+  ],
+};
+
+export default async function Footer() {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const isThai = locale === "th";
+  const labels = isThai ? seoLabelsTh : seoLabelsEn;
+  const headingClass = isThai
+    ? "font-heading text-sm text-[--color-text-primary] mb-4 font-semibold"
+    : "font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider";
+  const legalClass = isThai
+    ? "text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
+    : "text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider";
+
+  const seoColumns = [
+    { title: t.footer.seoHotel, hrefs: seoHrefs.phuketHotel1, texts: labels.phuketHotel1 },
+    { title: t.footer.seoOldTown, hrefs: seoHrefs.phuketHotel2, texts: labels.phuketHotel2 },
+    { title: t.footer.seoWhere, hrefs: seoHrefs.whereToGo, texts: labels.whereToGo },
+    { title: t.footer.seoWedding, hrefs: seoHrefs.wedding, texts: labels.wedding },
+    { title: t.footer.seoMice, hrefs: seoHrefs.mice, texts: labels.mice },
+    { title: t.footer.seoRestaurant, hrefs: seoHrefs.restaurant, texts: labels.restaurant },
+  ];
+
   return (
     <footer className="bg-white border-t border-gray-200">
-      {/* Pre-Footer SEO Links */}
       <div className="bg-[--color-surface] border-b border-gray-200">
         <div className="container mx-auto px-6 py-12">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {/* Phuket Hotel Column 1 */}
-            <div>
-              <h5 className="font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider">
-                Phuket Hotel
-              </h5>
-              <ul className="space-y-2">
-                {seoLinks.phuketHotel1.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Phuket Hotel Column 2 */}
-            <div>
-              <h5 className="font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider">
-                Phuket Old Town Hotel
-              </h5>
-              <ul className="space-y-2">
-                {seoLinks.phuketHotel2.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Where to Go in Phuket */}
-            <div>
-              <h5 className="font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider">
-                Where to Go in Phuket
-              </h5>
-              <ul className="space-y-2">
-                {seoLinks.whereToGo.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Wedding */}
-            <div>
-              <h5 className="font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider">
-                Wedding
-              </h5>
-              <ul className="space-y-2">
-                {seoLinks.wedding.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* MICE */}
-            <div>
-              <h5 className="font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider">
-                MICE
-              </h5>
-              <ul className="space-y-2">
-                {seoLinks.mice.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Phuket Restaurant */}
-            <div>
-              <h5 className="font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider">
-                Phuket Restaurant
-              </h5>
-              <ul className="space-y-2">
-                {seoLinks.restaurant.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {seoColumns.map((column) => (
+              <div key={column.title}>
+                <h5 className={headingClass}>{column.title}</h5>
+                <ul className="space-y-2">
+                  {column.hrefs.map((href, index) => (
+                    <li key={`${href}-${column.texts[index]}`}>
+                      <LocaleFooterLink
+                        href={localizeHref(href, locale)}
+                        className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
+                      >
+                        {column.texts[index]}
+                      </LocaleFooterLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-          {/* Hotel Info */}
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -182,18 +196,17 @@ export default function Footer() {
               className="h-16 w-auto mb-6"
             />
             <p className="text-[--color-text-secondary] text-xs leading-relaxed">
-              A premier 4-star hotel in the heart of Phuket Old Town, offering 251 elegant rooms, world-class dining, and 9 versatile meeting spaces.
+              {t.footer.blurb}
             </p>
           </div>
 
-          {/* Reach Out */}
           <div>
             <h4 className="font-heading text-[23px] text-[--color-text-primary] mb-6">
-              Reach Out
+              {t.footer.reachOut}
             </h4>
             <address className="not-italic space-y-4">
               <p className="text-sm text-[--color-text-secondary]">
-                <span className="text-[--color-text-primary]">Email:</span>{" "}
+                <span className="text-[--color-text-primary]">{t.footer.email}:</span>{" "}
                 <a
                   href={`mailto:${HOTEL_INFO.email}`}
                   className="hover:text-[--color-accent] transition-colors"
@@ -202,7 +215,7 @@ export default function Footer() {
                 </a>
               </p>
               <p className="text-sm text-[--color-text-secondary]">
-                <span className="text-[--color-text-primary]">Tel:</span>{" "}
+                <span className="text-[--color-text-primary]">{t.footer.tel}:</span>{" "}
                 <a
                   href={`tel:${HOTEL_INFO.phone.replace(/\s/g, "")}`}
                   className="hover:text-[--color-accent] transition-colors"
@@ -211,17 +224,19 @@ export default function Footer() {
                 </a>
               </p>
               <div className="text-sm text-[--color-text-secondary] pt-2">
-                <p>154 Phang-Nga Road, Talad Yai, Muang, Phuket</p>
-                <p>83000, Thailand</p>
+                <p>{t.footer.address1}</p>
+                <p>{t.footer.address2}</p>
               </div>
               <p className="pt-2">
                 <a
                   href={EXTERNAL_LINKS.googleMaps}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider inline-flex items-center gap-2 border-b-2 border-[#8B7355] pb-1"
+                  className={`text-sm text-[--color-text-secondary] hover:text-[--color-accent] transition-colors inline-flex items-center gap-2 border-b-2 border-[#8B7355] pb-1 ${
+                    isThai ? "" : "uppercase tracking-wider"
+                  }`}
                 >
-                  Get Directions via Google Map
+                  {t.footer.directions}
                   <svg
                     className="w-4 h-4"
                     fill="none"
@@ -240,15 +255,13 @@ export default function Footer() {
             </address>
           </div>
 
-          {/* Let's Connect */}
           <div>
             <h4 className="font-heading text-[23px] text-[--color-text-primary] mb-6">
-              Let&apos;s Connect
+              {t.footer.connect}
             </h4>
-            
-            {/* Social Links */}
+
             <div className="flex items-center gap-2 mb-6">
-              <span className="text-sm text-[--color-text-secondary] mr-2">Stay Connected:</span>
+              <span className="text-sm text-[--color-text-secondary] mr-2">{t.footer.stayConnected}:</span>
               <a
                 href={EXTERNAL_LINKS.facebook}
                 target="_blank"
@@ -282,14 +295,15 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Reserve Button */}
             <a
               href={EXTERNAL_LINKS.booking}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-[#8B7355] text-[#8B7355] text-sm tracking-wider uppercase hover:bg-[#8B7355] hover:text-white transition-colors"
+              className={`inline-flex items-center gap-2 px-6 py-3 border border-[#8B7355] text-[#8B7355] text-sm hover:bg-[#8B7355] hover:text-white transition-colors ${
+                isThai ? "" : "tracking-wider uppercase"
+              }`}
             >
-              Reserve Now
+              {t.header.reserve}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>
@@ -298,50 +312,31 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-gray-200">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-[--color-text-secondary]">
-              © {new Date().getFullYear()}. Royal Phuket City Hotel, All Rights Reserved
+              © {new Date().getFullYear()}. {t.footer.copyright}
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2">
-              <Link
-                href="/hotel-policy"
-                className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider"
-              >
-                Hotel Policy
-              </Link>
-              <Link
-                href="/terms-conditions"
-                className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider"
-              >
-                Terms & Conditions
-              </Link>
-              <Link
-                href="/privacy-policy"
-                className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/cookie-policy"
-                className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider"
-              >
-                Cookie Policy
-              </Link>
-              <Link
-                href="/disclaimer"
-                className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider"
-              >
-                Disclaimer
-              </Link>
-              <Link
-                href="/accessibility"
-                className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider"
-              >
-                Accessibility
-              </Link>
+              <LocaleFooterLink href={localizeHref("/hotel-policy", locale)} className={legalClass}>
+                {t.footer.hotelPolicy}
+              </LocaleFooterLink>
+              <LocaleFooterLink href={localizeHref("/terms-conditions", locale)} className={legalClass}>
+                {t.footer.terms}
+              </LocaleFooterLink>
+              <LocaleFooterLink href={localizeHref("/privacy-policy", locale)} className={legalClass}>
+                {t.footer.privacy}
+              </LocaleFooterLink>
+              <LocaleFooterLink href={localizeHref("/cookie-policy", locale)} className={legalClass}>
+                {t.footer.cookies}
+              </LocaleFooterLink>
+              <LocaleFooterLink href={localizeHref("/disclaimer", locale)} className={legalClass}>
+                {t.footer.disclaimer}
+              </LocaleFooterLink>
+              <LocaleFooterLink href={localizeHref("/accessibility", locale)} className={legalClass}>
+                {t.footer.accessibility}
+              </LocaleFooterLink>
             </div>
           </div>
         </div>

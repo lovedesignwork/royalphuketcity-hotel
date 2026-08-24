@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import LocaleLink from "@/components/i18n/LocaleLink";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 interface RestaurantCardProps {
   slug: string;
@@ -23,6 +24,8 @@ export default function RestaurantCard({
   shortDescription,
   image,
 }: RestaurantCardProps) {
+  const { locale, t } = useLocale();
+  const isThai = locale === "th";
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -32,7 +35,7 @@ export default function RestaurantCard({
       className="group flex flex-col"
     >
       {/* Image */}
-      <Link href={`/${slug}`} className="block relative aspect-[4/3] overflow-hidden">
+      <LocaleLink href={`/${slug}`} className="block relative aspect-[4/3] overflow-hidden">
         <Image
           src={image}
           alt={name}
@@ -41,7 +44,7 @@ export default function RestaurantCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1088px) 50vw, 496px"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500" />
-      </Link>
+      </LocaleLink>
 
       {/* Content — center aligned */}
       <div className="flex flex-col items-center text-center pt-8 px-4 flex-1">
@@ -55,16 +58,16 @@ export default function RestaurantCard({
         <div className="w-8 h-[2px] bg-[#8B7355] mb-4" />
 
         {/* Name */}
-        <Link href={`/${slug}`}>
+        <LocaleLink href={`/${slug}`}>
           <h3 className="font-heading text-2xl lg:text-[1.6rem] mb-4 group-hover:text-[--color-accent] transition-colors duration-300 leading-snug">
             {name}
           </h3>
-        </Link>
+        </LocaleLink>
 
         {/* Hours & Floor */}
-        <div className="flex items-center justify-center gap-3 text-[11px] text-[--color-text-secondary] tracking-wider uppercase mb-4">
+        <div className={`flex items-center justify-center gap-3 text-[11px] text-[--color-text-secondary] mb-4 ${isThai ? "" : "tracking-wider uppercase"}`}>
           <span>{floor}</span>
-          <span className="text-[#8B7355]">—</span>
+          <span className="text-[#8B7355]">-</span>
           <span>{hours}</span>
         </div>
 
@@ -80,12 +83,12 @@ export default function RestaurantCard({
         <div className="w-full h-px bg-[--color-border] mb-5 mt-auto" />
 
         {/* CTA link */}
-        <Link
+        <LocaleLink
           href={`/${slug}`}
           className="inline-flex items-center gap-3 group/link pb-1"
         >
-          <span className="text-[#8B7355] text-[11px] tracking-[0.2em] uppercase font-medium relative">
-            Discover More
+          <span className={`text-[#8B7355] text-[11px] font-medium relative ${isThai ? "" : "tracking-[0.2em] uppercase"}`}>
+            {t.common.discoverMore}
             <span className="absolute left-0 -bottom-0.5 w-full h-px bg-[#8B7355]/30 group-hover/link:bg-[#8B7355] transition-colors duration-300" />
           </span>
           <svg
@@ -96,7 +99,7 @@ export default function RestaurantCard({
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </Link>
+        </LocaleLink>
 
       </div>
     </motion.div>

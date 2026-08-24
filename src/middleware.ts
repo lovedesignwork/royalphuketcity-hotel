@@ -1,33 +1,64 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
+import { LOCALE_COOKIE, SHOW_LANGUAGE_SWITCHER } from "@/lib/i18n/config";
+import { shouldSkipLocale, stripLocalePrefix } from "@/lib/i18n/path";
 
-// Protect everything under /admin (and its API routes) behind Supabase
-// Auth + a row in public.admin_users.
-//
-// /admin/login is the only public sub-route — that's where users go to
-// authenticate. Everything else 302s there if the caller isn't a known
-// admin. API routes return 401 instead of redirecting, so the browser
-// fetch() call gets a clean error.
+function applyLocaleHeaders(
+  request: NextRequest,
+  locale: "en" | "th",
+  innerPath: string
+) {
+  const headers = new Headers(request.headers);
+  headers.set("x-locale", locale);
+  headers.set("x-pathname", innerPath);
+  return headers;
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const isAdminPage = pathname.startsWith("/admin");
+  const isAdminPage = pathname.startsWith("/admin") || pathname.startsWith("/th/admin");
   const isAdminApi = pathname.startsWith("/api/admin");
   const isLoginPage = pathname === "/admin/login";
   const isLogoutApi = pathname === "/api/admin/auth/logout";
 
-  // Only run auth on admin surfaces. Public pages and public APIs
-  // (like /api/contact and /api/downloads) continue untouched.
+  if (!isAdminPage && !isAdminApi && !shouldSkipLocale(pathname)) {
+    const isThaiPath = pathname === "/th" || pathname.startsWith("/th/");
+    const localeCookie = request.cookies.get(LOCALE_COOKIE)?.value;
+    const innerPath = isThaiPath ? stripLocalePrefix(pathname) : pathname;
+
+    if (SHOW_LANGUAGE_SWITCHER && !isThaiPath && localeCookie === "th") {
+      const url = request.nextUrl.clone();
+      url.pathname = innerPath === "/" ? "/th" : `/th${innerPath}`;
+      return NextResponse.redirect(url);
+    }
+
+    if (isThaiPath) {
+      const url = request.nextUrl.clone();
+      url.pathname = innerPath;
+      const response = NextResponse.rewrite(url, {
+        request: { headers: applyLocaleHeaders(request, "th", innerPath) },
+      });
+      response.cookies.set(LOCALE_COOKIE, "th", {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 365,
+        sameSite: "lax",
+      });
+      return response;
+    }
+
+    const response = NextResponse.next({
+      request: { headers: applyLocaleHeaders(request, "en", pathname) },
+    });
+    return response;
+  }
+
   if (!isAdminPage && !isAdminApi) {
     return NextResponse.next();
   }
 
   const { response, supabase, user } = await updateSession(request);
 
-  // Login page must be reachable even when logged out. If the user IS
-  // already logged in and is an admin, send them to the dashboard so
-  // they don't see the login form again.
   if (isLoginPage) {
     if (user) {
       const { data: adminRow } = await supabase
@@ -43,12 +74,10 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Logout API must be reachable even when the session is mid-tear-down.
   if (isLogoutApi) {
     return response;
   }
 
-  // Not signed in at all.
   if (!user) {
     if (isAdminApi) {
       return NextResponse.json(
@@ -61,7 +90,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // Signed in, but is the user actually an admin?
   const { data: adminRow, error } = await supabase
     .from("admin_users")
     .select("id, role")
@@ -69,8 +97,6 @@ export async function middleware(request: NextRequest) {
     .maybeSingle();
 
   if (error || !adminRow) {
-    // Authenticated to Supabase but not whitelisted. Sign them out so
-    // they can't sit on a stale session, then bounce to login.
     await supabase.auth.signOut();
 
     if (isAdminApi) {
@@ -88,10 +114,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Skip Next.js internals and most static assets. We want middleware to
-  // run on /admin pages AND /api/admin routes.
   matcher: [
-    "/admin/:path*",
-    "/api/admin/:path*",
+    "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };

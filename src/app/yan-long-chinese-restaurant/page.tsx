@@ -1,44 +1,57 @@
 import { Metadata } from "next";
 import RestaurantPageTemplate from "@/components/RestaurantPageTemplate";
-import { RESTAURANT_DETAILS } from "@/lib/restaurant-data";
 import { SITE_CONFIG } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import {
+  getLocalizedRestaurantDetail,
+  getRestaurantMeta,
+} from "@/lib/i18n/dining-copy";
+import { localizeHref } from "@/lib/i18n/path";
 
-const restaurant = RESTAURANT_DETAILS["yan-long-chinese-restaurant"];
 const slug = "yan-long-chinese-restaurant";
 
-export const metadata: Metadata = {
-  title: restaurant.name,
-  description:
-    "Authentic Cantonese cuisine at Yan Long Chinese Restaurant. Award-winning Peking duck, dim sum, and traditional Chinese dishes at Royal Phuket City Hotel.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/${slug}`,
-  },
-  openGraph: {
-    title: `${restaurant.name} | Royal Phuket City Hotel`,
-    description:
-      "Authentic Cantonese cuisine with award-winning Peking duck and traditional dim sum.",
-    url: `${SITE_CONFIG.url}/${slug}`,
-    siteName: SITE_CONFIG.name,
-    images: [
-      {
-        url: restaurant.images[0].src,
-        width: 1200,
-        height: 630,
-        alt: restaurant.name,
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const meta = getRestaurantMeta(slug, locale);
+  const path = localizeHref(`/${slug}`, locale);
+  return {
+    title: meta.name,
+    description: meta.metaDesc,
+    alternates: {
+      canonical: `${SITE_CONFIG.url}${path}`,
+      languages: {
+        en: `${SITE_CONFIG.url}/${slug}`,
+        th: `${SITE_CONFIG.url}/th/${slug}`,
       },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${restaurant.name} | Royal Phuket City Hotel`,
-    description:
-      "Authentic Cantonese cuisine with award-winning Peking duck and dim sum.",
-    images: [restaurant.images[0].src],
-  },
-};
+    },
+    openGraph: {
+      title: `${meta.name} | ${locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel"}`,
+      description: meta.ogDesc,
+      url: `${SITE_CONFIG.url}${path}`,
+      siteName: SITE_CONFIG.name,
+      images: [
+        {
+          url: meta.image,
+          width: 1200,
+          height: 630,
+          alt: meta.name,
+        },
+      ],
+      locale: locale === "th" ? "th_TH" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${meta.name} | ${locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel"}`,
+      description: meta.ogDesc,
+      images: [meta.image],
+    },
+  };
+}
 
-export default function YanLongPage() {
+export default async function YanLongPage() {
+  const locale = await getLocale();
+  const restaurant = getLocalizedRestaurantDetail(slug, locale);
+  if (!restaurant) return null;
   return <RestaurantPageTemplate restaurant={restaurant} />;
 }

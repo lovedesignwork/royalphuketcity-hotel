@@ -1,4 +1,4 @@
-import { Inter, Marcellus } from "next/font/google";
+import { Inter, Marcellus, Noto_Sans_Thai } from "next/font/google";
 
 export const marcellus = Marcellus({
   subsets: ["latin"],
@@ -11,5 +11,12 @@ export const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+export const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-noto-sans-thai",
   display: "swap",
 });

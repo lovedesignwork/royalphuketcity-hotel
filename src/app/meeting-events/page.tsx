@@ -1,44 +1,54 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroSection, SectionHeading, CTABanner } from "@/components";
+import HeroSection from "@/components/HeroSection";
+import SectionHeading from "@/components/SectionHeading";
 import MICEPhotoSlider from "@/components/MICEPhotoSlider";
 import EventInquiryForm from "@/components/EventInquiryForm";
 import { SITE_CONFIG } from "@/lib/constants";
-import { MICE_EVENT_TYPES, MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
+import { MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { localizeHref } from "@/lib/i18n/path";
+import { getLocalizedMiceType, getMeetingPageCopy } from "@/lib/i18n/meeting-copy";
 
-export const metadata: Metadata = {
-  title: "Meeting & Events",
-  description:
-    "Host successful meetings and events at Royal Phuket City Hotel. 9 versatile meeting rooms with state-of-the-art AV equipment and dedicated event planning support.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/meeting-events`,
-  },
-  openGraph: {
-    title: "Meeting & Events | Royal Phuket City Hotel",
-    description:
-      "9 versatile meeting rooms with state-of-the-art AV equipment for conferences, seminars, and corporate events.",
-    url: `${SITE_CONFIG.url}/meeting-events`,
-    siteName: SITE_CONFIG.name,
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Meeting & Events at Royal Phuket City Hotel",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = getMeetingPageCopy(locale);
+  const path = localizeHref("/meeting-events", locale);
+  return {
+    title: t.metaTitle,
+    description: t.metaDesc,
+    alternates: {
+      canonical: `${SITE_CONFIG.url}${path}`,
+      languages: {
+        en: `${SITE_CONFIG.url}/meeting-events`,
+        th: `${SITE_CONFIG.url}/th/meeting-events`,
       },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Meeting & Events | Royal Phuket City Hotel",
-    description:
-      "9 versatile meeting rooms with state-of-the-art AV equipment for your corporate events.",
-    images: ["/images/og-image.jpg"],
-  },
-};
+    },
+    openGraph: {
+      title: `${t.metaTitle} | Royal Phuket City Hotel`,
+      description: t.metaDesc,
+      url: `${SITE_CONFIG.url}${path}`,
+      siteName: SITE_CONFIG.name,
+      images: [
+        {
+          url: "/images/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: t.metaTitle,
+        },
+      ],
+      locale: locale === "th" ? "th_TH" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${t.metaTitle} | Royal Phuket City Hotel`,
+      description: t.metaDesc,
+      images: ["/images/og-image.jpg"],
+    },
+  };
+}
 
 const meetingRooms = [
   {
@@ -262,14 +272,16 @@ const services = [
   },
 ];
 
-export default function MeetingEventsPage() {
+export default async function MeetingEventsPage() {
+  const locale = await getLocale();
+  const t = getMeetingPageCopy(locale);
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        title="All-In-One Venue for All Kinds of Events"
-        subtitle="Meeting & Events"
-        description="Flexible, elegant, and fully-equipped spaces for every kind of event."
+        title={t.heroTitle}
+        subtitle={t.heroSubtitle}
+        description={t.heroDesc}
         image="/images/HOTEL WEBSITE/Banquet.jpg"
         height="medium"
       />
@@ -280,16 +292,16 @@ export default function MeetingEventsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <SectionHeading
-                label="From boardroom briefings to grand galas – we host it all."
-                title="Phuket's Expansive Meetings & Events Destination"
+                label={t.introLabel}
+                title={t.introTitle}
                 align="left"
               />
               <div className="space-y-4 text-[--color-text-secondary]">
                 <p>
-                  At Royal Phuket City Hotel, we provide more than just event space—we create experiences. As the largest venue in Southern Thailand, our hotel offers 9 fully equipped rooms, including a 1,637 sqm grand ballroom that can host up to 2,300 guests in theatre style or 1,100 in banquet format.
+                  {t.introP1}
                 </p>
                 <p>
-                  Whether it&apos;s a boardroom discussion or a multi-day conference, we offer customizable layouts, advanced audio-visual technology, and a dedicated planning team to make your event effortless and successful.
+                  {t.introP2}
                 </p>
               </div>
               
@@ -299,25 +311,25 @@ export default function MeetingEventsPage() {
                   <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#8B7355]" />
                   <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#8B7355]" />
                   <p className="font-heading text-4xl text-[--color-accent] mb-1">9</p>
-                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">Meeting Rooms</p>
+                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">{t.rooms}</p>
                 </div>
                 <div className="relative p-6 bg-[--color-surface] border border-[#8B7355]/20 text-center group hover:border-[#8B7355]/40 transition-colors">
                   <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#8B7355]" />
                   <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#8B7355]" />
                   <p className="font-heading text-4xl text-[--color-accent] mb-1">1,637</p>
-                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">sqm Ballroom</p>
+                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">{t.ballroom}</p>
                 </div>
                 <div className="relative p-6 bg-[--color-surface] border border-[#8B7355]/20 text-center group hover:border-[#8B7355]/40 transition-colors">
                   <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#8B7355]" />
                   <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#8B7355]" />
                   <p className="font-heading text-4xl text-[--color-accent] mb-1">2,300</p>
-                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">Max Capacity</p>
+                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">{t.capacity}</p>
                 </div>
                 <div className="relative p-6 bg-[--color-surface] border border-[#8B7355]/20 text-center group hover:border-[#8B7355]/40 transition-colors">
                   <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#8B7355]" />
                   <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#8B7355]" />
                   <p className="font-heading text-4xl text-[--color-accent] mb-1">350+</p>
-                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">Parking Spaces</p>
+                  <p className="text-xs tracking-[0.15em] uppercase text-[--color-text-secondary]">{t.parking}</p>
                 </div>
               </div>
             </div>
@@ -339,12 +351,12 @@ export default function MeetingEventsPage() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
-              <p className="label-accent text-[#8B7355] mb-2">Request a Proposal</p>
+              <p className="label-accent text-[#8B7355] mb-2">{t.requestLabel}</p>
               <h3 className="font-heading text-2xl md:text-3xl text-[--color-text-primary] mb-2">
-                Contact Our Events Team
+                {t.requestTitle}
               </h3>
               <p className="text-[--color-text-secondary]">
-                Let our events team help you plan the perfect meeting or event.
+                {t.requestDesc}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -355,16 +367,16 @@ export default function MeetingEventsPage() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                Inquiry for Event
+                {t.inquiry}
               </Link>
               <Link 
-                href="/download-fact-sheets" 
+                href={localizeHref("/download-fact-sheets", locale)} 
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[#8B7355]/30 text-[--color-text-primary] font-medium tracking-wide uppercase text-sm hover:bg-[#8B7355]/10 hover:border-[#8B7355]/50 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                 </svg>
-                Download Fact Sheet
+                {t.factSheet}
               </Link>
             </div>
           </div>
@@ -378,13 +390,13 @@ export default function MeetingEventsPage() {
       <section className="py-20 md:py-28 bg-[#8B7355]/10">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Customizable Space & Fully-Equipped"
-            title="Phuket's Premier Venue Destination"
-            subtitle="Whether you're planning a product launch, annual conference, training session, or gala dinner, we tailor every detail to fit your vision. Our experienced team works closely with you to deliver an event that meets your goals and exceeds expectations."
+            label={t.servicesLabel}
+            title={t.servicesTitle}
+            subtitle={t.servicesSubtitle}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service) => (
-              <div key={service.title} className="text-center">
+            {services.map((service, index) => (
+              <div key={t.services[index].title} className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-white hairline-border rounded-full">
                   <svg
                     className="w-8 h-8 text-[--color-accent]"
@@ -400,9 +412,9 @@ export default function MeetingEventsPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="font-heading text-xl mb-3">{service.title}</h3>
+                <h3 className="font-heading text-xl mb-3">{t.services[index].title}</h3>
                 <p className="text-sm text-[--color-text-secondary]">
-                  {service.description}
+                  {t.services[index].description}
                 </p>
               </div>
             ))}
@@ -429,12 +441,12 @@ export default function MeetingEventsPage() {
 
               {/* Content */}
               <div>
-                <p className="label-accent text-[--color-accent] mb-3">A New Standard for Meetings in Phuket</p>
+                <p className="label-accent text-[--color-accent] mb-3">{t.certLabel}</p>
                 <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-[--color-text-primary] mb-6">
-                  Certified Excellence
+                  {t.certTitle}
                 </h2>
                 <p className="text-[--color-text-secondary] leading-relaxed mb-8">
-                  Royal Phuket City Hotel is proud to be recognized as a certified <strong>MICE Venue by the Thailand Convention & Exhibition Bureau (TCEB)</strong>. With SHA and Green Hotel certifications, we are committed to providing a clean, safe, and environmentally responsible venue for your events.
+                  {t.certBody}
                 </p>
 
                 {/* Certification Logos */}
@@ -451,17 +463,9 @@ export default function MeetingEventsPage() {
 
                 {/* Why Choose Us */}
                 <div>
-                  <h3 className="font-heading text-xl text-[--color-text-primary] mb-4">Why Choose Us?</h3>
+                  <h3 className="font-heading text-xl text-[--color-text-primary] mb-4">{t.whyChoose}</h3>
                   <ul className="space-y-3">
-                    {[
-                      "Southern Thailand's largest indoor venue",
-                      "27+ years of professional experience",
-                      "SHA & Green Hotel certified",
-                      "High-speed Wi-Fi, LED displays, and AV equipment",
-                      "Flexible room configurations for 10 to 2,300 guests",
-                      "On-site banquet, catering, tech, and security teams",
-                      "Over 350 parking spaces for guests",
-                    ].map((item) => (
+                    {t.whyItems.map((item) => (
                       <li key={item} className="flex items-start gap-3">
                         <svg className="w-5 h-5 text-[#8B7355] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -481,16 +485,16 @@ export default function MeetingEventsPage() {
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Precision, Performance, Prestige"
-            title="Meetings & Banquet Room Capacity"
+            label={t.floorLabel}
+            title={t.floorTitle}
           />
           
           <div className="max-w-4xl mx-auto text-center mb-12">
             <p className="text-[--color-text-secondary] leading-relaxed">
-              Meetings & Banquet Rooms at 2nd Floor are flexible to your conference and events depend from your capacity of guests. We can tailor made to any occasion and fulfill any requirement for a party of 10 to 2,300 guests with eleven banquets and meeting rooms. A big ballroom is suitable for your party, staff party and other celebrations. Our unique style is innovative, efficient and effective.
+              {t.floorP1}
             </p>
             <p className="text-[--color-text-secondary] mt-4 font-medium">
-              Find out the capacity and dimensions of our state-of-the-art meeting room and banquet halls.
+              {t.floorP2}
             </p>
           </div>
 
@@ -506,49 +510,49 @@ export default function MeetingEventsPage() {
           </div>
 
           {/* Meeting Room Capacities Table */}
-          <p className="text-xs text-gray-400 mb-2 md:hidden">← Scroll to see all columns</p>
+          <p className="text-xs text-gray-400 mb-2 md:hidden">{t.scroll}</p>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[1000px]">
               {/* Header */}
               <thead>
                 <tr className="bg-[#8B7355] text-white">
-                  <th className="text-left py-4 px-4 text-sm font-normal">Name</th>
+                  <th className="text-left py-4 px-4 text-sm font-normal">{t.table.name}</th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>Area</div>
-                    <div className="text-xs opacity-80">(Sq.m.)</div>
+                    <div>{t.table.area}</div>
+                    <div className="text-xs opacity-80">{t.table.sqm}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>Height</div>
-                    <div className="text-xs opacity-80">(Sq.m.)</div>
+                    <div>{t.table.height}</div>
+                    <div className="text-xs opacity-80">{t.table.sqm}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>Classroom</div>
-                    <div className="text-xs opacity-80">(Pax)</div>
+                    <div>{t.table.classroom}</div>
+                    <div className="text-xs opacity-80">{t.table.pax}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>Theatre</div>
-                    <div className="text-xs opacity-80">(Pax)</div>
+                    <div>{t.table.theatre}</div>
+                    <div className="text-xs opacity-80">{t.table.pax}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>U-Shape</div>
-                    <div className="text-xs opacity-80">(Pax)</div>
+                    <div>{t.table.ushape}</div>
+                    <div className="text-xs opacity-80">{t.table.pax}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>Boardroom</div>
-                    <div className="text-xs opacity-80">(Pax)</div>
+                    <div>{t.table.boardroom}</div>
+                    <div className="text-xs opacity-80">{t.table.pax}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
-                    <div>Cocktail</div>
-                    <div className="text-xs opacity-80">(Pax)</div>
+                    <div>{t.table.cocktail}</div>
+                    <div className="text-xs opacity-80">{t.table.pax}</div>
                   </th>
                   <th className="text-center py-4 px-2 text-sm font-normal border-l border-white/20" colSpan={2}>
-                    <div>Banquet (Pax)</div>
+                    <div>{t.table.banquet}</div>
                   </th>
                 </tr>
                 <tr className="bg-[#8B7355] text-white border-t border-white/20">
                   <th colSpan={8}></th>
-                  <th className="text-center py-2 px-3 text-xs font-normal border-l border-white/20">Buffet</th>
-                  <th className="text-center py-2 px-3 text-xs font-normal">Set Table</th>
+                  <th className="text-center py-2 px-3 text-xs font-normal border-l border-white/20">{t.table.buffet}</th>
+                  <th className="text-center py-2 px-3 text-xs font-normal">{t.table.setTable}</th>
                 </tr>
               </thead>
               <tbody>
@@ -598,10 +602,10 @@ export default function MeetingEventsPage() {
       {/* Equipment & Services */}
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
-          <SectionHeading
-            label="Crafted Events in a Custom Setting"
-            title="Equipment & Services"
-          />
+            <SectionHeading
+              label={t.equipLabel}
+              title={t.equipTitle}
+            />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -760,14 +764,14 @@ export default function MeetingEventsPage() {
                   </svg>
                 ),
               },
-            ].map((service) => (
-              <div key={service.title} className="flex gap-4 bg-white p-6 border border-gray-100 hover:shadow-md transition-shadow">
+            ].map((service, index) => (
+              <div key={t.equipment[index].title} className="flex gap-4 bg-white p-6 border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-[#8B7355]">
                   {service.icon}
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg text-[--color-text-primary] mb-1">{service.title}</h3>
-                  <p className="text-sm text-[--color-text-secondary] leading-relaxed">{service.description}</p>
+                  <h3 className="font-heading text-lg text-[--color-text-primary] mb-1">{t.equipment[index].title}</h3>
+                  <p className="text-sm text-[--color-text-secondary] leading-relaxed">{t.equipment[index].description}</p>
                 </div>
               </div>
             ))}
@@ -776,8 +780,8 @@ export default function MeetingEventsPage() {
           {/* Meeting Layout - Sub-section */}
           <div className="mt-20 pt-16 border-t border-[#8B7355]/20">
             <SectionHeading
-              label="The Perfect Setting for Big Decisions"
-              title="Meeting Layout"
+              label={t.layoutLabel}
+              title={t.layoutTitle}
             />
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -798,7 +802,7 @@ export default function MeetingEventsPage() {
                     <rect x="44" y="40" width="4" height="4" fill="white" />
                   </svg>
                 </div>
-                <p className="text-sm text-[--color-text-secondary] italic">U-Shape Layout</p>
+                <p className="text-sm text-[--color-text-secondary] italic">{t.layouts[0]}</p>
               </div>
 
               {/* Classroom Layout */}
@@ -823,7 +827,7 @@ export default function MeetingEventsPage() {
                     <rect x="44" y="56" width="12" height="6" />
                   </svg>
                 </div>
-                <p className="text-sm text-[--color-text-secondary] italic">Classroom Layout</p>
+                <p className="text-sm text-[--color-text-secondary] italic">{t.layouts[1]}</p>
               </div>
 
               {/* Theatre Layout */}
@@ -862,7 +866,7 @@ export default function MeetingEventsPage() {
                     <rect x="54" y="48" width="8" height="6" />
                   </svg>
                 </div>
-                <p className="text-sm text-[--color-text-secondary] italic">Theatre Layout</p>
+                <p className="text-sm text-[--color-text-secondary] italic">{t.layouts[2]}</p>
               </div>
 
               {/* Round Table Layout */}
@@ -880,7 +884,7 @@ export default function MeetingEventsPage() {
                     <rect x="48" y="48" width="6" height="6" transform="rotate(45 51 51)" />
                   </svg>
                 </div>
-                <p className="text-sm text-[--color-text-secondary] italic">Round Table Layout</p>
+                <p className="text-sm text-[--color-text-secondary] italic">{t.layouts[3]}</p>
               </div>
 
               {/* Boardroom Layout */}
@@ -902,7 +906,7 @@ export default function MeetingEventsPage() {
                     <rect x="42" y="50" width="6" height="6" />
                   </svg>
                 </div>
-                <p className="text-sm text-[--color-text-secondary] italic">Boardroom Layout</p>
+                <p className="text-sm text-[--color-text-secondary] italic">{t.layouts[4]}</p>
               </div>
             </div>
           </div>
@@ -913,18 +917,19 @@ export default function MeetingEventsPage() {
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Tailored for Every Occasion"
-            title="Event Types We Host"
-            subtitle="From corporate conferences to entertainment shows, we have the experience and facilities to make your event successful."
+            label={t.typesLabel}
+            title={t.typesTitle}
+            subtitle={t.typesSubtitle}
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {MICE_EVENT_TYPE_SLUGS.slice(0, 12).map((slug) => {
-              const event = MICE_EVENT_TYPES[slug];
+              const event = getLocalizedMiceType(slug, locale);
+              if (!event) return null;
               return (
                 <Link
                   key={slug}
-                  href={`/meeting-events/${slug}`}
+                  href={localizeHref(`/meeting-events/${slug}`, locale)}
                   className="group block"
                 >
                   <article className="relative h-full overflow-hidden border-[3px] border-transparent hover:border-[#8B7355] transition-colors">
@@ -948,7 +953,7 @@ export default function MeetingEventsPage() {
                           {event.subtitle}
                         </p>
                         <span className="inline-flex items-center gap-2 text-sm text-[#8B7355] group-hover:gap-3 transition-all">
-                          Learn More
+                          {t.learnMore}
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                           </svg>
@@ -978,18 +983,18 @@ export default function MeetingEventsPage() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative container mx-auto px-6">
           <div className="text-center text-white max-w-3xl mx-auto">
-            <p className="label-accent text-[#8B7355] mb-4">Planning a Wedding?</p>
+            <p className="label-accent text-[#8B7355] mb-4">{t.weddingLabel}</p>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-4">
-              Discover Our Wedding Venues
+              {t.weddingTitle}
             </h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              With 27+ years of professional wedding experience, elegant venues with gorgeous chandeliers, and dedicated planning teams, we make your special day truly unforgettable.
+              {t.weddingDesc}
             </p>
             <Link
-              href="/wedding-venues"
+              href={localizeHref("/wedding-venues", locale)}
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B7355] text-white font-medium tracking-wide uppercase text-sm hover:bg-[#7a6548] transition-colors"
             >
-              Explore Wedding Venues
+              {t.weddingCta}
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>

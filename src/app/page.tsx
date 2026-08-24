@@ -1,6 +1,4 @@
-import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
   HeroSection,
   SectionHeading,
@@ -9,51 +7,26 @@ import {
   TestimonialSlider,
   CTABanner,
   AnnouncementSection,
-  BlogSection,
 } from "@/components";
 import PhotoSlider from "@/components/PhotoSlider";
-import { ROOMS, RESTAURANTS, HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
+import { HOTEL_INFO } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { getDictionary } from "@/lib/i18n/messages";
+import { getLocalizedRestaurants, getLocalizedRooms } from "@/lib/i18n/localized-data";
+import { localizeHref } from "@/lib/i18n/path";
+import LocaleHomeLink from "@/components/FooterLink";
 
-export const metadata: Metadata = {
-  title: "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
-  description:
-    "Experience luxury at Royal Phuket City Hotel, a premier 4-star hotel in Phuket Old Town. 251 elegant rooms, rooftop dining, 9 meeting rooms, and world-class facilities.",
-  alternates: {
-    canonical: SITE_CONFIG.url,
-  },
-  openGraph: {
-    title: "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
-    description:
-      "Experience luxury at Royal Phuket City Hotel, a premier 4-star hotel in Phuket Old Town. 251 elegant rooms, rooftop dining, and world-class facilities.",
-    url: SITE_CONFIG.url,
-    siteName: SITE_CONFIG.name,
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Royal Phuket City Hotel - Luxury Hotel in Phuket Old Town",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
-    description:
-      "Experience luxury at Royal Phuket City Hotel, a premier 4-star hotel in Phuket Old Town.",
-    images: ["/images/og-image.jpg"],
-  },
-};
-
-export default function HomePage() {
+export default async function HomePage() {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const rooms = getLocalizedRooms(locale);
+  const restaurants = getLocalizedRestaurants(locale);
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        title={"EFFORTLESS COMFORT,\nEXCEPTIONAL LOCATION"}
-        subtitle="Heritage Hospitality at Its Finest"
+        title={t.home.heroTitle}
+        subtitle={t.home.heroSubtitle}
         image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
         showReserveButton
         height="full"
@@ -69,20 +42,14 @@ export default function HomePage() {
             {/* Content */}
             <div>
               <SectionHeading
-                label="Welcome"
-                title="Experience Luxury in the Heart of Phuket"
+                label={t.home.welcomeLabel}
+                title={t.home.welcomeTitle}
                 align="left"
               />
               <div className="space-y-4 text-[--color-text-secondary]">
-                <p>
-                  The Best Hotel Location in Phuket Old Town is on us! The Royal Phuket City Hotel is your perfect choice for a Phuket Old Town Hotel, offering guests a complete and unforgettable stay in the heart of this vibrant destination.
-                </p>
-                <p>
-                  As a leading 4-star Phuket Old Town Hotel, we provide comfortable, sophisticated, and luxurious accommodation — ideal for friends exploring the city, couples on a romantic getaway, or business travelers seeking convenience and style.
-                </p>
-                <p>
-                  With 9 versatile meeting rooms, the Royal Phuket City Hotel stands out as a top venue in Phuket Old Town for business meetings, conferences, and private events. Whether you&apos;re here for leisure or business, experience all the charm and excitement of Phuket Old Town from our perfectly located hotel.
-                </p>
+                <p>{t.home.welcomeP1}</p>
+                <p>{t.home.welcomeP2}</p>
+                <p>{t.home.welcomeP3}</p>
               </div>
 
               {/* Stats */}
@@ -91,25 +58,25 @@ export default function HomePage() {
                   <p className="font-heading text-3xl text-[--color-accent]">
                     {HOTEL_INFO.totalRooms}
                   </p>
-                  <p className="label-accent mt-1">Rooms</p>
+                  <p className="label-accent mt-1">{t.home.statRooms}</p>
                 </div>
                 <div>
                   <p className="font-heading text-3xl text-[--color-accent]">
                     {HOTEL_INFO.totalRestaurants}
                   </p>
-                  <p className="label-accent mt-1">Restaurants</p>
+                  <p className="label-accent mt-1">{t.home.statRestaurants}</p>
                 </div>
                 <div>
                   <p className="font-heading text-3xl text-[--color-accent]">
                     {HOTEL_INFO.meetingRooms}
                   </p>
-                  <p className="label-accent mt-1">Meeting Rooms</p>
+                  <p className="label-accent mt-1">{t.home.statMeeting}</p>
                 </div>
                 <div>
                   <p className="font-heading text-3xl text-[--color-accent]">
                     {HOTEL_INFO.parkingSpaces}
                   </p>
-                  <p className="label-accent mt-1">Parking</p>
+                  <p className="label-accent mt-1">{t.home.statParking}</p>
                 </div>
               </div>
             </div>
@@ -200,13 +167,13 @@ export default function HomePage() {
             {/* Right - Content */}
             <div>
               <p className="label-accent text-[--color-accent] mb-3">
-                The Best of 4-Stars Hotel in
+                {t.home.uspEyebrow}
               </p>
               <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[47px] text-[--color-text-primary] mb-6 leading-none">
-                Phuket Old Town
+                {t.home.uspTitle}
               </h2>
                 <p className="text-[--color-text-secondary] leading-relaxed mb-10 max-w-lg">
-                  The Royal Phuket City Hotel, a leading Phuket Old Town Hotel, boasts an enviable location in a peaceful area, just 5 minutes from the city centre where you&apos;ll be able to enjoy a host of very different options from stylish boutiques to local markets.
+                  {t.home.uspLead}
                 </p>
 
               {/* USP List */}
@@ -219,8 +186,8 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     ),
-                    title: "Best Location",
-                    description: "Our hotel location is of the best in Phuket Old Town.",
+                    title: t.home.uspLocationTitle,
+                    description: t.home.uspLocationBody,
                   },
                   {
                     icon: (
@@ -228,8 +195,8 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                       </svg>
                     ),
-                    title: "Best Facilities on the Hotel",
-                    description: "Massage & Spa, Gym, Swimming Pool & Atrium Lounge.",
+                    title: t.home.uspFacilitiesTitle,
+                    description: t.home.uspFacilitiesBody,
                   },
                   {
                     icon: (
@@ -237,8 +204,8 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     ),
-                    title: "International Breakfast",
-                    description: "Best of breakfast selection with local Thai and international dishes.",
+                    title: t.home.uspBreakfastTitle,
+                    description: t.home.uspBreakfastBody,
                   },
                   {
                     icon: (
@@ -246,8 +213,8 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                       </svg>
                     ),
-                    title: "The Venues",
-                    description: "Meet & Celebrate your events at our hotel. We offer variety size of private function space for any size of events.",
+                    title: t.home.uspVenuesTitle,
+                    description: t.home.uspVenuesBody,
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-5">
@@ -291,30 +258,29 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
             <div>
               <span className="label-accent text-[--color-accent] block mb-3">
-                Accommodations
+                {t.home.roomsLabel}
               </span>
               <div className="flex items-center gap-4">
                 <div className="h-px w-10 bg-[#8B7355]" />
-                <h2 className="font-heading text-4xl md:text-5xl">Rooms & Suites</h2>
+                <h2 className="font-heading text-4xl md:text-5xl">{t.home.roomsTitle}</h2>
               </div>
             </div>
             <p className="text-[--color-text-secondary] max-w-sm text-sm leading-relaxed md:text-right">
-              Experience refined elegance in our thoughtfully designed accommodations,
-              each crafted for your comfort with stunning views of Phuket.
+              {t.home.roomsLead}
             </p>
           </div>
 
           {/* Cards — portrait ratio */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {[ROOMS[0], ROOMS[2], ROOMS[5]].map((room) => (
+            {[rooms[0], rooms[2], rooms[5]].map((room) => (
               <RoomCard key={room.slug} {...room} />
             ))}
           </div>
 
           <div className="text-center mt-14">
-            <Link href="/rooms-suites" className="btn-outline">
-              Explore All Accommodations
-            </Link>
+            <LocaleHomeLink href={localizeHref("/rooms-suites", locale)} className="btn-outline">
+              {t.common.exploreRooms}
+            </LocaleHomeLink>
           </div>
         </div>
       </section>
@@ -344,24 +310,24 @@ export default function HomePage() {
               {/* Right — Content */}
               <div>
                 <span className="label-accent text-[--color-accent] block mb-4">
-                  MICE &amp; Corporate
+                  {t.home.miceLabel}
                 </span>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="h-px w-10 bg-[#8B7355] flex-shrink-0" />
                   <h2 className="font-heading text-4xl md:text-5xl leading-tight">
-                    Meetings &amp; Events
+                    {t.home.miceTitle}
                   </h2>
                 </div>
                 <p className="text-[--color-text-secondary] leading-relaxed mb-10">
-                  Host your next meeting, conference, or corporate event in one of our 9 versatile venues. With state-of-the-art AV equipment, dedicated event planners, and customised catering, we ensure every gathering is a seamless success.
+                  {t.home.miceBody}
                 </p>
 
                 {/* Key stats */}
                 <div className="grid grid-cols-3 gap-6 pb-10 mb-10 border-b border-[--color-border]">
                   {[
-                    { value: "9", label: "Meeting Rooms" },
-                    { value: "500+", label: "Max Capacity" },
-                    { value: "800", label: "sqm Ballroom" },
+                    { value: "9", label: t.home.miceRooms },
+                    { value: "500+", label: t.home.miceCapacity },
+                    { value: "800", label: t.home.miceBallroom },
                   ].map((stat) => (
                     <div key={stat.label}>
                       <p className="font-heading text-3xl text-[#8B7355]">{stat.value}</p>
@@ -370,15 +336,15 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <Link href="/meeting-events" className="inline-flex items-center gap-3 group">
+                <LocaleHomeLink href={localizeHref("/meeting-events", locale)} className="inline-flex items-center gap-3 group">
                   <span className="text-[#8B7355] text-[11px] tracking-[0.2em] uppercase font-medium relative">
-                    Explore Venues
+                    {t.common.exploreVenues}
                     <span className="absolute left-0 -bottom-0.5 w-full h-px bg-[#8B7355]/30 group-hover:bg-[#8B7355] transition-colors duration-300" />
                   </span>
                   <svg className="w-4 h-4 text-[#8B7355] transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </Link>
+                </LocaleHomeLink>
               </div>
 
             </div>
@@ -393,17 +359,17 @@ export default function HomePage() {
           {/* Header */}
           <div className="text-center mb-16">
             <span className="label-accent text-[--color-accent] block mb-4 tracking-[0.25em]">
-              Celebrations
+              {t.home.weddingLabel}
             </span>
             <div className="flex items-center justify-center gap-5 mb-5">
               <div className="h-px w-16 bg-[#8B7355]" />
               <h2 className="font-heading text-5xl md:text-6xl">
-                Wedding Venues
+                {t.home.weddingTitle}
               </h2>
               <div className="h-px w-16 bg-[#8B7355]" />
             </div>
             <p className="text-[--color-text-secondary] max-w-lg mx-auto leading-relaxed">
-              Where love stories become timeless memories. Our dedicated wedding team crafts every detail to absolute perfection.
+              {t.home.weddingLead}
             </p>
           </div>
 
@@ -450,19 +416,11 @@ export default function HomePage() {
             {/* Right — USPs */}
             <div className="lg:col-span-4 flex flex-col justify-center pl-0 lg:pl-8">
               <p className="text-[--color-text-secondary] leading-relaxed mb-8 text-sm">
-                From intimate ceremonies to grand celebrations, every detail is crafted with care. Our 27+ years of experience ensure your day is nothing short of magical.
+                {t.home.weddingBody}
               </p>
 
               <div className="space-y-5">
-                {[
-                  "27+ years of professional wedding experience",
-                  "Elegant high ceilings with gorgeous chandeliers",
-                  "On-site banquet, catering, tech & security teams",
-                  "Décor for any color palette and floor plan",
-                  "Dance floor customized to your needs",
-                  "Spacious private Bridal Suite with en-suite",
-                  "Over 350 parking spaces for guests",
-                ].map((usp) => (
+                {t.home.weddingUsps.map((usp) => (
                   <div key={usp} className="flex items-start gap-4">
                     <div className="w-5 h-px bg-[#8B7355] mt-2.5 flex-shrink-0" />
                     <p className="text-sm text-[--color-text-secondary] leading-relaxed">{usp}</p>
@@ -471,12 +429,12 @@ export default function HomePage() {
               </div>
 
               <div className="mt-10 pt-8 border-t border-[--color-border] flex flex-wrap gap-4">
-                <Link href="/wedding-venues" className="btn-primary">
-                  Explore Venues
-                </Link>
-                <Link href="/contact" className="btn-outline">
-                  Request Proposal
-                </Link>
+                <LocaleHomeLink href={localizeHref("/wedding-venues", locale)} className="btn-primary">
+                  {t.common.exploreVenues}
+                </LocaleHomeLink>
+                <LocaleHomeLink href={localizeHref("/contact", locale)} className="btn-outline">
+                  {t.common.requestProposal}
+                </LocaleHomeLink>
               </div>
             </div>
 
@@ -485,9 +443,9 @@ export default function HomePage() {
           {/* Bottom — 3 venue cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             {[
-              { name: "Grand Ballroom", capacity: "Up to 2,300 guests", size: "1,637 Sq.m", image: "/images/HOTEL WEBSITE/Wedding/Resize/MTT1996_resize.jpg" },
-              { name: "TWIST Rooftop Bar & Restaurant", capacity: "Up to 150 guests", size: "Indoor + Outdoor", image: "/images/HOTEL WEBSITE/Restaurant/_DSC0516 copy_resize.jpg" },
-              { name: "Yan Long Restaurant", capacity: "Up to 200 guests", size: "Indoor", image: "/images/HOTEL WEBSITE/Restaurant/Yan Long 008_resize.jpg" },
+              { name: t.home.venueBallroom, capacity: t.home.guestsUpTo.replace("{n}", "2,300"), size: "1,637 Sq.m", image: "/images/HOTEL WEBSITE/Wedding/Resize/MTT1996_resize.jpg" },
+              { name: t.home.venueTwist, capacity: t.home.guestsUpTo.replace("{n}", "150"), size: t.home.indoorOutdoor, image: "/images/HOTEL WEBSITE/Restaurant/_DSC0516 copy_resize.jpg" },
+              { name: t.home.venueYanLong, capacity: t.home.guestsUpTo.replace("{n}", "200"), size: t.home.indoor, image: "/images/HOTEL WEBSITE/Restaurant/Yan Long 008_resize.jpg" },
             ].map((venue) => (
               <div key={venue.name} className="group relative aspect-[16/9] overflow-hidden">
                 <Image
@@ -521,22 +479,21 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <span className="label-accent text-[--color-accent] block mb-3">
-              Culinary Experiences
+              {t.home.diningLabel}
             </span>
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-12 bg-[#8B7355]" />
-              <h2 className="font-heading text-4xl md:text-5xl">Dining</h2>
+              <h2 className="font-heading text-4xl md:text-5xl">{t.home.diningTitle}</h2>
               <div className="h-px w-12 bg-[#8B7355]" />
             </div>
             <p className="text-[--color-text-secondary] max-w-xl mx-auto text-base leading-relaxed">
-              From authentic Cantonese cuisine to rooftop cocktails with panoramic views,
-              discover our distinctive venues.
+              {t.home.diningLead}
             </p>
           </div>
 
           {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 max-w-5xl mx-auto">
-            {RESTAURANTS.map((restaurant) => (
+            {restaurants.map((restaurant) => (
               <RestaurantCard key={restaurant.slug} {...restaurant} />
             ))}
           </div>
@@ -545,8 +502,8 @@ export default function HomePage() {
 
       {/* CTA Banner */}
       <CTABanner
-        title="Comfort, Elegance, and Ocean Views"
-        description="The Royal Phuket City Hotel boasts an enviable location in a peaceful area, just 5 minutes from the city centre where you will be able enjoy the host of very different options from stylish boutiques to local markets."
+        title={t.home.ctaTitle}
+        description={t.home.ctaBody}
         image="/images/HOTEL WEBSITE/RPC-Pool-Wall-scaled.jpg"
         tall
       />
@@ -557,13 +514,13 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <span className="label-accent text-[--color-accent] block mb-3">
-              Hotel Amenities
+              {t.home.facilitiesLabel}
             </span>
             <h2 className="font-heading text-4xl md:text-5xl mb-4">
-              Facilities & Services
+              {t.home.facilitiesTitle}
             </h2>
             <p className="text-[--color-text-secondary] max-w-2xl mx-auto">
-              Everything you need for a perfect stay, from our rooftop pool to our state-of-the-art fitness center.
+              {t.home.facilitiesLead}
             </p>
           </div>
 
@@ -571,44 +528,44 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
               { 
-                name: "Swimming Pool", 
+                name: t.home.facPool, 
                 image: "/images/HOTEL WEBSITE/RPCH 033.jpg",
-                description: "Rooftop infinity pool"
+                description: t.home.facPoolDesc
               },
               { 
-                name: "Fitness Center", 
+                name: t.home.facGym, 
                 image: "/images/HOTEL WEBSITE/RPCH 032.jpg",
-                description: "24/7 modern gym"
+                description: t.home.facGymDesc
               },
               { 
-                name: "Spa & Wellness", 
+                name: t.home.facSpa, 
                 image: "/images/HOTEL WEBSITE/Royal SPa 020.jpg",
-                description: "Rejuvenating treatments"
+                description: t.home.facSpaDesc
               },
               { 
-                name: "Meeting Rooms", 
+                name: t.home.facMeeting, 
                 image: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-1.jpg",
-                description: "9 versatile spaces"
+                description: t.home.facMeetingDesc
               },
               { 
-                name: "Rooftop Bar", 
+                name: t.home.facBar, 
                 image: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 030.jpg",
-                description: "Panoramic city views"
+                description: t.home.facBarDesc
               },
               { 
-                name: "Smart Bus", 
+                name: t.home.facBus, 
                 image: "/images/HOTEL WEBSITE/Smart-Bus.jpeg",
-                description: "Complimentary shuttle"
+                description: t.home.facBusDesc
               },
               { 
-                name: "Lobby & Lounge", 
+                name: t.home.facLobby, 
                 image: "/images/HOTEL WEBSITE/RPCH 028.jpg",
-                description: "Elegant welcome"
+                description: t.home.facLobbyDesc
               },
               { 
-                name: "Parking", 
+                name: t.home.facPark, 
                 image: "/images/HOTEL WEBSITE/RPC-CAR-PARK-1.jpg",
-                description: "350+ indoor spaces"
+                description: t.home.facParkDesc
               },
             ].map((facility) => (
               <div
@@ -641,9 +598,9 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/facilities" className="btn-outline">
-              View All Facilities
-            </Link>
+            <LocaleHomeLink href={localizeHref("/facilities", locale)} className="btn-outline">
+              {t.common.viewAllFacilities}
+            </LocaleHomeLink>
           </div>
         </div>
       </section>

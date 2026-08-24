@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { getWeddingPageCopy } from "@/lib/i18n/wedding-copy";
 
 const galleryImages = [
   // Row 1
@@ -28,6 +30,8 @@ const galleryImages = [
 ];
 
 export default function WeddingGallery() {
+  const { locale } = useLocale();
+  const t = getWeddingPageCopy(locale);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -62,10 +66,10 @@ export default function WeddingGallery() {
         {/* Section Title */}
         <div className="text-center py-16 md:py-20">
           <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
-            Cherished Moments
+            {t.galleryMoments}
           </p>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-[--color-text-primary]">
-            Celebrating Love at Royal Phuket City
+            {t.galleryLove}
           </h2>
         </div>
         

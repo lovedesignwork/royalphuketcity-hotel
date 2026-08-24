@@ -2,10 +2,13 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { MICE_EVENT_TYPES, MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
+import { MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
 import HeroSection from "@/components/HeroSection";
 import EventInquiryForm from "@/components/EventInquiryForm";
 import { SITE_CONFIG } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { localizeHref } from "@/lib/i18n/path";
+import { getLocalizedMiceType, getMeetingPageCopy } from "@/lib/i18n/meeting-copy";
 
 interface PageProps {
   params: Promise<{ type: string }>;
@@ -17,7 +20,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { type } = await params;
-  const eventData = MICE_EVENT_TYPES[type];
+  const locale = await getLocale();
+  const eventData = getLocalizedMiceType(type, locale);
 
   if (!eventData) {
     return {
@@ -25,25 +29,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const path = localizeHref(`/meeting-events/${eventData.slug}`, locale);
+
   return {
-    title: `${eventData.title} Venue Phuket | Royal Phuket City Hotel`,
+    title: `${eventData.title} | Royal Phuket City Hotel`,
     description: eventData.metaDescription,
     keywords: eventData.seoKeywords.join(", "),
     alternates: {
-      canonical: `${SITE_CONFIG.url}/meeting-events/${eventData.slug}`,
+      canonical: `${SITE_CONFIG.url}${path}`,
+      languages: {
+        en: `${SITE_CONFIG.url}/meeting-events/${eventData.slug}`,
+        th: `${SITE_CONFIG.url}/th/meeting-events/${eventData.slug}`,
+      },
     },
     openGraph: {
       title: `${eventData.title} | Royal Phuket City Hotel`,
       description: eventData.metaDescription,
       images: [eventData.heroImage],
-      url: `${SITE_CONFIG.url}/meeting-events/${eventData.slug}`,
+      url: `${SITE_CONFIG.url}${path}`,
+      locale: locale === "th" ? "th_TH" : "en_US",
     },
   };
 }
 
 export default async function MiceEventTypePage({ params }: PageProps) {
   const { type } = await params;
-  const eventData = MICE_EVENT_TYPES[type];
+  const locale = await getLocale();
+  const t = getMeetingPageCopy(locale);
+  const eventData = getLocalizedMiceType(type, locale);
 
   if (!eventData) {
     notFound();
@@ -51,7 +64,8 @@ export default async function MiceEventTypePage({ params }: PageProps) {
 
   const otherEventTypes = MICE_EVENT_TYPE_SLUGS.filter((slug) => slug !== type)
     .slice(0, 6)
-    .map((slug) => MICE_EVENT_TYPES[slug]);
+    .map((slug) => getLocalizedMiceType(slug, locale))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return (
     <main>
@@ -71,7 +85,7 @@ export default async function MiceEventTypePage({ params }: PageProps) {
               {eventData.label}
             </p>
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary] text-center mb-10">
-              {eventData.title} at Royal Phuket City Hotel
+              {eventData.title} {locale === "th" ? "ที่โรงแรมรอยัล ภูเก็ต ซิตี้" : "at Royal Phuket City Hotel"}
             </h2>
             
             <div className="space-y-6">
@@ -93,10 +107,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
-              What We Provide
+              {t.provide}
             </p>
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary]">
-              Key Features & Services
+              {t.featuresTitle}
             </h2>
           </div>
 
@@ -124,10 +138,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto">
             <div className="outline outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-[--color-surface] p-8 md:p-12">
               <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4 text-center">
-                Your Trusted Partner
+                {t.partner}
               </p>
               <h2 className="font-heading text-2xl md:text-3xl text-[--color-text-primary] text-center mb-8">
-                Why Choose Royal Phuket City Hotel
+                {t.whyHotel}
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -161,10 +175,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
       <section className="py-20 md:py-28 bg-[#8B7355]">
         <div className="container mx-auto px-6 text-center">
           <p className="text-white/70 uppercase tracking-widest text-sm mb-4">
-            Perfect For
+            {t.perfectFor}
           </p>
           <h2 className="font-heading text-3xl md:text-4xl text-white mb-10">
-            Ideal Event Types
+            {t.idealTypes}
           </h2>
           
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
@@ -185,10 +199,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
-              Flexible Spaces
+              {t.flexible}
             </p>
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary]">
-              Venue Options
+              {t.venueOptions}
             </h2>
           </div>
 
@@ -196,9 +210,9 @@ export default async function MiceEventTypePage({ params }: PageProps) {
             <table className="w-full">
               <thead>
                 <tr className="bg-[#8B7355] text-white">
-                  <th className="text-left py-4 px-6 text-sm font-normal">Venue</th>
-                  <th className="text-center py-4 px-6 text-sm font-normal">Capacity</th>
-                  <th className="text-left py-4 px-6 text-sm font-normal">Best For</th>
+                  <th className="text-left py-4 px-6 text-sm font-normal">{t.venue}</th>
+                  <th className="text-center py-4 px-6 text-sm font-normal">{t.cap}</th>
+                  <th className="text-left py-4 px-6 text-sm font-normal">{t.bestFor}</th>
                 </tr>
               </thead>
               <tbody>
@@ -226,10 +240,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
 
           <div className="text-center mt-8">
             <Link
-              href="/meeting-events#floor-plan"
+              href={localizeHref("/meeting-events#floor-plan", locale)}
               className="inline-flex items-center gap-2 text-[--color-accent] hover:underline"
             >
-              View Complete Floor Plan & Capacity Chart
+              {t.floorLink}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>
@@ -243,10 +257,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
-              Event Inspiration
+              {t.inspiration}
             </p>
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary]">
-              Gallery
+              {t.gallery}
             </h2>
           </div>
         </div>
@@ -307,26 +321,26 @@ export default async function MiceEventTypePage({ params }: PageProps) {
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative container mx-auto px-6 text-center">
           <p className="text-[#8B7355] uppercase tracking-widest text-sm mb-4">
-            Start Planning Today
+            {t.startToday}
           </p>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-4">
-            Ready to Host Your {eventData.title}?
+            {t.readyHost} {eventData.title}?
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">
-            Our experienced events team is ready to help you plan and execute a successful event.
+            {t.readyBody}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#event-inquiry"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#8B7355] font-medium tracking-[0.15em] uppercase text-sm hover:bg-gray-100 transition-colors"
             >
-              Request a Proposal
+              {t.request}
             </Link>
             <Link
-              href="/meeting-events"
+              href={localizeHref("/meeting-events", locale)}
               className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/30 text-white font-medium tracking-[0.15em] uppercase text-sm hover:bg-white/10 transition-colors"
             >
-              View All Venues
+              {t.viewVenues}
             </Link>
           </div>
         </div>
@@ -340,10 +354,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-[--color-accent] uppercase tracking-widest text-sm mb-4">
-              Explore More
+              {t.exploreMore}
             </p>
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary]">
-              Other Event Types
+              {t.otherTypes}
             </h2>
           </div>
 
@@ -351,7 +365,7 @@ export default async function MiceEventTypePage({ params }: PageProps) {
             {otherEventTypes.map((event) => (
               <Link
                 key={event.slug}
-                href={`/meeting-events/${event.slug}`}
+                href={localizeHref(`/meeting-events/${event.slug}`, locale)}
                 className="group block"
               >
                 <article className="relative h-full overflow-hidden">
@@ -375,7 +389,7 @@ export default async function MiceEventTypePage({ params }: PageProps) {
                         {event.subtitle}
                       </p>
                       <span className="inline-flex items-center gap-2 text-sm text-[#8B7355] group-hover:gap-3 transition-all">
-                        Learn More
+                        {t.learnMore}
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                         </svg>
@@ -389,10 +403,10 @@ export default async function MiceEventTypePage({ params }: PageProps) {
 
           <div className="text-center mt-12">
             <Link
-              href="/meeting-events"
+              href={localizeHref("/meeting-events", locale)}
               className="inline-flex items-center justify-center px-8 py-4 bg-[#8B7355] text-white font-medium tracking-[0.15em] uppercase text-sm hover:bg-[#7a6548] transition-colors"
             >
-              View All Event Types
+              {t.viewAllTypes}
             </Link>
           </div>
         </div>

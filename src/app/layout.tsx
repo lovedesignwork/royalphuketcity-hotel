@@ -1,95 +1,132 @@
 import type { Metadata } from "next";
-import { marcellus, inter } from "@/lib/fonts";
+import { marcellus, inter, notoSansThai } from "@/lib/fonts";
 import { SITE_CONFIG } from "@/lib/constants";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import { HotelJsonLd, LocalBusinessJsonLd, WebSiteJsonLd, OrganizationJsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/Analytics";
+import { LocaleProvider } from "@/components/i18n/LocaleProvider";
+import { getInnerPathname, getLocale } from "@/lib/i18n/get-locale";
+import { getDictionary } from "@/lib/i18n/messages";
+import { localizeHref } from "@/lib/i18n/path";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_CONFIG.url),
-  title: {
-    default: `${SITE_CONFIG.name} | Luxury 4-Star Hotel in Phuket Old Town`,
-    template: `%s | ${SITE_CONFIG.name}`,
-  },
-  description: SITE_CONFIG.description,
-  applicationName: SITE_CONFIG.name,
-  keywords: [
-    "Royal Phuket City Hotel",
-    "Phuket hotel",
-    "Phuket Old Town hotel",
-    "luxury hotel Phuket",
-    "4-star hotel Thailand",
-    "Phuket accommodation",
-    "hotel near Phuket Old Town",
-    "Phuket wedding venue",
-    "Phuket meeting rooms",
-    "rooftop restaurant Phuket",
-  ],
-  authors: [{ name: "Royal Phuket City Hotel", url: SITE_CONFIG.url }],
-  creator: "Royal Phuket City Hotel",
-  publisher: "Royal Phuket City Hotel",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: SITE_CONFIG.name,
-    locale: "en_US",
-    url: SITE_CONFIG.url,
-    title: `${SITE_CONFIG.name} | Luxury 4-Star Hotel in Phuket Old Town`,
-    description: SITE_CONFIG.description,
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Royal Phuket City Hotel - Luxury 4-Star Hotel in Phuket Old Town",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${SITE_CONFIG.name} | Luxury 4-Star Hotel in Phuket Old Town`,
-    description: SITE_CONFIG.description,
-    images: ["/images/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const path = await getInnerPathname();
+  const enUrl = new URL(path, SITE_CONFIG.url).toString();
+  const thUrl = new URL(localizeHref(path, "th"), SITE_CONFIG.url).toString();
+
+  return {
+    metadataBase: new URL(SITE_CONFIG.url),
+    title: {
+      default: t.meta.titleDefault,
+      template: t.meta.titleTemplate,
+    },
+    description: t.meta.description,
+    applicationName: SITE_CONFIG.name,
+    keywords:
+      locale === "th"
+        ? [
+            "โรงแรมรอยัล ภูเก็ต ซิตี้",
+            "โรงแรมภูเก็ต",
+            "โรงแรมเมืองเก่าภูเก็ต",
+            "โรงแรม 4 ดาว ภูเก็ต",
+            "ที่พักภูเก็ตทาวน์",
+            "งานแต่งงานภูเก็ต",
+            "ห้องประชุมภูเก็ต",
+          ]
+        : [
+            "Royal Phuket City Hotel",
+            "Phuket hotel",
+            "Phuket Old Town hotel",
+            "luxury hotel Phuket",
+            "4-star hotel Thailand",
+            "Phuket accommodation",
+            "hotel near Phuket Old Town",
+            "Phuket wedding venue",
+            "Phuket meeting rooms",
+            "rooftop restaurant Phuket",
+          ],
+    authors: [{ name: "Royal Phuket City Hotel", url: SITE_CONFIG.url }],
+    creator: "Royal Phuket City Hotel",
+    publisher: "Royal Phuket City Hotel",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    openGraph: {
+      type: "website",
+      siteName: SITE_CONFIG.name,
+      locale: locale === "th" ? "th_TH" : "en_US",
+      alternateLocale: locale === "th" ? ["en_US"] : ["th_TH"],
+      url: locale === "th" ? thUrl : enUrl,
+      title: t.meta.titleDefault,
+      description: t.meta.description,
+      images: [
+        {
+          url: "/images/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: t.meta.ogAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.meta.titleDefault,
+      description: t.meta.description,
+      images: ["/images/og-image.jpg"],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  alternates: {
-    canonical: "/",
-  },
-  verification: {
-    google: "google-site-verification-code",
-  },
-  icons: {
-    icon: "/images/rpc-icon.svg",
-    shortcut: "/images/rpc-icon.svg",
-    apple: "/images/rpc-icon.svg",
-  },
-  category: "travel",
-};
+    alternates: {
+      canonical: locale === "th" ? thUrl : enUrl,
+      languages: {
+        en: enUrl,
+        th: thUrl,
+        "x-default": enUrl,
+      },
+    },
+    verification: {
+      google: "google-site-verification-code",
+    },
+    icons: {
+      icon: "/images/rpc-icon.svg",
+      shortcut: "/images/rpc-icon.svg",
+      apple: "/images/rpc-icon.svg",
+    },
+    category: "travel",
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const dictionary = getDictionary(locale);
+
   return (
-    <html lang="en" className={`${marcellus.variable} ${inter.variable}`}>
+    <html
+      lang={locale}
+      className={`${marcellus.variable} ${inter.variable} ${notoSansThai.variable} ${
+        locale === "th" ? notoSansThai.className : ""
+      }`}
+    >
       <head>
         <WebSiteJsonLd />
         <OrganizationJsonLd />
@@ -97,12 +134,14 @@ export default function RootLayout({
         <LocalBusinessJsonLd />
       </head>
       <body className="antialiased">
-        <AnalyticsProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <CookieConsent />
-        </AnalyticsProvider>
+        <LocaleProvider locale={locale} dictionary={dictionary}>
+          <AnalyticsProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <CookieConsent />
+          </AnalyticsProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

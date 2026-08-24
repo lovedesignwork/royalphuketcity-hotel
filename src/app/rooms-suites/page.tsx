@@ -1,13 +1,24 @@
 import { Metadata } from "next";
 import { HeroSection, SectionHeading, RoomCard } from "@/components";
-import { ROOMS, SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { getDictionary } from "@/lib/i18n/messages";
+import { getLocalizedRooms } from "@/lib/i18n/localized-data";
+import { localizeHref } from "@/lib/i18n/path";
 
-export const metadata: Metadata = {
-  title: "Rooms & Suites",
-  description:
-    "Discover 251 elegant rooms and suites at Royal Phuket City Hotel. From Premier rooms to Executive Suites with stunning views of Phuket Old Town and the Andaman Sea.",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const path = localizeHref("/rooms-suites", locale);
+  return {
+  title: t.roomsPage.metaTitle,
+  description: t.roomsPage.metaDesc,
   alternates: {
-    canonical: `${SITE_CONFIG.url}/rooms-suites`,
+    canonical: `${SITE_CONFIG.url}${path}`,
+    languages: {
+      en: `${SITE_CONFIG.url}/rooms-suites`,
+      th: `${SITE_CONFIG.url}/th/rooms-suites`,
+    },
   },
   openGraph: {
     title: "Rooms & Suites | Royal Phuket City Hotel",
@@ -23,7 +34,7 @@ export const metadata: Metadata = {
         alt: "Rooms & Suites at Royal Phuket City Hotel",
       },
     ],
-    locale: "en_US",
+    locale: locale === "th" ? "th_TH" : "en_US",
     type: "website",
   },
   twitter: {
@@ -33,16 +44,21 @@ export const metadata: Metadata = {
       "Discover 251 elegant rooms and suites with stunning views of Phuket Old Town and the Andaman Sea.",
     images: ["/images/og-image.jpg"],
   },
-};
+  };
+}
 
-export default function RoomsSuitesPage() {
+export default async function RoomsSuitesPage() {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const rooms = getLocalizedRooms(locale);
+  const amenityNames = t.roomsPage.amenities;
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        title="Rooms & Suites"
-        subtitle="Accommodations"
-        description="251 thoughtfully designed rooms with panoramic views"
+        title={t.roomsPage.heroTitle}
+        subtitle={t.roomsPage.heroSubtitle}
+        description={t.roomsPage.heroDesc}
         image="/images/rooms/Executive suite01 _resize.jpg"
         height="medium"
       />
@@ -51,13 +67,13 @@ export default function RoomsSuitesPage() {
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Our Collection"
-            title="Choose Your Perfect Stay"
-            subtitle="Each room type offers a unique experience, from city views to panoramic vistas of the Andaman Sea."
+            label={t.roomsPage.label}
+            title={t.roomsPage.title}
+            subtitle={t.roomsPage.subtitle}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {ROOMS.map((room) => (
+            {rooms.map((room) => (
               <RoomCard key={room.slug} {...room} />
             ))}
           </div>
@@ -68,9 +84,9 @@ export default function RoomsSuitesPage() {
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="In Every Room"
-            title="Standard Amenities"
-            subtitle="All rooms include these thoughtful touches for your comfort."
+            label={t.roomsPage.amenitiesLabel}
+            title={t.roomsPage.amenitiesTitle}
+            subtitle={t.roomsPage.amenitiesSubtitle}
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 max-w-6xl mx-auto">
@@ -174,15 +190,15 @@ export default function RoomsSuitesPage() {
                   </svg>
                 ),
               },
-            ].map((amenity) => (
+            ].map((amenity, index) => (
               <div
-                key={amenity.name}
+                key={amenityNames[index] || amenity.name}
                 className="group flex flex-col items-center text-center p-6 bg-white border border-gray-100 hover:border-[--color-accent]/30 hover:shadow-lg transition-all duration-300"
               >
                 <div className="text-[--color-accent] mb-4 group-hover:scale-110 transition-transform duration-300">
                   {amenity.icon}
                 </div>
-                <span className="text-sm font-medium text-gray-700 leading-tight">{amenity.name}</span>
+                <span className="text-sm font-medium text-gray-700 leading-tight">{amenityNames[index] || amenity.name}</span>
               </div>
             ))}
           </div>

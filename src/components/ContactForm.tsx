@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import CountryPhoneSelector from "./CountryPhoneSelector";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 interface FormData {
   name: string;
@@ -22,6 +23,7 @@ const initialFormData: FormData = {
 };
 
 export default function ContactForm() {
+  const { t } = useLocale();
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
@@ -87,15 +89,14 @@ export default function ContactForm() {
       {/* Success Message */}
       {status === "success" && (
         <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm">
-          <p className="font-medium">Thank you for your message!</p>
-          <p>We will get back to you as soon as possible.</p>
+          <p className="font-medium">{t.form.success}</p>
         </div>
       )}
 
       {/* Error Message */}
       {status === "error" && (
         <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm">
-          <p className="font-medium">Failed to send message</p>
+          <p className="font-medium">{t.form.error}</p>
           <p>{errorMessage}</p>
         </div>
       )}
@@ -107,7 +108,7 @@ export default function ContactForm() {
             htmlFor="name"
             className="block label-accent text-[--color-text-primary] mb-2"
           >
-            Name *
+            {t.form.name} *
           </label>
           <input
             type="text"
@@ -117,7 +118,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
-            placeholder="Your name"
+            placeholder={t.contactPage.namePlaceholder}
           />
         </div>
 
@@ -127,7 +128,7 @@ export default function ContactForm() {
             htmlFor="email"
             className="block label-accent text-[--color-text-primary] mb-2"
           >
-            Email *
+            {t.form.email} *
           </label>
           <input
             type="email"
@@ -148,7 +149,7 @@ export default function ContactForm() {
           <label
             className="block label-accent text-[--color-text-primary] mb-2"
           >
-            Phone
+            {t.form.phone}
           </label>
           <CountryPhoneSelector
             value={formData.phone}
@@ -163,7 +164,7 @@ export default function ContactForm() {
             htmlFor="inquiry_type"
             className="block label-accent text-[--color-text-primary] mb-2"
           >
-            Inquiry Type
+            {t.form.inquiry}
           </label>
           <div className="relative">
             <select
@@ -173,12 +174,12 @@ export default function ContactForm() {
               onChange={handleChange}
               className="w-full px-4 py-3 pr-10 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors appearance-none cursor-pointer"
             >
-              <option value="general">General Inquiry</option>
-              <option value="reservation">Reservation</option>
-              <option value="corporate">Corporate / MICE</option>
-              <option value="wedding">Wedding</option>
-              <option value="dining">Dining Reservation</option>
-              <option value="feedback">Feedback</option>
+              <option value="general">{t.form.general}</option>
+              <option value="reservation">{t.form.reservation}</option>
+              <option value="corporate">{t.form.event}</option>
+              <option value="wedding">{t.form.wedding}</option>
+              <option value="dining">{t.nav.dining}</option>
+              <option value="feedback">{t.form.feedback}</option>
             </select>
             <svg
               className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"
@@ -198,7 +199,7 @@ export default function ContactForm() {
           htmlFor="subject"
           className="block label-accent text-[--color-text-primary] mb-2"
         >
-          Subject
+          {t.form.subject}
         </label>
         <input
           type="text"
@@ -207,7 +208,7 @@ export default function ContactForm() {
           value={formData.subject}
           onChange={handleChange}
           className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
-          placeholder="How can we help?"
+          placeholder={t.contactPage.subjectPlaceholder}
         />
       </div>
 
@@ -217,7 +218,7 @@ export default function ContactForm() {
           htmlFor="message"
           className="block label-accent text-[--color-text-primary] mb-2"
         >
-          Message *
+          {t.form.message} *
         </label>
         <textarea
           id="message"
@@ -227,7 +228,7 @@ export default function ContactForm() {
           required
           rows={6}
           className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors resize-none"
-          placeholder="Your message..."
+          placeholder={t.contactPage.messagePlaceholder}
         />
       </div>
 
@@ -249,7 +250,7 @@ export default function ContactForm() {
         disabled={status === "loading"}
         className="btn-primary w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {status === "loading" ? "Sending..." : "Send Message"}
+        {status === "loading" ? t.form.sending : t.form.send}
       </button>
     </form>
   );

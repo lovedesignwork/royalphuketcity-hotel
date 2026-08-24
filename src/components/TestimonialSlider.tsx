@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 interface Testimonial {
   id: number;
@@ -49,15 +50,17 @@ const testimonials: Testimonial[] = [
 import Image from "next/image";
 
 export default function TestimonialSlider() {
+  const { t } = useLocale();
+  const reviews = t.testimonials.items;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % reviews.length);
   };
 
   const prevTestimonial = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
+      prev === 0 ? reviews.length - 1 : prev - 1
     );
   };
 
@@ -78,12 +81,12 @@ export default function TestimonialSlider() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="label-accent text-white/50 block mb-3">
-            Guest Reviews
+            {t.testimonials.label}
           </span>
           <div className="flex items-center justify-center gap-4">
             <div className="h-px w-10 bg-[#8B7355]" />
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white">
-              What Our Guests Say
+              {t.testimonials.title}
             </h2>
             <div className="h-px w-10 bg-[#8B7355]" />
           </div>
@@ -102,7 +105,7 @@ export default function TestimonialSlider() {
             >
               {/* Stars */}
               <div className="flex justify-center gap-1 mb-8">
-                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
                     className="w-5 h-5 text-[#8B7355]"
@@ -116,7 +119,7 @@ export default function TestimonialSlider() {
 
               {/* Quote */}
               <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-relaxed">
-                &ldquo;{testimonials[currentIndex].quote}&rdquo;
+                &ldquo;{reviews[currentIndex].quote}&rdquo;
               </blockquote>
 
               {/* Gold divider */}
@@ -125,10 +128,10 @@ export default function TestimonialSlider() {
               {/* Author */}
               <div>
                 <p className="font-medium text-white">
-                  {testimonials[currentIndex].author}
+                  {reviews[currentIndex].author}
                 </p>
                 <p className="text-sm text-white/50 mt-1">
-                  {testimonials[currentIndex].location}
+                  {reviews[currentIndex].location}
                 </p>
               </div>
             </motion.div>
@@ -139,7 +142,7 @@ export default function TestimonialSlider() {
             <button
               onClick={prevTestimonial}
               className="p-3 border border-white/20 text-white/60 hover:text-white hover:border-white/60 transition-colors rounded-full"
-              aria-label="Previous testimonial"
+              aria-label={t.testimonials.prev}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -148,7 +151,7 @@ export default function TestimonialSlider() {
 
             {/* Dots */}
             <div className="flex gap-2">
-              {testimonials.map((_, index) => (
+              {reviews.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
@@ -165,7 +168,7 @@ export default function TestimonialSlider() {
             <button
               onClick={nextTestimonial}
               className="p-3 border border-white/20 text-white/60 hover:text-white hover:border-white/60 transition-colors rounded-full"
-              aria-label="Next testimonial"
+              aria-label={t.testimonials.next}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />

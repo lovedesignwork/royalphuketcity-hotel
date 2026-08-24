@@ -2,19 +2,27 @@ import { Metadata } from "next";
 import { HeroSection, SectionHeading } from "@/components";
 import ContactForm from "@/components/ContactForm";
 import { HOTEL_INFO, EXTERNAL_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { getDictionary } from "@/lib/i18n/messages";
+import { localizeHref } from "@/lib/i18n/path";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Royal Phuket City Hotel for reservations and inquiries. Located at 154 Phang-Nga Road, Phuket Old Town. Call +66 76 233 355.",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  return {
+  title: t.contactPage.metaTitle,
+  description: t.contactPage.metaDesc,
   alternates: {
-    canonical: `${SITE_CONFIG.url}/contact`,
+    canonical: `${SITE_CONFIG.url}${localizeHref("/contact", locale)}`,
+    languages: {
+      en: `${SITE_CONFIG.url}/contact`,
+      th: `${SITE_CONFIG.url}/th/contact`,
+    },
   },
   openGraph: {
-    title: "Contact | Royal Phuket City Hotel",
-    description:
-      "Get in touch for reservations, inquiries, or feedback. Located in Phuket Old Town.",
-    url: `${SITE_CONFIG.url}/contact`,
+    title: `${t.contactPage.metaTitle} | ${locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel"}`,
+    description: t.contactPage.metaDesc,
+    url: `${SITE_CONFIG.url}${localizeHref("/contact", locale)}`,
     siteName: SITE_CONFIG.name,
     images: [
       {
@@ -24,26 +32,28 @@ export const metadata: Metadata = {
         alt: "Contact Royal Phuket City Hotel",
       },
     ],
-    locale: "en_US",
+    locale: locale === "th" ? "th_TH" : "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | Royal Phuket City Hotel",
-    description:
-      "Get in touch for reservations, inquiries, or feedback.",
+    title: t.contactPage.metaTitle,
+    description: t.contactPage.metaDesc,
     images: ["/images/og-image.jpg"],
   },
-};
+  };
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        title="Contact Us"
-        subtitle="Get in Touch"
-        description="We're here to help with your inquiries"
+        title={t.contactPage.heroTitle}
+        subtitle={t.contactPage.heroSubtitle}
+        description={t.contactPage.heroDesc}
         image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
         height="medium"
       />
@@ -55,8 +65,8 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="lg:col-span-1">
               <SectionHeading
-                label="Contact Information"
-                title="Get in Touch"
+                label={t.contactPage.label}
+                title={t.contactPage.title}
                 align="left"
               />
 
@@ -85,9 +95,9 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Address</h3>
+                    <h3 className="font-medium mb-1">{t.contactPage.address}</h3>
                     <p className="text-sm text-[--color-text-secondary]">
-                      {HOTEL_INFO.address}
+                      {t.contactPage.hotelAddress}
                     </p>
                     <a
                       href={EXTERNAL_LINKS.googleMaps}
@@ -95,7 +105,7 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="text-sm text-[--color-accent] hover:underline inline-flex items-center gap-1 mt-2"
                     >
-                      View on Google Maps
+                      {t.contactPage.viewMaps}
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -131,7 +141,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Phone</h3>
+                    <h3 className="font-medium mb-1">{t.contactPage.phone}</h3>
                     <a
                       href={`tel:${HOTEL_INFO.phone.replace(/\s/g, "")}`}
                       className="text-sm text-[--color-text-secondary] hover:text-[--color-accent]"
@@ -159,7 +169,7 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Email</h3>
+                    <h3 className="font-medium mb-1">{t.contactPage.email}</h3>
                     <a
                       href={`mailto:${HOTEL_INFO.email}`}
                       className="text-sm text-[--color-text-secondary] hover:text-[--color-accent]"
@@ -187,19 +197,19 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Check-in / Check-out</h3>
+                    <h3 className="font-medium mb-1">{t.contactPage.checkInOut}</h3>
                     <p className="text-sm text-[--color-text-secondary]">
-                      Check-in: {HOTEL_INFO.checkIn}
+                      {t.contactPage.checkIn}: {t.contactPage.checkInTime}
                     </p>
                     <p className="text-sm text-[--color-text-secondary]">
-                      Check-out: {HOTEL_INFO.checkOut}
+                      {t.contactPage.checkOut}: {t.contactPage.checkOutTime}
                     </p>
                   </div>
                 </div>
 
                 {/* Social Links */}
                 <div className="pt-6 hairline-border-t">
-                  <h3 className="font-medium mb-4">Follow Us</h3>
+                  <h3 className="font-medium mb-4">{t.contactPage.followUs}</h3>
                   <div className="flex gap-4">
                     <a
                       href={EXTERNAL_LINKS.facebook}
@@ -256,10 +266,10 @@ export default function ContactPage() {
                 {/* Heading */}
                 <div className="mb-8 text-center">
                   <p className="text-[#8B7355] text-xs tracking-[0.3em] uppercase mb-3">
-                    Send a Message
+                    {t.contactPage.sendMessage}
                   </p>
                   <h2 className="font-heading text-2xl md:text-3xl text-[--color-text-primary] mb-3">
-                    How Can We Help?
+                    {t.contactPage.howCanWeHelp}
                   </h2>
                   <div className="w-12 h-px bg-[#8B7355] mx-auto" />
                 </div>
@@ -281,7 +291,7 @@ export default function ContactPage() {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Royal Phuket City Hotel Location"
+          title={t.contactPage.mapTitle}
         />
       </section>
     </>

@@ -1,13 +1,24 @@
 import { Metadata } from "next";
 import { HeroSection, SectionHeading, RestaurantCard } from "@/components";
-import { RESTAURANTS, SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { getDictionary } from "@/lib/i18n/messages";
+import { getLocalizedRestaurants } from "@/lib/i18n/localized-data";
+import { localizeHref } from "@/lib/i18n/path";
 
-export const metadata: Metadata = {
-  title: "Dining",
-  description:
-    "Discover the dining venues at Royal Phuket City Hotel. From authentic Cantonese at Yan Long to rooftop cocktails at TWIST with panoramic views.",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const path = localizeHref("/dining", locale);
+  return {
+  title: t.diningPage.metaTitle,
+  description: t.diningPage.metaDesc,
   alternates: {
-    canonical: `${SITE_CONFIG.url}/dining`,
+    canonical: `${SITE_CONFIG.url}${path}`,
+    languages: {
+      en: `${SITE_CONFIG.url}/dining`,
+      th: `${SITE_CONFIG.url}/th/dining`,
+    },
   },
   openGraph: {
     title: "Dining | Royal Phuket City Hotel",
@@ -23,26 +34,29 @@ export const metadata: Metadata = {
         alt: "Dining at Royal Phuket City Hotel",
       },
     ],
-    locale: "en_US",
+    locale: locale === "th" ? "th_TH" : "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dining | Royal Phuket City Hotel",
-    description:
-      "Distinctive dining venues from authentic Cantonese cuisine to rooftop cocktails.",
+    title: t.diningPage.metaTitle,
+    description: t.diningPage.metaDesc,
     images: ["/images/og-image.jpg"],
   },
-};
+  };
+}
 
-export default function DiningPage() {
+export default async function DiningPage() {
+  const locale = await getLocale();
+  const t = getDictionary(locale);
+  const restaurants = getLocalizedRestaurants(locale);
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        title="Dining"
-        subtitle="Culinary Experiences"
-        description="Distinctive venues, endless culinary discoveries"
+        title={t.diningPage.heroTitle}
+        subtitle={t.diningPage.heroSubtitle}
+        description={t.diningPage.heroDesc}
         image="/images/HOTEL WEBSITE/Restaurant/TWIST_001-_resize.jpg"
         height="medium"
       />
@@ -52,15 +66,11 @@ export default function DiningPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <SectionHeading
-              label="A Culinary Journey"
-              title="Taste the World at Royal Phuket City"
+              label={t.diningPage.label}
+              title={t.diningPage.title}
             />
             <p className="text-[--color-text-secondary] text-lg">
-              From authentic Cantonese dim sum to sunset cocktails with
-              panoramic views, our dining venues offer diverse culinary
-              experiences to satisfy every palate. Each restaurant is helmed by
-              passionate chefs dedicated to crafting memorable dishes using the
-              finest local and imported ingredients.
+              {t.diningPage.body}
             </p>
           </div>
         </div>
@@ -70,7 +80,7 @@ export default function DiningPage() {
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
-            {RESTAURANTS.map((restaurant) => (
+            {restaurants.map((restaurant) => (
               <RestaurantCard key={restaurant.slug} {...restaurant} />
             ))}
           </div>

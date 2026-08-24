@@ -2,10 +2,14 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HeroSection, SectionHeading } from "@/components";
-import { WEDDING_TYPES, WEDDING_TYPE_SLUGS } from "@/lib/wedding-types-data";
+import HeroSection from "@/components/HeroSection";
+import SectionHeading from "@/components/SectionHeading";
+import { WEDDING_TYPE_SLUGS } from "@/lib/wedding-types-data";
 import { SITE_CONFIG } from "@/lib/constants";
 import WeddingInquiryForm from "@/components/WeddingInquiryForm";
+import { getLocale } from "@/lib/i18n/get-locale";
+import { localizeHref } from "@/lib/i18n/path";
+import { getLocalizedWeddingType, getWeddingPageCopy } from "@/lib/i18n/wedding-copy";
 
 export async function generateStaticParams() {
   return WEDDING_TYPE_SLUGS.map((type) => ({
@@ -19,7 +23,8 @@ export async function generateMetadata({
   params: Promise<{ type: string }>;
 }): Promise<Metadata> {
   const { type } = await params;
-  const weddingType = WEDDING_TYPES[type];
+  const locale = await getLocale();
+  const weddingType = getLocalizedWeddingType(type, locale);
 
   if (!weddingType) {
     return {
@@ -27,17 +32,23 @@ export async function generateMetadata({
     };
   }
 
+  const path = localizeHref(`/wedding-venues/${weddingType.slug}`, locale);
+
   return {
-    title: `${weddingType.title} in Phuket | Royal Phuket City Hotel`,
+    title: `${weddingType.title} | Royal Phuket City Hotel`,
     description: weddingType.metaDescription,
     keywords: weddingType.seoKeywords.join(", "),
     alternates: {
-      canonical: `${SITE_CONFIG.url}/wedding-venues/${weddingType.slug}`,
+      canonical: `${SITE_CONFIG.url}${path}`,
+      languages: {
+        en: `${SITE_CONFIG.url}/wedding-venues/${weddingType.slug}`,
+        th: `${SITE_CONFIG.url}/th/wedding-venues/${weddingType.slug}`,
+      },
     },
     openGraph: {
-      title: `${weddingType.title} in Phuket | Royal Phuket City Hotel`,
+      title: `${weddingType.title} | Royal Phuket City Hotel`,
       description: weddingType.metaDescription,
-      url: `${SITE_CONFIG.url}/wedding-venues/${weddingType.slug}`,
+      url: `${SITE_CONFIG.url}${path}`,
       siteName: SITE_CONFIG.name,
       images: [
         {
@@ -47,7 +58,7 @@ export async function generateMetadata({
           alt: weddingType.title,
         },
       ],
-      locale: "en_US",
+      locale: locale === "th" ? "th_TH" : "en_US",
       type: "website",
     },
   };
@@ -59,13 +70,15 @@ export default async function WeddingTypePage({
   params: Promise<{ type: string }>;
 }) {
   const { type } = await params;
-  const weddingType = WEDDING_TYPES[type];
+  const locale = await getLocale();
+  const t = getWeddingPageCopy(locale);
+  const weddingType = getLocalizedWeddingType(type, locale);
 
   if (!weddingType) {
     notFound();
   }
 
-  const otherWeddingTypes = WEDDING_TYPE_SLUGS.filter((t) => t !== type).slice(0, 3);
+  const otherWeddingTypes = WEDDING_TYPE_SLUGS.filter((slug) => slug !== type).slice(0, 3);
 
   return (
     <main>
@@ -73,7 +86,7 @@ export default async function WeddingTypePage({
       <HeroSection
         title={weddingType.title}
         subtitle={weddingType.subtitle}
-        description="at Royal Phuket City Hotel"
+        description={t.typeAtHotel}
         image={weddingType.heroImage}
         height="large"
       />
@@ -83,7 +96,7 @@ export default async function WeddingTypePage({
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <p className="label-accent text-[--color-accent] mb-4">Your Dream {weddingType.title}</p>
+              <p className="label-accent text-[--color-accent] mb-4">{t.typeDream} {weddingType.title}</p>
               <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-[--color-text-primary] mb-6">
                 {weddingType.subtitle}
               </h2>
@@ -117,9 +130,9 @@ export default async function WeddingTypePage({
 
               {/* Content */}
               <div>
-                <p className="label-accent text-[--color-accent] mb-3">Why Choose Us</p>
+                <p className="label-accent text-[--color-accent] mb-3">{t.whyChoose}</p>
                 <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary] mb-6">
-                  What We Offer
+                  {t.whatWeOffer}
                 </h2>
                 <ul className="space-y-4">
                   {weddingType.highlights.map((highlight, index) => (
@@ -141,9 +154,9 @@ export default async function WeddingTypePage({
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Traditions & Ceremonies"
-            title={`${weddingType.title} Traditions`}
-            subtitle="Experience the meaningful rituals and customs that make your celebration special."
+            label={t.traditionsLabel}
+            title={`${weddingType.title} ${t.traditionsTitle}`}
+            subtitle={t.traditionsSubtitle}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {weddingType.traditions.map((tradition, index) => (
@@ -169,9 +182,9 @@ export default async function WeddingTypePage({
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Gallery"
-            title="Captured Moments"
-            subtitle="See the beauty of celebrations we've hosted."
+            label={t.galleryLabel}
+            title={t.galleryTitle}
+            subtitle={t.gallerySubtitle}
           />
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {weddingType.gallery.map((image, index) => (
@@ -202,29 +215,28 @@ export default async function WeddingTypePage({
         />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative container mx-auto px-6 text-center">
-          <p className="text-[#8B7355] uppercase tracking-widest text-sm mb-4">Start Planning</p>
+          <p className="text-[#8B7355] uppercase tracking-widest text-sm mb-4">{t.startPlanning}</p>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-6">
-            Ready to Plan Your {weddingType.title}?
+            {t.readyPlan} {weddingType.title}?
           </h2>
           <p className="text-white/80 max-w-2xl mx-auto mb-8">
-            Our dedicated wedding specialists are ready to help you create the perfect celebration.
-            Contact us today to begin your journey.
+            {t.readyBody}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="#wedding-inquiry"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B7355] text-white font-medium tracking-wide uppercase text-sm hover:bg-[#7a6548] transition-colors"
             >
-              Inquire Now
+              {t.inquireNow}
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>
             </a>
             <Link
-              href="/wedding-venues"
+              href={localizeHref("/wedding-venues", locale)}
               className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/30 text-white font-medium tracking-wide uppercase text-sm hover:bg-white/10 transition-colors"
             >
-              View All Wedding Types
+              {t.viewAllTypes}
             </Link>
           </div>
         </div>
@@ -237,15 +249,16 @@ export default async function WeddingTypePage({
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-6">
           <SectionHeading
-            label="Explore More"
-            title="Other Wedding Ceremonies"
-            subtitle="Discover more wedding styles we offer."
+            label={t.exploreMore}
+            title={t.otherTypes}
+            subtitle={t.otherSubtitle}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {otherWeddingTypes.map((slug) => {
-              const otherType = WEDDING_TYPES[slug];
+              const otherType = getLocalizedWeddingType(slug, locale);
+              if (!otherType) return null;
               return (
-                <Link key={slug} href={`/wedding-venues/${slug}`} className="group block">
+                <Link key={slug} href={localizeHref(`/wedding-venues/${slug}`, locale)} className="group block">
                   <article className="relative overflow-hidden">
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
@@ -259,7 +272,7 @@ export default async function WeddingTypePage({
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <h3 className="font-heading text-xl md:text-2xl mb-2">{otherType.title}</h3>
                         <span className="inline-flex items-center gap-2 text-sm text-[#8B7355] group-hover:gap-3 transition-all">
-                          Learn More
+                          {t.learnMore}
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                           </svg>

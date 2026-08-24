@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import LocaleLink from "@/components/i18n/LocaleLink";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 interface RoomCardProps {
   slug: string;
@@ -26,7 +27,10 @@ export default function RoomCard({
   shortDescription,
   image,
 }: RoomCardProps) {
-  const hasSeaView = views.some((v) => v.toLowerCase().includes("sea"));
+  const { locale, t } = useLocale();
+  const hasSeaView = views.some((v) =>
+    v.toLowerCase().includes("sea") || v.includes("ทะเล")
+  );
 
   return (
     <motion.article
@@ -36,7 +40,7 @@ export default function RoomCard({
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="group relative"
     >
-      <Link href={`/rooms-suites/${slug}`} className="block">
+      <LocaleLink href={`/rooms-suites/${slug}`} className="block">
         {/* Image — tall portrait ratio for luxury feel */}
         <div className="relative aspect-[3/4] overflow-hidden">
           <Image
@@ -53,8 +57,8 @@ export default function RoomCard({
           {/* Sea View badge */}
           {hasSeaView && (
             <div className="absolute top-5 right-5 z-10">
-              <span className="bg-[#8B7355] text-white px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase font-medium">
-                Partial Sea View
+              <span className={`bg-[#8B7355] text-white px-3 py-1.5 text-[10px] font-medium ${locale === "th" ? "" : "tracking-[0.2em] uppercase"}`}>
+                {t.common.seaView}
               </span>
             </div>
           )}
@@ -62,10 +66,10 @@ export default function RoomCard({
           {/* Content overlaid on image */}
           <div className="absolute inset-x-0 bottom-0 z-10 p-7">
             {/* Room details — always visible */}
-            <div className="flex flex-wrap items-center gap-2 text-xs text-white/60 tracking-[0.12em] uppercase mb-3">
+            <div className={`flex flex-wrap items-center gap-2 text-xs text-white/60 mb-3 ${locale === "th" ? "" : "tracking-[0.12em] uppercase"}`}>
               <span>{size}</span>
               <span className="text-[#8B7355]">·</span>
-              <span>{maxGuests} Guests</span>
+              <span>{maxGuests} {t.common.guests}</span>
               <span className="text-[#8B7355]">·</span>
               <span>{bedType}</span>
             </div>
@@ -105,8 +109,8 @@ export default function RoomCard({
                 )}
                 {views[0]}
               </span>
-              <span className="inline-flex items-center gap-2 text-[#8B7355] text-xs tracking-[0.15em] uppercase font-medium group-hover:gap-3 transition-all duration-300">
-                Explore
+              <span className={`inline-flex items-center gap-2 text-[#8B7355] text-xs font-medium group-hover:gap-3 transition-all duration-300 ${locale === "th" ? "" : "tracking-[0.15em] uppercase"}`}>
+                {t.common.explore}
                 <svg
                   className="w-3.5 h-3.5"
                   fill="none"
@@ -119,7 +123,7 @@ export default function RoomCard({
             </div>
           </div>
         </div>
-      </Link>
+      </LocaleLink>
     </motion.article>
   );
 }

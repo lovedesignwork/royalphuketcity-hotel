@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { HeroSection, CTABanner } from "@/components";
 import { SITE_CONFIG } from "@/lib/constants";
 import FacilityImageCarousel from "@/components/FacilityImageCarousel";
+import { getLocale } from "@/lib/i18n/get-locale";
 
 export const metadata: Metadata = {
   title: "Facilities",
@@ -199,14 +200,72 @@ const facilities = [
   },
 ];
 
-export default function FacilitiesPage() {
+const facilitiesTh: Record<string, { name: string; location: string; description: string; hours: string; features: string[] }> = {
+  "Breakfast on the Rooftop": {
+    name: "อาหารเช้าบนดาดฟ้า",
+    location: "ชั้น 19 - ทวิสต์ รูฟท็อป",
+    description: "เริ่มวันบนชั้น 19 จุดสูงสุดของภูเก็ตทาวน์ กินอาหารเช้าแบบไทยและสากล มองเมืองและทะเลไปด้วยขณะที่ครัวทำของสดทุกเช้า",
+    hours: "อาหารเช้า 6:30 - 10:30 น.",
+    features: ["ดาดฟ้าสูงสุดในภูเก็ตทาวน์", "วิวเมืองและทะเล", "เลือกได้ทั้งของไทยและของสากล", "ทำสดทุกวัน"],
+  },
+  "Lobby and Lounge": {
+    name: "ล็อบบี้และเลานจ์",
+    location: "ชั้นล่าง - เอเทรียม เลานจ์",
+    description: "เอเทรียมเป็นล็อบบี้กว้าง บรรยากาศนั่งสบาย มีเปียโนสดและนักร้องในบางช่วง ใช้ดื่มที่บาร์ นั่งคุย หรือพักก่อนออกเมืองได้",
+    hours: "ล็อบบี้เปิด 24 ชั่วโมง | เลานจ์ 15:00 - 24:00 น.",
+    features: ["ดนตรีเปียโนสด", "บริการบาร์", "พื้นที่นั่งกว้าง", "ล็อบบี้ใช้ได้ตลอด 24 ชั่วโมง"],
+  },
+  "Fitness Centre": {
+    name: "ฟิตเนส",
+    location: "ชั้น 3 - Workout Club",
+    description: "ฟิตเนสชั้น 3 ใช้ฟรีสำหรับผู้เข้าพัก เครื่องออกกำลังครบ ดูแลโดย Workout Club ซึ่งเป็นฟิตเนสชั้นนำของภูเก็ต",
+    hours: "เปิด 7:00 - 21:00 น. | ผู้เข้าพักใช้ฟรี",
+    features: ["เครื่องออกกำลังทันสมัย", "ผู้เข้าพักใช้ฟรี", "ดูแลโดย Workout Club"],
+  },
+  "Swimming Pool": {
+    name: "สระว่ายน้ำ",
+    location: "ชั้น 3",
+    description: "สระกลางแจ้งชั้น 3 มีโซนผู้ใหญ่และเด็กแยกกัน บรรยากาศโล่ง ใช้แช่ พัก และอาบแดดได้ทั้งวัน",
+    hours: "เปิด 7:00 - 21:00 น.",
+    features: ["โซนผู้ใหญ่และเด็ก", "บรรยากาศเงียบ นั่งพักได้", "มีเตียงอาบแดด", "เครื่องดื่มริมสระ"],
+  },
+  "Massage & Spa": {
+    name: "นวดและสปา",
+    location: "ชั้น 3 - รอยัล เวลเนส สปา",
+    description: "สปาในโรงแรมสำหรับคลายเมื่อยหลังเดินทาง นวดโดยเทคนิคมาตรฐานโรงแรม ใช้น้ำมันหอม บรรยากาศเงียบ",
+    hours: "เปิด 10:00 - 23:00 น.",
+    features: ["นวดโดยนักบำบัดในโรงแรม", "น้ำมันหอมเกรดสปา", "ห้องเงียบ เป็นสัดส่วน", "เน้นผ่อนคลายทั้งตัว"],
+  },
+  "Indoor & Outdoor Parking": {
+    name: "ที่จอดรถในร่มและกลางแจ้ง",
+    location: "มีจุดชาร์จรถไฟฟ้า",
+    description: "จอดได้ทั้งในร่มและกลางแจ้ง รวมประมาณ 350 คัน มีจุดชาร์จรถไฟฟ้า เข้าโรงแรมแล้วจอดได้เลยไม่ต้องหาที่ข้างนอก",
+    hours: "ที่จอดรวม 350 คัน",
+    features: ["ที่จอด 350 คัน", "มีทั้งในร่มและกลางแจ้ง", "จุดชาร์จรถไฟฟ้า", "รปภ. ตลอด 24 ชั่วโมง"],
+  },
+  "Transportation": {
+    name: "รถรับส่ง",
+    location: "รถไฟฟ้าสมาร์ทบัส และรถรับส่งส่วนตัว",
+    description: "มีรถ Shuttle ไฟฟ้าจอดที่โรงแรม ใช้ฟรี และมีรถตู้รับส่งส่วนตัวถ้าอยากจัดตารางเอง",
+    hours: "ทุกวัน 10:00 - 21:00 น. ทุก 15 นาที",
+    features: ["รถ Shuttle ไฟฟ้าฟรี", "จอดที่โรงแรม", "มีรถรับส่งส่วนตัว", "รอบรถทุก 15 นาที"],
+  },
+};
+
+export default async function FacilitiesPage() {
+  const locale = await getLocale();
+  const localizedFacilities = facilities.map((facility) => {
+    const th = facilitiesTh[facility.name];
+    if (locale !== "th" || !th) return facility;
+    return { ...facility, ...th };
+  });
   return (
     <>
       {/* Hero Section */}
       <HeroSection
-        title="Everything You Need, All in One Place"
-        subtitle="Facilities That Elevate Every Moment"
-        description="Enjoy complete in-house facilities designed to meet all your needs."
+        title={locale === "th" ? "ครบในโรงแรม ที่เดียวจบ" : "Everything You Need, All in One Place"}
+        subtitle={locale === "th" ? "สิ่งอำนวยความสะดวก" : "Facilities That Elevate Every Moment"}
+        description={locale === "th" ? "ใช้สระ ฟิตเนส สปา รถรับส่ง และอาหารเช้าได้ในโรงแรม โดยไม่ต้องออกไปหาที่อื่น" : "Enjoy complete in-house facilities designed to meet all your needs."}
         image="/images/HOTEL WEBSITE/RPC Wide.jpg"
         height="medium"
       />
@@ -215,7 +274,7 @@ export default function FacilitiesPage() {
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-6">
           <div className="space-y-16 md:space-y-24">
-            {facilities.map((facility, index) => (
+            {localizedFacilities.map((facility, index) => (
               <div
                 key={facility.name}
                 className="border border-gray-200 bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300"
@@ -278,8 +337,8 @@ export default function FacilitiesPage() {
 
       {/* CTA Banner */}
       <CTABanner
-        title="Experience Our World-Class Facilities"
-        subtitle="Book Your Stay"
+        title={locale === "th" ? "ใช้สิ่งอำนวยความสะดวกของโรงแรมให้คุ้มวันที่พัก" : "Experience Our World-Class Facilities"}
+        subtitle={locale === "th" ? "จองห้องพัก" : "Book Your Stay"}
         image="/images/HOTEL WEBSITE/RPC-Mainss.png"
       />
     </>

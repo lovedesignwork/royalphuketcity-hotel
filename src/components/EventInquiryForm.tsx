@@ -5,6 +5,9 @@ import Link from "next/link";
 import CountryPhoneSelector from "./CountryPhoneSelector";
 import CountrySelector from "./CountrySelector";
 import CalendarPicker from "./CalendarPicker";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { getMeetingPageCopy } from "@/lib/i18n/meeting-copy";
+import { localizeHref } from "@/lib/i18n/path";
 
 interface SubmittedData {
   fullName: string;
@@ -19,6 +22,8 @@ interface SubmittedData {
 }
 
 export default function EventInquiryForm() {
+  const { locale } = useLocale();
+  const t = getMeetingPageCopy(locale);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -120,10 +125,10 @@ export default function EventInquiryForm() {
           {/* Header - Outside the box */}
           <div className="text-center mb-10">
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary] mb-4">
-              Inquiry for Your Next Event
+              {t.formTitle}
             </h2>
             <p className="text-[--color-text-secondary]">
-              Our dedicated meetings and events specialist is ready to guide you in planning and executing your event with precision
+              {t.formDesc}
             </p>
           </div>
 
@@ -134,8 +139,8 @@ export default function EventInquiryForm() {
             {/* Full Name */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Full Name</span>
-                <span className="block text-sm text-[--color-text-secondary] italic">first & last name</span>
+                <span className="text-[--color-text-primary] font-medium">{t.fullName}</span>
+                <span className="block text-sm text-[--color-text-secondary] italic">{t.firstLast}</span>
               </label>
               <input
                 type="text"
@@ -150,7 +155,7 @@ export default function EventInquiryForm() {
             {/* Email */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Email</span>
+                <span className="text-[--color-text-primary] font-medium">{t.email}</span>
               </label>
               <div className="flex-1 relative">
                 <input
@@ -170,8 +175,8 @@ export default function EventInquiryForm() {
             {/* Phone with Country Code */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Phone number</span>
-                <span className="block text-sm text-[--color-text-secondary] italic">whatsapp</span>
+                <span className="text-[--color-text-primary] font-medium">{t.phone}</span>
+                <span className="block text-sm text-[--color-text-secondary] italic">{t.whatsapp}</span>
               </label>
               <CountryPhoneSelector
                 value={formData.phone}
@@ -184,7 +189,7 @@ export default function EventInquiryForm() {
             {/* Country with Flags */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Country</span>
+                <span className="text-[--color-text-primary] font-medium">{t.country}</span>
               </label>
               <CountrySelector
                 value={formData.country}
@@ -196,8 +201,8 @@ export default function EventInquiryForm() {
             {/* Company Name */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Company Name</span>
-                <span className="block text-sm text-[--color-text-secondary] italic">optional</span>
+                <span className="text-[--color-text-primary] font-medium">{t.company}</span>
+                <span className="block text-sm text-[--color-text-secondary] italic">{t.optional}</span>
               </label>
               <input
                 type="text"
@@ -211,7 +216,7 @@ export default function EventInquiryForm() {
             {/* Event Date with Calendar Picker */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Event Date</span>
+                <span className="text-[--color-text-primary] font-medium">{t.eventDate}</span>
               </label>
               <CalendarPicker
                 value={formData.eventDate}
@@ -223,8 +228,8 @@ export default function EventInquiryForm() {
             {/* Number of Guests */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Number of Guest</span>
-                <span className="block text-sm text-[--color-text-secondary] italic">attendees</span>
+                <span className="text-[--color-text-primary] font-medium">{t.guests}</span>
+                <span className="block text-sm text-[--color-text-secondary] italic">{t.attendees}</span>
               </label>
               <div className="flex-1">
                 <div className="flex items-center gap-4">
@@ -252,7 +257,7 @@ export default function EventInquiryForm() {
             {/* Event Details */}
             <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
               <label className="sm:w-40 sm:text-right pt-3 flex-shrink-0">
-                <span className="text-[--color-text-primary] font-medium">Details of Event</span>
+                <span className="text-[--color-text-primary] font-medium">{t.details}</span>
               </label>
               <textarea
                 name="eventDetails"
@@ -260,7 +265,7 @@ export default function EventInquiryForm() {
                 onChange={handleChange}
                 rows={5}
                 className="flex-1 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors resize-none"
-                placeholder="Tell us about your event..."
+                placeholder={t.placeholder}
               />
             </div>
 
@@ -279,7 +284,7 @@ export default function EventInquiryForm() {
                   disabled={isSubmitting}
                   className="px-8 py-3 bg-[#8B7355] text-white font-medium tracking-wide hover:bg-[#7a6548] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit"}
+                  {isSubmitting ? t.submitting : t.submit}
                 </button>
               </div>
             </div>
@@ -289,7 +294,7 @@ export default function EventInquiryForm() {
               <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
                 <div className="sm:w-40 flex-shrink-0" />
                 <div className="flex-1 p-4 bg-red-50 text-red-700 border border-red-200">
-                  Something went wrong. Please try again or contact us directly at{" "}
+                  {t.error}{" "}
                   <a href="mailto:reservation@royalphuketcity.com" className="underline font-medium">
                     reservation@royalphuketcity.com
                   </a>
@@ -310,49 +315,49 @@ export default function EventInquiryForm() {
 
               {/* Thank You Message */}
               <h3 className="font-heading text-2xl md:text-3xl text-[--color-text-primary] text-center mb-2">
-                Thank You, {submittedData.fullName}!
+                {t.thankYou}, {submittedData.fullName}!
               </h3>
               <p className="text-[--color-text-secondary] text-center mb-6 max-w-md">
-                Your event inquiry has been successfully submitted. Our Meetings & Events team will review your request and get back to you shortly.
+                {t.successBody}
               </p>
 
               {/* Reference Number */}
               {submittedData.referenceNumber && (
                 <div className="bg-[#faf9f7] border border-[#8B7355]/20 px-6 py-4 mb-8 text-center">
-                  <p className="text-sm text-[--color-text-secondary] mb-1">Your Reference Number</p>
+                  <p className="text-sm text-[--color-text-secondary] mb-1">{t.refNumber}</p>
                   <p className="text-2xl font-bold text-[#8B7355] tracking-wider">{submittedData.referenceNumber}</p>
-                  <p className="text-xs text-[--color-text-secondary] mt-2">Please save this for your records</p>
+                  <p className="text-xs text-[--color-text-secondary] mt-2">{t.saveRef}</p>
                 </div>
               )}
 
               {/* Submission Summary */}
               <div className="w-full max-w-md bg-[#faf9f7] p-6 mb-8">
                 <h4 className="font-medium text-[--color-text-primary] mb-4 pb-2 border-b border-gray-200">
-                  Your Submission Summary
+                  {t.summary}
                 </h4>
                 <dl className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <dt className="text-[--color-text-secondary]">Email:</dt>
+                    <dt className="text-[--color-text-secondary]">{t.email}:</dt>
                     <dd className="text-[--color-text-primary] font-medium">{submittedData.email}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-[--color-text-secondary]">Phone:</dt>
+                    <dt className="text-[--color-text-secondary]">{t.phone}:</dt>
                     <dd className="text-[--color-text-primary] font-medium">{submittedData.phone}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-[--color-text-secondary]">Country:</dt>
+                    <dt className="text-[--color-text-secondary]">{t.country}:</dt>
                     <dd className="text-[--color-text-primary] font-medium">{submittedData.country}</dd>
                   </div>
                   {submittedData.companyName && (
                     <div className="flex justify-between">
-                      <dt className="text-[--color-text-secondary]">Company:</dt>
+                      <dt className="text-[--color-text-secondary]">{t.company}:</dt>
                       <dd className="text-[--color-text-primary] font-medium">{submittedData.companyName}</dd>
                     </div>
                   )}
                   <div className="flex justify-between">
-                    <dt className="text-[--color-text-secondary]">Event Date:</dt>
+                    <dt className="text-[--color-text-secondary]">{t.eventDate}:</dt>
                     <dd className="text-[--color-text-primary] font-medium">
-                      {new Date(submittedData.eventDate).toLocaleDateString("en-US", {
+                      {new Date(submittedData.eventDate).toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
                         weekday: "short",
                         day: "numeric",
                         month: "short",
@@ -361,7 +366,7 @@ export default function EventInquiryForm() {
                     </dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-[--color-text-secondary]">Number of Guests:</dt>
+                    <dt className="text-[--color-text-secondary]">{t.guests}:</dt>
                     <dd className="text-[--color-text-primary] font-medium">{submittedData.numberOfGuests}</dd>
                   </div>
                 </dl>
@@ -372,13 +377,13 @@ export default function EventInquiryForm() {
                 <svg className="w-5 h-5 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                <span>A confirmation email has been sent to <strong>{submittedData.email}</strong></span>
+                <span>{t.confirmEmail} <strong>{submittedData.email}</strong></span>
               </div>
 
               {/* Response Time */}
               <div className="bg-[#8B7355] text-white px-6 py-4 text-center mb-8">
-                <p className="text-sm opacity-80 mb-1">Our events team typically responds within</p>
-                <p className="text-xl font-bold">24-48 Business Hours</p>
+                <p className="text-sm opacity-80 mb-1">{t.respondWithin}</p>
+                <p className="text-xl font-bold">{t.hours}</p>
               </div>
 
               {/* Action Buttons */}
@@ -388,13 +393,13 @@ export default function EventInquiryForm() {
                   onClick={handleNewInquiry}
                   className="px-8 py-3 border-2 border-[#8B7355] text-[#8B7355] font-medium tracking-wide hover:bg-[#8B7355] hover:text-white transition-colors"
                 >
-                  Submit Another Inquiry
+                  {t.newInquiry}
                 </button>
                 <Link
-                  href="/"
+                  href={localizeHref("/", locale)}
                   className="px-8 py-3 bg-[#1a1a2e] text-white font-medium tracking-wide hover:bg-[#2a2a3e] transition-colors text-center"
                 >
-                  Return to Homepage
+                  {t.returnHome}
                 </Link>
               </div>
             </div>

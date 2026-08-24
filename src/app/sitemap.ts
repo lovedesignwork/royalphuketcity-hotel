@@ -107,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [
+  const englishPages = [
     ...staticPages,
     ...roomPages,
     ...restaurantPages,
@@ -115,4 +115,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...weddingPages,
     ...eventPages,
   ];
+
+  const thaiPages: MetadataRoute.Sitemap = englishPages.map((page) => {
+    const path = page.url.replace(baseUrl, "") || "/";
+    return {
+      ...page,
+      url: path === "/" ? `${baseUrl}/th` : `${baseUrl}/th${path}`,
+    };
+  });
+
+  return [...englishPages, ...thaiPages];
 }

@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ImageGallery, ReserveButton } from "@/components";
+import ImageGallery from "@/components/ImageGallery";
+import LocaleLink from "@/components/i18n/LocaleLink";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { getDiningVenueCopy } from "@/lib/i18n/dining-copy";
+import { getLocalizedRestaurants } from "@/lib/i18n/localized-data";
 import { RestaurantDetail } from "@/lib/restaurant-data";
-import { RESTAURANTS } from "@/lib/constants";
 
 interface RestaurantPageTemplateProps {
   restaurant: RestaurantDetail;
@@ -13,7 +15,9 @@ interface RestaurantPageTemplateProps {
 export default function RestaurantPageTemplate({
   restaurant,
 }: RestaurantPageTemplateProps) {
-  const otherRestaurants = RESTAURANTS.filter(
+  const { locale } = useLocale();
+  const t = getDiningVenueCopy(locale);
+  const otherRestaurants = getLocalizedRestaurants(locale).filter(
     (r) => r.slug !== restaurant.slug
   );
 
@@ -36,7 +40,9 @@ export default function RestaurantPageTemplate({
               className="label-accent block mb-4"
               style={{ color: "#ffffff", textShadow: "0 2px 8px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)" }}
             >
-              {restaurant.cuisine} Cuisine
+              {t.cuisineSuffix
+                ? `${restaurant.cuisine} ${t.cuisineSuffix}`
+                : restaurant.cuisine}
             </span>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl max-w-4xl">
               {restaurant.name}
@@ -51,20 +57,20 @@ export default function RestaurantPageTemplate({
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             <div className="text-center">
               <p className="label-accent text-[--color-text-secondary] mb-1">
-                Location
+                {t.location}
               </p>
               <p className="font-heading text-lg">{restaurant.floor}</p>
             </div>
             <div className="text-center">
               <p className="label-accent text-[--color-text-secondary] mb-1">
-                Hours
+                {t.hours}
               </p>
               <p className="font-heading text-lg">{restaurant.hours}</p>
             </div>
             {restaurant.phone && (
               <div className="text-center">
                 <p className="label-accent text-[--color-text-secondary] mb-1">
-                  Reservations
+                  {t.reservations}
                 </p>
                 <a
                   href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
@@ -83,7 +89,7 @@ export default function RestaurantPageTemplate({
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <h2 className="font-heading text-3xl mb-6">The Experience</h2>
+              <h2 className="font-heading text-3xl mb-6">{t.experience}</h2>
               <div className="space-y-4 text-[--color-text-secondary]">
                 {restaurant.description.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
@@ -91,7 +97,7 @@ export default function RestaurantPageTemplate({
               </div>
             </div>
             <div>
-              <h2 className="font-heading text-3xl mb-6">Highlights</h2>
+              <h2 className="font-heading text-3xl mb-6">{t.highlights}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {restaurant.highlights.map((highlight) => (
                   <div
@@ -123,7 +129,7 @@ export default function RestaurantPageTemplate({
       {/* Gallery */}
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
-          <h2 className="font-heading text-3xl text-center mb-12">Gallery</h2>
+          <h2 className="font-heading text-3xl text-center mb-12">{t.gallery}</h2>
           <ImageGallery images={restaurant.images} columns={4} />
         </div>
       </section>
@@ -132,11 +138,10 @@ export default function RestaurantPageTemplate({
       <section className="py-20 md:py-28 bg-[#8B7355]/10">
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-heading text-3xl md:text-4xl mb-4">
-            Make a Reservation
+            {t.reserveTitle}
           </h2>
           <p className="text-[--color-text-secondary] mb-8 max-w-xl mx-auto">
-            For reservations or special requests, please contact us directly or
-            book your stay to enjoy our exceptional dining experiences.
+            {t.reserveDesc}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {restaurant.phone && (
@@ -144,7 +149,7 @@ export default function RestaurantPageTemplate({
                 href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
                 className="btn-outline"
               >
-                Call to Reserve
+                {t.callToReserve}
               </a>
             )}
             <a
@@ -153,7 +158,7 @@ export default function RestaurantPageTemplate({
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center font-medium tracking-[0.15em] uppercase transition-all duration-300 px-6 py-3 text-xs bg-[#1a1a1a] text-white hover:bg-black"
             >
-              Visit the Website
+              {t.visitWebsite}
             </a>
           </div>
         </div>
@@ -163,11 +168,11 @@ export default function RestaurantPageTemplate({
       <section className="py-20 md:py-28 bg-[--color-surface]">
         <div className="container mx-auto px-6">
           <h2 className="font-heading text-3xl text-center mb-12">
-            Explore Other Venues
+            {t.otherVenues}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {otherRestaurants.map((other) => (
-              <Link
+              <LocaleLink
                 key={other.slug}
                 href={`/${other.slug}`}
                 className="group relative aspect-[16/9] img-hover"
@@ -187,7 +192,7 @@ export default function RestaurantPageTemplate({
                     </h3>
                   </div>
                 </div>
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>
