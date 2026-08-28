@@ -10,6 +10,7 @@ import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { getInnerPathname, getLocale } from "@/lib/i18n/get-locale";
 import { getDictionary } from "@/lib/i18n/messages";
 import { localizeHref } from "@/lib/i18n/path";
+import { getMobileFlags } from "@/lib/mobile-server";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -119,6 +120,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const dictionary = getDictionary(locale);
+  const { isApp } = await getMobileFlags();
 
   return (
     <html
@@ -128,18 +130,28 @@ export default async function RootLayout({
       }`}
     >
       <head>
-        <WebSiteJsonLd />
-        <OrganizationJsonLd />
-        <HotelJsonLd />
-        <LocalBusinessJsonLd />
+        {!isApp && (
+          <>
+            <WebSiteJsonLd />
+            <OrganizationJsonLd />
+            <HotelJsonLd />
+            <LocalBusinessJsonLd />
+          </>
+        )}
       </head>
-      <body className="antialiased">
+      <body className={isApp ? "antialiased mobile-app-body" : "antialiased"}>
         <LocaleProvider locale={locale} dictionary={dictionary}>
           <AnalyticsProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-            <CookieConsent />
+            {isApp ? (
+              children
+            ) : (
+              <>
+                <Header />
+                <main>{children}</main>
+                <Footer />
+                <CookieConsent />
+              </>
+            )}
           </AnalyticsProvider>
         </LocaleProvider>
       </body>

@@ -21,7 +21,7 @@ interface SubmittedData {
   referenceNumber?: string;
 }
 
-export default function EventInquiryForm() {
+export default function EventInquiryForm({ compact = false }: { compact?: boolean }) {
   const { locale } = useLocale();
   const t = getMeetingPageCopy(locale);
   const [formData, setFormData] = useState({
@@ -118,11 +118,25 @@ export default function EventInquiryForm() {
     setSubmittedData(null);
   };
 
+  const row = compact
+    ? "flex min-w-0 flex-col gap-1.5"
+    : "flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6";
+  const rowTop = compact
+    ? "flex min-w-0 flex-col gap-1.5"
+    : "flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6";
+  const labelCls = compact ? "min-w-0" : "sm:w-40 sm:text-right flex-shrink-0";
+  const fieldCls = compact
+    ? "w-full min-w-0 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
+    : "flex-1 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors";
+
   return (
-    <section id="event-inquiry" className="py-20 md:py-28 bg-[--color-surface] scroll-mt-24">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto">
-          {/* Header - Outside the box */}
+    <section
+      id="event-inquiry"
+      className={compact ? "scroll-mt-4" : "py-20 md:py-28 bg-[--color-surface] scroll-mt-24"}
+    >
+      <div className={compact ? "" : "container mx-auto px-6"}>
+        <div className={compact ? "min-w-0" : "max-w-3xl mx-auto"}>
+          {!compact && (
           <div className="text-center mb-10">
             <h2 className="font-heading text-3xl md:text-4xl text-[--color-text-primary] mb-4">
               {t.formTitle}
@@ -131,14 +145,18 @@ export default function EventInquiryForm() {
               {t.formDesc}
             </p>
           </div>
+          )}
 
-          {/* Form Container with Double Stroke - White outer, Gold inner */}
-          <div className="relative outline outline-[4px] md:outline-[8px] lg:outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12">
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Full Name */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+          <div
+            className={
+              compact
+                ? "relative min-w-0 overflow-hidden rounded-[16px] bg-[var(--m-card)] p-4"
+                : "relative outline outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12"
+            }
+          >
+            <form onSubmit={handleSubmit} className="min-w-0 space-y-5">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.fullName}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.firstLast}</span>
               </label>
@@ -148,23 +166,22 @@ export default function EventInquiryForm() {
                 value={formData.fullName}
                 onChange={handleChange}
                 required
-                className="flex-1 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
+                className={fieldCls}
               />
             </div>
 
-            {/* Email */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.email}</span>
               </label>
-              <div className="flex-1 relative">
+              <div className={compact ? "relative min-w-0 w-full" : "flex-1 relative"}>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors pr-10"
+                  className="w-full min-w-0 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors pr-10"
                 />
                 <svg className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -172,35 +189,36 @@ export default function EventInquiryForm() {
               </div>
             </div>
 
-            {/* Phone with Country Code */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.phone}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.whatsapp}</span>
               </label>
+              <div className="min-w-0 w-full">
               <CountryPhoneSelector
                 value={formData.phone}
                 onChange={handlePhoneChange}
                 defaultCountry="TH"
                 required
               />
+              </div>
             </div>
 
-            {/* Country with Flags */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.country}</span>
               </label>
+              <div className="min-w-0 w-full">
               <CountrySelector
                 value={formData.country}
                 onChange={handleCountryChange}
                 required
               />
+              </div>
             </div>
 
-            {/* Company Name */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.company}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.optional}</span>
               </label>
@@ -209,30 +227,30 @@ export default function EventInquiryForm() {
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleChange}
-                className="flex-1 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
+                className={fieldCls}
               />
             </div>
 
-            {/* Event Date with Calendar Picker */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.eventDate}</span>
               </label>
+              <div className="min-w-0 w-full">
               <CalendarPicker
                 value={formData.eventDate}
                 onChange={handleDateChange}
                 required
               />
+              </div>
             </div>
 
-            {/* Number of Guests */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right flex-shrink-0">
+            <div className={row}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.guests}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.attendees}</span>
               </label>
-              <div className="flex-1">
-                <div className="flex items-center gap-4">
+              <div className={compact ? "min-w-0 w-full" : "flex-1"}>
+                <div className="flex min-w-0 items-center gap-3">
                   <input
                     type="range"
                     name="numberOfGuests"
@@ -241,9 +259,9 @@ export default function EventInquiryForm() {
                     step="10"
                     value={formData.numberOfGuests}
                     onChange={handleChange}
-                    className="flex-1 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#8B7355]"
+                    className="h-1 min-w-0 flex-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#8B7355]"
                   />
-                  <span className="text-[--color-text-primary] font-medium min-w-[60px] text-right">
+                  <span className="w-12 shrink-0 text-right font-medium text-[--color-text-primary]">
                     {formData.numberOfGuests}
                   </span>
                 </div>
@@ -254,9 +272,8 @@ export default function EventInquiryForm() {
               </div>
             </div>
 
-            {/* Event Details */}
-            <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
-              <label className="sm:w-40 sm:text-right pt-3 flex-shrink-0">
+            <div className={rowTop}>
+              <label className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.details}</span>
               </label>
               <textarea
@@ -264,7 +281,7 @@ export default function EventInquiryForm() {
                 value={formData.eventDetails}
                 onChange={handleChange}
                 rows={5}
-                className="flex-1 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors resize-none"
+                className={`${fieldCls} resize-none`}
                 placeholder={t.placeholder}
               />
             </div>
@@ -275,37 +292,36 @@ export default function EventInquiryForm() {
               <input type="text" id="_hp_event" name="_hp" tabIndex={-1} autoComplete="off" />
             </div>
 
-            {/* Submit Button */}
-            <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
-              <div className="sm:w-40 flex-shrink-0" />
-              <div className="flex-1 flex justify-end">
+            <div className={compact ? "pt-1" : "flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6"}>
+              {!compact && <div className="sm:w-40 flex-shrink-0" />}
+              <div className={compact ? "" : "flex-1 flex justify-end"}>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-8 py-3 bg-[#8B7355] text-white font-medium tracking-wide hover:bg-[#7a6548] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={
+                    compact
+                      ? "flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--m-gold)] px-5 text-sm font-medium text-white disabled:opacity-50"
+                      : "px-8 py-3 bg-[#8B7355] text-white font-medium tracking-wide hover:bg-[#7a6548] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  }
                 >
                   {isSubmitting ? t.submitting : t.submit}
                 </button>
               </div>
             </div>
 
-            {/* Error Message */}
             {submitStatus === "error" && (
-              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
-                <div className="sm:w-40 flex-shrink-0" />
-                <div className="flex-1 p-4 bg-red-50 text-red-700 border border-red-200">
+              <div className="p-4 bg-red-50 text-red-700 border border-red-200 text-sm">
                   {t.error}{" "}
                   <a href="mailto:reservation@royalphuketcity.com" className="underline font-medium">
                     reservation@royalphuketcity.com
                   </a>
-                </div>
               </div>
             )}
           </form>
 
           {/* Success Message - Full Takeover */}
           {submitStatus === "success" && submittedData && (
-            <div className="absolute inset-0 bg-white flex flex-col items-center justify-center p-8 md:p-12">
+            <div className={compact ? "bg-[var(--m-card)] flex flex-col items-center p-2" : "absolute inset-0 bg-white flex flex-col items-center justify-center p-8 md:p-12"}>
               {/* Success Icon */}
               <div className="w-20 h-20 bg-[#8B7355] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

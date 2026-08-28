@@ -1,14 +1,18 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const headerStore = await headers();
+  const isMobileApp = headerStore.get("x-mobile-app") === "1";
+
   return {
     name: "Royal Phuket City Hotel",
     short_name: "RPC Hotel",
     description:
       "Experience luxury and comfort at Royal Phuket City Hotel, a 4-star hotel in the heart of Phuket Old Town. 251 elegant rooms, 5 dining venues, and world-class facilities.",
-    start_url: "/",
+    start_url: isMobileApp ? "/" : "/",
     display: "standalone",
-    background_color: "#FAF8F5",
+    background_color: isMobileApp ? "#F7F4EF" : "#FAF8F5",
     theme_color: "#8B7355",
     icons: [
       {

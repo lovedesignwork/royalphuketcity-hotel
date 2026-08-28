@@ -2,25 +2,111 @@ import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 import { LOCALE_COOKIE, SHOW_LANGUAGE_SWITCHER } from "@/lib/i18n/config";
 import { shouldSkipLocale, stripLocalePrefix } from "@/lib/i18n/path";
+import {
+  isMobileAppAlias,
+  isMobileAppPath,
+  isMobileHost,
+  shouldSkipMobileRewrite,
+} from "@/lib/mobile";
+
+function applyHeaders(
+  request: NextRequest,
+  extras: Record<string, string>
+) {
+  const headers = new Headers(request.headers);
+  for (const [key, value] of Object.entries(extras)) {
+    headers.set(key, value);
+  }
+  return headers;
+}
 
 function applyLocaleHeaders(
   request: NextRequest,
   locale: "en" | "th",
   innerPath: string
 ) {
-  const headers = new Headers(request.headers);
-  headers.set("x-locale", locale);
-  headers.set("x-pathname", innerPath);
-  return headers;
+  return applyHeaders(request, {
+    "x-locale": locale,
+    "x-pathname": innerPath,
+  });
 }
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get("host") || "";
+  const mobileHost = isMobileHost(host);
 
   const isAdminPage = pathname.startsWith("/admin") || pathname.startsWith("/th/admin");
   const isAdminApi = pathname.startsWith("/api/admin");
   const isLoginPage = pathname === "/admin/login";
   const isLogoutApi = pathname === "/api/admin/auth/logout";
+
+  if (mobileHost && (isAdminPage || isAdminApi)) {
+    const dest = new URL(
+      `${pathname}${request.nextUrl.search}`,
+      "https://royalphuketcity.com"
+    );
+    return NextResponse.redirect(dest);
+  }
+
+  if (mobileHost && !shouldSkipMobileRewrite(pathname)) {
+    let inner = pathname;
+    if (inner === "/th" || inner.startsWith("/th/")) {
+      inner = stripLocalePrefix(inner);
+    }
+
+    const destPath = isMobileAppPath(inner)
+      ? inner
+      : inner === "/"
+        ? "/m"
+        : `/m${inner}`;
+
+    const mobileHeaders = applyHeaders(request, {
+      "x-locale": "en",
+      "x-pathname": destPath,
+      "x-mobile-app": "1",
+      "x-mobile-host": "1",
+    });
+
+    if (destPath === pathname) {
+      return NextResponse.next({
+        request: { headers: mobileHeaders },
+      });
+    }
+
+    const url = request.nextUrl.clone();
+    url.pathname = destPath;
+    return NextResponse.rewrite(url, {
+      request: { headers: mobileHeaders },
+    });
+  }
+
+  if (!mobileHost && isMobileAppAlias(pathname)) {
+    const destPath = `/m${pathname}`;
+    const url = request.nextUrl.clone();
+    url.pathname = destPath;
+    return NextResponse.rewrite(url, {
+      request: {
+        headers: applyHeaders(request, {
+          "x-locale": "en",
+          "x-pathname": destPath,
+          "x-mobile-app": "1",
+        }),
+      },
+    });
+  }
+
+  if (isMobileAppPath(pathname)) {
+    return NextResponse.next({
+      request: {
+        headers: applyHeaders(request, {
+          "x-locale": "en",
+          "x-pathname": pathname,
+          "x-mobile-app": "1",
+        }),
+      },
+    });
+  }
 
   if (!isAdminPage && !isAdminApi && !shouldSkipLocale(pathname)) {
     const isThaiPath = pathname === "/th" || pathname.startsWith("/th/");
@@ -47,10 +133,9 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    const response = NextResponse.next({
+    return NextResponse.next({
       request: { headers: applyLocaleHeaders(request, "en", pathname) },
     });
-    return response;
   }
 
   if (!isAdminPage && !isAdminApi) {
@@ -114,7 +199,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

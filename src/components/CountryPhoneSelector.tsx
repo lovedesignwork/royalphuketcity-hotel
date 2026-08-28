@@ -224,7 +224,7 @@ export default function CountryPhoneSelector({
   const FlagComponent = flags[country];
 
   return (
-    <div className="w-full flex hairline-border bg-white focus-within:border-[--color-accent] transition-colors">
+    <div className="flex w-full min-w-0 hairline-border bg-white focus-within:border-[--color-accent] transition-colors">
       {/* Country Code Selector */}
       <div className="relative" ref={dropdownRef}>
         <button
@@ -252,7 +252,7 @@ export default function CountryPhoneSelector({
 
         {/* Dropdown */}
         {isOpen && (
-          <div className="absolute top-full left-0 mt-1 w-[280px] bg-white border border-gray-200 shadow-lg z-50 max-h-[350px] overflow-hidden">
+          <div className="absolute top-full left-0 mt-1 z-50 max-h-[350px] w-[min(280px,calc(100vw-2rem))] max-w-full overflow-hidden bg-white border border-gray-200 shadow-lg">
             {/* Search */}
             <div className="p-2 border-b border-gray-100">
               <input
@@ -310,7 +310,7 @@ export default function CountryPhoneSelector({
         onChange={handlePhoneChange}
         placeholder="Phone number"
         required={required}
-        className="flex-1 px-4 py-3 bg-transparent focus:outline-none"
+        className="min-w-0 flex-1 px-4 py-3 bg-transparent focus:outline-none"
       />
     </div>
   );

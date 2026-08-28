@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "flagcdn.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.royalwellnessspaphuket.com",
+      },
+      {
+        protocol: "https",
+        hostname: "royalwellnessspaphuket.com",
+      },
     ],
   },
   async redirects() {

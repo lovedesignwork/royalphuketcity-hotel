@@ -4,6 +4,7 @@ export const SITE_CONFIG = {
   description:
     "Experience luxury and comfort at Royal Phuket City Hotel, a 4-star hotel in the heart of Phuket Old Town. 251 elegant rooms, 5 dining venues, and world-class facilities.",
   url: "https://royalphuketcity.com",
+  mobileUrl: "https://m.royalphuketcity.com",
   ogImage: "/images/og-image.jpg",
 } as const;
 
@@ -31,6 +32,8 @@ export const EXTERNAL_LINKS = {
     "https://www.tripadvisor.com/Hotel_Review-g1215781-d309104-Reviews-Royal_Phuket_City_Hotel-Phuket_Town_Phuket.html",
   googleMaps:
     "https://maps.app.goo.gl/3Q65GyZvmkpR9DfGA",
+  spa: "https://www.royalwellnessspaphuket.com",
+  spaBook: "https://www.royalwellnessspaphuket.com/en/book",
 } as const;
 
 export const NAV_LINKS = {

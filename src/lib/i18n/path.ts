@@ -1,6 +1,11 @@
 import { TH_PREFIX, type Locale } from "./config";
 
-const SKIP_PREFIX = [/^\/admin(?:\/|$)/, /^\/api(?:\/|$)/, /^\/_next(?:\/|$)/];
+const SKIP_PREFIX = [
+  /^\/admin(?:\/|$)/,
+  /^\/api(?:\/|$)/,
+  /^\/_next(?:\/|$)/,
+  /^\/m(?:\/|$)/,
+];
 
 export function stripLocalePrefix(pathname: string): string {
   if (pathname === TH_PREFIX || pathname === `${TH_PREFIX}/`) return "/";

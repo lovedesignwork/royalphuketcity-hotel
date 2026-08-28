@@ -141,7 +141,7 @@ export default function CalendarPicker({
 
       {/* Calendar Dropdown - Matching website gold accent style */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 shadow-xl z-50 w-[320px]">
+        <div className="absolute top-full left-0 mt-1 z-50 w-full max-w-[320px] bg-white border border-gray-200 shadow-xl">
           {/* Header with gold accent */}
           <div className="bg-[#8B7355] px-4 py-3 flex items-center justify-between">
             <button
