@@ -21,6 +21,7 @@ export const MOBILE_APP_ALIASES = [
   "/events",
   "/spa",
   "/around",
+  "/feedback",
 ] as const;
 
 export function isMobileAppAlias(pathname: string): boolean {
@@ -78,6 +79,7 @@ const DESKTOP_CANONICAL: Record<string, string> = {
   "/around/michelin": "/sustainability/michelin-restaurants",
   "/around/activities": "/sustainability/activities",
   "/around/transport": "/sustainability/transportation",
+  "/feedback": "/contact",
 };
 
 export function desktopCanonicalPath(mobilePath: string): string {

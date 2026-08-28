@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   Bed,
   Bus,
+  ChatCircle,
   Clock,
   FlowerLotus,
   ForkKnife,
@@ -212,7 +213,7 @@ export default function MobileHomePage() {
         <MobileAnnouncement />
       </section>
 
-      <section className="px-4 pt-8">
+      <section className="space-y-3 px-4 pt-8">
         <MobileLink
           href="/rooms"
           className="flex min-h-14 items-center justify-between rounded-[16px] bg-[var(--m-card)] px-4"
@@ -223,6 +224,20 @@ export default function MobileHomePage() {
               <span className="block font-medium">Room types</span>
               <span className="block text-sm text-[var(--m-muted)]">
                 Amenities, or add a night
+              </span>
+            </span>
+          </span>
+        </MobileLink>
+        <MobileLink
+          href="/feedback"
+          className="flex min-h-14 items-center justify-between rounded-[16px] bg-[var(--m-card)] px-4"
+        >
+          <span className="flex items-center gap-3">
+            <ChatCircle size={22} className="text-[var(--m-gold)]" aria-hidden="true" />
+            <span>
+              <span className="block font-medium">Feedback</span>
+              <span className="block text-sm text-[var(--m-muted)]">
+                Rate your stay and leave a note
               </span>
             </span>
           </span>

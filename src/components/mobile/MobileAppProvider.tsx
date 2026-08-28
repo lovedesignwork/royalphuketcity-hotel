@@ -25,6 +25,7 @@ export function MobileAppProvider({
 
 export function useMobilePrefix(): MobilePrefix {
   const pathname = usePathname();
+  const { prefix } = useContext(MobileAppContext);
   if (pathname === "/m" || pathname.startsWith("/m/")) return "/m";
-  return useContext(MobileAppContext).prefix || "/m";
+  return prefix || "/m";
 }

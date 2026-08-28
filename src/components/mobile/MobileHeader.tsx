@@ -22,6 +22,7 @@ function headerFor(path: string): { title: string | null; backTo: string | null;
   if (path === "/promotions") return { title: "Promotions", backTo: "/more", home: false };
   if (path.startsWith("/promotions/")) return { title: "Offer", backTo: "/promotions", home: false };
   if (path === "/contact") return { title: "Contact", backTo: "/more", home: false };
+  if (path === "/feedback") return { title: "Feedback", backTo: "/", home: false };
   if (path === "/weddings") return { title: "Weddings", backTo: "/more", home: false };
   if (path === "/events") return { title: "Events", backTo: "/more", home: false };
   if (path === "/around") return { title: "Around Phuket", backTo: null, home: false };

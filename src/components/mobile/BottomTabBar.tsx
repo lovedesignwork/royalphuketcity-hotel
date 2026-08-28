@@ -25,7 +25,7 @@ export default function BottomTabBar() {
   const aroundActive = current === "/around" || current.startsWith("/around/");
   const moreActive =
     current === "/more" ||
-    ["/facilities", "/promotions", "/contact", "/weddings", "/events"].some(
+    ["/facilities", "/promotions", "/contact", "/weddings", "/events", "/feedback"].some(
       (item) => current === item || current.startsWith(`${item}/`)
     );
 
