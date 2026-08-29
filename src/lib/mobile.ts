@@ -51,7 +51,7 @@ export function mobileHref(path: string, prefix: "" | "/m"): string {
     return clean;
   }
   if (clean === "/") return "/m";
-  if (clean.startsWith("/m")) return clean;
+  if (clean === "/m" || clean.startsWith("/m/")) return clean;
   return `/m${clean}`;
 }
 

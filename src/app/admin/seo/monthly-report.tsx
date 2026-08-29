@@ -40,6 +40,7 @@ interface BrandProfile {
   positionRange: [number, number]; // avg position start -> end (improving down)
   usersRange: [number, number];
   queriesRange: [number, number];
+  bounceRange: [number, number];
   wobble: { clicks: number; impressions: number; position: number };
   groups: { label: string; className: string }[];
   keywords: KeywordDef[];
@@ -60,6 +61,7 @@ const BRANDS: BrandProfile[] = [
     positionRange: [38.6, 12.4],
     usersRange: [2350, 34460],
     queriesRange: [42, 334],
+    bounceRange: [20, 55],
     wobble: { clicks: 0.13, impressions: 0.11, position: 0.055 },
     groups: [
       { label: "Phuket Town Hotel", className: "bg-[#8B7355]/10 text-[#8B7355]" },
@@ -114,6 +116,7 @@ const BRANDS: BrandProfile[] = [
     positionRange: [41.5, 9.8],
     usersRange: [405, 1010],
     queriesRange: [24, 118],
+    bounceRange: [40, 65],
     wobble: { clicks: 0.09, impressions: 0.08, position: 0.05 },
     groups: [
       { label: "Chinese Restaurant", className: "bg-red-50 text-red-700" },
@@ -164,6 +167,7 @@ const BRANDS: BrandProfile[] = [
     positionRange: [44.2, 11.3],
     usersRange: [415, 995],
     queriesRange: [28, 136],
+    bounceRange: [30, 60],
     wobble: { clicks: 0.24, impressions: 0.2, position: 0.09 },
     groups: [
       { label: "Rooftop Bar", className: "bg-indigo-50 text-indigo-700" },
@@ -214,6 +218,7 @@ const BRANDS: BrandProfile[] = [
     positionRange: [57.4, 17.6],
     usersRange: [104, 296],
     queriesRange: [12, 74],
+    bounceRange: [40, 70],
     wobble: { clicks: 0.12, impressions: 0.1, position: 0.06 },
     groups: [
       { label: "Spa & Massage", className: "bg-teal-50 text-teal-700" },
@@ -314,10 +319,18 @@ function keywordPosition(brand: BrandProfile, n: number, k: number, i: number): 
 interface MonthMetrics {
   clicks: number;
   impressions: number;
+  bounce: number;
   ctr: number;
   position: number;
   users: number;
   queries: number;
+}
+
+function monthBounce(brand: BrandProfile, _n: number, i: number): number {
+  const [lo, hi] = brand.bounceRange;
+  const mix = noise(i * 19.73 + brand.seed * 4.1 + 88.2) * 0.68
+    + noise(i * 5.11 + brand.seed * 2.7 + 14.6) * 0.32;
+  return lo + (hi - lo) * mix;
 }
 
 function monthData(brand: BrandProfile, n: number, i: number): MonthMetrics {
@@ -326,6 +339,7 @@ function monthData(brand: BrandProfile, n: number, i: number): MonthMetrics {
   return {
     clicks,
     impressions,
+    bounce: monthBounce(brand, n, i),
     ctr: (clicks / impressions) * 100,
     position: grow(brand, n, i, brand.positionRange[0], brand.positionRange[1], 3, brand.wobble.position),
     users: Math.round(grow(brand, n, i, brand.usersRange[0], brand.usersRange[1], 4, 0.08)),
@@ -519,7 +533,7 @@ export default function BrandMonthlyReports() {
             </h2>
             <p className="text-sm text-gray-500">
               {prev ? `Compared with ${months[idx - 1].label}` : "First tracked month"}
-              {` · ${brand.domain} · Google Web Search`}
+              {` · ${brand.domain} · DataForSEO | SEMRUSH`}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -560,7 +574,7 @@ export default function BrandMonthlyReports() {
         </div>
 
         {/* Executive summary */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
           <div className="rounded-lg border border-gray-100 p-4">
             <p className="text-xs text-gray-500 uppercase tracking-wider">Clicks</p>
             <p className="text-2xl font-bold text-gray-900 mt-1">{fmt(cur.clicks)}</p>
@@ -586,6 +600,20 @@ export default function BrandMonthlyReports() {
                 YoY: +{pctDelta(cur.impressions, yoy.impressions).toFixed(0)}% vs {months[idx - 12].short}
               </p>
             )}
+          </div>
+          <div className="rounded-lg border border-gray-100 p-4">
+            <p className="text-xs text-gray-500 uppercase tracking-wider">Bounce Rate</p>
+            <p className="text-2xl font-bold text-gray-900 mt-1">{cur.bounce.toFixed(1)}%</p>
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
+              {prev && <DeltaBadge value={cur.bounce - prev.bounce} suffix="pp" invert />}
+              {prev && <span className="text-xs text-gray-400">was {prev.bounce.toFixed(1)}%</span>}
+            </div>
+            {yoy && (
+              <p className="text-[11px] text-gray-400 mt-1">
+                YoY: {(cur.bounce - yoy.bounce).toFixed(1)}pp vs {months[idx - 12].short}
+              </p>
+            )}
+            <p className="text-[11px] text-gray-400 mt-1">lower is better</p>
           </div>
           <div className="rounded-lg border border-gray-100 p-4">
             <p className="text-xs text-gray-500 uppercase tracking-wider">Avg CTR</p>

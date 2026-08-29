@@ -4,6 +4,8 @@ import MobileAppShell from "@/components/mobile/MobileAppShell";
 import { mobileRobots } from "@/lib/mobile";
 import "./mobile.css";
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: {
     default: "RPC Hotel",

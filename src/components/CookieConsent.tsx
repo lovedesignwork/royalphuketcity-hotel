@@ -6,7 +6,7 @@ import LocaleLink from "@/components/i18n/LocaleLink";
 
 const STORAGE_KEY = "rpc-cookie-consent";
 
-export default function CookieConsent() {
+export default function CookieConsent({ aboveTabBar = false }: { aboveTabBar?: boolean }) {
   const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -41,7 +41,11 @@ export default function CookieConsent() {
         role="dialog"
         aria-live="polite"
         aria-label={t.cookie.aria}
-        className="md:hidden fixed inset-x-0 bottom-0 z-[9998] animate-cookie-slide-up"
+        className={`md:hidden fixed inset-x-0 z-[9998] animate-cookie-slide-up ${
+          aboveTabBar
+            ? "bottom-[calc(var(--m-tab-height)+env(safe-area-inset-bottom,0px))]"
+            : "bottom-0"
+        }`}
       >
         <div className="bg-[#1a1a1a] text-white px-4 py-3 safe-area-pb">
           <div className="flex items-center justify-between gap-3">

@@ -13,7 +13,7 @@ export default function MobileAppShell({
         <MobileHeader />
         <main>{children}</main>
         <BottomTabBar />
-        <CookieConsent />
+        <CookieConsent aboveTabBar />
       </div>
     </div>
   );

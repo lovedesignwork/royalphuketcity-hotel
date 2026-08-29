@@ -2,6 +2,8 @@ import VisualCard from "@/components/mobile/VisualCard";
 import { RESTAURANTS } from "@/lib/constants";
 import { mobileMetadata } from "@/lib/mobile";
 
+export const dynamic = "force-static";
+
 export const metadata = mobileMetadata(
   "Dining",
   "/dining",

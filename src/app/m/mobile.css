@@ -5,6 +5,7 @@
 .mobile-app a,
 .mobile-app button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .mobile-app a:focus-visible,

@@ -12,8 +12,10 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import MobileAnnouncement from "@/components/mobile/MobileAnnouncement";
 import MobileLink from "@/components/mobile/MobileLink";
-import { HOTEL_INFO, RESTAURANTS } from "@/lib/constants";
+import { HOTEL_INFO, PROMOTIONS, RESTAURANTS } from "@/lib/constants";
 import { desktopCanonicalUrl, mobileRobots } from "@/lib/mobile";
+
+export const dynamic = "force-static";
 
 export const metadata = {
   title: "Your stay",
@@ -24,6 +26,12 @@ export const metadata = {
 };
 
 const telHref = `tel:${HOTEL_INFO.phone.replace(/\s/g, "")}`;
+
+function isPromotionActive(validUntil: string): boolean {
+  return new Date(validUntil) >= new Date();
+}
+
+const activePromotions = PROMOTIONS.filter((promo) => isPromotionActive(promo.validUntil));
 
 const today = [
   { label: "Breakfast", value: "6:30 AM - 10:30 AM", where: "TWIST, 19th floor" },
@@ -46,13 +54,10 @@ export default function MobileHomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/30 to-black/20" />
         <div className="relative flex h-full flex-col justify-end px-5 pb-6 pt-16">
-          <p className="text-sm text-white/80">Welcome</p>
+          <p className="text-sm text-white/80">Welcome to</p>
           <h1 className="mt-1 font-heading text-[2rem] leading-[1.15] text-white">
-            During your stay
+            Royal Phuket City
           </h1>
-          <p className="mt-2 max-w-[32ch] text-[15px] leading-relaxed text-white/88">
-            Front desk, meal times, and the hotel around you.
-          </p>
         </div>
       </section>
 
@@ -135,6 +140,41 @@ export default function MobileHomePage() {
           </div>
         </MobileLink>
       </section>
+
+      {activePromotions.length > 0 ? (
+        <section className="px-4 pt-5">
+          <div className="mb-3 flex items-end justify-between">
+            <h2 className="font-heading text-2xl">Promotions</h2>
+            <MobileLink href="/promotions" className="text-sm font-medium text-[var(--m-gold)]">
+              All
+            </MobileLink>
+          </div>
+          <div className="space-y-3">
+            {activePromotions.map((promo) => (
+              <MobileLink
+                key={promo.slug}
+                href={`/promotions/${promo.slug}`}
+                className="flex gap-3 overflow-hidden rounded-[16px] bg-[var(--m-card)]"
+              >
+                <div className="relative h-24 w-24 shrink-0">
+                  <Image
+                    src={promo.image}
+                    alt={promo.title}
+                    fill
+                    sizes="96px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex min-w-0 flex-col justify-center py-3 pr-3">
+                  <p className="font-medium leading-tight">{promo.title}</p>
+                  <p className="mt-1 text-sm text-[var(--m-muted)]">{promo.subtitle}</p>
+                  <p className="text-sm text-[var(--m-gold)]">{promo.tagline}</p>
+                </div>
+              </MobileLink>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-4 pt-6">
         <h2 className="mb-3 font-heading text-2xl">Today</h2>

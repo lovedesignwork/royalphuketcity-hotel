@@ -11,6 +11,8 @@ import {
   spaTreatments,
 } from "@/lib/spa-treatments";
 
+export const dynamic = "force-static";
+
 export const metadata = mobileMetadata(
   "Spa",
   "/spa",

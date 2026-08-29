@@ -16,6 +16,8 @@ import MobileLink from "@/components/mobile/MobileLink";
 import { EXTERNAL_LINKS, HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
 import { mobileMetadata } from "@/lib/mobile";
 
+export const dynamic = "force-static";
+
 export const metadata = mobileMetadata(
   "More",
   "/more",

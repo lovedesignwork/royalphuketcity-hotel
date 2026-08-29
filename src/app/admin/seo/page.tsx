@@ -295,8 +295,6 @@ export default function SeoPage() {
     );
   }
 
-  const notConfigured = stats && (!stats.configured.gsc || !stats.configured.serp);
-
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -332,27 +330,6 @@ export default function SeoPage() {
       {syncMsg && (
         <div className="rounded-lg border border-[#8B7355]/30 bg-[#8B7355]/5 px-4 py-3 text-sm text-gray-700">
           {syncMsg}
-        </div>
-      )}
-
-      {notConfigured && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          {!stats?.configured.gsc && (
-            <p>
-              <strong>Google Search Console not connected.</strong> Add the
-              <code className="mx-1">GOOGLE_SERVICE_ACCOUNT_EMAIL</code>,
-              <code className="mx-1">GOOGLE_PRIVATE_KEY</code> and
-              <code className="mx-1">GSC_SITE_URL</code> environment variables to
-              see clicks / impressions / average position.
-            </p>
-          )}
-          {!stats?.configured.serp && (
-            <p className="mt-1">
-              <strong>Live rank checks disabled.</strong> Add a
-              <code className="mx-1">SERPAPI_KEY</code> to track exact Google
-              positions for your keywords.
-            </p>
-          )}
         </div>
       )}
 
