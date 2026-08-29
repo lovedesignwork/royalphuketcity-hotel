@@ -11,8 +11,6 @@ import MobileLink from "@/components/mobile/MobileLink";
 import { AROUND_SECTIONS } from "@/lib/around-phuket";
 import { mobileMetadata } from "@/lib/mobile";
 
-export const dynamic = "force-static";
-
 export const metadata = mobileMetadata(
   "Around Phuket",
   "/around",

@@ -1,5 +1,5 @@
-import CookieConsent from "@/components/CookieConsent";
 import BottomTabBar from "./BottomTabBar";
+import MobileAppBodyClass from "./MobileAppBodyClass";
 import MobileHeader from "./MobileHeader";
 
 export default function MobileAppShell({
@@ -9,11 +9,11 @@ export default function MobileAppShell({
 }) {
   return (
     <div className="mobile-app">
+      <MobileAppBodyClass />
       <div className="mobile-app-frame">
         <MobileHeader />
         <main>{children}</main>
         <BottomTabBar />
-        <CookieConsent aboveTabBar />
       </div>
     </div>
   );

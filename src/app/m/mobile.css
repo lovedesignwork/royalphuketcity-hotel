@@ -2,6 +2,14 @@
   background-color: #1a1520;
 }
 
+/* Root layout can still emit desktop chrome on static /m. Never show it in the guest app. */
+body:has(.mobile-app) header.bg-white.sticky,
+body:has(.mobile-app) footer.bg-white.border-t,
+body:has(.mobile-app) .animate-cookie-in,
+body:has(.mobile-app) .animate-cookie-slide-up {
+  display: none !important;
+}
+
 .mobile-app a,
 .mobile-app button {
   cursor: pointer;

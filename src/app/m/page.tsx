@@ -15,8 +15,6 @@ import MobileLink from "@/components/mobile/MobileLink";
 import { HOTEL_INFO, PROMOTIONS, RESTAURANTS } from "@/lib/constants";
 import { desktopCanonicalUrl, mobileRobots } from "@/lib/mobile";
 
-export const dynamic = "force-static";
-
 export const metadata = {
   title: "Your stay",
   description:

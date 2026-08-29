@@ -4,6 +4,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import DesktopSiteChrome from "@/components/DesktopSiteChrome";
 import { HotelJsonLd, LocalBusinessJsonLd, WebSiteJsonLd, OrganizationJsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/Analytics";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
@@ -142,16 +143,13 @@ export default async function RootLayout({
       <body className={isApp ? "antialiased mobile-app-body" : "antialiased"}>
         <LocaleProvider locale={locale} dictionary={dictionary}>
           <AnalyticsProvider>
-            {isApp ? (
-              children
-            ) : (
-              <>
-                <Header />
-                <main>{children}</main>
-                <Footer />
-                <CookieConsent />
-              </>
-            )}
+            <DesktopSiteChrome
+              header={isApp ? null : <Header />}
+              footer={isApp ? null : <Footer />}
+              cookie={isApp ? null : <CookieConsent />}
+            >
+              {children}
+            </DesktopSiteChrome>
           </AnalyticsProvider>
         </LocaleProvider>
       </body>
