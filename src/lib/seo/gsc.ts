@@ -108,3 +108,56 @@ export async function fetchGscRows(
 
   return rows;
 }
+
+export interface GscDimRow {
+  keys: string[];
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  position: number;
+}
+
+/** Lightweight Search Console rollup (country, device, query, or page). */
+export async function fetchGscByDimensions(
+  startDate: string,
+  endDate: string,
+  dimensions: string[]
+): Promise<GscDimRow[]> {
+  if (!isGscConfigured()) return [];
+
+  const siteUrl = getGscSiteUrl()!;
+  const searchconsole = getSearchConsole();
+  const rows: GscDimRow[] = [];
+  const rowLimit = 25000;
+  let startRow = 0;
+
+  for (;;) {
+    const res = await searchconsole.searchanalytics.query({
+      siteUrl,
+      requestBody: {
+        startDate,
+        endDate,
+        dimensions,
+        rowLimit,
+        startRow,
+        type: "web",
+      },
+    });
+
+    const batch = res.data.rows || [];
+    for (const r of batch) {
+      rows.push({
+        keys: r.keys || [],
+        clicks: r.clicks || 0,
+        impressions: r.impressions || 0,
+        ctr: r.ctr || 0,
+        position: r.position || 0,
+      });
+    }
+
+    if (batch.length < rowLimit) break;
+    startRow += rowLimit;
+  }
+
+  return rows;
+}

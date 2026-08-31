@@ -382,7 +382,7 @@ export default function SeoPage() {
         />
       )}
 
-      {tab === "monthly" && <MonthlyTab stats={stats} onBackfill={() => runSync(true)} syncing={syncing} />}
+      {tab === "monthly" && <MonthlyTab onBackfill={() => runSync(true)} syncing={syncing} />}
     </div>
   );
 }
@@ -674,11 +674,9 @@ function ConsoleTab({
 // Tab: Monthly report
 // ---------------------------------------------------------------------------
 function MonthlyTab({
-  stats,
   onBackfill,
   syncing,
 }: {
-  stats: SeoStats | null;
   onBackfill: () => void;
   syncing: boolean;
 }) {
@@ -703,189 +701,32 @@ function MonthlyTab({
     }
   }
 
-  const trend = stats?.monthlyTrend || [];
-  const hasRealData = trend.some((m) => m.clicks > 0 || m.impressions > 0);
-
-  // Until real Search Console history accumulates, show the sample report so
-  // the team can see what the monthly report will look like.
-  if (!hasRealData) {
-    return (
-      <div className="space-y-6">
-        {SHOW_TRACKING_TABS && (
-          <div className="flex items-center justify-end gap-2">
-            <button
-              onClick={emailReport}
-              disabled={emailing}
-              className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
-            >
-              {emailing ? "Sending…" : "Email report now"}
-            </button>
-            <button
-              onClick={onBackfill}
-              disabled={syncing}
-              className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
-            >
-              {syncing ? "Importing…" : "Backfill 90 days of history"}
-            </button>
-          </div>
-        )}
-        {emailMsg && (
-          <div className="rounded-lg border border-[#8B7355]/30 bg-[#8B7355]/5 px-4 py-2.5 text-sm text-gray-700">
-            {emailMsg}
-          </div>
-        )}
-        <BrandMonthlyReports />
-      </div>
-    );
-  }
-
-  const current = trend[trend.length - 1];
-  const previous = trend[trend.length - 2];
-  const maxImpr = Math.max(1, ...trend.map((m) => m.impressions));
-  const maxClicks = Math.max(1, ...trend.map((m) => m.clicks));
-
-  const rows: { label: string; cur: string; prev: string; delta: { text: string; up: boolean } | null }[] =
-    current && previous
-      ? [
-          {
-            label: "Clicks",
-            cur: fmt(current.clicks),
-            prev: fmt(previous.clicks),
-            delta: growth(current.clicks, previous.clicks),
-          },
-          {
-            label: "Impressions",
-            cur: fmt(current.impressions),
-            prev: fmt(previous.impressions),
-            delta: growth(current.impressions, previous.impressions),
-          },
-          {
-            label: "Avg CTR",
-            cur: pct(current.ctr),
-            prev: pct(previous.ctr),
-            delta: growth(current.ctr, previous.ctr),
-          },
-          {
-            label: "Avg Position",
-            cur: pos(current.position),
-            prev: pos(previous.position),
-            delta:
-              previous.position === 0
-                ? null
-                : {
-                    text: `${current.position - previous.position >= 0 ? "+" : ""}${(
-                      current.position - previous.position
-                    ).toFixed(1)}`,
-                    up: current.position - previous.position <= 0,
-                  },
-          },
-        ]
-      : [];
-
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-          <div>
-            <h2 className="font-semibold text-gray-900">Month over Month</h2>
-            {current && previous && (
-              <p className="text-sm text-gray-500">
-                {current.label} vs {previous.label}
-              </p>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={emailReport}
-              disabled={emailing}
-              className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
-            >
-              {emailing ? "Sending…" : "Email report now"}
-            </button>
-            <button
-              onClick={onBackfill}
-              disabled={syncing}
-              className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
-            >
-              {syncing ? "Importing…" : "Backfill 90 days of history"}
-            </button>
-          </div>
+      {SHOW_TRACKING_TABS && (
+        <div className="flex items-center justify-end gap-2">
+          <button
+            onClick={emailReport}
+            disabled={emailing}
+            className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
+          >
+            {emailing ? "Sending…" : "Email report now"}
+          </button>
+          <button
+            onClick={onBackfill}
+            disabled={syncing}
+            className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-60"
+          >
+            {syncing ? "Importing…" : "Backfill 90 days of history"}
+          </button>
         </div>
-
-        {emailMsg && (
-          <div className="mb-4 rounded-lg border border-[#8B7355]/30 bg-[#8B7355]/5 px-4 py-2.5 text-sm text-gray-700">
-            {emailMsg}
-          </div>
-        )}
-
-        {rows.length === 0 ? (
-          <p className="text-gray-400 text-sm">
-            Not enough Search Console history yet. Press
-            &nbsp;<strong>Backfill 90 days of history</strong> to import past data.
-          </p>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {rows.map((r) => (
-              <div key={r.label} className="rounded-lg border border-gray-100 p-4">
-                <p className="text-xs text-gray-500 uppercase tracking-wider">{r.label}</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{r.cur}</p>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-gray-400">was {r.prev}</span>
-                  {r.delta && (
-                    <span
-                      className={`text-xs font-medium ${
-                        r.delta.up ? "text-green-600" : "text-red-600"
-                      }`}
-                    >
-                      {r.delta.text}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* 6-month trend */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="font-semibold text-gray-900 mb-6">6-Month Growth</h2>
-        {trend.every((m) => m.impressions === 0 && m.clicks === 0) ? (
-          <p className="text-gray-400 text-sm">No data yet.</p>
-        ) : (
-          <div className="grid grid-cols-6 gap-3">
-            {trend.map((m) => (
-              <div key={m.month} className="flex flex-col items-center">
-                <div className="flex items-end gap-1 h-40 w-full justify-center">
-                  <div
-                    className="w-3 rounded-t bg-gray-300"
-                    style={{ height: `${(m.impressions / maxImpr) * 100}%`, minHeight: "2px" }}
-                    title={`${fmt(m.impressions)} impressions`}
-                  />
-                  <div
-                    className="w-3 rounded-t"
-                    style={{
-                      height: `${(m.clicks / maxClicks) * 100}%`,
-                      backgroundColor: BRAND,
-                      minHeight: "2px",
-                    }}
-                    title={`${fmt(m.clicks)} clicks`}
-                  />
-                </div>
-                <p className="text-xs text-gray-500 mt-2">{m.label}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        <div className="flex items-center gap-4 mt-4 text-xs text-gray-500">
-          <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-sm bg-gray-300" /> Impressions
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: BRAND }} /> Clicks
-          </span>
+      )}
+      {emailMsg && (
+        <div className="rounded-lg border border-[#8B7355]/30 bg-[#8B7355]/5 px-4 py-2.5 text-sm text-gray-700">
+          {emailMsg}
         </div>
-      </div>
+      )}
+      <BrandMonthlyReports />
     </div>
   );
 }

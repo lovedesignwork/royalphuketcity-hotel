@@ -1,7 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactCountryFlag from "react-country-flag";
+import {
+  ArrowSquareIn,
+  DeviceMobile,
+  Link as LinkIcon,
+  MagnifyingGlass,
+  Monitor,
+  ShareNetwork,
+  DeviceTablet,
+  WifiHigh,
+} from "@phosphor-icons/react";
+import type { LiveMonthlyReport } from "@/lib/seo/monthly-types";
 
 // Multi-brand monthly SEO report. Each brand has its own growth profile,
 // keyword set, audience mix and page inventory; the monthly series is derived
@@ -378,6 +389,39 @@ function DeltaBadge({ value, suffix = "%", invert = false }: { value: number; su
   );
 }
 
+function KpiCard({
+  label,
+  value,
+  delta,
+  was,
+  suffix = "%",
+  invert = false,
+  hint,
+  yoy,
+}: {
+  label: string;
+  value: string;
+  delta: number | null;
+  was: string | null;
+  suffix?: string;
+  invert?: boolean;
+  hint?: string;
+  yoy?: string | null;
+}) {
+  return (
+    <div className="rounded-lg border border-gray-100 p-4">
+      <p className="text-xs text-gray-500 uppercase tracking-wider">{label}</p>
+      <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+      <div className="flex items-center gap-2 mt-1 flex-wrap">
+        {delta != null && <DeltaBadge value={delta} suffix={suffix} invert={invert} />}
+        {was && <span className="text-xs text-gray-400">was {was}</span>}
+      </div>
+      {yoy && <p className="text-[11px] text-gray-400 mt-1">{yoy}</p>}
+      {hint && <p className="text-[11px] text-gray-400 mt-1">{hint}</p>}
+    </div>
+  );
+}
+
 function PositionBadge({ position }: { position: number }) {
   const cls =
     position <= 3
@@ -407,14 +451,237 @@ function ChangeArrow({ current, prev }: { current: number; prev: number | null }
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
+function niceMax(n: number): number {
+  if (n <= 0) return 1;
+  const exp = Math.pow(10, Math.floor(Math.log10(n)));
+  const step = exp / (n / exp >= 5 ? 1 : n / exp >= 2 ? 2 : 5);
+  return Math.ceil(n / step) * step;
+}
+
+function TrafficGrowthChart({
+  points,
+  primaryLabel,
+  secondaryLabel,
+  selectedIndex,
+}: {
+  points: { label: string; primary: number; secondary: number }[];
+  primaryLabel: string;
+  secondaryLabel: string;
+  selectedIndex: number;
+}) {
+  if (points.length === 0) {
+    return <p className="text-sm text-gray-500">No traffic history for this range yet.</p>;
+  }
+
+  const width = 720;
+  const height = 268;
+  const pad = { top: 18, right: 12, bottom: 72, left: 46 };
+  const plotW = width - pad.left - pad.right;
+  const plotH = height - pad.top - pad.bottom;
+  const maxPrimary = niceMax(Math.max(...points.map((p) => p.primary), 1));
+  const maxSecondary = niceMax(Math.max(...points.map((p) => p.secondary), 1));
+  const band = plotW / Math.max(points.length, 1);
+  const barW = Math.min(36, band * 0.42);
+  const ticks = [0, 0.25, 0.5, 0.75, 1];
+
+  const xAt = (i: number) => pad.left + band * i + band / 2;
+  const yPrimary = (v: number) => pad.top + plotH - (v / maxPrimary) * plotH;
+  const ySecondary = (v: number) => pad.top + plotH - (v / maxSecondary) * plotH;
+
+  const line = points
+    .map((p, i) => `${i === 0 ? "M" : "L"} ${xAt(i).toFixed(1)} ${ySecondary(p.secondary).toFixed(1)}`)
+    .join(" ");
+
+  const peak = points.reduce((best, p, i) => (p.primary > best.primary ? { ...p, i } : best), {
+    ...points[0],
+    i: 0,
+  });
+  const latest = points[selectedIndex] || points[points.length - 1];
+  const secondaryUnit = secondaryLabel === "Page views" ? "views" : "impr";
+
+  return (
+    <div>
+      <div className="flex items-end justify-between gap-4 flex-wrap mb-5">
+        <div>
+          <h3 className="font-semibold text-gray-900">
+            {primaryLabel} vs {secondaryLabel.toLowerCase()}
+          </h3>
+          <p className="text-sm text-gray-500 mt-0.5">
+            Trailing {points.length} months · peak {peak.label} ({fmt(peak.primary)} {primaryLabel.toLowerCase()})
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-2xl font-bold text-gray-900 leading-none">{fmt(latest.primary)}</p>
+          <p className="text-xs text-gray-500 mt-1">
+            {primaryLabel.toLowerCase()} in {latest.label} · {fmt(latest.secondary)} {secondaryLabel.toLowerCase()}
+          </p>
+        </div>
+      </div>
+
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="w-full"
+        style={{ aspectRatio: `${width} / ${height}` }}
+        role="img"
+        aria-label={`${primaryLabel} and ${secondaryLabel} for the last ${points.length} months`}
+      >
+        {ticks.map((t) => {
+          const y = pad.top + plotH * (1 - t);
+          return (
+            <g key={t}>
+              <line
+                x1={pad.left}
+                x2={width - pad.right}
+                y1={y}
+                y2={y}
+                stroke={t === 0 ? "#d1d5db" : "#f3f4f6"}
+                strokeWidth="1"
+              />
+              <text x={pad.left - 8} y={y + 4} textAnchor="end" className="fill-gray-400" style={{ fontSize: 10 }}>
+                {t === 0 ? "0" : fmt(Math.round(maxPrimary * t))}
+              </text>
+            </g>
+          );
+        })}
+
+        {points.map((p, i) => {
+          const x = xAt(i) - barW / 2;
+          const y = yPrimary(p.primary);
+          const h = Math.max(2, pad.top + plotH - y);
+          const selected = i === selectedIndex;
+          return (
+            <rect
+              key={`bar-${p.label}`}
+              x={x}
+              y={y}
+              width={barW}
+              height={h}
+              rx="3"
+              fill={selected ? BRAND_COLOR : "#c4b09a"}
+            >
+              <title>
+                {p.label}: {fmt(p.primary)} {primaryLabel.toLowerCase()}, {fmt(p.secondary)}{" "}
+                {secondaryLabel.toLowerCase()}
+              </title>
+            </rect>
+          );
+        })}
+
+        <path
+          d={line}
+          fill="none"
+          stroke="#6b7280"
+          strokeWidth="2"
+          strokeDasharray="5 4"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+        />
+        {points.map((p, i) => (
+          <circle
+            key={`dot-${p.label}`}
+            cx={xAt(i)}
+            cy={ySecondary(p.secondary)}
+            r={i === selectedIndex ? 4.5 : 3.5}
+            fill="#fff"
+            stroke="#4b5563"
+            strokeWidth="2"
+          />
+        ))}
+
+        {points.map((p, i) => {
+          const selected = i === selectedIndex;
+          const cx = xAt(i);
+          const labelY = pad.top + plotH + 16;
+          return (
+            <text
+              key={`label-${p.label}`}
+              x={cx}
+              textAnchor="middle"
+              style={{ fontSize: 11 }}
+            >
+              <tspan x={cx} y={labelY} fill={selected ? BRAND_COLOR : "#4b5563"} fontWeight={selected ? 600 : 500}>
+                {p.label}
+              </tspan>
+              <tspan x={cx} y={labelY + 16} fill="#111827" fontWeight={600} style={{ fontSize: 13 }}>
+                {fmt(p.primary)}
+              </tspan>
+              <tspan x={cx} y={labelY + 30} fill="#6b7280" style={{ fontSize: 10 }}>
+                {fmt(p.secondary)} {secondaryUnit}
+              </tspan>
+            </text>
+          );
+        })}
+      </svg>
+
+      <div className="flex items-center gap-5 mt-4 text-xs text-gray-500">
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: BRAND_COLOR }} />
+          {primaryLabel} (bars)
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-4 border-t-2 border-dashed border-gray-500" />
+          {secondaryLabel} (line)
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function DeviceIcon({ label }: { label: string }) {
+  const cls = "w-4 h-4 text-[#8B7355]";
+  if (label === "Mobile") return <DeviceMobile className={cls} weight="regular" aria-hidden="true" />;
+  if (label === "Tablet") return <DeviceTablet className={cls} weight="regular" aria-hidden="true" />;
+  return <Monitor className={cls} weight="regular" aria-hidden="true" />;
+}
+
+function ChannelIcon({ label }: { label: string }) {
+  const cls = "w-4 h-4 text-[#8B7355]";
+  const key = label.toLowerCase();
+  if (key.includes("organic") || key.includes("search")) {
+    return <MagnifyingGlass className={cls} weight="regular" aria-hidden="true" />;
+  }
+  if (key.includes("social")) return <ShareNetwork className={cls} weight="regular" aria-hidden="true" />;
+  if (key.includes("hotel") || key.includes("local")) {
+    return <WifiHigh className={cls} weight="regular" aria-hidden="true" />;
+  }
+  if (key.includes("direct")) return <ArrowSquareIn className={cls} weight="regular" aria-hidden="true" />;
+  return <LinkIcon className={cls} weight="regular" aria-hidden="true" />;
+}
+
 export default function BrandMonthlyReports() {
   const [brandIdx, setBrandIdx] = useState(0);
   const brand = BRANDS[brandIdx];
+  const isRpc = brand.id === "rpc";
 
   const months = useMemo(() => buildMonthList(brand.start), [brand]);
   const N = months.length;
   const [monthIdx, setMonthIdx] = useState(N - 1);
   const idx = Math.min(monthIdx, N - 1);
+
+  const [live, setLive] = useState<LiveMonthlyReport | null>(null);
+  const [liveMonth, setLiveMonth] = useState<string | null>(null);
+  const [liveLoading, setLiveLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isRpc) return;
+    let cancelled = false;
+    setLiveLoading(true);
+    const q = liveMonth ? `?month=${liveMonth}` : "";
+    fetch(`/api/admin/seo/monthly${q}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: LiveMonthlyReport | null) => {
+        if (cancelled || !data?.selected) return;
+        setLive(data);
+        if (!liveMonth) setLiveMonth(data.selected);
+      })
+      .catch((err) => console.error("Failed to load live monthly report:", err))
+      .finally(() => {
+        if (!cancelled) setLiveLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isRpc, liveMonth]);
 
   function switchBrand(i: number) {
     setBrandIdx(i);
@@ -497,13 +764,84 @@ export default function BrandMonthlyReports() {
     return { cur, prev, yoy, kws, improved, declined, countries, pages, buckets, devices, trend, total };
   }, [brand, N, idx, months]);
 
+  const usingLive = isRpc && live;
+  const liveMonths = usingLive ? live.months : months;
+  const liveIdx = usingLive
+    ? Math.max(0, live.months.findIndex((m) => m.key === live.selected))
+    : idx;
+  const displayMonth = usingLive ? live.months[liveIdx] || live.months[live.months.length - 1] : months[idx];
+  const prevMonthLabel = usingLive
+    ? liveIdx > 0
+      ? live.months[liveIdx - 1].label
+      : null
+    : idx > 0
+      ? months[idx - 1].label
+      : null;
+
   const { cur, prev, yoy } = data;
-  const maxTrendClicks = Math.max(...data.trend.map((m) => m.clicks));
-  const maxTrendImpr = Math.max(...data.trend.map((m) => m.impressions));
-  const maxCountry = Math.max(...data.countries.map((c) => c.sessions), 1);
-  const maxPageClicks = Math.max(...data.pages.map((p) => p.clicks), 1);
+  const trend = usingLive
+    ? live.trend.map((m) => ({
+        label: m.short,
+        clicks: m.clicks ?? m.visitors,
+        impressions: m.impressions ?? m.views,
+      }))
+    : data.trend;
+  const countries = usingLive
+    ? live.countries.map((c) => ({
+        code: c.code,
+        name: c.name,
+        share: Number(c.share.toFixed(1)),
+        sessions: c.sessions,
+      }))
+    : data.countries;
+  const pages: {
+    page: string;
+    clicks: number;
+    impressions: number;
+    ctr: number;
+    position: number;
+    views: number;
+    visitors: number;
+    live: boolean;
+  }[] = usingLive
+    ? live.pages.map((p) => ({
+        page: p.page,
+        clicks: p.clicks ?? p.views,
+        impressions: p.visitors,
+        ctr: p.ctr ?? 0,
+        position: p.position ?? 0,
+        views: p.views,
+        visitors: p.visitors,
+        live: true,
+      }))
+    : data.pages.map((p) => ({
+        page: p.page,
+        clicks: p.clicks,
+        impressions: p.impressions,
+        ctr: p.ctr,
+        position: p.position,
+        views: p.clicks,
+        visitors: p.clicks,
+        live: false,
+      }));
+  const devices = usingLive ? live.devices : data.devices;
+  const buckets = usingLive ? live.buckets : data.buckets;
+  const queryTotal = usingLive ? live.queryCount : data.total;
+  const maxCountry = Math.max(...countries.map((c) => c.sessions), 1);
+  const maxPageClicks = Math.max(...pages.map((p) => p.clicks), 1);
+  const hasSeoKpis = Boolean(usingLive && live.kpis.clicks != null);
 
   const pctDelta = (c: number, p: number | undefined) => (p && p !== 0 ? ((c - p) / p) * 100 : 0);
+
+  const sourceLine = usingLive
+    ? [
+        live.source === "ga4" ? "Google Analytics 4" : "Google Analytics",
+        live.seoSource === "gsc" ? "Search Console" : null,
+        brand.domain,
+      ]
+        .filter(Boolean)
+        .join(" · ")
+    : `${brand.domain} · DataForSEO | SEMRUSH`;
 
   return (
     <div className="space-y-6">
@@ -529,18 +867,26 @@ export default function BrandMonthlyReports() {
         <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
           <div>
             <h2 className="text-lg font-bold text-gray-900">
-              Monthly SEO Performance — {months[idx].label}
+              Monthly SEO Performance — {displayMonth?.label}
             </h2>
             <p className="text-sm text-gray-500">
-              {prev ? `Compared with ${months[idx - 1].label}` : "First tracked month"}
-              {` · ${brand.domain} · DataForSEO | SEMRUSH`}
+              {prevMonthLabel ? `Compared with ${prevMonthLabel}` : "First tracked month"}
+              {` · ${sourceLine}`}
+              {isRpc && liveLoading ? " · loading live data" : ""}
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setMonthIdx(Math.max(0, idx - 1))}
-              disabled={idx === 0}
-              className="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40"
+              onClick={() => {
+                if (usingLive) {
+                  const next = liveIdx - 1;
+                  if (next >= 0) setLiveMonth(live.months[next].key);
+                  return;
+                }
+                setMonthIdx(Math.max(0, idx - 1));
+              }}
+              disabled={usingLive ? liveIdx === 0 : idx === 0}
+              className="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 min-h-11 min-w-11"
               title="Previous month"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -548,22 +894,41 @@ export default function BrandMonthlyReports() {
               </svg>
             </button>
             <select
-              value={idx}
-              onChange={(e) => setMonthIdx(parseInt(e.target.value, 10))}
+              value={usingLive ? live.selected : idx}
+              onChange={(e) => {
+                if (usingLive) {
+                  setLiveMonth(e.target.value);
+                  return;
+                }
+                setMonthIdx(parseInt(e.target.value, 10));
+              }}
               className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none"
             >
-              {months
-                .map((m, i) => (
-                  <option key={m.label} value={i}>
-                    📅 {m.label}
-                  </option>
-                ))
-                .reverse()}
+              {usingLive
+                ? [...live.months].reverse().map((m) => (
+                    <option key={m.key} value={m.key}>
+                      {m.label}
+                    </option>
+                  ))
+                : months
+                    .map((m, i) => (
+                      <option key={m.label} value={i}>
+                        {m.label}
+                      </option>
+                    ))
+                    .reverse()}
             </select>
             <button
-              onClick={() => setMonthIdx(Math.min(N - 1, idx + 1))}
-              disabled={idx === N - 1}
-              className="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40"
+              onClick={() => {
+                if (usingLive) {
+                  const next = liveIdx + 1;
+                  if (next < live.months.length) setLiveMonth(live.months[next].key);
+                  return;
+                }
+                setMonthIdx(Math.min(N - 1, idx + 1));
+              }}
+              disabled={usingLive ? liveIdx === live.months.length - 1 : idx === N - 1}
+              className="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 min-h-11 min-w-11"
               title="Next month"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -575,103 +940,175 @@ export default function BrandMonthlyReports() {
 
         {/* Executive summary */}
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
-          <div className="rounded-lg border border-gray-100 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wider">Clicks</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{fmt(cur.clicks)}</p>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              {prev && <DeltaBadge value={pctDelta(cur.clicks, prev.clicks)} />}
-              {prev && <span className="text-xs text-gray-400">was {fmt(prev.clicks)}</span>}
-            </div>
-            {yoy && (
-              <p className="text-[11px] text-gray-400 mt-1">
-                YoY: +{pctDelta(cur.clicks, yoy.clicks).toFixed(0)}% vs {months[idx - 12].short}
-              </p>
-            )}
-          </div>
-          <div className="rounded-lg border border-gray-100 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wider">Impressions</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{fmt(cur.impressions)}</p>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              {prev && <DeltaBadge value={pctDelta(cur.impressions, prev.impressions)} />}
-              {prev && <span className="text-xs text-gray-400">was {fmt(prev.impressions)}</span>}
-            </div>
-            {yoy && (
-              <p className="text-[11px] text-gray-400 mt-1">
-                YoY: +{pctDelta(cur.impressions, yoy.impressions).toFixed(0)}% vs {months[idx - 12].short}
-              </p>
-            )}
-          </div>
-          <div className="rounded-lg border border-gray-100 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wider">Bounce Rate</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{cur.bounce.toFixed(1)}%</p>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              {prev && <DeltaBadge value={cur.bounce - prev.bounce} suffix="pp" invert />}
-              {prev && <span className="text-xs text-gray-400">was {prev.bounce.toFixed(1)}%</span>}
-            </div>
-            {yoy && (
-              <p className="text-[11px] text-gray-400 mt-1">
-                YoY: {(cur.bounce - yoy.bounce).toFixed(1)}pp vs {months[idx - 12].short}
-              </p>
-            )}
-            <p className="text-[11px] text-gray-400 mt-1">lower is better</p>
-          </div>
-          <div className="rounded-lg border border-gray-100 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wider">Avg CTR</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{cur.ctr.toFixed(2)}%</p>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              {prev && <DeltaBadge value={cur.ctr - prev.ctr} suffix="pp" />}
-              {prev && <span className="text-xs text-gray-400">was {prev.ctr.toFixed(2)}%</span>}
-            </div>
-          </div>
-          <div className="rounded-lg border border-gray-100 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wider">Avg Position</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{cur.position.toFixed(1)}</p>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              {prev && <DeltaBadge value={cur.position - prev.position} suffix="" invert />}
-              {prev && <span className="text-xs text-gray-400">was {prev.position.toFixed(1)}</span>}
-            </div>
-            <p className="text-[11px] text-gray-400 mt-1">lower is better</p>
-          </div>
+          {usingLive && !hasSeoKpis ? (
+            <>
+              <KpiCard
+                label="Visitors"
+                value={fmt(live.kpis.visitors)}
+                delta={live.prev ? pctDelta(live.kpis.visitors, live.prev.visitors) : null}
+                was={live.prev ? fmt(live.prev.visitors) : null}
+              />
+              <KpiCard
+                label="Page views"
+                value={fmt(live.kpis.views)}
+                delta={live.prev ? pctDelta(live.kpis.views, live.prev.views) : null}
+                was={live.prev ? fmt(live.prev.views) : null}
+              />
+              <KpiCard
+                label="Bounce Rate"
+                value={`${live.kpis.bounce.toFixed(1)}%`}
+                delta={live.prev ? live.kpis.bounce - live.prev.bounce : null}
+                was={live.prev ? `${live.prev.bounce.toFixed(1)}%` : null}
+                suffix="pp"
+                invert
+                hint="lower is better"
+              />
+              <KpiCard
+                label="Pages / session"
+                value={live.kpis.pagesPerSession.toFixed(2)}
+                delta={live.prev ? live.kpis.pagesPerSession - live.prev.pagesPerSession : null}
+                was={live.prev ? live.prev.pagesPerSession.toFixed(2) : null}
+                suffix=""
+              />
+              <KpiCard
+                label="Organic share"
+                value={`${live.kpis.organicShare.toFixed(1)}%`}
+                delta={live.prev ? live.kpis.organicShare - live.prev.organicShare : null}
+                was={live.prev ? `${live.prev.organicShare.toFixed(1)}%` : null}
+                suffix="pp"
+              />
+            </>
+          ) : (
+            <>
+              <KpiCard
+                label="Clicks"
+                value={fmt(usingLive && live.kpis.clicks != null ? live.kpis.clicks : cur.clicks)}
+                delta={
+                  usingLive && live.prev?.clicks != null && live.kpis.clicks != null
+                    ? pctDelta(live.kpis.clicks, live.prev.clicks)
+                    : prev
+                      ? pctDelta(cur.clicks, prev.clicks)
+                      : null
+                }
+                was={
+                  usingLive && live.prev?.clicks != null
+                    ? fmt(live.prev.clicks)
+                    : prev
+                      ? fmt(prev.clicks)
+                      : null
+                }
+                yoy={
+                  !usingLive && yoy
+                    ? `YoY: +${pctDelta(cur.clicks, yoy.clicks).toFixed(0)}% vs ${months[idx - 12].short}`
+                    : null
+                }
+              />
+              <KpiCard
+                label="Impressions"
+                value={fmt(usingLive && live.kpis.impressions != null ? live.kpis.impressions : cur.impressions)}
+                delta={
+                  usingLive && live.prev?.impressions != null && live.kpis.impressions != null
+                    ? pctDelta(live.kpis.impressions, live.prev.impressions)
+                    : prev
+                      ? pctDelta(cur.impressions, prev.impressions)
+                      : null
+                }
+                was={
+                  usingLive && live.prev?.impressions != null
+                    ? fmt(live.prev.impressions)
+                    : prev
+                      ? fmt(prev.impressions)
+                      : null
+                }
+              />
+              <KpiCard
+                label="Bounce Rate"
+                value={`${(usingLive ? live.kpis.bounce : cur.bounce).toFixed(1)}%`}
+                delta={
+                  usingLive && live.prev
+                    ? live.kpis.bounce - live.prev.bounce
+                    : prev
+                      ? cur.bounce - prev.bounce
+                      : null
+                }
+                was={
+                  usingLive && live.prev
+                    ? `${live.prev.bounce.toFixed(1)}%`
+                    : prev
+                      ? `${prev.bounce.toFixed(1)}%`
+                      : null
+                }
+                suffix="pp"
+                invert
+                hint="lower is better"
+              />
+              <KpiCard
+                label="Avg CTR"
+                value={`${(usingLive && live.kpis.ctr != null ? live.kpis.ctr : cur.ctr).toFixed(2)}%`}
+                delta={
+                  usingLive && live.prev?.ctr != null && live.kpis.ctr != null
+                    ? live.kpis.ctr - live.prev.ctr
+                    : prev
+                      ? cur.ctr - prev.ctr
+                      : null
+                }
+                was={
+                  usingLive && live.prev?.ctr != null
+                    ? `${live.prev.ctr.toFixed(2)}%`
+                    : prev
+                      ? `${prev.ctr.toFixed(2)}%`
+                      : null
+                }
+                suffix="pp"
+              />
+              <KpiCard
+                label="Avg Position"
+                value={(usingLive && live.kpis.position != null ? live.kpis.position : cur.position).toFixed(1)}
+                delta={
+                  usingLive && live.prev?.position != null && live.kpis.position != null
+                    ? live.kpis.position - live.prev.position
+                    : prev
+                      ? cur.position - prev.position
+                      : null
+                }
+                was={
+                  usingLive && live.prev?.position != null
+                    ? live.prev.position.toFixed(1)
+                    : prev
+                      ? prev.position.toFixed(1)
+                      : null
+                }
+                suffix=""
+                invert
+                hint="lower is better"
+              />
+            </>
+          )}
         </div>
       </div>
 
-      {/* Trailing growth chart */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="font-semibold text-gray-900 mb-6">Organic Growth — trailing 6 months</h3>
-        <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${data.trend.length}, minmax(0, 1fr))` }}>
-          {data.trend.map((m) => (
-            <div key={m.label} className="flex flex-col items-center">
-              <div className="flex items-end gap-1.5 h-40 w-full justify-center">
-                <div
-                  className="w-4 rounded-t bg-gray-300"
-                  style={{ height: `${(m.impressions / maxTrendImpr) * 100}%` }}
-                  title={`${fmt(m.impressions)} impressions`}
-                />
-                <div
-                  className="w-4 rounded-t"
-                  style={{ height: `${(m.clicks / maxTrendClicks) * 100}%`, backgroundColor: BRAND_COLOR }}
-                  title={`${fmt(m.clicks)} clicks`}
-                />
-              </div>
-              <p className="text-xs font-medium text-gray-600 mt-2">{m.label}</p>
-              <p className="text-[10px] text-gray-400">{fmt(m.clicks)}</p>
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center gap-4 mt-4 text-xs text-gray-500">
-          <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-sm bg-gray-300" /> Impressions
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: BRAND_COLOR }} /> Clicks
-          </span>
-        </div>
+        <TrafficGrowthChart
+          points={trend.map((m) => ({
+            label: m.label,
+            primary: m.clicks,
+            secondary: m.impressions,
+          }))}
+          primaryLabel={usingLive && !hasSeoKpis ? "Visitors" : "Clicks"}
+          secondaryLabel={usingLive && !hasSeoKpis ? "Page views" : "Impressions"}
+          selectedIndex={Math.max(0, trend.length - 1)}
+        />
       </div>
 
       {/* Keyword rankings */}
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
         <div className="px-6 pt-6 pb-3 flex items-center justify-between flex-wrap gap-2">
           <h3 className="font-semibold text-gray-900">Target Keyword Rankings</h3>
+          {usingLive && !hasSeoKpis && (
+            <p className="text-xs text-gray-400 w-full mt-1">
+              Rank history is still a planning set. Traffic cards above use live royalphuketcity.com data.
+            </p>
+          )}
           <div className="flex items-center gap-2 text-xs">
             {brand.groups.map((g) => (
               <span key={g.label} className={`px-2 py-1 rounded-full font-medium ${g.className}`}>
@@ -726,8 +1163,13 @@ export default function BrandMonthlyReports() {
       {/* Countries + Top pages */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h3 className="font-semibold text-gray-900 mb-1">Organic Visitors by Country</h3>
-          <p className="text-xs text-gray-400 mb-4">{fmt(cur.users)} organic visitors</p>
+          <h3 className="font-semibold text-gray-900 mb-1">
+            {usingLive ? "Visitors by Country" : "Organic Visitors by Country"}
+          </h3>
+          <p className="text-xs text-gray-400 mb-4">
+            {fmt(usingLive ? live.kpis.visitors : cur.users)}{" "}
+            {usingLive ? "unique visitors" : "organic visitors"}
+          </p>
           <div className="space-y-2.5">
             {data.countries.map((c) => (
               <div key={c.name}>
@@ -760,15 +1202,31 @@ export default function BrandMonthlyReports() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="font-semibold text-gray-900 mb-4">Top Landing Pages</h3>
           <div className="space-y-2.5">
-            {data.pages.map((p) => (
+            {pages.map((p) => (
               <div key={p.page}>
                 <div className="flex items-center justify-between text-sm mb-1">
                   <span className="text-gray-700 truncate max-w-[55%]" title={p.page}>
                     {p.page}
                   </span>
                   <span className="text-xs text-gray-500">
-                    <span className="font-medium text-gray-900">{fmt(p.clicks)}</span> clicks · CTR{" "}
-                    {p.ctr.toFixed(2)}% · #{p.position.toFixed(1)}
+                    {p.live ? (
+                      p.ctr > 0 || p.position > 0 ? (
+                        <>
+                          <span className="font-medium text-gray-900">{fmt(p.clicks)}</span> clicks · CTR{" "}
+                          {p.ctr.toFixed(2)}% · #{p.position.toFixed(1)}
+                        </>
+                      ) : (
+                        <>
+                          <span className="font-medium text-gray-900">{fmt(p.views)}</span> views ·{" "}
+                          {fmt(p.visitors)} visitors
+                        </>
+                      )
+                    ) : (
+                      <>
+                        <span className="font-medium text-gray-900">{fmt(p.clicks)}</span> clicks · CTR{" "}
+                        {p.ctr.toFixed(2)}% · #{p.position.toFixed(1)}
+                      </>
+                    )}
                   </span>
                 </div>
                 <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -783,28 +1241,71 @@ export default function BrandMonthlyReports() {
         </div>
       </div>
 
-      {/* Position distribution + devices/highlights */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Ranking, traffic sources, devices */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="font-semibold text-gray-900 mb-1">Ranking Distribution</h3>
-          <p className="text-xs text-gray-400 mb-4">{fmt(data.total)} queries ranked in Google</p>
-          <div className="flex h-4 rounded-full overflow-hidden mb-4">
-            {data.buckets.map((b) => (
-              <div
-                key={b.label}
-                style={{ width: `${(b.count / Math.max(1, data.total)) * 100}%`, backgroundColor: b.color }}
-                title={`${b.label}: ${b.count}`}
-              />
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {data.buckets.map((b) => (
-              <div key={b.label} className="flex items-center justify-between text-sm py-1">
-                <span className="flex items-center gap-2 text-gray-600">
-                  <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: b.color }} />
-                  {b.label}
-                </span>
-                <span className="font-medium text-gray-900">{fmt(b.count)}</span>
+          {buckets ? (
+            <>
+              <p className="text-xs text-gray-400 mb-4">{fmt(queryTotal)} queries ranked in Google</p>
+              <div className="flex h-4 rounded-full overflow-hidden mb-4">
+                {buckets.map((b) => (
+                  <div
+                    key={b.label}
+                    style={{ width: `${(b.count / Math.max(1, queryTotal)) * 100}%`, backgroundColor: b.color }}
+                    title={`${b.label}: ${b.count}`}
+                  />
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {buckets.map((b) => (
+                  <div key={b.label} className="flex items-center justify-between text-sm py-1">
+                    <span className="flex items-center gap-2 text-gray-600">
+                      <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: b.color }} />
+                      {b.label}
+                    </span>
+                    <span className="font-medium text-gray-900">{fmt(b.count)}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="text-sm text-gray-500 mt-3">
+              Search Console query history is not in this report yet. Rank buckets will appear
+              after the GSC sync jobs run on production.
+            </p>
+          )}
+        </div>
+
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <h3 className="font-semibold text-gray-900 mb-1">Traffic sources</h3>
+          <p className="text-xs text-gray-400 mb-4">
+            {usingLive ? "Session mix for this month" : "Sample mix until live analytics load"}
+          </p>
+          <div className="space-y-2.5">
+            {(usingLive ? live.channels : [
+              { label: "Organic search", sessions: Math.round(cur.users * 0.48), share: 48 },
+              { label: "Direct", sessions: Math.round(cur.users * 0.31), share: 31 },
+              { label: "Referral", sessions: Math.round(cur.users * 0.14), share: 14 },
+              { label: "Social", sessions: Math.round(cur.users * 0.07), share: 7 },
+            ]).map((c) => (
+              <div key={c.label}>
+                <div className="flex items-center justify-between text-sm mb-1">
+                  <span className="text-gray-700 flex items-center gap-2">
+                    <ChannelIcon label={c.label} />
+                    {c.label}
+                  </span>
+                  <span className="font-medium text-gray-900">
+                    {fmt(c.sessions)}
+                    <span className="text-gray-400 font-normal ml-1.5">{c.share.toFixed(1)}%</span>
+                  </span>
+                </div>
+                <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full"
+                    style={{ width: `${c.share}%`, backgroundColor: BRAND_COLOR }}
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -813,11 +1314,12 @@ export default function BrandMonthlyReports() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h3 className="font-semibold text-gray-900 mb-4">Devices &amp; Highlights</h3>
           <div className="space-y-2.5 mb-6">
-            {data.devices.map((d) => (
+            {devices.map((d) => (
               <div key={d.label}>
                 <div className="flex items-center justify-between text-sm mb-1">
-                  <span className="text-gray-700">
-                    {d.icon} {d.label}
+                  <span className="text-gray-700 flex items-center gap-2">
+                    <DeviceIcon label={d.label} />
+                    {d.label}
                   </span>
                   <span className="font-medium text-gray-900">{d.share}%</span>
                 </div>
@@ -831,29 +1333,35 @@ export default function BrandMonthlyReports() {
             ))}
           </div>
           <div className="space-y-2">
-            {data.improved.map((k) => (
-              <div key={k.keyword} className="flex items-start gap-2 text-sm">
-                <span className="text-green-600">▲</span>
-                <p className="text-gray-600 leading-snug">
-                  &ldquo;{k.keyword}&rdquo; improved from #{k.prevPos} to #{k.position} this month.
-                </p>
-              </div>
-            ))}
-            {data.declined.map((k) => (
-              <div key={k.keyword} className="flex items-start gap-2 text-sm">
-                <span className="text-red-600">▼</span>
-                <p className="text-gray-600 leading-snug">
-                  &ldquo;{k.keyword}&rdquo; slipped from #{k.prevPos} to #{k.position} — on the watchlist.
-                </p>
-              </div>
-            ))}
-            <div className="flex items-start gap-2 text-sm">
-              <span className="text-green-600">▲</span>
-              <p className="text-gray-600 leading-snug">
-                Thailand remains the largest source of organic visitors ({brand.countries[0].share}%),
-                followed by {brand.countries[1].name} and {brand.countries[2].name}.
-              </p>
-            </div>
+            {usingLive
+              ? live.highlights.map((h) => (
+                  <div key={h.text} className="flex items-start gap-2 text-sm">
+                    <span className={h.tone === "down" ? "text-red-600" : "text-green-600"}>
+                      {h.tone === "down" ? "▼" : "▲"}
+                    </span>
+                    <p className="text-gray-600 leading-snug">{h.text}</p>
+                  </div>
+                ))
+              : (
+                <>
+                  {data.improved.map((k) => (
+                    <div key={k.keyword} className="flex items-start gap-2 text-sm">
+                      <span className="text-green-600">▲</span>
+                      <p className="text-gray-600 leading-snug">
+                        &ldquo;{k.keyword}&rdquo; improved from #{k.prevPos} to #{k.position} this month.
+                      </p>
+                    </div>
+                  ))}
+                  {data.declined.map((k) => (
+                    <div key={k.keyword} className="flex items-start gap-2 text-sm">
+                      <span className="text-red-600">▼</span>
+                      <p className="text-gray-600 leading-snug">
+                        &ldquo;{k.keyword}&rdquo; slipped from #{k.prevPos} to #{k.position} - on the watchlist.
+                      </p>
+                    </div>
+                  ))}
+                </>
+              )}
           </div>
         </div>
       </div>
