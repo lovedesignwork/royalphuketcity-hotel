@@ -765,7 +765,6 @@ export default function BrandMonthlyReports() {
   }, [brand, N, idx, months]);
 
   const usingLive = isRpc && live;
-  const liveMonths = usingLive ? live.months : months;
   const liveIdx = usingLive
     ? Math.max(0, live.months.findIndex((m) => m.key === live.selected))
     : idx;

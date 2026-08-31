@@ -9,7 +9,6 @@ import {
 } from "@/lib/seo/gsc";
 import type {
   LiveBucket,
-  LiveChannel,
   LiveDevice,
   LiveHighlight,
   LiveKpis,
@@ -246,7 +245,7 @@ export async function buildLiveMonthlyReport(
   const prevKey = idx > 0 ? months[idx - 1].key : null;
   const prevAgg = prevKey ? viewAggs.get(prevKey) : null;
 
-  let gscByMonth = new Map<string, ReturnType<typeof summarizeGsc>>();
+  const gscByMonth = new Map<string, ReturnType<typeof summarizeGsc>>();
   let gscPages: GscDimRow[] = [];
   let buckets: LiveBucket[] | null = null;
   let queryCount = 0;
