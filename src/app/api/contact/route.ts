@@ -1,19 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateAntiSpam } from "@/lib/antispam";
-
-// Every inquiry form on the site (contact, wedding, event, download-fact-sheets,
-// and any future form) MUST be routed through this endpoint so notifications
-// always reach all five mailboxes. Do NOT remove or narrow this list without
-// sign-off from the hotel team.
-const ADMIN_RECIPIENTS = [
-  "reservation@royalphuketcity.com",
-  "sales@royalphuketcity.com",
-  "marketing@royalphuketcity.com",
-  "puttipop.l@royalphuketcity.com",
-  "gm@royalphuketcity.com",
-] as const;
-
-const PRIMARY_REPLY_MAILBOX = "reservation@royalphuketcity.com";
+import {
+  assignmentForInquiryType,
+  primaryMailbox,
+} from "@/lib/email-routing";
 
 export async function POST(request: NextRequest) {
   try {
@@ -96,16 +86,18 @@ export async function POST(request: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(process.env.RESEND_API_KEY);
 
-      const isEventInquiry = inquiry_type === "event";
+      const isEventInquiry = inquiry_type === "event" || inquiry_type === "corporate";
       const isWeddingInquiry = inquiry_type === "wedding";
+      const assignment = assignmentForInquiryType(inquiry_type);
+      const replyMailbox = primaryMailbox(assignment);
       const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
 
-      // Send notification to all admin recipients. replyTo is the customer's
-      // email so staff pressing "Reply" in their inbox replies directly to
-      // the customer.
+      // Staff notification: To = person in charge, CC = matrix copy list.
+      // replyTo is the guest so staff pressing Reply reaches the customer.
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
-        to: [...ADMIN_RECIPIENTS],
+        to: [...assignment.to],
+        cc: [...assignment.cc],
         replyTo: email,
         subject: isWeddingInquiry
           ? `💍 New Wedding Inquiry: ${subject || "Wedding Request"} - Ref: ${referenceNumber}`
@@ -141,13 +133,11 @@ export async function POST(request: NextRequest) {
         `,
       });
 
-      // Send confirmation email to the person who submitted the form.
-      // replyTo points at the reservation mailbox so if the customer hits
-      // Reply on the auto-confirmation it reaches the hotel (not noreply@).
+      // Guest confirmation. replyTo is the PIC mailbox for this inquiry type.
       await resend.emails.send({
         from: "Royal Phuket City Hotel <noreply@royalphuketcity.com>",
         to: [email],
-        replyTo: PRIMARY_REPLY_MAILBOX,
+        replyTo: replyMailbox,
         subject: isEventInquiry 
           ? `Thank You for Your Event Inquiry - Royal Phuket City Hotel (Ref: ${referenceNumber})`
           : `Thank You for Contacting Us - Royal Phuket City Hotel (Ref: ${referenceNumber})`,
@@ -192,7 +182,7 @@ export async function POST(request: NextRequest) {
               </p>
               <p style="color: #666; font-size: 14px;">
                 <strong>Phone:</strong> +66 76 233 333<br />
-                <strong>Email:</strong> reservation@royalphuketcity.com
+                <strong>Email:</strong> ${replyMailbox}
               </p>
             </div>
             <div style="background-color: #1a1a2e; padding: 20px; text-align: center;">

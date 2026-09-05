@@ -170,7 +170,7 @@ export const treatments: Treatment[] = [
     isCouple: true,
     badge: "SAVE ฿300",
     priceNote: "for 2 people",
-    image: specificImages[21] || treatmentImages["Promotion"],
+    image: "/images/spa/herbal-compress.jpg",
   },
   {
     id: 22,

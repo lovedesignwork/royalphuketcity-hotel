@@ -11,6 +11,7 @@ import {
   Phone,
   Sparkle,
   SwimmingPool,
+  Taxi,
 } from "@phosphor-icons/react/dist/ssr";
 import MobileLink from "@/components/mobile/MobileLink";
 import { EXTERNAL_LINKS, HOTEL_INFO, SITE_CONFIG } from "@/lib/constants";
@@ -32,6 +33,7 @@ const pages = [
   { href: "/contact", label: "Contact", hint: "Call, write, or send a note", Icon: EnvelopeSimple },
   { href: "/weddings", label: "Weddings", hint: "Venues and inquiry", Icon: Heart },
   { href: "/events", label: "Events", hint: "Meetings and celebrations", Icon: CalendarBlank },
+  { href: "/around/transport", label: "Transportation", hint: "Hotel van, Dragon Line, Grab", Icon: Taxi },
 ] as const;
 
 export default function MobileMorePage() {

@@ -22,6 +22,7 @@ export const MOBILE_APP_ALIASES = [
   "/spa",
   "/around",
   "/feedback",
+  "/chat",
 ] as const;
 
 export function isMobileAppAlias(pathname: string): boolean {

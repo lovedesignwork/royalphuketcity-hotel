@@ -40,7 +40,7 @@ export default async function MobileDiningDetailPage({
         <p className="mt-2 text-sm text-[var(--m-muted)]">
           {venue.floor} · {venue.hours}
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed">{venue.description[0]}</p>
+        <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed">{venue.description[0]}</p>
 
         <h2 className="mt-6 mb-3 font-heading text-xl">Highlights</h2>
         <ul className="flex flex-wrap gap-2">
@@ -69,6 +69,21 @@ export default async function MobileDiningDetailPage({
             Inquire
           </MobileLink>
         </div>
+        {venue.menus && venue.menus.length > 0 ? (
+          <div className="mt-2 grid grid-cols-1 gap-2">
+            {venue.menus.map((menu) => (
+              <a
+                key={menu.label}
+                href={menu.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center justify-center rounded-full border border-[var(--m-border)] bg-[var(--m-card)] px-4 text-sm font-medium"
+              >
+                {menu.label}
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );

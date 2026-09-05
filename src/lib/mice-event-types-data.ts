@@ -538,7 +538,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Company Party & Celebration",
     subtitle: "Celebrate Your Team's Success",
     label: "Team Celebration",
-    heroImage: "/images/HOTEL WEBSITE/EVT_TS_P01_host_mic_portrait.jpg",
+    heroImage: "/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-1.jpg",
     metaDescription: "Host memorable company parties and celebrations in Phuket at Royal Phuket City Hotel. Year-end parties, staff appreciation events, and themed celebrations for up to 1,000 guests.",
     seoKeywords: ["company party venue Phuket", "corporate celebration Thailand", "year-end party venue", "staff party Phuket", "company celebration", "corporate party Thailand", "team celebration venue"],
     description: [
@@ -794,7 +794,7 @@ export const MICE_EVENT_TYPES: Record<string, MiceEventTypeDetail> = {
     title: "Team Building Event",
     subtitle: "Strengthen Bonds, Build Better Teams",
     label: "Team Development",
-    heroImage: "/images/HOTEL WEBSITE/EVT_TS_P02_guest_speaking_portrait.jpg",
+    heroImage: "/images/HOTEL WEBSITE/EVT_SW_L01_workshop_room_wide.jpg",
     metaDescription: "Organize team building events in Phuket at Royal Phuket City Hotel. Indoor and outdoor activities, facilitated programs, and complete logistics for corporate team development.",
     seoKeywords: ["team building venue Phuket", "corporate team event Thailand", "team building activities Phuket", "corporate outing venue", "team development event", "company team building", "group activities Phuket"],
     description: [

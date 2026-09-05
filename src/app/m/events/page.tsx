@@ -10,7 +10,17 @@ export const metadata = mobileMetadata(
 );
 
 export default function MobileEventsPage() {
-  const types = Object.values(MICE_EVENT_TYPES);
+  const types = Object.values(MICE_EVENT_TYPES)
+    .filter((item) => item.slug !== "talk-show-panel")
+    .map((item) =>
+      item.slug === "stand-up-comedy"
+        ? {
+            ...item,
+            title: "Stand-Up Comedy & Talk Show",
+            subtitle: "Where laughter and ideas take the stage",
+          }
+        : item
+    );
 
   return (
     <div className="mobile-content px-4 pt-[calc(3.5rem+env(safe-area-inset-top,0px)+12px)]">
@@ -21,7 +31,7 @@ export default function MobileEventsPage() {
       <div className="space-y-3">
         {types.map((item) => (
           <article key={item.slug} className="overflow-hidden rounded-[16px] bg-[var(--m-card)]">
-            <div className="relative h-36">
+            <div className="relative h-[11.07rem]">
               <Image
                 src={item.heroImage}
                 alt={item.title}

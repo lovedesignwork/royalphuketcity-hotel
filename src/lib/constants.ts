@@ -133,7 +133,7 @@ export const ROOMS = [
     size: "30 sqm",
     maxGuests: 2,
     bedType: "King or Twin",
-    views: ["Partial Sea View"],
+    views: ["Sea View"],
     shortDescription:
       "Wake up to glimpses of the Andaman Sea from your elegantly appointed Premier Superior room.",
     image: "/images/rooms/02 Premier superior - Partial sea view/Premier Superior 1.jpg",
@@ -157,14 +157,14 @@ export const ROOMS = [
     size: "38 sqm",
     maxGuests: 2,
     bedType: "King or Twin",
-    views: ["Partial Sea View"],
+    views: ["Sea View"],
     shortDescription:
-      "Elevated comfort with partial sea views and premium furnishings in 38 m² of luxury.",
+      "Elevated comfort with sea views and premium furnishings in 38 m² of luxury.",
     image: "/images/rooms/04 Premier deluxe - Partial sea view/Premier deluxe - Partial sea view01_resize.jpg",
   },
   {
     slug: "suite-room",
-    name: "Suite Room",
+    name: "Suite",
     category: "Suite",
     size: "64 sqm",
     maxGuests: 2,
@@ -176,7 +176,7 @@ export const ROOMS = [
   },
   {
     slug: "executive-suite",
-    name: "Executive Suite Room",
+    name: "Executive Suite",
     category: "Executive",
     size: "75 sqm",
     maxGuests: 2,
@@ -191,9 +191,9 @@ export const ROOMS = [
 export const RESTAURANTS = [
   {
     slug: "yan-long-chinese-restaurant",
-    name: "Yan Long Chinese Restaurant",
+    name: "Yan Long Authentic Chinese Restaurant",
     cuisine: "Chinese",
-    floor: "Ground Floor",
+    floor: "1st Floor",
     hours: "11:00 AM – 10:00 PM",
     shortDescription:
       "Authentic Cantonese cuisine with dim sum specialties and private dining rooms.",
@@ -202,7 +202,7 @@ export const RESTAURANTS = [
   {
     slug: "twist-rooftop-restaurant-bar",
     name: "TWIST Rooftop Restaurant & Bar",
-    cuisine: "International",
+    cuisine: "Phuket Heritage Fusion",
     floor: "19th Floor",
     hours: "5:00 PM – 12:00 AM",
     shortDescription:
@@ -215,7 +215,7 @@ export const FACILITIES = [
   {
     name: "Rooftop Breakfast",
     description: "Start your day with breathtaking views from the 19th floor.",
-    image: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 005.jpg",
+    image: "/images/breakfast/RPC-breakfast-12.jpg",
   },
   {
     name: "Swimming Pool",
@@ -225,12 +225,12 @@ export const FACILITIES = [
   {
     name: "Fitness Center",
     description: "State-of-the-art equipment available 24 hours.",
-    image: "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_07.jpg",
+    image: "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_01.jpg",
   },
   {
     name: "Spa & Massage",
     description: "Rejuvenating treatments inspired by Thai wellness traditions.",
-    image: "/images/HOTEL WEBSITE/Royal-Wellness-Spa-7.jpg",
+    image: "/images/spa/herbal-compress.jpg",
   },
   {
     name: "Atrium Lounge",
@@ -345,7 +345,7 @@ export const PROMOTIONS = [
     category: "Experience",
     validFrom: "2026-06-20",
     validUntil: "2026-10-15",
-    image: "/images/HOTEL WEBSITE/RPC-Pool-Wall-scaled.jpg",
+    image: "/images/activities/water Park (Andamanda) (3).webp",
     shortDescription: "Dive into excitement with our all-in-one Splash & Stay bundle package. This premium offer pairs a relaxing two-night city escape with an adrenaline-pumping day at Phuket's premier Andamanda Water Park.",
     highlights: [
       "2 nights stay in your selected room",
@@ -364,6 +364,60 @@ export const PROMOTIONS = [
     ],
     price: "From ฿5,200 / 2 nights",
     originalPrice: "Includes Water Park",
+    bookingCode: "",
+  },
+  {
+    slug: "yan-long-dining",
+    title: "Yan Long Dining Offer",
+    subtitle: "Authentic Cantonese in Phuket Old Town",
+    tagline: "Restaurant",
+    category: "Dining",
+    validFrom: "2026-01-01",
+    validUntil: "2026-12-31",
+    image: "/images/HOTEL WEBSITE/Restaurant/YanLong_L01_full_dining_room_L.jpg",
+    shortDescription:
+      "Hotel guests receive 10% off the à la carte menu at Yan Long Authentic Chinese Restaurant. Peking Duck, dim sum, and Cantonese classics on the 1st floor.",
+    highlights: [
+      "10% off for hotel guests",
+      "Signature Peking Duck",
+      "Daily dim sum 11:00 AM – 2:00 PM",
+      "Private dining rooms available",
+      "Open daily 11:00 AM – 10:00 PM",
+    ],
+    terms: [
+      "Present your room key or booking confirmation",
+      "Cannot be combined with other restaurant promotions",
+      "Subject to availability",
+    ],
+    price: "Hotel guests 10% off",
+    originalPrice: "",
+    bookingCode: "",
+  },
+  {
+    slug: "spa-guest-recovery",
+    title: "Royal Wellness Spa Offer",
+    subtitle: "Hotel guests 10% off treatments",
+    tagline: "Spa",
+    category: "Wellness",
+    validFrom: "2026-01-01",
+    validUntil: "2026-12-31",
+    image: "/images/spa/royal-wellness-spa-01.jpg",
+    shortDescription:
+      "Restore your balance on the 3rd floor. Hotel guests receive 10% off all Royal Wellness Spa treatments, including Recovery Starter and couple rituals.",
+    highlights: [
+      "10% off for hotel guests",
+      "Open daily 10:00 AM – 11:00 PM",
+      "Last booking 10:00 PM",
+      "3rd floor, same building as the pool",
+      "Pay at the spa",
+    ],
+    terms: [
+      "Present your room key at the spa reception",
+      "Last booking 10:00 PM",
+      "Subject to therapist availability",
+    ],
+    price: "Hotel guests 10% off",
+    originalPrice: "",
     bookingCode: "",
   },
   {

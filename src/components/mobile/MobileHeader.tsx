@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { ArrowLeft, Phone } from "@phosphor-icons/react";
+import { ArrowLeft, ChatCircle, Phone } from "@phosphor-icons/react";
 import Image from "next/image";
 import { HOTEL_INFO } from "@/lib/constants";
 import { mobileHref, stripMobilePrefix } from "@/lib/mobile";
@@ -26,7 +26,8 @@ function headerFor(path: string): { title: string | null; backTo: string | null;
   if (path === "/weddings") return { title: "Weddings", backTo: "/more", home: false };
   if (path === "/events") return { title: "Events", backTo: "/more", home: false };
   if (path === "/around") return { title: "Around Phuket", backTo: null, home: false };
-  if (path === "/around/old-town") return { title: "Old Town", backTo: "/around", home: false };
+  if (path === "/chat") return { title: "Live chat", backTo: "/", home: false };
+  if (path === "/around/old-town") return { title: "Local Experiences", backTo: "/around", home: false };
   if (path === "/around/nature") return { title: "Nature", backTo: "/around", home: false };
   if (path === "/around/culture") return { title: "Culture", backTo: "/around", home: false };
   if (path === "/around/michelin") return { title: "Michelin", backTo: "/around", home: false };
@@ -81,15 +82,26 @@ export default function MobileHeader() {
           <span className="flex-1" />
         )}
 
-        <a
-          href={telHref}
-          className={`flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--m-gold)] ${
-            home ? "bg-white/18 text-white" : "text-[var(--m-gold)]"
-          }`}
-          aria-label={`Call ${HOTEL_INFO.name}`}
-        >
-          <Phone size={22} weight={home ? "fill" : "regular"} aria-hidden="true" />
-        </a>
+        <div className="flex items-center">
+          {home ? (
+            <MobileLink
+              href="/chat"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/18 text-white transition-transform duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--m-gold)]"
+              aria-label="Live chat with the front desk"
+            >
+              <ChatCircle size={22} weight="fill" aria-hidden="true" />
+            </MobileLink>
+          ) : null}
+          <a
+            href={telHref}
+            className={`flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--m-gold)] ${
+              home ? "bg-white/18 text-white" : "text-[var(--m-gold)]"
+            }`}
+            aria-label={`Call ${HOTEL_INFO.name}`}
+          >
+            <Phone size={22} weight={home ? "fill" : "regular"} aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </header>
   );

@@ -7,6 +7,7 @@ export interface RestaurantDetail {
   phone?: string;
   description: string[];
   highlights: string[];
+  menus?: { label: string; href: string }[];
   images: {
     src: string;
     alt: string;
@@ -16,13 +17,13 @@ export interface RestaurantDetail {
 export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
   "yan-long-chinese-restaurant": {
     slug: "yan-long-chinese-restaurant",
-    name: "Yan Long Chinese Restaurant",
+    name: "Yan Long Authentic Chinese Restaurant",
     cuisine: "Cantonese",
-    floor: "Ground Floor",
+    floor: "1st Floor",
     hours: "11:00 AM - 10:00 PM",
     phone: "+66 76 233 355 ext. 1234",
     description: [
-      "Yan Long brings the finest traditions of Cantonese cuisine to Phuket, offering an authentic dining experience in an elegant setting that honors both heritage and innovation.",
+      "Yan Long brings together the finest culinary traditions from across China, offering an authentic dining experience in an elegant setting that honors regional heritage and modern innovation.\n\nSignature Dishes:\n• Peking Duck\n• Crystal Shrimp Dumplings\n• Deep-fried Prawns rolls\n• Fried Noodle with Fish Fillet and Black Bean Sauce",
       "Our master chefs, trained in the culinary arts of Hong Kong and Guangzhou, prepare each dish with meticulous attention to detail, using the freshest ingredients and time-honored techniques.",
       "Whether you're savoring our renowned dim sum selection, enjoying a family-style banquet, or hosting an intimate celebration in one of our private dining rooms, Yan Long promises an unforgettable culinary journey.",
     ],
@@ -36,6 +37,7 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
       "Wine & Spirits Pairing",
       "Group Banquet Menus",
     ],
+    menus: [{ label: "Menu", href: "https://q.me-qr.com/ky4lpfj8" }],
     images: [
       { src: "/images/YL/20200828_170433_resize.jpg", alt: "Yan Long Restaurant" },
       { src: "/images/YL/28 July 2022_0184_resize.jpg", alt: "Yan Long Dining" },
@@ -65,24 +67,30 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
   "twist-rooftop-restaurant-bar": {
     slug: "twist-rooftop-restaurant-bar",
     name: "TWIST Rooftop Restaurant & Bar",
-    cuisine: "International",
+    cuisine: "Phuket Heritage Fusion",
     floor: "19th Floor",
     hours: "5:00 PM - 12:00 AM",
     phone: "+66 76 233 355 ext. 1901",
     description: [
-      "Perched on the 19th floor, TWIST offers an unparalleled dining experience with 360-degree panoramic views of Phuket Old Town, the Andaman Sea, and the surrounding mountains.",
+      "TWIST sits 19 floors above it all, where panoramic views of Phuket Old Town, the Andaman Sea, and the mountains beyond turn every visit into an occasion. Come for golden-hour cocktails, stay for a dining experience as elevated as the view.\n\nSignature Cocktails:\n• Rosy Nyonya\n• Phuket Cooler\n• Butik Twist\n• 3BS (Bad Baba)\n• Anda Dibuk\n• Drunken Miner",
       "Our innovative menu combines international flavors with local Thai influences, featuring premium cuts, fresh seafood, and creative cocktails crafted by our award-winning mixologists.",
       "Whether you're here for sunset cocktails, a romantic dinner under the stars, or a celebratory night out, TWIST delivers an atmosphere that's as memorable as the cuisine.",
     ],
     highlights: [
+      "Local Fusion Cuisine",
       "360° Panoramic Views",
       "Sunset Cocktail Hour",
       "Live Music (Thu-Sat)",
       "Premium Steaks & Seafood",
-      "Craft Cocktail Menu",
+      "Craft Cocktail Selection",
       "Wine Cellar Selection",
       "Outdoor Terrace Seating",
       "Private Event Space",
+    ],
+    menus: [
+      { label: "Menu", href: "https://q.me-qr.com/pzudes5h" },
+      { label: "Drinks", href: "https://q.me-qr.com/0t2w52pz" },
+      { label: "Wine list", href: "https://q.me-qr.com/xwlsasra" },
     ],
     images: [
       {

@@ -12,7 +12,11 @@ export interface RoomDetail {
     src: string;
     alt: string;
   }[];
+  disclaimer?: string;
 }
+
+export const SEA_VIEW_DISCLAIMER =
+  "*Views of the Andaman Sea are available from all floors; however, views may be partially framed by surrounding city buildings depending on exact floor level and sightline.";
 
 export const ROOM_DETAILS: Record<string, RoomDetail> = {
   "premier-superior": {
@@ -24,7 +28,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     bedType: "Twin",
     views: ["City View"],
     description: [
-      "Our Premier Superior rooms offer elegant comfort with contemporary design, featuring warm wood accents and windows that flood the space with natural light.",
+      "Overlooking Phuket's vibrant cityscape and lush mountain backdrop, these well-appointed Premier Superior Rooms offer a peaceful retreat above the city's energy. Featuring modern furnishings, premium amenities, and all-day natural light — ideal for business and leisure travellers.",
       "Each room is thoughtfully appointed with premium bedding, a spacious work area, and a luxurious bathroom with rain shower and premium bath amenities.",
       "Wake up to stunning views of Phuket Old Town and enjoy in-room amenities designed for both relaxation and productivity.",
     ],
@@ -85,21 +89,22 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
   },
   "premier-superior-partial-sea-view": {
     slug: "premier-superior-partial-sea-view",
-    name: "Premier Superior Sea View",
-    category: "Partial Sea View",
+    name: "Premier Superior Sea View*",
+    category: "Sea View",
     size: "30 sqm",
     maxGuests: 2,
     bedType: "King or Twin",
-    views: ["Partial Sea View"],
+    views: ["Sea View"],
+    disclaimer: SEA_VIEW_DISCLAIMER,
     description: [
-      "Experience the beauty of the Andaman Sea from our Premier Superior rooms with partial sea views, offering glimpses of crystal blue waters alongside the Phuket cityscape.",
+      "Positioned on the sea-facing side of the building, these Premier Superior Rooms offer views of the Andaman Sea from all floors. The surrounding cityscape may partially frame the sea view depending on your floor level and sightline. Fresh atmosphere with modern Premier Superior amenities.",
       "Each room features contemporary design with warm accents, premium bedding, and a luxurious bathroom with rain shower and curated bath amenities.",
       "The perfect retreat for those seeking a connection to the sea while enjoying the convenience of our central Old Town location.",
     ],
     amenities: [
       "King or Twin Bed",
       "30 sqm Space",
-      "Partial Sea View",
+      "Sea View",
       "Rain Shower",
       "Premium Bath Amenities",
       "Smart TV",
@@ -160,7 +165,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     bedType: "King or Twin",
     views: ["City View"],
     description: [
-      "Our Premier Deluxe rooms offer enhanced space and premium touches, perfect for guests seeking a more refined experience with 38 square meters of elegant living space.",
+      "Our Premier Deluxe Rooms offer a generously sized retreat with sweeping views of Phuket City and its green mountain backdrop. Larger footprint than Premier Superior Rooms — ideal for extended stays and business travellers who value space and comfort.",
       "Each room features upgraded furnishings, a dedicated seating area, and panoramic windows offering stunning views of Phuket's historic cityscape.",
     ],
     amenities: [
@@ -222,14 +227,15 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
   },
   "premier-deluxe-partial-sea-view": {
     slug: "premier-deluxe-partial-sea-view",
-    name: "Premier Deluxe Sea View",
-    category: "Partial Sea View",
+    name: "Premier Deluxe Sea View*",
+    category: "Sea View",
     size: "38 sqm",
     maxGuests: 2,
     bedType: "King or Twin",
-    views: ["Partial Sea View"],
+    views: ["Sea View"],
+    disclaimer: SEA_VIEW_DISCLAIMER,
     description: [
-      "Elevated comfort meets stunning sea vistas in our Premier Deluxe rooms with partial sea views, offering 38 square meters of refined living space.",
+      "Our Premier Deluxe Sea View rooms combine generous space with Andaman Sea vistas. Positioned on the sea-facing side, views are available from all floors. The surrounding cityscape may partially frame the sea view depending on floor level. Premium amenities throughout.",
       "Panoramic windows frame captivating glimpses of the Andaman Sea, while premium furnishings and a marble bathroom create an atmosphere of understated luxury.",
       "The perfect choice for discerning travelers who appreciate both space and spectacular views.",
     ],
@@ -237,7 +243,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
       "King or Twin Bed",
       "38 sqm Space",
       "Panoramic Windows",
-      "Partial Sea View",
+      "Sea View",
       "Marble Bathroom",
       "Rain Shower",
       "Premium Bath Amenities",
@@ -299,7 +305,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     bedType: "King",
     views: ["Panoramic City View"],
     description: [
-      "Our Suites offer generous living space with a separate lounge area, perfect for extended stays or guests who appreciate room to spread out and relax.",
+      "Our Suite offers an expansive, elegantly furnished retreat in the heart of Phuket City. With a generous living area, premium amenities, and refined decor — ideal for discerning travellers, honeymooners, and special occasions.",
       "Spanning 64 square meters, each suite features a king bedroom, elegant living room, and a designer bathroom with soaking tub and separate rain shower.",
       "Panoramic windows provide breathtaking views of Phuket Old Town, creating an inspiring backdrop for your stay.",
     ],
@@ -370,7 +376,7 @@ export const ROOM_DETAILS: Record<string, RoomDetail> = {
     bedType: "King",
     views: ["Panoramic Sea & City View"],
     description: [
-      "The Executive Suite represents the pinnacle of luxury at Royal Phuket City, offering 75 square meters of exquisitely appointed living space with sweeping views of both the Andaman Sea and Phuket Old Town.",
+      "The Executive Suite is our pinnacle accommodation. Featuring the most generous space in the hotel, exclusive amenities, and personalised service — reserved for guests who expect the very best. Ideal for VIPs, extended stays, and special occasions.",
       "Each suite features a master bedroom with premium king bed, a spacious living and dining area, and a spa-inspired bathroom with deep soaking tub, rain shower, and luxury amenities.",
       "Guests enjoy exclusive privileges including priority restaurant reservations and personalized service.",
     ],

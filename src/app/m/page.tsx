@@ -10,6 +10,7 @@ import {
   SwimmingPool,
   WifiHigh,
 } from "@phosphor-icons/react/dist/ssr";
+import BreakfastTraffic from "@/components/mobile/BreakfastTraffic";
 import MobileAnnouncement from "@/components/mobile/MobileAnnouncement";
 import MobileLink from "@/components/mobile/MobileLink";
 import { HOTEL_INFO, PROMOTIONS, RESTAURANTS } from "@/lib/constants";
@@ -97,7 +98,7 @@ export default function MobileHomePage() {
       <section className="px-4 pt-5">
         <MobileLink href="/spa" className="relative mb-3 block h-40 overflow-hidden rounded-[16px]">
           <Image
-            src="/images/HOTEL WEBSITE/Royal-Wellness-Spa-7.jpg"
+            src="/images/spa/royal-wellness-spa-01.jpg"
             alt="Royal Wellness Spa"
             fill
             sizes="400px"
@@ -120,7 +121,7 @@ export default function MobileHomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-4 text-white">
             <p className="font-heading text-xl">Pool and gym</p>
-            <p className="text-sm text-white/85">Open hours and where to go</p>
+            <p className="text-sm text-white/85">3rd Floor · 7:00 AM - 9:00 PM</p>
           </div>
         </MobileLink>
         <MobileLink href="/around" className="relative block h-40 overflow-hidden rounded-[16px]">
@@ -186,7 +187,10 @@ export default function MobileHomePage() {
             >
               <Clock size={20} className="mt-0.5 text-[var(--m-gold)]" aria-hidden="true" />
               <span className="min-w-0 flex-1">
-                <span className="block font-medium">{row.label}</span>
+                <span className="flex items-center gap-2">
+                  <span className="block font-medium">{row.label}</span>
+                  {row.label === "Breakfast" ? <BreakfastTraffic /> : null}
+                </span>
                 <span className="block text-sm text-[var(--m-muted)]">
                   {row.value} · {row.where}
                 </span>
@@ -211,7 +215,7 @@ export default function MobileHomePage() {
             className="flex min-h-11 flex-col items-center justify-center gap-1 rounded-[16px] bg-[var(--m-card)] px-2 py-3 text-center"
           >
             <ForkKnife size={22} weight="regular" className="text-[var(--m-gold)]" aria-hidden="true" />
-            <span className="text-xs font-medium">Eat</span>
+            <span className="text-xs font-medium">Dine</span>
           </MobileLink>
           <MobileLink
             href="/spa"
@@ -220,13 +224,13 @@ export default function MobileHomePage() {
             <FlowerLotus size={22} weight="regular" className="text-[var(--m-gold)]" aria-hidden="true" />
             <span className="text-xs font-medium">Spa</span>
           </MobileLink>
-          <MobileLink
-            href="/facilities"
+          <a
+            href={telHref}
             className="flex min-h-11 flex-col items-center justify-center gap-1 rounded-[16px] bg-[var(--m-card)] px-2 py-3 text-center"
           >
             <SwimmingPool size={22} weight="regular" className="text-[var(--m-gold)]" aria-hidden="true" />
-            <span className="text-xs font-medium">Pool</span>
-          </MobileLink>
+            <span className="text-xs font-medium">Amenities</span>
+          </a>
           <a
             href={telHref}
             className="flex min-h-11 flex-col items-center justify-center gap-1 rounded-[16px] bg-[var(--m-card)] px-2 py-3 text-center"
@@ -235,11 +239,11 @@ export default function MobileHomePage() {
             <span className="text-xs font-medium">WiFi</span>
           </a>
           <MobileLink
-            href="/facilities"
+            href="/around/transport"
             className="flex min-h-11 flex-col items-center justify-center gap-1 rounded-[16px] bg-[var(--m-card)] px-2 py-3 text-center"
           >
             <Bus size={22} weight="regular" className="text-[var(--m-gold)]" aria-hidden="true" />
-            <span className="text-xs font-medium">Shuttle</span>
+            <span className="text-xs font-medium">Transport</span>
           </MobileLink>
         </div>
         <p className="mt-3 text-xs leading-relaxed text-[var(--m-muted)]">

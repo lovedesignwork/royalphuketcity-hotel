@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateAntiSpam } from "@/lib/antispam";
 import { getSpaTreatment } from "@/lib/spa-treatments";
+import { EMAIL_ASSIGNMENTS } from "@/lib/email-routing";
 
-const ADMIN_RECIPIENTS = [
-  "reservation@royalphuketcity.com",
-  "sales@royalphuketcity.com",
-  "marketing@royalphuketcity.com",
-  "puttipop.l@royalphuketcity.com",
-  "gm@royalphuketcity.com",
-] as const;
+const SPA_ASSIGNMENT = EMAIL_ASSIGNMENTS.spa;
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,9 +40,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!name || !email || !phone || !date || !time || !treatmentName) {
+    if (!name || !email || !phone || !roomNumber || !date || !time || !treatmentName) {
       return NextResponse.json(
-        { success: false, error: "Name, email, phone, date, time, and treatment are required" },
+        { success: false, error: "Name, email, room number, date, time, and treatment are required" },
         { status: 400 }
       );
     }
@@ -116,7 +111,8 @@ export async function POST(request: NextRequest) {
 
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
-        to: [...ADMIN_RECIPIENTS],
+        to: [...SPA_ASSIGNMENT.to],
+        cc: [...SPA_ASSIGNMENT.cc],
         replyTo: email,
         subject: `Spa booking from guest app: ${service} - ${ref}`,
         html: `

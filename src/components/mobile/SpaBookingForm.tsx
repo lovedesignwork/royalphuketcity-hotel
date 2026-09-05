@@ -85,8 +85,8 @@ export default function SpaBookingForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!treatment || !date || !time || !name || !email || !phone) {
-      setError("Choose a treatment, time, and your contact details.");
+    if (!treatment || !date || !time || !name || !email || !phone || !roomNumber) {
+      setError("Choose a treatment, time, and your name, email, and room number.");
       setStatus("error");
       return;
     }
@@ -257,7 +257,7 @@ export default function SpaBookingForm() {
 
       <div className="min-w-0">
         <label htmlFor="spa-name" className="mb-1.5 block font-medium">
-          Your name
+          Your name*
         </label>
         <input
           id="spa-name"
@@ -270,7 +270,7 @@ export default function SpaBookingForm() {
 
       <div className="min-w-0">
         <label htmlFor="spa-email" className="mb-1.5 block font-medium">
-          Email
+          Email*
         </label>
         <input
           id="spa-email"
@@ -289,10 +289,11 @@ export default function SpaBookingForm() {
 
       <div className="min-w-0">
         <label htmlFor="spa-room" className="mb-1.5 block font-medium">
-          Room number
+          Room number*
         </label>
         <input
           id="spa-room"
+          required
           value={roomNumber}
           onChange={(event) => setRoomNumber(event.target.value)}
           placeholder="So the spa can find you"

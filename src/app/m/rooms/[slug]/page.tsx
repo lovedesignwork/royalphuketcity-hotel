@@ -52,6 +52,11 @@ export default async function MobileRoomDetailPage({
             </li>
           ))}
         </ul>
+        {room.disclaimer ? (
+          <p className="mt-5 text-xs leading-relaxed text-[var(--m-muted)]">
+            {room.disclaimer}
+          </p>
+        ) : null}
       </div>
 
       <StickyBookBar label="Add nights" />

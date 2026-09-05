@@ -40,7 +40,9 @@ export default function MobileSpaPage() {
             <Clock size={20} className="mt-0.5 text-[var(--m-gold)]" aria-hidden="true" />
             <span>
               <span className="block font-medium">Open daily</span>
-              <span className="block text-sm text-[var(--m-muted)]">{SPA_HOURS}</span>
+              <span className="block text-sm text-[var(--m-muted)]">
+                {SPA_HOURS}. Last booking 10:00 PM.
+              </span>
             </span>
           </li>
         </ul>
@@ -61,6 +63,11 @@ export default function MobileSpaPage() {
           Book a slot
         </MobileLink>
       </div>
+
+      <p className="mt-5 text-[15px] leading-relaxed">
+        Restore your balance. Recharge your body. Elevate your senses in the heart of Phuket.
+        Authentic treatments for ultimate relaxation. Located on the 3rd Floor, Royal Phuket City Hotel.
+      </p>
 
       <div className="-mx-4 mt-6 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex w-max gap-2 pb-1">

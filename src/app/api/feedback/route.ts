@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateAntiSpam } from "@/lib/antispam";
+import { EMAIL_ASSIGNMENTS } from "@/lib/email-routing";
 
-const ADMIN_RECIPIENTS = [
-  "reservation@royalphuketcity.com",
-  "sales@royalphuketcity.com",
-  "marketing@royalphuketcity.com",
-  "puttipop.l@royalphuketcity.com",
-  "gm@royalphuketcity.com",
-] as const;
+const ROOMS_ASSIGNMENT = EMAIL_ASSIGNMENTS.feedback;
 
 const RATINGS = ["overall", "room", "cleanliness", "staff", "dining"] as const;
 const STAY_AGAIN = ["yes", "maybe", "no"] as const;
@@ -115,7 +110,8 @@ export async function POST(request: NextRequest) {
 
       await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
-        to: [...ADMIN_RECIPIENTS],
+        to: [...ROOMS_ASSIGNMENT.to],
+        cc: [...ROOMS_ASSIGNMENT.cc],
         replyTo: email || undefined,
         subject: `Guest stay feedback: ${overall}/5${roomNumber ? ` · Room ${roomNumber}` : ""}`,
         html: `
