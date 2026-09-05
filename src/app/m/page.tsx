@@ -98,7 +98,7 @@ export default function MobileHomePage() {
       <section className="px-4 pt-5">
         <MobileLink href="/spa" className="relative mb-3 block h-40 overflow-hidden rounded-[16px]">
           <Image
-            src="/images/spa/royal-wellness-spa-01.jpg"
+            src="/images/Mobile app/spa/SPA01_resize.jpg"
             alt="Royal Wellness Spa"
             fill
             sizes="400px"
@@ -243,7 +243,7 @@ export default function MobileHomePage() {
             className="flex min-h-11 flex-col items-center justify-center gap-1 rounded-[16px] bg-[var(--m-card)] px-2 py-3 text-center"
           >
             <Bus size={22} weight="regular" className="text-[var(--m-gold)]" aria-hidden="true" />
-            <span className="text-xs font-medium">Transport</span>
+            <span className="text-xs font-medium">Transportation</span>
           </MobileLink>
         </div>
         <p className="mt-3 text-xs leading-relaxed text-[var(--m-muted)]">

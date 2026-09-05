@@ -197,7 +197,7 @@ export const RESTAURANTS = [
     hours: "11:00 AM – 10:00 PM",
     shortDescription:
       "Authentic Cantonese cuisine with dim sum specialties and private dining rooms.",
-    image: "/images/HOTEL WEBSITE/Restaurant/YanLong_L01_full_dining_room_L.jpg",
+    image: "/images/Mobile app/YANLONG/ปก 01 copy_resize.jpg",
   },
   {
     slug: "twist-rooftop-restaurant-bar",
@@ -207,7 +207,7 @@ export const RESTAURANTS = [
     hours: "5:00 PM – 12:00 AM",
     shortDescription:
       "Rooftop dining with panoramic views, craft cocktails, and international cuisine.",
-    image: "/images/HOTEL WEBSITE/Restaurant/Twist ROoftop.jpg",
+    image: "/images/Mobile app/Twist/tw01.jpg",
   },
 ] as const;
 
@@ -225,12 +225,12 @@ export const FACILITIES = [
   {
     name: "Fitness Center",
     description: "State-of-the-art equipment available 24 hours.",
-    image: "/images/HOTEL WEBSITE/Royal-Phuket-City-Fitness_01.jpg",
+    image: "/images/Mobile app/FACILITIES/Gym 1_resize.jpg",
   },
   {
     name: "Spa & Massage",
     description: "Rejuvenating treatments inspired by Thai wellness traditions.",
-    image: "/images/spa/herbal-compress.jpg",
+    image: "/images/Mobile app/spa/SPA02_resize.jpg",
   },
   {
     name: "Atrium Lounge",
@@ -245,7 +245,7 @@ export const FACILITIES = [
   {
     name: "EV Charger",
     description: "Electric vehicle charging stations for eco-conscious travelers.",
-    image: "/images/HOTEL WEBSITE/EV-Bus_resize-1.jpeg",
+    image: "/images/Mobile app/FACILITIES/EV Charger-Edit copy_resize.jpg",
   },
 ] as const;
 
@@ -345,7 +345,7 @@ export const PROMOTIONS = [
     category: "Experience",
     validFrom: "2026-06-20",
     validUntil: "2026-10-15",
-    image: "/images/activities/water Park (Andamanda) (3).webp",
+    image: "/images/Mobile app/Activities/andamanda waterpark 4_resize.jpg",
     shortDescription: "Dive into excitement with our all-in-one Splash & Stay bundle package. This premium offer pairs a relaxing two-night city escape with an adrenaline-pumping day at Phuket's premier Andamanda Water Park.",
     highlights: [
       "2 nights stay in your selected room",
@@ -374,7 +374,7 @@ export const PROMOTIONS = [
     category: "Dining",
     validFrom: "2026-01-01",
     validUntil: "2026-12-31",
-    image: "/images/HOTEL WEBSITE/Restaurant/YanLong_L01_full_dining_room_L.jpg",
+    image: "/images/Mobile app/YANLONG/ปก 01 copy_resize.jpg",
     shortDescription:
       "Hotel guests receive 10% off the à la carte menu at Yan Long Authentic Chinese Restaurant. Peking Duck, dim sum, and Cantonese classics on the 1st floor.",
     highlights: [
@@ -401,7 +401,7 @@ export const PROMOTIONS = [
     category: "Wellness",
     validFrom: "2026-01-01",
     validUntil: "2026-12-31",
-    image: "/images/spa/royal-wellness-spa-01.jpg",
+    image: "/images/Mobile app/spa/1170_resize.jpg",
     shortDescription:
       "Restore your balance on the 3rd floor. Hotel guests receive 10% off all Royal Wellness Spa treatments, including Recovery Starter and couple rituals.",
     highlights: [

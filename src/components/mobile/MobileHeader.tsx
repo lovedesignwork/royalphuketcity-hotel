@@ -82,7 +82,7 @@ export default function MobileHeader() {
           <span className="flex-1" />
         )}
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           {home ? (
             <MobileLink
               href="/chat"

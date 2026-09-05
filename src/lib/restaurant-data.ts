@@ -12,6 +12,10 @@ export interface RestaurantDetail {
     src: string;
     alt: string;
   }[];
+  mobileImages?: {
+    src: string;
+    alt: string;
+  }[];
 }
 
 export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
@@ -62,6 +66,26 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
       { src: "/images/YL/_MG_8224_resize.jpg", alt: "Yan Long Elegance" },
       { src: "/images/YL/YL-thai-1.jpg", alt: "Yan Long Traditional" },
       { src: "/images/YL/YL-thai-2.jpg", alt: "Yan Long Heritage" },
+    ],
+    mobileImages: [
+      { src: "/images/Mobile app/YANLONG/ปก 01 copy_resize.jpg", alt: "Yan Long Restaurant" },
+      { src: "/images/Mobile app/YANLONG/V1 01 copy_resize.jpg", alt: "Yan Long dining room" },
+      { src: "/images/Mobile app/YANLONG/V2 01 copy_resize.jpg", alt: "Yan Long interior" },
+      { src: "/images/Mobile app/YANLONG/V3 01 copy_resize.jpg", alt: "Yan Long setting" },
+      { src: "/images/Mobile app/YANLONG/V4 01- copy 2_resize.jpg", alt: "Yan Long banquet" },
+      { src: "/images/Mobile app/YANLONG/_DSF1873_resize.jpg", alt: "Yan Long table" },
+      { src: "/images/Mobile app/YANLONG/_DSF1882_resize.jpg", alt: "Yan Long seafood" },
+      { src: "/images/Mobile app/YANLONG/_DSF3536 copy_resize.jpg", alt: "Yan Long cuisine" },
+      { src: "/images/Mobile app/YANLONG/_DSF3582_resize.jpg", alt: "Yan Long dishes" },
+      { src: "/images/Mobile app/YANLONG/Eating Pekking Duck_resize.jpg", alt: "Peking duck service" },
+      { src: "/images/Mobile app/YANLONG/Eating Pekking Duck 2_resize.jpg", alt: "Peking duck carving" },
+      { src: "/images/Mobile app/YANLONG/เป็ดปักกิ่ง ทั้งตัว 01 copy_resize.jpg", alt: "Whole Peking duck" },
+      { src: "/images/Mobile app/YANLONG/เป็ดปักกิ่ง เป็ดเนื้อ หนัง FB__resize.jpg", alt: "Peking duck meat and skin" },
+      { src: "/images/Mobile app/YANLONG/เป็ดปักกิ่ง FB_resize.jpg", alt: "Peking duck" },
+      { src: "/images/Mobile app/YANLONG/เมี่ยงเป็ด_resize.jpg", alt: "Duck wraps" },
+      { src: "/images/Mobile app/YANLONG/55.เนื้อเป็ดต้มเกี๊ยมฉ่าย_resize.jpg", alt: "Braised duck with pickled mustard greens" },
+      { src: "/images/Mobile app/YANLONG/ซาลาเปาซิ่วท้อ    4K_resize.jpg", alt: "Longevity peach buns" },
+      { src: "/images/Mobile app/YANLONG/Royal Bao 04_resize.jpg", alt: "Royal bao" },
     ],
   },
   "twist-rooftop-restaurant-bar": {
@@ -173,6 +197,50 @@ export const RESTAURANT_DETAILS: Record<string, RestaurantDetail> = {
         src: "/images/HOTEL WEBSITE/Restaurant/TWIST Rooftop 045.jpg",
         alt: "Rooftop Bar Atmosphere",
       },
+    ],
+    mobileImages: [
+      { src: "/images/Mobile app/Twist/tw01.jpg", alt: "TWIST rooftop" },
+      { src: "/images/Mobile app/Twist/tw02.jpg", alt: "TWIST dining" },
+      { src: "/images/Mobile app/Twist/tw03.jpg", alt: "TWIST terrace" },
+      { src: "/images/Mobile app/Twist/tw04.jpg", alt: "TWIST lounge" },
+      { src: "/images/Mobile app/Twist/tw05.jpg", alt: "TWIST bar" },
+      { src: "/images/Mobile app/Twist/tw06.jpg", alt: "TWIST sunset" },
+      { src: "/images/Mobile app/Twist/tw07.jpg", alt: "TWIST evening" },
+      { src: "/images/Mobile app/Twist/tw08.jpg", alt: "TWIST cocktails" },
+      { src: "/images/Mobile app/Twist/tw09.jpg", alt: "TWIST city view" },
+      { src: "/images/Mobile app/Twist/tw10.jpg", alt: "TWIST table" },
+      { src: "/images/Mobile app/Twist/tw11.jpg", alt: "TWIST atmosphere" },
+      { src: "/images/Mobile app/Twist/tw12.jpg", alt: "TWIST night" },
+      { src: "/images/Mobile app/Twist/tw13.jpg", alt: "TWIST seating" },
+      { src: "/images/Mobile app/Twist/tw14.jpg", alt: "TWIST skyline" },
+      { src: "/images/Mobile app/Twist/tw15.jpg", alt: "TWIST dishes" },
+      { src: "/images/Mobile app/Twist/tw16.jpg", alt: "TWIST drinks" },
+      { src: "/images/Mobile app/Twist/tw17.jpg", alt: "TWIST service" },
+      { src: "/images/Mobile app/Twist/tw18.jpg", alt: "TWIST guests" },
+      { src: "/images/Mobile app/Twist/tw19.jpg", alt: "TWIST panorama" },
+      { src: "/images/Mobile app/Twist/tw20.jpg", alt: "TWIST rooftop night" },
+      { src: "/images/Mobile app/Twist/tw21.jpg", alt: "TWIST experience" },
+      { src: "/images/Mobile app/Twist/01.2_resize.jpg", alt: "TWIST rooftop dining" },
+      { src: "/images/Mobile app/Twist/20250203_184518_resize.jpg", alt: "TWIST evening view" },
+      { src: "/images/Mobile app/Twist/IMG_1405_resize.jpg", alt: "TWIST interior" },
+      { src: "/images/Mobile app/Twist/IMG_1657_resize.jpg", alt: "TWIST setting" },
+      { src: "/images/Mobile app/Twist/IMG_2672_resize.jpg", alt: "TWIST space" },
+      { src: "/images/Mobile app/Twist/IMG_3825 2_resize.jpg", alt: "TWIST cuisine" },
+      { src: "/images/Mobile app/Twist/IMG_3837 2_resize.jpg", alt: "TWIST plate" },
+      { src: "/images/Mobile app/Twist/IMG_3878_resize.jpg", alt: "TWIST food" },
+      { src: "/images/Mobile app/Twist/IMG_3896 2_resize.jpg", alt: "TWIST dish" },
+      { src: "/images/Mobile app/Twist/IMG_3975_resize.jpg", alt: "TWIST menu" },
+      { src: "/images/Mobile app/Twist/IMG_4017_resize.jpg", alt: "TWIST cocktail" },
+      { src: "/images/Mobile app/Twist/IMG_4587_resize.jpg", alt: "TWIST drink" },
+      { src: "/images/Mobile app/Twist/IMG_7354_resize.jpg", alt: "TWIST glass" },
+      { src: "/images/Mobile app/Twist/IMG_9387_resize.jpg", alt: "TWIST night dining" },
+      { src: "/images/Mobile app/Twist/MD copy_resize.jpg", alt: "TWIST signature" },
+      { src: "/images/Mobile app/Twist/TWIST_014_0_resize.jpg", alt: "TWIST rooftop bar" },
+      { src: "/images/Mobile app/Twist/TWIST_015-_0_resize.jpg", alt: "TWIST lounge seating" },
+      { src: "/images/Mobile app/Twist/TWIST_016_0_resize.jpg", alt: "TWIST terrace view" },
+      { src: "/images/Mobile app/Twist/new year-150_resize.jpg", alt: "TWIST celebration" },
+      { src: "/images/Mobile app/Twist/new year-151_resize.jpg", alt: "TWIST new year" },
+      { src: "/images/Mobile app/Twist/new year-175_resize.jpg", alt: "TWIST festive night" },
     ],
   },
 };

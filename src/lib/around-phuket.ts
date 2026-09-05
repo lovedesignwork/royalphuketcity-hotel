@@ -15,6 +15,13 @@ function maps(query: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
+function michelinPhotos(slug: string): string[] {
+  return [
+    `/images/Mobile app/Michelin/${slug}_resize.jpg`,
+    `/images/Mobile app/Michelin/${slug}1_resize.jpg`,
+  ];
+}
+
 export type AroundSection = {
   slug: string;
   title: string;
@@ -118,8 +125,7 @@ export const AROUND_SECTIONS: AroundSection[] = [
         summary:
           "45-meter white marble Buddha on Nakkerd Hill. Wide views. Cover shoulders and knees.",
         images: [
-          "/images/cultural-historical/Big Buddha Tample (1).jpg",
-          "/images/cultural-historical/Big Buddha Tample (2).jpg",
+          "/images/Mobile app/Activities/The_Big_Buddha,_Phuket_resize.jpg",
         ],
       },
       {
@@ -153,19 +159,17 @@ export const AROUND_SECTIONS: AroundSection[] = [
         summary:
           "The island's main department store and mall. Shopping, cinema, and air-conditioned downtime.",
         images: [
-          "/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-1.jpg",
+          "/images/Mobile app/Activities/Central_resize.jpg",
         ],
       },
       {
         name: "Queen Sirikit Park (Dragon Park)",
         distance: "3 km · 10-minute drive",
         mapUrl: maps("Queen Sirikit Park Dragon Park Phuket"),
-        imageFit: "contain",
         summary:
           "Gardens and walking paths around a Chinese dragon sculpture. A quiet green stop in town.",
         images: [
-          "/images/cultural-historical/queen sirikit 72nd anniversary Chaloem Phrakiat Park (Dragon Park) (1).webp",
-          "/images/cultural-historical/queen sirikit 72nd anniversary Chaloem Phrakiat Park (Dragon Park) (1).jpg",
+          "/images/Mobile app/Activities/Dragon Park_resize.jpg",
         ],
       },
     ],
@@ -179,14 +183,14 @@ export const AROUND_SECTIONS: AroundSection[] = [
     desktopPath: "/sustainability/michelin-restaurants",
     places: [
       {
-        name: "Suay Restaurant",
-        meta: "Michelin Plate · Modern Thai",
-        distance: "8 minutes walk",
-        address: "50/2 Takuapa Road, Phuket Old Town",
-        mapUrl: maps("Suay Restaurant Phuket Old Town"),
+        name: "Surf & Turf by Soul Kitchen",
+        meta: "Michelin Bib Gourmand · European-Thai",
+        distance: "3 minutes walk",
+        address: "115 Phang Nga Road, Phuket Town",
+        mapUrl: maps("Surf & Turf by Soul Kitchen Phuket"),
         summary:
-          "Creative Thai in a restored Sino-Portuguese house. Local ingredients, modern plates.",
-        images: [],
+          "A small room on the hotel road. Monthly menu, homemade pasta, and seafood. Book ahead. Cash only.",
+        images: michelinPhotos("surf-turf-by-soul-kitchen"),
       },
       {
         name: "Tu Kab Khao",
@@ -196,16 +200,16 @@ export const AROUND_SECTIONS: AroundSection[] = [
         mapUrl: maps("Tu Kab Khao Phuket Old Town"),
         summary:
           "Bold Southern Thai cooking. Spicy, traditional, and close to the hotel.",
-        images: [],
+        images: michelinPhotos("tu-kab-khao"),
       },
       {
-        name: "One Chun",
-        meta: "Michelin Guide Recommended · Phuketian-Chinese",
-        distance: "10 minutes drive",
-        address: "48/1 Thepkrasattri Road, Phuket Town",
-        mapUrl: maps("One Chun Restaurant Phuket"),
+        name: "Suay Restaurant",
+        meta: "Michelin Plate · Modern Thai",
+        distance: "8 minutes walk",
+        address: "50/2 Takuapa Road, Phuket Old Town",
+        mapUrl: maps("Suay Restaurant Phuket Old Town"),
         summary:
-          "A local room known for moo hong and other Phuketian-Chinese plates.",
+          "Creative Thai in a restored Sino-Portuguese house. Local ingredients, modern plates.",
         images: [],
       },
       {
@@ -217,6 +221,105 @@ export const AROUND_SECTIONS: AroundSection[] = [
         summary:
           "Classic Phuket dishes in a century-old Sino-Portuguese mansion.",
         images: [],
+      },
+      {
+        name: "The Charm Dining Gallery",
+        meta: "Michelin Bib Gourmand · Southern Thai-Peranakan",
+        distance: "8 minutes walk",
+        address: "93 Dibuk Road, Phuket Old Town",
+        mapUrl: maps("The Charm Dining Gallery Phuket"),
+        summary:
+          "Southern Thai-Peranakan cooking in a restored Sino-Portuguese house. Closed Wednesday.",
+        images: michelinPhotos("the-charm"),
+      },
+      {
+        name: "Royd",
+        meta: "Michelin Guide · Refined Southern Thai",
+        distance: "8 minutes walk",
+        address: "95/1 Dibuk Road, Phuket Old Town",
+        mapUrl: maps("Royd Restaurant Phuket"),
+        summary:
+          "Seasonal Southern Thai tasting menus. A dressed-up night. Book ahead.",
+        images: michelinPhotos("royd"),
+      },
+      {
+        name: "Kopitiam by Wilai",
+        meta: "Michelin Guide Recommended · Phuketian",
+        distance: "8 minutes walk",
+        address: "18 Thalang Road, Phuket Old Town",
+        mapUrl: maps("Kopitiam by Wilai Phuket Old Town"),
+        summary:
+          "Old-school kopitiam. Local coffee, Hokkien noodles, and Phuket plates.",
+        images: michelinPhotos("kopitiambywilai"),
+      },
+      {
+        name: "Khao Tom Dibuk",
+        meta: "Michelin Guide Recommended · Rice soup",
+        distance: "8 minutes walk",
+        address: "Dibuk Road, Phuket Old Town",
+        mapUrl: maps("Khao Tom Dibuk Phuket"),
+        summary:
+          "Comfort khao tom after a walk through Old Town. A local late bowl.",
+        images: michelinPhotos("khao-tom-thanon-di-buk"),
+      },
+      {
+        name: "Roti Taew Nam",
+        meta: "Michelin Guide Recommended · Breakfast",
+        distance: "10 minutes walk",
+        address: "6 Thepkrasattri Road, Phuket Town",
+        mapUrl: maps("Roti Taew Nam Phuket"),
+        summary:
+          "70-year roti shop. Curry, banana roti, charcoal pan. Morning only.",
+        images: michelinPhotos("roti-taew-nam"),
+      },
+      {
+        name: "Go Benz",
+        meta: "Michelin Guide Recommended · Noodles",
+        distance: "10 minutes walk",
+        address: "163 Krabi Road, Phuket Town",
+        mapUrl: maps("Go Benz Phuket"),
+        summary:
+          "Peppery pork broth and rolled rice noodles. Popular, so go early.",
+        images: michelinPhotos("go-benz"),
+      },
+      {
+        name: "Chuan Chim",
+        meta: "Michelin Guide Recommended · Seafood",
+        distance: "10 minutes walk",
+        address: "37/3 Montri Road, Phuket Town",
+        mapUrl: maps("Chuan Chim Phuket"),
+        summary:
+          "An old Phuket seafood shop. Wok dishes, tom yam, and fried squid.",
+        images: michelinPhotos("chuan-chim"),
+      },
+      {
+        name: "Hong Khao Tom Pla",
+        meta: "Michelin Guide Recommended · Fish rice soup",
+        distance: "12 minutes walk",
+        address: "5 Kra Road, Phuket Town",
+        mapUrl: maps("Hong Khao Tom Pla Phuket"),
+        summary: "Fish khao tom. A simple local bowl near the old town grid.",
+        images: michelinPhotos("hong-khao-tom-pla"),
+      },
+      {
+        name: "Go Ang Seafood",
+        meta: "Michelin Guide Recommended · Southern seafood",
+        distance: "10 minutes drive",
+        address: "226 Mu 2, Phuket Road, Phuket Town",
+        mapUrl: maps("Go Ang Seafood Phuket"),
+        summary:
+          "Daily market seafood. Steamed crab, mantis shrimp, and Southern sour soup.",
+        images: michelinPhotos("go-ang-seafood"),
+      },
+      {
+        name: "One Chun",
+        meta: "Michelin Guide Recommended · Phuketian-Chinese",
+        distance: "10 minutes drive",
+        address: "48/1 Thepkrasattri Road, Phuket Town",
+        mapUrl: maps("One Chun Restaurant Phuket"),
+        summary:
+          "A local room known for moo hong and other Phuketian-Chinese plates.",
+        images: michelinPhotos("one-chun"),
       },
     ],
   },
@@ -246,9 +349,10 @@ export const AROUND_SECTIONS: AroundSection[] = [
         summary:
           "Thai-themed slides, wave pool, lazy river, and kids' zones. A full family day.",
         images: [
-          "/images/activities/water Park (Andamanda) (3).webp",
-          "/images/activities/water Park (Andamanda) (1).jpg",
-          "/images/activities/water Park (Andamanda) (2).jpg",
+          "/images/Mobile app/Activities/andamanda waterpark 3_resize.jpg",
+          "/images/Mobile app/Activities/andamanda waterpark 1_resize.jpg",
+          "/images/Mobile app/Activities/andamanda waterpark 2_resize.jpg",
+          "/images/Mobile app/Activities/andamanda waterpark 4_resize.jpg",
         ],
       },
       {

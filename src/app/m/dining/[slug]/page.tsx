@@ -32,7 +32,7 @@ export default async function MobileDiningDetailPage({
 
   return (
     <div className="mobile-content pt-[calc(3.5rem+env(safe-area-inset-top,0px))]">
-      <PhotoStrip photos={venue.images.slice(0, 8)} />
+      <PhotoStrip photos={venue.mobileImages ?? venue.images} />
 
       <div className="px-4 pt-5">
         <p className="text-sm text-[var(--m-gold)]">{venue.cuisine}</p>

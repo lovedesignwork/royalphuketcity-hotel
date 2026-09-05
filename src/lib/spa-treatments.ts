@@ -4,8 +4,14 @@ export const SPA_HOURS = "10:00 AM - 11:00 PM";
 export const SPA_FLOOR = "3rd floor";
 export const HOTEL_GUEST_DISCOUNT = 0.1;
 
+const SPA_PHOTO_DIR = "/images/Mobile app/spa";
+
+function spaPhoto(file: string): string {
+  return `${SPA_PHOTO_DIR}/${file}`;
+}
+
 export function spaAsset(path: string): string {
-  if (path.startsWith("http")) return path;
+  if (path.startsWith("http") || path.startsWith("/")) return path;
   return `${SPA_SITE_URL}${path
     .split("/")
     .map((segment) => (segment ? encodeURIComponent(segment) : ""))
@@ -91,40 +97,30 @@ export const spaInfo = {
   },
 };
 
-const treatmentImages: Record<string, string> = {
-  "Promotion": "/images/Treatment/Thai Herbal Compress Therapy.jpg",
-  "Travel Recovery": "/images/Royal Spa 1.jpg",
-  "Skin & Radiance": "/images/Royal Spa 2.jpg",
-  "Couple & Special": "/images/Royal Spa 3.jpg",
-  "Facial Treatments": "/images/Royal Spa 4.jpg",
-  "Classic Thai Heritage": "/images/Royal Spa 5.jpg",
-  "Top-Up / Add-On": "/images/Royal Spa 6.jpg",
-};
-
 const specificImages: Record<number, string> = {
-  1: "/images/shutterstock_2452280715_resize.jpg",
-  2: "/images/shutterstock_2364665635_resize.jpg",
-  3: "/images/Treatment/Voyage Revival.jpg",
-  4: "/images/Treatment/Wander Relief.jpg",
-  5: "/images/Treatment/Active Body Revival.jpg",
-  6: "/images/shutterstock_2589885543_resize.jpg",
-  7: "/images/Treatment/Royal Glow Ritual.jpg",
-  8: "/images/Treatment/Silk Radiance Ritual.jpg",
-  9: "/images/Treatment/Harmony Retreat.jpg",
-  10: "/images/shutterstock_2530376767_resize.jpg",
-  11: "/images/Royal Spa 4.jpg",
-  12: "/images/Treatment/Royal Signature Facial.jpg",
-  13: "/images/Royal Spa 5.jpg",
-  14: "/images/Treatment/Aroma Relaxation Massage.jpg",
-  15: "/images/Treatment/Thai Herbal Compress Therapy.jpg",
-  16: "/images/Royal Spa 7.jpg",
-  17: "/images/Royal Spa 8.jpg",
-  18: "/images/Treatment/Thai Herbal Compress Therapy.jpg",
-  19: "/images/Royal Spa 10.jpg",
-  20: "/images/Treatment/Thai Herbal Compress Therapy.jpg",
-  21: "/images/Royal Spa 3.jpg",
-  22: "/images/Treatment/Aroma Relaxation Massage.jpg",
-  23: "/images/Royal Spa 3.jpg",
+  20: spaPhoto("1170_resize.jpg"),
+  21: spaPhoto("SPA08_resize.jpg"),
+  22: spaPhoto("SPA10_resize.jpg"),
+  23: spaPhoto("SPA04_resize.jpg"),
+  1: spaPhoto("SPA09_resize.jpg"),
+  2: spaPhoto("SPA13_resize.jpg"),
+  3: spaPhoto("SPA03_resize.jpg"),
+  4: spaPhoto("SPA07_resize.jpg"),
+  5: spaPhoto("SPA00_resize.jpg"),
+  6: spaPhoto("SPA12_resize.jpg"),
+  7: spaPhoto("SPA15_resize.jpg"),
+  8: spaPhoto("SPA005_resize.jpg"),
+  9: spaPhoto("SPA14_resize.jpg"),
+  10: spaPhoto("SPA02_resize.jpg"),
+  11: spaPhoto("SPA06_resize.jpg"),
+  12: spaPhoto("SPA01_resize.jpg"),
+  13: spaPhoto("SPA11_resize.jpg"),
+  14: spaPhoto("SPA10_resize.jpg"),
+  15: spaPhoto("1170_resize.jpg"),
+  16: spaPhoto("SPA03_resize.jpg"),
+  17: spaPhoto("SPA11_resize.jpg"),
+  18: spaPhoto("1170_resize.jpg"),
+  19: spaPhoto("SPA09_resize.jpg"),
 };
 
 export const treatments: Treatment[] = [
@@ -147,7 +143,7 @@ export const treatments: Treatment[] = [
     notes: "Promotion",
     isPromotion: true,
     priceNote: "per person",
-    image: specificImages[20] || treatmentImages["Promotion"],
+    image: specificImages[20],
   },
   {
     id: 21,
@@ -170,7 +166,7 @@ export const treatments: Treatment[] = [
     isCouple: true,
     badge: "SAVE ฿300",
     priceNote: "for 2 people",
-    image: "/images/spa/herbal-compress.jpg",
+    image: specificImages[21],
   },
   {
     id: 22,
@@ -191,7 +187,7 @@ export const treatments: Treatment[] = [
     notes: "Promotion",
     isPromotion: true,
     priceNote: "per person",
-    image: specificImages[22] || treatmentImages["Promotion"],
+    image: specificImages[22],
   },
   {
     id: 23,
@@ -214,7 +210,7 @@ export const treatments: Treatment[] = [
     isCouple: true,
     badge: "SAVE ฿400",
     priceNote: "for 2 people",
-    image: specificImages[23] || treatmentImages["Promotion"],
+    image: specificImages[23],
   },
 
   // ===== Travel Recovery (5 treatments) =====
@@ -237,7 +233,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Office workers / desk-bound / screen-tired / stress relief",
     bestBookingTime: "Night before checkout",
     notes: "",
-    image: specificImages[1] || treatmentImages["Travel Recovery"],
+    image: specificImages[1],
   },
   {
     id: 2,
@@ -255,7 +251,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Office workers / desk-bound / screen-tired / stress relief",
     bestBookingTime: "Weekend",
     notes: "",
-    image: specificImages[2] || treatmentImages["Travel Recovery"],
+    image: specificImages[2],
   },
   {
     id: 3,
@@ -274,7 +270,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Long-haul travelers / jet lag / body recalibration",
     bestBookingTime: "After check-in, before first night's sleep",
     notes: "",
-    image: specificImages[3] || treatmentImages["Travel Recovery"],
+    image: specificImages[3],
   },
   {
     id: 4,
@@ -292,7 +288,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Sightseers / heavy-walking travelers / leg and foot care / after long days",
     bestBookingTime: "Last night of the trip",
     notes: "",
-    image: specificImages[4] || treatmentImages["Travel Recovery"],
+    image: specificImages[4],
   },
   {
     id: 5,
@@ -312,7 +308,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Athletes / fitness enthusiasts / deep muscle recovery / tension release",
     bestBookingTime: "After workout",
     notes: "",
-    image: specificImages[5] || treatmentImages["Travel Recovery"],
+    image: specificImages[5],
   },
 
   // ===== Skin & Radiance (2 treatments) =====
@@ -335,7 +331,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Outdoor activity / post-sun recovery / hydration restore",
     bestBookingTime: "After outdoor activities",
     notes: "",
-    image: specificImages[6] || treatmentImages["Skin & Radiance"],
+    image: specificImages[6],
   },
   {
     id: 7,
@@ -356,7 +352,7 @@ export const treatments: Treatment[] = [
     bestBookingTime: "Special occasion / night before departure",
     notes: "Signature",
     isSignature: true,
-    image: specificImages[7] || treatmentImages["Skin & Radiance"],
+    image: specificImages[7],
   },
 
   // ===== Couple & Special (3 treatments) =====
@@ -381,7 +377,7 @@ export const treatments: Treatment[] = [
     notes: "Couple Suite required",
     isCouple: true,
     priceNote: "per couple",
-    image: specificImages[8] || treatmentImages["Couple & Special"],
+    image: specificImages[8],
   },
   {
     id: 9,
@@ -402,7 +398,7 @@ export const treatments: Treatment[] = [
     notes: "Couple Suite required",
     isCouple: true,
     priceNote: "per couple",
-    image: specificImages[9] || treatmentImages["Couple & Special"],
+    image: specificImages[9],
   },
   {
     id: 10,
@@ -423,7 +419,7 @@ export const treatments: Treatment[] = [
     notes: "Couple Suite available",
     isCouple: true,
     priceNote: "per person (or ฿6,200 per couple)",
-    image: specificImages[10] || treatmentImages["Couple & Special"],
+    image: specificImages[10],
   },
 
   // ===== Facial Treatments (2 treatments) =====
@@ -443,7 +439,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Outdoor activity / post-sun recovery / hydration restore",
     bestBookingTime: "After outdoor activities",
     notes: "",
-    image: specificImages[11] || treatmentImages["Facial Treatments"],
+    image: specificImages[11],
   },
   {
     id: 12,
@@ -462,7 +458,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Everyone / deep relaxation / mind-body balance",
     bestBookingTime: "Anytime",
     notes: "",
-    image: specificImages[12] || treatmentImages["Facial Treatments"],
+    image: specificImages[12],
   },
 
   // ===== Classic Thai Heritage (3 treatments) =====
@@ -482,7 +478,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Everyone / deep relaxation / mind-body balance",
     bestBookingTime: "Anytime",
     notes: "",
-    image: specificImages[13] || treatmentImages["Classic Thai Heritage"],
+    image: specificImages[13],
   },
   {
     id: 14,
@@ -501,7 +497,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Everyone / deep relaxation / mind-body balance",
     bestBookingTime: "Anytime",
     notes: "",
-    image: specificImages[14] || treatmentImages["Classic Thai Heritage"],
+    image: specificImages[14],
   },
   {
     id: 15,
@@ -519,7 +515,7 @@ export const treatments: Treatment[] = [
     targetGuest: "Everyone / deep relaxation / mind-body balance",
     bestBookingTime: "Anytime",
     notes: "",
-    image: specificImages[15] || treatmentImages["Classic Thai Heritage"],
+    image: specificImages[15],
   },
 ];
 
@@ -537,7 +533,7 @@ export const addOns: AddOn[] = [
       "Freshness Awakening",
     ],
     pairsWith: "All foot / leg treatments",
-    image: specificImages[16] || treatmentImages["Top-Up / Add-On"],
+    image: specificImages[16],
   },
   {
     id: 17,
@@ -552,7 +548,7 @@ export const addOns: AddOn[] = [
       "Mind Reset",
     ],
     pairsWith: "Office Syndrome Relief / Voyage Reset / facial treatments",
-    image: specificImages[17] || treatmentImages["Top-Up / Add-On"],
+    image: specificImages[17],
   },
   {
     id: 18,
@@ -567,7 +563,7 @@ export const addOns: AddOn[] = [
       "Deep Relaxation Enhancement",
     ],
     pairsWith: "All massage treatments",
-    image: specificImages[18] || treatmentImages["Top-Up / Add-On"],
+    image: specificImages[18],
   },
   {
     id: 19,
@@ -583,7 +579,7 @@ export const addOns: AddOn[] = [
       "Stress Release",
     ],
     pairsWith: "Office Syndrome Relief / facial treatments",
-    image: specificImages[19] || treatmentImages["Top-Up / Add-On"],
+    image: specificImages[19],
   },
 ];
 

@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
-import { MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
+import { MapPin } from "@phosphor-icons/react/dist/ssr";
 import ExpandableMap from "@/components/mobile/ExpandableMap";
 import PhotoStrip from "@/components/mobile/PhotoStrip";
 import { AROUND_SECTIONS, getAroundSection } from "@/lib/around-phuket";
-import { HOTEL_INFO } from "@/lib/constants";
 import { mobileMetadata } from "@/lib/mobile";
 
 type Params = { slug: string };
@@ -18,8 +17,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   if (!section) return mobileMetadata("Around Phuket", "/around");
   return mobileMetadata(section.title, `/around/${slug}`, section.intro);
 }
-
-const telHref = `tel:${HOTEL_INFO.phone.replace(/\s/g, "")}`;
 
 export default async function MobileAroundSectionPage({
   params,
@@ -84,14 +81,6 @@ export default async function MobileAroundSectionPage({
           </article>
         ))}
       </div>
-
-      <a
-        href={telHref}
-        className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-full bg-[var(--m-gold)] px-4 text-sm font-medium text-white"
-      >
-        <Phone size={18} weight="regular" aria-hidden="true" />
-        Ask the front desk
-      </a>
     </div>
   );
 }
