@@ -1,0 +1,13 @@
+PASS Final 1440px homepage: hero, carousel and overflow
+PASS Final 390px homepage: hero, carousel and overflow
+PASS Valid guest route /m/rooms/premier-superior
+PASS Valid guest route /m/dining/yan-long-chinese-restaurant
+PASS Valid guest route /m/around/old-town
+PASS Unknown guest route /m/rooms/missing
+PASS Unknown guest route /m/dining/constructor
+PASS Unknown guest route /m/around/missing
+PASS Unknown guest route /m/unknown-page
+PASS Anonymous admin API rejects access
+PASS Localized admin API rejects alias
+PASS Optimized hero supports AVIF and WebP fallback
+{"passed":12,"failed":0,"errors":[]}

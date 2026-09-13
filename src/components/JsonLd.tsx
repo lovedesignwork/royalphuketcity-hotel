@@ -1,16 +1,23 @@
 import { HOTEL_INFO, EXTERNAL_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { promotionExpiry } from "@/lib/promotion-validity";
 
-// Reusable JSON-LD component for any schema type
+const HOTEL_ID = `${SITE_CONFIG.url}/#hotel`;
+
+function absoluteUrl(path: string) {
+  return new URL(path, SITE_CONFIG.url).href;
+}
+
+// Escape HTML delimiters so content cannot terminate the script element.
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }
 
-// WebSite schema with SearchAction (enables sitelinks searchbox)
+// Describe only the site's available features; there is no public search endpoint.
 export function WebSiteJsonLd() {
   const schema = {
     "@context": "https://schema.org",
@@ -20,38 +27,25 @@ export function WebSiteJsonLd() {
     url: SITE_CONFIG.url,
     description: SITE_CONFIG.description,
     publisher: {
-      "@id": `${SITE_CONFIG.url}/#organization`,
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_CONFIG.url}/blog?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
+      "@id": HOTEL_ID,
     },
     inLanguage: "en-US",
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
-// Organization schema (referenced by other schemas)
+// The hotel is also the publisher; shared IDs describe a single business entity.
 export function OrganizationJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": `${SITE_CONFIG.url}/#organization`,
+    "@id": HOTEL_ID,
     name: HOTEL_INFO.name,
     url: SITE_CONFIG.url,
     logo: {
       "@type": "ImageObject",
-      url: `${SITE_CONFIG.url}/images/rpc-icon.svg`,
+      url: absoluteUrl("/images/Logo-Royal-Phuket-City-Black.png"),
     },
     sameAs: [
       EXTERNAL_LINKS.facebook,
@@ -67,18 +61,14 @@ export function OrganizationJsonLd() {
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 export function HotelJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Hotel",
+    "@id": HOTEL_ID,
     name: HOTEL_INFO.name,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
@@ -102,7 +92,7 @@ export function HotelJsonLd() {
       "@type": "Rating",
       ratingValue: HOTEL_INFO.starRating,
     },
-    priceRange: "$$$$",
+    hasMap: EXTERNAL_LINKS.googleMaps,
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: "Free WiFi" },
       { "@type": "LocationFeatureSpecification", name: "Swimming Pool" },
@@ -113,10 +103,16 @@ export function HotelJsonLd() {
       { "@type": "LocationFeatureSpecification", name: "Room Service" },
       { "@type": "LocationFeatureSpecification", name: "Meeting Rooms" },
       { "@type": "LocationFeatureSpecification", name: "EV Charging" },
-    ],
+    ].map((amenity) => ({ ...amenity, value: true })),
     numberOfRooms: HOTEL_INFO.totalRooms,
-    checkinTime: "14:00",
-    checkoutTime: "12:00",
+    checkinTime: "14:00:00+07:00",
+    checkoutTime: "12:00:00+07:00",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "00:00",
+      closes: "23:59",
+    },
     sameAs: [
       EXTERNAL_LINKS.facebook,
       EXTERNAL_LINKS.instagram,
@@ -124,19 +120,14 @@ export function HotelJsonLd() {
     ],
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 export function LocalBusinessJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `${SITE_CONFIG.url}/#localbusiness`,
+    "@id": HOTEL_ID,
     name: HOTEL_INFO.name,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
@@ -171,12 +162,7 @@ export function LocalBusinessJsonLd() {
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface RestaurantJsonLdProps {
@@ -184,6 +170,8 @@ interface RestaurantJsonLdProps {
   description: string;
   cuisine: string;
   url: string;
+  image?: string;
+  telephone?: string;
 }
 
 export function RestaurantJsonLd({
@@ -191,13 +179,17 @@ export function RestaurantJsonLd({
   description,
   cuisine,
   url,
+  image,
+  telephone = HOTEL_INFO.phone,
 }: RestaurantJsonLdProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
+    "@id": `${absoluteUrl(url)}#restaurant`,
     name,
     description,
-    url: `${SITE_CONFIG.url}${url}`,
+    url: absoluteUrl(url),
+    image: image ? absoluteUrl(image) : undefined,
     servesCuisine: cuisine,
     address: {
       "@type": "PostalAddress",
@@ -207,19 +199,14 @@ export function RestaurantJsonLd({
       postalCode: "83000",
       addressCountry: "TH",
     },
-    telephone: HOTEL_INFO.phone,
+    telephone,
     parentOrganization: {
-      "@type": "Hotel",
-      name: HOTEL_INFO.name,
+      "@id": HOTEL_ID,
     },
+    containedInPlace: { "@id": HOTEL_ID },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface BreadcrumbJsonLdProps {
@@ -237,16 +224,11 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${SITE_CONFIG.url}${item.url}`,
+      item: absoluteUrl(item.url),
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface FAQJsonLdProps {
@@ -257,6 +239,7 @@ interface FAQJsonLdProps {
 }
 
 export function FAQJsonLd({ faqs }: FAQJsonLdProps) {
+  if (!faqs.length) return null;
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -270,12 +253,7 @@ export function FAQJsonLd({ faqs }: FAQJsonLdProps) {
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface HotelRoomJsonLdProps {
@@ -302,10 +280,11 @@ export function HotelRoomJsonLd({
   const schema = {
     "@context": "https://schema.org",
     "@type": "HotelRoom",
+    "@id": `${absoluteUrl(url)}#room`,
     name,
     description,
-    image,
-    url: `${SITE_CONFIG.url}${url}`,
+    image: absoluteUrl(image),
+    url: absoluteUrl(url),
     bed: {
       "@type": "BedDetails",
       typeOfBed: bedType,
@@ -316,26 +295,20 @@ export function HotelRoomJsonLd({
     },
     floorSize: {
       "@type": "QuantitativeValue",
-      value: parseInt(floorSize),
+      value: parseFloat(floorSize),
       unitCode: "MTK",
     },
     amenityFeature: amenities.map((amenity) => ({
       "@type": "LocationFeatureSpecification",
       name: amenity,
+      value: true,
     })),
     containedInPlace: {
-      "@type": "Hotel",
-      name: HOTEL_INFO.name,
-      url: SITE_CONFIG.url,
+      "@id": HOTEL_ID,
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface EventVenueJsonLdProps {
@@ -356,10 +329,11 @@ export function EventVenueJsonLd({
   const schema = {
     "@context": "https://schema.org",
     "@type": "EventVenue",
+    "@id": `${absoluteUrl(url)}#venue`,
     name,
     description,
-    image,
-    url: `${SITE_CONFIG.url}${url}`,
+    image: absoluteUrl(image),
+    url: absoluteUrl(url),
     maximumAttendeeCapacity,
     address: {
       "@type": "PostalAddress",
@@ -370,17 +344,11 @@ export function EventVenueJsonLd({
       addressCountry: "TH",
     },
     containedInPlace: {
-      "@type": "Hotel",
-      name: HOTEL_INFO.name,
+      "@id": HOTEL_ID,
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 // Article/BlogPosting schema for blog posts
@@ -406,37 +374,32 @@ export function ArticleJsonLd({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${absoluteUrl(url)}#article`,
     headline: title,
     description,
-    url: `${SITE_CONFIG.url}${url}`,
-    image: image.startsWith("http") ? image : `${SITE_CONFIG.url}${image}`,
+    url: absoluteUrl(url),
+    image: absoluteUrl(image),
     datePublished,
     dateModified,
-    author: {
-      "@type": "Organization",
-      name: authorName,
-      url: SITE_CONFIG.url,
-    },
+    author: authorName === HOTEL_INFO.name
+      ? { "@type": "Organization", "@id": HOTEL_ID, name: authorName }
+      : { "@type": "Person", name: authorName },
     publisher: {
       "@type": "Organization",
+      "@id": HOTEL_ID,
       name: HOTEL_INFO.name,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_CONFIG.url}/images/rpc-icon.svg`,
+        url: absoluteUrl("/images/Logo-Royal-Phuket-City-Black.png"),
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${SITE_CONFIG.url}${url}`,
+      "@id": absoluteUrl(url),
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 // Offer schema for promotions
@@ -461,36 +424,34 @@ export function OfferJsonLd({
   validFrom,
   validThrough,
 }: OfferJsonLdProps) {
-  // Extract numeric price from string like "From ฿2,200 / 2 nights"
-  const numericPrice = price.replace(/[^0-9]/g, "") || "0";
+  // Extract only a currency amount, never a duration, room count or discount.
+  const amountPattern = "(\\d+(?:,\\d{3})*(?:\\.\\d{1,2})?)";
+  const currencyMarker = priceCurrency === "THB" ? "(?:THB|฿)" : priceCurrency.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const amount = price.match(new RegExp(`${currencyMarker}\\s*${amountPattern}`, "i"))
+    ?? price.trim().match(new RegExp(`^${amountPattern}$`));
+  const numericPrice = amount ? Number(amount[1].replace(/,/g, "")) : undefined;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "Offer",
+    "@id": `${absoluteUrl(url)}#offer`,
     name,
     description,
-    url: `${SITE_CONFIG.url}${url}`,
-    image: image.startsWith("http") ? image : `${SITE_CONFIG.url}${image}`,
+    url: absoluteUrl(url),
+    image: absoluteUrl(image),
     price: numericPrice,
-    priceCurrency,
-    validFrom,
-    validThrough,
-    availability: "https://schema.org/InStock",
+    priceCurrency: numericPrice === undefined ? undefined : priceCurrency,
+    validFrom: /^\d{4}-\d{2}-\d{2}$/.test(validFrom) ? `${validFrom}T00:00:00+07:00` : validFrom,
+    validThrough: promotionExpiry(validThrough),
     seller: {
-      "@type": "Hotel",
-      name: HOTEL_INFO.name,
-      url: SITE_CONFIG.url,
+      "@id": HOTEL_ID,
     },
     itemOffered: {
-      "@type": "LodgingReservation",
+      "@type": "Service",
       name,
+      provider: { "@id": HOTEL_ID },
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }

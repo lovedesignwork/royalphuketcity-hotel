@@ -86,8 +86,6 @@ export default function WeddingGallery() {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 16.66vw, 16.66vw"
-                quality={100}
-                unoptimized
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                 <svg 
@@ -167,8 +165,6 @@ export default function WeddingGallery() {
               className="object-contain"
               sizes="100vw"
               priority
-              quality={100}
-              unoptimized
             />
           </div>
 

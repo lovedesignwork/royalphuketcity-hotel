@@ -131,22 +131,23 @@ export default function DownloadFactSheetsPage() {
   }, []);
 
   useEffect(() => {
-    // Check if user already has access
-    if (typeof window !== "undefined") {
+    // Access is optional session convenience; restricted storage must not break the page.
+    try {
       const stored = localStorage.getItem("rpc_download_access");
       if (stored) {
-        try {
-          const data = JSON.parse(stored);
-          const timestamp = new Date(data.timestamp);
-          const now = new Date();
-          const diffDays = (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24);
-          if (diffDays < 30) {
-            setIsUnlocked(true);
-          }
-        } catch {
-          // Invalid data, ignore
+        const data = JSON.parse(stored);
+        const timestamp = typeof data?.timestamp === "string" ? new Date(data.timestamp).getTime() : NaN;
+        const age = Date.now() - timestamp;
+        if (Number.isFinite(age) && age >= 0 && age < 30 * 24 * 60 * 60 * 1000) {
+          setIsUnlocked(true);
+          // Upgrade older entries without retaining the guest's name, email, or phone.
+          localStorage.setItem("rpc_download_access", JSON.stringify({ timestamp: data.timestamp }));
+        } else {
+          localStorage.removeItem("rpc_download_access");
         }
       }
+    } catch {
+      // Continue with this visit even if storage is unavailable or has invalid data.
     }
   }, []);
 
@@ -194,12 +195,13 @@ export default function DownloadFactSheetsPage() {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && data.success === true) {
         setIsUnlocked(true);
-        localStorage.setItem("rpc_download_access", JSON.stringify({
-          ...formData,
-          timestamp: new Date().toISOString(),
-        }));
+        try {
+          localStorage.setItem("rpc_download_access", JSON.stringify({ timestamp: new Date().toISOString() }));
+        } catch {
+          // The successful submission unlocks this visit without persistent storage.
+        }
       } else {
         setError(data.error || "Something went wrong. Please try again.");
       }
@@ -211,7 +213,7 @@ export default function DownloadFactSheetsPage() {
   };
 
   return (
-    <main>
+    <div>
       <HeroSection
         title="Downloads"
         subtitle="Brochures & Fact Sheets"
@@ -548,7 +550,7 @@ export default function DownloadFactSheetsPage() {
             <span className="text-sm text-[--color-text-secondary] uppercase tracking-widest">
               Available in:
             </span>
-            <div className="flex items-center gap-6">
+            <div className="flex max-w-full flex-wrap items-center justify-center gap-x-6 gap-y-3">
               <span className="flex items-center gap-2 text-[--color-text-primary]">
                 <FlagIcon langCode="en" size={24} /> English
               </span>
@@ -571,6 +573,6 @@ export default function DownloadFactSheetsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

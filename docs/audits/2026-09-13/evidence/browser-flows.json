@@ -1,0 +1,210 @@
+{
+  "results": [
+    {
+      "name": "1440px /: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /rooms-suites: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /rooms-suites/premier-superior: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /dining: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /yan-long-chinese-restaurant: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /facilities: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /wedding-venues: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /meeting-events: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /contact: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /promotions/stay-2-pay-1: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /phuket-old-town-hotel: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /blog: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /blog/top-10-things-to-do-in-phuket-old-town: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /download-fact-sheets: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /sustainability/michelin-restaurants: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /m: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /m/spa: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /m/spa/book: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /m/events: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "1440px /m/chat: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /rooms-suites: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /rooms-suites/premier-superior: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /dining: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /yan-long-chinese-restaurant: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /facilities: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /wedding-venues: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /meeting-events: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /contact: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /promotions/stay-2-pay-1: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /phuket-old-town-hotel: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /blog: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /blog/top-10-things-to-do-in-phuket-old-town: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /download-fact-sheets: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /sustainability/michelin-restaurants: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /m: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /m/spa: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /m/spa/book: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /m/events: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px /m/chat: render, landmarks, overflow",
+      "status": "pass"
+    },
+    {
+      "name": "Mobile menu supports keyboard Escape and focus return",
+      "status": "pass"
+    },
+    {
+      "name": "Contact success normalizes Thai phone and resets fields",
+      "status": "pass"
+    },
+    {
+      "name": "Contact delivery error retains the guest message for retry",
+      "status": "pass"
+    },
+    {
+      "name": "event inquiry validates country/date and preserves Bangkok date",
+      "status": "pass"
+    },
+    {
+      "name": "wedding inquiry validates country/date and preserves Bangkok date",
+      "status": "pass"
+    },
+    {
+      "name": "Guest spa request shows pending confirmation",
+      "status": "pass"
+    },
+    {
+      "name": "Homepage headline stays visible with JavaScript disabled",
+      "status": "pass"
+    }
+  ],
+  "errors": [],
+  "interceptedWrites": [
+    {
+      "url": "http://localhost:3100/api/contact"
+    },
+    {
+      "url": "http://localhost:3100/api/contact"
+    },
+    {
+      "url": "http://localhost:3100/api/contact"
+    },
+    {
+      "url": "http://localhost:3100/api/contact"
+    },
+    {
+      "url": "http://localhost:3100/api/spa/book"
+    }
+  ]
+}

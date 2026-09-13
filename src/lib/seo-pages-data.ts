@@ -19,6 +19,11 @@ export interface SeoPageData {
   category: "hotel" | "attractions" | "wedding" | "mice" | "dining";
   content: {
     intro: string[];
+    planningSections?: {
+      title: string;
+      paragraphs: string[];
+      links: { label: string; href: string }[];
+    }[];
     features?: {
       title: string;
       description: string;
@@ -50,15 +55,27 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
     title: "Phuket Old Town Hotel",
     subtitle: "Experience Heritage Hospitality in the Heart of Phuket",
     heroImage: "/images/old-town/colorful-sino-portuguese-architecture-phukets-old-town-thailand.jpg",
-    metaDescription: "Royal Phuket City Hotel - The premier Phuket Old Town hotel with 251 rooms, stunning city views, and 27+ years of hospitality excellence. Located steps from historic Sino-Portuguese architecture.",
+    metaDescription: "Stay near Phuket Old Town at Royal Phuket City Hotel. Compare 251 rooms and suites, explore local markets, and enjoy an outdoor pool and rooftop dining.",
     seoKeywords: ["Phuket Old Town hotel", "hotel in Phuket Old Town", "Phuket Town accommodation", "heritage hotel Phuket", "hotel near Thalang Road"],
     category: "hotel",
     content: {
       intro: [
         "Welcome to Royal Phuket City Hotel, the premier accommodation in the heart of Phuket Old Town. Our 19-story landmark hotel offers 251 thoughtfully designed rooms with panoramic views of the city and distant Andaman Sea.",
         "Located just steps from the historic Sino-Portuguese architecture of Thalang Road, Sunday Walking Street, and the best local restaurants and cafes, our hotel puts you at the center of Phuket's cultural heritage.",
-        "With over 27 years of hospitality excellence, we combine traditional Thai warmth with modern comfort, making us the perfect base for exploring authentic Phuket.",
+        "Choose a city stay for heritage walks, local food and easy returns to your room between outings. Beach visits and island excursions can be planned separately with transport.",
       ],
+      planningSections: [{
+        title: "Plan a stay around the Old Town streets",
+        paragraphs: [
+          "Our address is 154 Phang-Nga Road, Talad Yai, Phuket. Use the hotel as a starting point for Thalang Road, Soi Romanee and the surrounding shophouse streets. Begin with a morning walk, return during the afternoon heat, and leave another evening free for local food. Sunday stays give you the chance to visit the Walking Street market on Thalang Road.",
+          "Compare the room photographs and layouts before choosing: Premier Superior rooms offer 30 sqm, Premier Deluxe rooms 38 sqm, and suites add separate living space. Check your selected rate for breakfast and cancellation terms. Standard check-in starts at 2:00 PM and check-out is at noon; contact reservations if your flights require different arrangements.",
+        ],
+        links: [
+          { label: "Compare rooms and suites", href: "/rooms-suites" },
+          { label: "Plan an Old Town walk", href: "/things-to-do-phuket-old-town" },
+          { label: "Hotel address and directions", href: "/contact" },
+        ],
+      }],
       features: [
         { title: "Prime Location", description: "Steps from Phuket Old Town's historic streets, cafes, and night markets" },
         { title: "Panoramic Views", description: "City and distant sea views from our 19-story landmark building" },
@@ -70,7 +87,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         "Near Sino-Portuguese heritage buildings",
         "Close to local markets and street food",
         "Easy access to temples and museums",
-        "27+ years of hospitality experience",
+        "Check-in from 2:00 PM; check-out at noon",
         "Multiple dining options on-site",
       ],
       callToAction: {
@@ -88,25 +105,37 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
     title: "4-Star Hotel in Phuket",
     subtitle: "Premium Comfort at Exceptional Value",
     heroImage: "/images/HOTEL WEBSITE/RPC LS ROOM 15.jpg",
-    metaDescription: "Royal Phuket City Hotel - A certified 4-star hotel in Phuket offering premium rooms, excellent dining, and full facilities. Great value in Phuket Old Town.",
+    metaDescription: "Explore Royal Phuket City, a 4-star hotel in Phuket Town with 251 rooms, an outdoor pool, fitness centre, spa, restaurants and meeting facilities.",
     seoKeywords: ["4-star hotel Phuket", "four star hotel Phuket", "premium hotel Phuket", "quality hotel Phuket Town", "rated hotel Phuket"],
     category: "hotel",
     content: {
       intro: [
-        "Royal Phuket City Hotel is a certified 4-star property that combines premium comfort with exceptional value. Our commitment to quality has earned us recognition from leading tourism organizations.",
+        "Royal Phuket City Hotel is a 4-star hotel in Phuket Town with 251 rooms and suites, an outdoor swimming pool, restaurants and meeting facilities. It suits guests who want hotel services alongside access to the Old Town.",
         "Every aspect of your stay is thoughtfully considered — from our well-appointed rooms and attentive service to our diverse dining options and comprehensive facilities.",
         "Whether you're visiting for business or leisure, our 4-star standards ensure a comfortable and memorable experience in the heart of Phuket.",
       ],
+      planningSections: [{
+        title: "What your hotel stay includes",
+        paragraphs: [
+          "Room choice and rate conditions matter alongside a hotel's star category. Compare the 30 sqm Premier Superior and 38 sqm Premier Deluxe rooms, then review the larger Suite and Executive Suite layouts if you want additional living space. Room pages show photographs and amenities so you can choose the layout that fits your trip.",
+          "The pool and Workout Club fitness centre are on the 3rd floor. Dining, Royal Wellness Spa treatments and private transfers are available as separate services unless your chosen package includes them. Read the offer terms for breakfast, advance booking requirements and cancellation conditions, and ask reservations to confirm any special requirements before paying.",
+        ],
+        links: [
+          { label: "Explore hotel facilities", href: "/facilities" },
+          { label: "Compare current hotel offers", href: "/promotions" },
+          { label: "Read the hotel policy", href: "/hotel-policy" },
+        ],
+      }],
       features: [
-        { title: "Certified Quality", description: "4-star rating with SHA Plus and Green Hotel certifications" },
+        { title: "4-Star Accommodation", description: "251 rooms and suites with hotel services in Phuket Town" },
         { title: "Premium Rooms", description: "Spacious, well-appointed rooms with modern amenities" },
-        { title: "Excellent Dining", description: "Multiple restaurants including award-winning Chinese cuisine" },
+        { title: "Dining Options", description: "Yan Long Cantonese cuisine and TWIST rooftop dining" },
         { title: "Full Facilities", description: "Pool, fitness center, spa, and business center" },
       ],
       highlights: [
-        "SHA Plus certified for safety standards",
-        "Green Hotel certification",
-        "ASEAN MICE Venue Standard",
+        "Outdoor swimming pool on the 3rd floor",
+        "Sustainability initiatives through Royal Green",
+        "Dedicated meeting and event spaces",
         "Professional, trained staff",
         "High-speed WiFi throughout",
         "24-hour reception and security",
@@ -131,10 +160,22 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
     category: "hotel",
     content: {
       intro: [
-        "Royal Phuket City Hotel offers a sophisticated luxury experience in the heart of Phuket City. Our elegant property combines refined aesthetics with world-class service.",
+        "For guests considering a luxury stay in Phuket City, Royal Phuket City Hotel offers spacious suites, rooftop dining and on-site wellness facilities in a 4-star city hotel.",
         "From our beautifully appointed suites to our gourmet dining experiences at Yan Long Chinese Restaurant and TWIST Rooftop Bar, every moment is designed for discerning travelers.",
         "Enjoy the convenience of a city center location with the exclusivity and service of a luxury property.",
       ],
+      planningSections: [{
+        title: "Choose space, views and dining for your stay",
+        paragraphs: [
+          "The 64 sqm Suite includes a living room, while the 75 sqm Executive Suite offers additional space and a bathroom with a bathtub. These categories are useful when you want somewhere to relax between outings or spend a quieter evening in the hotel. Compare each room's photographs and layout to decide which matters most for your stay.",
+          "Build an evening around Cantonese dining at Yan Long or the city views from TWIST Rooftop Restaurant & Bar on the 19th floor. Royal Wellness Spa is in the same hotel building. Restaurant reservations, spa treatments and transfers have their own availability and charges, so contact the team to coordinate a special occasion or arrival time.",
+        ],
+        links: [
+          { label: "See the Executive Suite", href: "/rooms-suites/executive-suite" },
+          { label: "Explore TWIST rooftop dining", href: "/twist-rooftop-restaurant-bar" },
+          { label: "View wellness facilities", href: "/facilities" },
+        ],
+      }],
       features: [
         { title: "Elegant Suites", description: "Spacious accommodations with premium furnishings and city views" },
         { title: "Fine Dining", description: "Multiple restaurants offering Thai, Chinese, and international cuisine" },
@@ -161,35 +202,47 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
 
   "best-hotel-phuket-town": {
     slug: "best-hotel-phuket-town",
-    title: "Best Hotel Near Phuket Town",
-    subtitle: "Your Perfect Base for Exploring Old Phuket",
+    title: "Choosing a Hotel in Phuket Town",
+    subtitle: "Compare Location, Rooms and Facilities for Your Trip",
     heroImage: "/images/HOTEL WEBSITE/RPC Lobby 1.jpg",
-    metaDescription: "Looking for the best hotel near Phuket Town? Royal Phuket City Hotel offers prime location, excellent facilities, and easy access to all Old Town attractions.",
+    metaDescription: "Choosing the best hotel for your Phuket Town trip? Compare Royal Phuket City's room sizes, Old Town location, pool, dining and booking conditions.",
     seoKeywords: ["best hotel Phuket Town", "top hotel near Phuket Old Town", "recommended hotel Phuket", "highest rated hotel Phuket Town", "best accommodation Phuket"],
     category: "hotel",
     content: {
       intro: [
-        "Royal Phuket City Hotel is consistently rated as one of the best hotels near Phuket Town, offering an unbeatable combination of location, quality, and value.",
+        "The best hotel in Phuket Town for your trip depends on where you want to go, how much room you need and which services you will use. Royal Phuket City offers a city location, 251 rooms and suites, a pool and several dining choices.",
         "Our strategic position puts you within walking distance of Phuket Old Town's main attractions, while our facilities and service ensure a comfortable stay.",
         "Whether you're here to explore the heritage streets, enjoy local cuisine, or conduct business, we provide the ideal home base.",
       ],
+      planningSections: [{
+        title: "A practical checklist for comparing hotels",
+        paragraphs: [
+          "Start with your itinerary. A Phuket Town address is convenient for heritage streets, local restaurants and city appointments; allow separate transport for beach days and the airport. Look at the actual map position instead of relying on a city name alone. Compare walking routes, arrival arrangements and parking if you plan to drive.",
+          "Next compare the full booking: room size, bed configuration, breakfast, extra guest charges and cancellation conditions. Royal Phuket City lists 30 sqm Premier Superior rooms, 38 sqm Premier Deluxe rooms and larger suites. View the photographs and current offer terms, then read recent independent guest reviews through our TripAdvisor link in the hotel contact information. Choose according to the details that matter to your own stay.",
+        ],
+        links: [
+          { label: "Check the location and guest review links", href: "/contact" },
+          { label: "Compare room layouts", href: "/rooms-suites" },
+          { label: "Review packages and conditions", href: "/promotions" },
+        ],
+      }],
       features: [
-        { title: "Unbeatable Location", description: "Walking distance to all major Phuket Town attractions" },
-        { title: "Guest Satisfaction", description: "Consistently high ratings from travelers worldwide" },
+        { title: "City Location", description: "Phang-Nga Road address near the Old Town streets" },
+        { title: "Room Choice", description: "Compare six room and suite categories before booking" },
         { title: "Value for Money", description: "Premium experience at competitive rates" },
-        { title: "Local Expertise", description: "27+ years serving guests in Phuket" },
+        { title: "Local Assistance", description: "Contact the team for directions and trip planning" },
       ],
       highlights: [
-        "5-minute walk to Thalang Road",
+        "Walking route to Thalang Road and Old Town",
         "Near Sunday Walking Street",
         "Close to local temples and shrines",
         "Easy access to shopping centers",
         "Helpful concierge services",
-        "Free parking for guests",
+        "Indoor and outdoor parking available",
       ],
       callToAction: {
-        title: "Stay at the Best",
-        description: "Join thousands of satisfied guests who chose Royal Phuket City.",
+        title: "Find the Right Room for Your Trip",
+        description: "Compare Royal Phuket City's rooms, facilities and current booking options.",
         buttonText: "Book Now",
         buttonLink: "/rooms-suites",
       },
@@ -209,13 +262,25 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       intro: [
         "Located in the heart of Phuket City, Royal Phuket City Hotel offers the ultimate in convenience. Our central position makes exploring the island effortless.",
         "From here, you're minutes away from Phuket Old Town's heritage sites, major shopping centers, hospitals, and the island's main business districts.",
-        "Our 19-story landmark building is easy to find and serves as a perfect meeting point for your Phuket adventures.",
+        "Our 19-story landmark building is easy to find and serves as a meeting point for your Phuket adventures. Use our contact page for the map pin and share the full hotel address with your driver.",
       ],
+      planningSections: [{
+        title: "Arrival and transport in Phuket City",
+        paragraphs: [
+          "Royal Phuket City Hotel is at 154 Phang-Nga Road in Talad Yai. Distinguish Phuket Town from the island's west-coast beach areas when booking transport. Confirm the correct bus terminal or pier for your route and leave extra time for traffic, especially when travelling to the airport or an onward boat connection.",
+          "The hotel provides indoor and outdoor parking, with 350 spaces combined, and EV charging is available. Private transfer arrangements can be requested through the hotel. If you plan to arrive before the standard 2:00 PM check-in, send your arrival details to reservations so the team can advise on options and any applicable charges.",
+        ],
+        links: [
+          { label: "Open hotel directions", href: "/contact" },
+          { label: "Check parking and transport facilities", href: "/facilities" },
+          { label: "Read check-in policies", href: "/hotel-policy" },
+        ],
+      }],
       features: [
         { title: "Central Position", description: "Heart of Phuket City with easy access everywhere" },
         { title: "Transportation Hub", description: "Near bus terminal and taxi stands" },
         { title: "Business District", description: "Close to offices, banks, and government buildings" },
-        { title: "Shopping Access", description: "Minutes from Central and Robinson malls" },
+        { title: "Shopping Access", description: "City shops nearby; arrange transport for larger shopping centres" },
       ],
       highlights: [
         "Near Phuket Bus Terminal",
@@ -251,12 +316,12 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       ],
       features: [
         { title: "Great Rates", description: "Competitive pricing for 4-star quality" },
-        { title: "Full Access", description: "All hotel facilities included" },
-        { title: "No Hidden Fees", description: "Transparent pricing with no surprises" },
-        { title: "Direct Booking Deals", description: "Best rates when you book direct" },
+        { title: "Guest Facilities", description: "Pool and fitness centre access for hotel guests" },
+        { title: "Rate Conditions", description: "Review breakfast, cancellation and extra guest terms before booking" },
+        { title: "Direct Booking Offers", description: "Compare the hotel's current packages for your dates" },
       ],
       highlights: [
-        "Superior rooms from THB 1,200/night",
+        "Premier Superior rooms with 30 sqm of space",
         "Pool and fitness center access",
         "Free WiFi throughout",
         "Breakfast packages available",
@@ -265,10 +330,22 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       ],
       callToAction: {
         title: "Great Value Awaits",
-        description: "Book direct for our best available rates.",
+        description: "Compare direct booking offers and their conditions for your travel dates.",
         buttonText: "Check Rates",
-        buttonLink: "/rooms-suites",
+        buttonLink: "/promotions",
       },
+      planningSections: [{
+        title: "Compare the total cost of your stay",
+        paragraphs: [
+          "Start with the Premier Superior category when comparing room options: it provides 30 sqm of space and the hotel facilities you can use between outings. Rates depend on travel dates, availability and the package selected. A quoted package total may cover two nights or two rooms, so compare the same number of nights and guests across offers.",
+          "Review breakfast, minimum stay, advance purchase and cancellation terms before deciding. Some promotions require a booking code or have different booking and stay periods. Dining, spa treatments, additional beds and transfers may be charged separately. Include transport in your budget if your plans combine Old Town walks with beaches, shopping centres or airport journeys.",
+        ],
+        links: [
+          { label: "Compare current promotions", href: "/promotions" },
+          { label: "View Premier Superior rooms", href: "/rooms-suites/premier-superior" },
+          { label: "Ask reservations about your dates", href: "/contact" },
+        ],
+      }],
     },
     relatedPages: ["family-hotel-phuket", "phuket-old-town-hotel", "4-star-hotel-phuket"],
   },
@@ -283,22 +360,34 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
     category: "hotel",
     content: {
       intro: [
-        "Royal Phuket City Hotel is the perfect choice for family vacations in Phuket. Our spacious rooms, family-friendly facilities, and safe location make us ideal for traveling with children.",
+        "Royal Phuket City Hotel welcomes families visiting Phuket Town with room and suite choices, an outdoor pool with adult and children's areas, and on-site dining. Choose your room setup around the number and ages of your children.",
         "Explore Phuket Old Town's cultural attractions, enjoy our pool, and dine at our restaurants with options that please every family member.",
-        "With 27 years of welcoming families, we know how to make your family vacation stress-free and memorable.",
+        "Share your family's requirements with reservations before booking so the team can confirm bedding, connecting room options and the terms of any family package.",
       ],
+      planningSections: [{
+        title: "Choose the right room setup for your family",
+        paragraphs: [
+          "Room size alone does not determine how many guests can stay. Compare bed configurations and tell reservations the ages of all children, whether you need an extra bed or cot, and whether connecting rooms are essential. Check the selected family promotion for the exact room allocation, meals and child age limits; inclusions vary by package and date.",
+          "The outdoor pool is on the 3rd floor with separate adult and children's areas. Plan swimming around the facility hours and supervise children in the water. For outings, bring sun and rain protection and allow a flexible pace through Old Town streets. A central room makes it practical to pause between a morning walk, an afternoon rest and dinner.",
+        ],
+        links: [
+          { label: "Review family packages", href: "/promotions" },
+          { label: "See pool and hotel facilities", href: "/facilities" },
+          { label: "Confirm your family room requirements", href: "/contact" },
+        ],
+      }],
       features: [
         { title: "Spacious Rooms", description: "Family rooms and suites with extra space" },
         { title: "Swimming Pool", description: "Outdoor pool perfect for kids" },
         { title: "Kid-Friendly Dining", description: "Restaurants with children's options" },
-        { title: "Safe Location", description: "Secure hotel in a walkable neighborhood" },
+        { title: "City Base", description: "Return to your room between Old Town outings" },
       ],
       highlights: [
         "Connecting rooms available",
         "Cribs and extra beds on request",
         "Kid-friendly menu options",
         "Near family attractions",
-        "Safe walking neighborhood",
+        "Central base for shorter outings",
         "24-hour security",
       ],
       callToAction: {
@@ -322,17 +411,29 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
     content: {
       intro: [
         "Royal Phuket City Hotel is Phuket's premier business hotel, offering everything corporate travelers need for productive stays and successful meetings.",
-        "Our TCEB-certified MICE facilities include 9 meeting rooms and a grand ballroom accommodating up to 2,300 guests. High-speed WiFi, business center, and professional support ensure your work gets done.",
+        "Our meeting facilities include 9 spaces and a 1,637 sqm grand ballroom with a maximum theatre setup of 2,300 guests. Capacities vary by seating layout; the meetings team can help match the room to your event.",
         "After business hours, relax at our restaurants, rooftop bar, or explore the vibrant Phuket Old Town just steps away.",
       ],
+      planningSections: [{
+        title: "Match your meeting to the right layout",
+        paragraphs: [
+          "Start an event enquiry with your date, attendee count, agenda and preferred seating style. Theatre, classroom, banquet and boardroom layouts use space differently. The ballroom's maximum theatre capacity is not a seated dinner capacity, so use the venue comparison table and ask the team to confirm the layout you need.",
+          "Include audiovisual requirements, catering breaks, stage or exhibition space and any rooms needed for delegates. If delegates arrive on different flights, discuss transfers and check-in arrangements. Download the hotel's fact sheets for planning details, then request a proposal covering the room setup, equipment, food and accommodation relevant to your programme.",
+        ],
+        links: [
+          { label: "Compare meeting room capacities", href: "/meeting-events" },
+          { label: "Download hotel and venue fact sheets", href: "/download-fact-sheets" },
+          { label: "Send an event enquiry", href: "/contact" },
+        ],
+      }],
       features: [
-        { title: "Meeting Facilities", description: "9 meeting rooms plus 1,637 sqm grand ballroom" },
+        { title: "Meeting Facilities", description: "9 meeting spaces including the 1,637 sqm grand ballroom" },
         { title: "Business Center", description: "Printing, copying, and secretarial services" },
         { title: "High-Speed WiFi", description: "Reliable connectivity throughout the hotel" },
-        { title: "MICE Certified", description: "TCEB certified venue for professional events" },
+        { title: "Event Planning", description: "Discuss seating, catering and technical requirements with the team" },
       ],
       highlights: [
-        "TCEB MICE Venue certification",
+        "Venue capacities published by seating layout",
         "AV equipment and tech support",
         "Corporate rates available",
         "Invoice and receipt services",
@@ -359,10 +460,22 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
     category: "hotel",
     content: {
       intro: [
-        "After a day exploring Phuket Old Town, cool off in our beautiful outdoor swimming pool. Royal Phuket City Hotel offers one of the best pool experiences in Phuket Town.",
+        "After exploring Phuket Old Town, return to the outdoor swimming pool at Royal Phuket City Hotel. The pool is on the 3rd floor, with separate areas for adults and children.",
         "Our well-maintained pool area provides a refreshing retreat in the heart of the city, complete with sun loungers and poolside service.",
         "Combine cultural exploration with relaxation — explore the heritage streets, then unwind by the pool.",
       ],
+      planningSections: [{
+        title: "Plan pool time around your city stay",
+        paragraphs: [
+          "The outdoor swimming pool and Workout Club fitness centre are both on the 3rd floor. The facilities page lists their current opening hours, along with the spa and other services in the building. Check with reception for any operational changes during your stay before planning an early or late swim.",
+          "A pool break works well between a morning heritage walk and an evening in Phuket Town. Sun loungers are available around the pool; bring suitable swimwear and supervise children in the water. If your trip also includes beach days, arrange transport separately: the hotel is a city base, while the pool offers a convenient place to relax without leaving the building.",
+        ],
+        links: [
+          { label: "See current pool and fitness hours", href: "/facilities" },
+          { label: "Plan a family stay", href: "/family-hotel-phuket" },
+          { label: "Explore Old Town activities", href: "/things-to-do-phuket-old-town" },
+        ],
+      }],
       features: [
         { title: "Outdoor Pool", description: "Refreshing swimming pool with city views" },
         { title: "Sun Deck", description: "Comfortable loungers for relaxation" },
@@ -389,20 +502,32 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
 
   "heritage-hotel-phuket": {
     slug: "heritage-hotel-phuket",
-    title: "Heritage Hotel in Phuket Old Town",
-    subtitle: "A Living Piece of Phuket History",
+    title: "A Hotel Stay Near Phuket's Heritage Streets",
+    subtitle: "Discover Old Town Culture from a City Landmark",
     heroImage: "/images/old-town/vibrant-street-with-colorful-shophouses-phuket-thailand.jpg",
-    metaDescription: "Royal Phuket City Hotel - A heritage landmark in Phuket with 27+ years of history, located in the historic Old Town district near Sino-Portuguese architecture.",
+    metaDescription: "Explore Phuket's heritage streets from Royal Phuket City Hotel. Plan walks to Sino-Portuguese shophouses, local museums, shrines and Old Town cafes.",
     seoKeywords: ["heritage hotel Phuket", "historic hotel Phuket", "landmark hotel Phuket", "traditional hotel Phuket Town", "cultural hotel Phuket"],
     category: "hotel",
     content: {
       intro: [
-        "Royal Phuket City Hotel is more than accommodation — it's a heritage landmark that has been part of Phuket's story for over 27 years.",
+        "Royal Phuket City Hotel offers a contemporary city stay near Phuket Old Town's heritage streets. Its 19-story building provides a base for exploring the nearby Sino-Portuguese shophouses, museums and shrines.",
         "Our iconic 19-story building rises above the historic Phuket Old Town, serving as a gateway to the island's rich cultural heritage and Sino-Portuguese architectural treasures.",
         "Stay with us to experience authentic Phuket hospitality rooted in tradition and warmth.",
       ],
+      planningSections: [{
+        title: "A modern hotel base for a heritage visit",
+        paragraphs: [
+          "Choose Royal Phuket City for the services of a larger city hotel while spending your days in the surrounding heritage district. The hotel is a contemporary high-rise; the historic shophouses and mansions are the sights you visit on your walks. Compare the room views and photographs if architecture and the Old Town setting are central to your trip.",
+          "Build a route around Thalang Road, Soi Romanee and Krabi Road, leaving time to explore the streets between them. Check opening arrangements before visiting museums or entering private buildings. The hotel's artist page also introduces work displayed at Royal Phuket City, offering another way to connect your stay with local creative culture.",
+        ],
+        links: [
+          { label: "Explore Sino-Portuguese architecture", href: "/sino-portuguese-architecture-phuket" },
+          { label: "Discover art at the hotel", href: "/artist" },
+          { label: "Plan your Old Town visit", href: "/things-to-do-phuket-old-town" },
+        ],
+      }],
       features: [
-        { title: "27+ Years of History", description: "A trusted landmark since 1998" },
+        { title: "City Landmark", description: "A 19-story contemporary hotel near the Old Town" },
         { title: "Heritage Location", description: "Heart of Phuket Old Town's historic district" },
         { title: "Cultural Immersion", description: "Steps from temples, shrines, and museums" },
         { title: "Traditional Hospitality", description: "Thai warmth combined with modern comfort" },
@@ -416,10 +541,10 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         "Historic neighborhood setting",
       ],
       callToAction: {
-        title: "Stay in History",
-        description: "Experience Phuket's heritage at our landmark hotel.",
-        buttonText: "Learn About Us",
-        buttonLink: "/about",
+        title: "Explore Phuket's Heritage",
+        description: "Discover art and local culture during your stay at Royal Phuket City.",
+        buttonText: "Discover Art at the Hotel",
+        buttonLink: "/artist",
       },
     },
     relatedPages: ["phuket-old-town-hotel", "sino-portuguese-architecture-phuket", "things-to-do-phuket-old-town"],
@@ -447,18 +572,18 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         title: "Explore from Royal Phuket City Hotel",
         subtitle: "Your Gateway to Old Town Adventures",
         description: [
-          "Royal Phuket City Hotel stands at the perfect starting point for Old Town exploration. Our location on Phang-Nga Road places you at the intersection of the heritage district's main attractions, with Thalang Road's historic shophouses just a 5-minute stroll away and the picturesque Soi Romanee even closer.",
+          "Royal Phuket City Hotel on Phang-Nga Road is a convenient starting point for an Old Town walk. Plan a route to Thalang Road's historic shophouses and Soi Romanee, allowing time for crossings, the weather and stops along the way.",
           "The advantage of staying at Royal Phuket City becomes clear when you experience the Old Town's rhythm. Venture out for an early morning walk to see the neighborhood wake up, return for a refreshing swim and lunch at the hotel, then head out again in the cool evening hours when the streets come alive with local activity.",
           "Our 19-story building serves as a convenient landmark — you'll never get lost exploring the winding heritage lanes when you can spot our distinctive tower above the rooftops. After a day of walking and discovery, return to modern comfort: air-conditioned rooms, multiple dining options, and all the amenities of a 4-star property.",
         ],
-        walkingTime: "5 minutes to Thalang Road",
+        walkingTime: "Walking route from Phang-Nga Road to Thalang Road",
         highlights: [
           "Central location in the heritage district",
           "Walking distance to all major attractions",
           "Landmark building easy to navigate back to",
           "Pool and facilities for midday breaks",
           "Concierge with local expertise",
-          "27+ years serving Old Town visitors",
+          "Hotel team available for local directions",
         ],
       },
       highlights: [
@@ -484,7 +609,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         "Phuket Old Town features well-preserved Sino-Portuguese shophouses dating back to the tin mining era",
         "The Sunday Walking Street market (Lard Yai) runs every Sunday 4-10 PM on Thalang Road",
         "Soi Romanee is the most photographed street, known for its colorful pastel facades",
-        "Royal Phuket City Hotel is just a 5-minute walk from all major Old Town attractions",
+        "Royal Phuket City Hotel is on Phang-Nga Road, with walking routes to the Old Town streets",
         "Unlike beach areas, Old Town offers authentic local experiences at reasonable prices",
       ],
       faqs: [
@@ -498,7 +623,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         },
         {
           question: "How do I get to Phuket Old Town?",
-          answer: "Phuket Old Town is located in Phuket City, approximately 30 minutes from Phuket Airport by taxi. From beach areas like Patong, it's about 15-20 minutes by car. The easiest way to explore is on foot once you arrive, as all attractions are within walking distance. Royal Phuket City Hotel is located in the heart of the Old Town.",
+          answer: "Phuket Old Town is in Phuket City. Arrange a taxi or transfer from the airport or beach areas, and check a current route estimate because traffic can change journey times substantially. Once in the heritage streets, many sights can be explored on foot. Royal Phuket City Hotel's contact page provides the map pin for its Phang-Nga Road address.",
         },
         {
           question: "What are the best things to do in Phuket Old Town?",
@@ -532,15 +657,15 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       ],
       locationSection: {
         title: "Walk from Royal Phuket City to the Market",
-        subtitle: "The Closest Hotel to Sunday Walking Street",
+        subtitle: "Stay on Phang-Nga Road near the Old Town",
         description: [
-          "Royal Phuket City Hotel's location makes Sunday market visits effortless. The market begins just a 5-minute walk from our doors — close enough to return to the hotel for a quick break if needed, or to drop off purchases before heading back for more exploration.",
+          "Royal Phuket City Hotel is within walking distance of the Sunday market on Thalang Road. Ask the team for the route from Phang-Nga Road and allow time for road crossings and busy pavements. You can return to the hotel for a break or to drop off purchases.",
           "Our strategic position means you can monitor the weather and market crowds from the comfort of the hotel, heading out when conditions are perfect. As the evening winds down, you're just steps from your air-conditioned room rather than facing a long taxi ride or parking hassle.",
           "Many guests make multiple trips throughout the evening: an early visit for food when the best dishes are freshly prepared, a return to the hotel to rest and drop off purchases, then another venture out to experience the evening atmosphere and live performances. This flexibility is only possible when your hotel is truly within walking distance.",
         ],
-        walkingTime: "5-minute walk to market start",
+        walkingTime: "Walk from Phang-Nga Road to the Thalang Road market",
         highlights: [
-          "Closest major hotel to Walking Street",
+          "City hotel within walking distance of the market",
           "Walk directly to market without transport",
           "Return easily for breaks or to store purchases",
           "Monitor weather before heading out",
@@ -570,7 +695,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       keyTakeaways: [
         "The market runs every Sunday from 4 PM to 10 PM on Thalang Road in Phuket Old Town",
         "Must-try foods include Hokkien noodles, Phuket spring rolls, and O-Aew shaved ice dessert",
-        "Royal Phuket City Hotel is just a 5-minute walk from the market entrance",
+        "Walk from Royal Phuket City's Phang-Nga Road address to the market on Thalang Road",
         "Entry is free — you only pay for food and purchases",
         "Best to arrive around 5:30-6:00 PM when all vendors are set up",
       ],
@@ -589,7 +714,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         },
         {
           question: "How do I get to Phuket Sunday Walking Street?",
-          answer: "The market is located on Thalang Road in Phuket Old Town. If staying at Royal Phuket City Hotel, it's just a 5-minute walk. From beach areas like Patong, take a taxi (about 15-20 minutes). The road closes to traffic during market hours.",
+          answer: "The market is on Thalang Road in Phuket Old Town. Hotel guests can ask for a walking route from Royal Phuket City on Phang-Nga Road. From beach areas, arrange a taxi or transfer and check the current journey time. Thalang Road closes to traffic during market hours, so agree a pickup point outside the pedestrian area.",
         },
         {
           question: "What can I buy at Phuket Walking Street?",
@@ -613,7 +738,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         "Phuket's Sino-Portuguese architecture represents one of Southeast Asia's most distinctive and well-preserved heritage landscapes — a fascinating fusion of Chinese, European, and Malay building traditions that emerged from the island's prosperous tin mining era during the 19th and early 20th centuries. These colorful shophouses, grand mansions, and ornate commercial buildings create an open-air museum of architectural history that rewards careful exploration.",
         "The style developed as wealthy Chinese immigrant families, many originally from Fujian Province, built their homes and businesses using techniques and aesthetics from their homeland while incorporating European elements introduced through Portuguese, British, and Dutch trade connections. The result is uniquely Phuketian: buildings that might feature Chinese roof tiles and feng shui-influenced floor plans alongside Portuguese-style shuttered windows, neo-classical columns, and elaborate stucco decorations that show clear European influence.",
         "Walking through Phuket Old Town today, you'll notice the remarkable consistency of this architectural heritage. Unlike many Asian cities where modernization erased historical buildings, Phuket's Old Town survived largely intact thanks to economic decline after tin mining ended and, later, deliberate preservation efforts. Streets like Thalang Road, Dibuk Road, Krabi Road, and Yaowarat Road retain almost their entire original building stock, with many structures dating back 100-150 years.",
-        "Each building tells stories if you know how to read them. The width of a shophouse indicates the original owner's wealth — tin tax was calculated by frontage width, so wider buildings meant more prosperous merchants. Decorative elements often carry symbolic meaning: bat motifs represent good fortune (the Chinese word for bat sounds like the word for luck), while phoenix and dragon pairs symbolize harmony. Many buildings retain their original shop signs with Chinese characters identifying family businesses that operated for generations.",
+        "Look closely at the details that distinguish one shophouse from another: shuttered windows, decorative plasterwork, tiled entrances and shop signs. Compare the facades along Thalang, Dibuk and Krabi Roads, then visit a local museum or join a guided walk for the documented history of individual buildings. Respect private homes and ask before photographing interiors.",
         "The most photogenic concentration of heritage buildings runs along Soi Romanee, a narrow lane that has become Phuket's most Instagrammed location. Once an area of less reputable establishments, this street has been transformed into a gallery of colorful restored shophouses, their facades repainted in pastel shades that pop against the tropical sky. But don't stop at the famous spots — venture down any side street in the Old Town and you'll discover equally impressive architecture that sees far fewer visitors.",
         "What makes exploring this architecture particularly rewarding is that these aren't museum pieces behind barriers. Many heritage buildings now house cafes, galleries, boutiques, and guesthouses, inviting visitors inside to appreciate original floor tiles, wooden staircases, internal courtyards, and the clever architectural solutions that made these buildings comfortable in the tropical climate long before air conditioning existed. Having a coffee in a heritage shophouse cafe is experiencing history, not just viewing it.",
       ],
@@ -621,8 +746,8 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         title: "The Perfect Base for Architecture Exploration",
         subtitle: "Royal Phuket City Hotel's Heritage Location",
         description: [
-          "Royal Phuket City Hotel sits at the heart of Phuket's architectural heritage zone. Step outside our doors and you're immediately in the historic district, with the finest examples of Sino-Portuguese architecture beginning within a 5-minute walk in any direction.",
-          "As a landmark building ourselves — the first high-rise in Phuket and still the tallest structure near Old Town — we've been welcoming visitors to this heritage district for over 27 years. Our staff knows these streets intimately and can suggest walking routes that match your interests, whether you're a serious architectural photographer or simply appreciate beautiful old buildings.",
+          "Royal Phuket City Hotel on Phang-Nga Road provides a city base near the Old Town streets. Plan your walk around Thalang Road, Soi Romanee, Dibuk Road and Krabi Road, with stops for shade and refreshments along the way.",
+          "Our 19-story hotel is a contemporary landmark near the heritage district. Ask the hotel team about walking routes and museum visits, whether you want to photograph architectural details or simply explore the neighbourhood at your own pace.",
           "Our elevated position offers a unique advantage: from our upper floors, you can survey the Old Town's roofscape, with its distinctive Chinese roof tiles and varying building heights, providing context for your ground-level explorations. After walking the heritage streets, return to modern comfort with all the amenities of a 4-star property.",
         ],
         walkingTime: "Immediate access to heritage zone",
@@ -631,7 +756,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
           "Walking distance to all major heritage streets",
           "Staff expertise on local architecture",
           "Panoramic Old Town views from upper floors",
-          "27+ years welcoming heritage visitors",
+          "Local directions available from the hotel team",
           "Modern comfort after heritage exploration",
         ],
       },
@@ -676,13 +801,13 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         title: "Your Perfect Base for Cafe Hopping",
         subtitle: "Stay at Royal Phuket City Hotel",
         description: [
-          "Royal Phuket City Hotel is ideally positioned for exploring Phuket Old Town's cafe scene. Our central location places you within a 5-10 minute walk of all the best coffee destinations, allowing you to maximize your cafe-hopping time without worrying about transportation or parking.",
+          "Royal Phuket City Hotel on Phang-Nga Road provides a starting point for the cafes around Thalang Road, Soi Romanee and the surrounding Old Town streets. Plan your route around the places you want to visit and check each cafe's own hours before setting out.",
           "After a morning of exploring cafes, return to the hotel for a refreshing swim in our pool or a rest in your comfortable room before heading out for an afternoon coffee session. Our concierge can provide a custom cafe map highlighting the current local favorites and hidden gems.",
           "Many of our guests begin their day with breakfast at the hotel, then venture out to explore the heritage cafes before the afternoon heat sets in. The combination of hotel comfort and Old Town accessibility makes Royal Phuket City the smart choice for coffee lovers.",
         ],
-        walkingTime: "5-10 minutes to main cafe area",
+        walkingTime: "Walking routes to the Old Town cafe streets",
         highlights: [
-          "Walk to Thalang Road cafes in 5 minutes",
+          "Walk to the cafes around Thalang Road",
           "Soi Romanee coffee spots nearby",
           "Return for pool breaks between cafe visits",
           "Concierge cafe recommendations",
@@ -695,9 +820,9 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         "Rommanee Coffee House - iconic pink building",
         "Old Phuket Coffee Station - railway-themed cafe",
         "Gallery Café by Pinky - art and espresso",
-        "One Chun Cafe - local favorite since generations",
+        "One Chun Cafe & Restaurant - a Phuket food stop between cafes",
         "Torry's Ice Cream & Coffee - perfect afternoon treat",
-        "Raya House - Thai celebrity-favorite heritage cafe",
+        "Raya Restaurant - heritage setting for local dining",
         "China Inn Cafe - stunning courtyard setting",
       ],
       callToAction: {
@@ -722,7 +847,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       intro: [
         "Night markets represent one of Thailand's most beloved cultural traditions, and Phuket offers some of the best examples in the country. As the tropical sun sets and temperatures become pleasant, locals and visitors alike emerge to browse vendors, sample street food, and enjoy the festive atmosphere that transforms ordinary streets into vibrant open-air bazaars. Understanding the different markets and their unique characters helps you plan the perfect evening experience.",
         "Phuket's night market scene differs significantly from what you'll find at the beach resort areas. While tourist-focused markets near Patong and Kata cater to international visitors with predictable offerings and inflated prices, the markets around Phuket Town serve primarily local customers. This means better prices, more authentic food, and a genuine glimpse into how residents spend their evenings. The trade-off is less English signage and fewer tourist conveniences, but the rewards far outweigh these minor challenges.",
-        "The variety of night markets around Phuket Town ensures something is happening almost every evening. The crown jewel is undoubtedly the Sunday Walking Street on Thalang Road, which transforms the historic Sino-Portuguese shopping street into an unforgettable cultural experience. But other markets offer their own appeal: Chillva Market brings a hipster container-market vibe to Thursday through Saturday evenings, while Naka Weekend Market sprawls across a massive area with vendors selling everything from clothing to electronics to street food.",
+        "Compare the market locations before choosing an evening out. Sunday Walking Street takes place on Thalang Road among the historic shophouses. Chillva Market has a container-market setting with food and fashion stalls, while Naka Weekend Market offers a larger shopping area outside the Old Town streets. Check each market's current opening days before travelling, as schedules and special events can change.",
         "Food remains the primary attraction at any Thai night market, and Phuket's offerings reflect the island's unique culinary heritage. Look for dishes you won't find elsewhere in Thailand: Hokkien noodles with their distinctive Fujianese flavors, Phuket-style spring rolls that differ from versions served in Bangkok, and local desserts like O-Aew that evolved from Chinese immigrant recipes. Each market has its specialty vendors — regulars know exactly which stall makes the best version of their favorite dish, knowledge that takes time to develop but dramatically improves your eating experience.",
         "Shopping opportunities vary widely between markets. The Sunday Walking Street emphasizes local crafts, artisan goods, and unique souvenirs — perfect for finding distinctive gifts that won't look like they came from a tourist shop. Naka Weekend Market offers incredible variety but requires patience to navigate the sprawling layout and identify quality among the mass-produced items. Chillva Market attracts younger vendors selling contemporary Thai fashion, accessories, and design objects that appeal to style-conscious shoppers.",
         "Practical considerations make a significant difference in your night market experience. Bring cash in small denominations — while some vendors accept mobile payments, cash remains king for the best bargaining leverage. Wear comfortable shoes suitable for walking on potentially uneven surfaces. Arrive earlier (around 5-6 PM) for food stalls when selections are freshest and queues shortest, but later (7-8 PM) for the best atmosphere. And consider the weather — Phuket's brief tropical showers rarely cancel markets but can make open-air browsing uncomfortable, so check forecasts before heading out.",
@@ -731,11 +856,11 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
         title: "Your Night Market Base Camp",
         subtitle: "Stay at Royal Phuket City Hotel",
         description: [
-          "Royal Phuket City Hotel's Phuket Old Town location positions you perfectly for night market exploration. The famous Sunday Walking Street begins just a 5-minute walk from our doors, while other popular markets are easily accessible by short taxi rides or our hotel's transportation assistance.",
+          "Royal Phuket City Hotel is within walking distance of Sunday Walking Street on Thalang Road. For markets outside the Old Town walking area, such as Chillva and Naka, ask about transport and check your return route before leaving the hotel.",
           "The advantage of our central location becomes clear as you plan your evening adventures. Walk to the Walking Street market on Sundays with the freedom to return whenever you choose. Take advantage of our concierge's local knowledge to find the night market that best matches your interests that particular evening. Return to modern comfort and air conditioning after hours of walking and eating.",
           "Many guests use the hotel as a base for market hopping, returning between venues to refresh before heading out again. Our pool and facilities provide the perfect pre-market relaxation, letting you build up energy for an evening of exploration.",
         ],
-        walkingTime: "5 min to Walking Street, 10 min taxi to other markets",
+        walkingTime: "Walk to Thalang Road; arrange transport for Chillva and Naka",
         highlights: [
           "Walk to Sunday Walking Street",
           "Central for accessing all major markets",
@@ -747,7 +872,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       },
       highlights: [
         "Sunday Walking Street - Thalang Road's transformation",
-        "Chillva Market - trendy Thu-Sat container market",
+        "Chillva Market - food and fashion in a container-market setting",
         "Naka Weekend Market - massive variety",
         "Downtown Night Market - daily local option",
         "Street food from Hokkien noodles to desserts",

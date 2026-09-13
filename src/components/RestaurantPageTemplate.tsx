@@ -7,6 +7,8 @@ import { useLocale } from "@/components/i18n/LocaleProvider";
 import { getDiningVenueCopy } from "@/lib/i18n/dining-copy";
 import { getLocalizedRestaurants } from "@/lib/i18n/localized-data";
 import { RestaurantDetail } from "@/lib/restaurant-data";
+import { RestaurantJsonLd } from "@/components/JsonLd";
+import { localizeHref } from "@/lib/i18n/path";
 
 interface RestaurantPageTemplateProps {
   restaurant: RestaurantDetail;
@@ -17,12 +19,23 @@ export default function RestaurantPageTemplate({
 }: RestaurantPageTemplateProps) {
   const { locale } = useLocale();
   const t = getDiningVenueCopy(locale);
+  const phoneHref = restaurant.phone
+    ? `tel:${restaurant.phone.replace(/\s*(?:ext\.?|extension|x)\s*(\d+)$/i, ";ext=$1").replace(/[\s()-]/g, "")}`
+    : undefined;
   const otherRestaurants = getLocalizedRestaurants(locale).filter(
     (r) => r.slug !== restaurant.slug
   );
 
   return (
     <>
+      <RestaurantJsonLd
+        name={restaurant.name}
+        description={restaurant.description[0]}
+        cuisine={restaurant.cuisine}
+        url={localizeHref(`/${restaurant.slug}`, locale)}
+        image={restaurant.images[0].src}
+        telephone={restaurant.phone}
+      />
       {/* Hero Image */}
       <section className="relative h-[70vh] min-h-[500px]">
         <Image
@@ -73,7 +86,7 @@ export default function RestaurantPageTemplate({
                   {t.reservations}
                 </p>
                 <a
-                  href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                  href={phoneHref}
                   className="font-heading text-lg text-[--color-accent] hover:underline"
                 >
                   {restaurant.phone}
@@ -146,7 +159,7 @@ export default function RestaurantPageTemplate({
           <div className="flex flex-wrap justify-center gap-4">
             {restaurant.phone && (
               <a
-                href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                href={phoneHref}
                 className="btn-outline"
               >
                 {t.callToReserve}

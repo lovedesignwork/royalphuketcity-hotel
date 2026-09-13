@@ -31,13 +31,41 @@ function applyLocaleHeaders(
   });
 }
 
+function rejectAdminRequest(
+  message: string,
+  status: 401 | 403,
+  sessionResponse: NextResponse
+) {
+  const response = NextResponse.json({ error: message }, { status });
+  // Preserve session cookies, never the internal x-middleware-next header.
+  // Copying that header onto an error response executes the protected handler.
+  for (const cookie of sessionResponse.cookies.getAll()) {
+    response.cookies.set(cookie);
+  }
+  return response;
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("host") || "";
   const mobileHost = isMobileHost(host);
 
-  const isAdminPage = pathname.startsWith("/admin") || pathname.startsWith("/th/admin");
-  const isAdminApi = pathname.startsWith("/api/admin");
+  // API routes are never localized. A locale rewrite would otherwise reach an
+  // admin API after the authentication checks for its original pathname.
+  if (pathname === "/th/api" || pathname.startsWith("/th/api/")) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  if (pathname === "/th/admin" || pathname.startsWith("/th/admin/")) {
+    const destination = new URL(
+      `${stripLocalePrefix(pathname)}${request.nextUrl.search}`,
+      mobileHost ? "https://royalphuketcity.com" : request.url
+    );
+    return NextResponse.redirect(destination, 308);
+  }
+
+  const isAdminPage = pathname === "/admin" || pathname.startsWith("/admin/");
+  const isAdminApi = pathname === "/api/admin" || pathname.startsWith("/api/admin/");
   const isLoginPage = pathname === "/admin/login";
   const isLogoutApi = pathname === "/api/admin/auth/logout";
 
@@ -165,10 +193,7 @@ export async function middleware(request: NextRequest) {
 
   if (!user) {
     if (isAdminApi) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401, headers: response.headers }
-      );
+      return rejectAdminRequest("Unauthorized", 401, response);
     }
     const url = new URL("/admin/login", request.url);
     url.searchParams.set("from", pathname);
@@ -185,10 +210,7 @@ export async function middleware(request: NextRequest) {
     await supabase.auth.signOut();
 
     if (isAdminApi) {
-      return NextResponse.json(
-        { error: "Forbidden — not an admin" },
-        { status: 403, headers: response.headers }
-      );
+      return rejectAdminRequest("Forbidden — not an admin", 403, response);
     }
     const url = new URL("/admin/login", request.url);
     url.searchParams.set("error", "not-admin");

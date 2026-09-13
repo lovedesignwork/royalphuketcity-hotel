@@ -8,14 +8,17 @@ import { mobileMetadata } from "@/lib/mobile";
 
 type Params = { slug: string };
 
+// This catalog changes with deployments; unknown slugs must return HTTP 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return RESTAURANTS.map((venue) => ({ slug: venue.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const venue = RESTAURANT_DETAILS[slug];
-  if (!venue) return mobileMetadata("Dining", "/dining");
+  const venue = Object.prototype.hasOwnProperty.call(RESTAURANT_DETAILS, slug) ? RESTAURANT_DETAILS[slug] : undefined;
+  if (!venue) notFound();
   return mobileMetadata(venue.name, `/dining/${slug}`, venue.description[0]);
 }
 
@@ -27,7 +30,7 @@ export default async function MobileDiningDetailPage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const venue = RESTAURANT_DETAILS[slug];
+  const venue = Object.prototype.hasOwnProperty.call(RESTAURANT_DETAILS, slug) ? RESTAURANT_DETAILS[slug] : undefined;
   if (!venue) notFound();
 
   return (

@@ -1,0 +1,216 @@
+
+> royal-phuket-city@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.25
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · staleTimes
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 15.8s
+   Linting and checking validity of types ...
+
+./src/app/admin/blog/page.tsx
+54:6  Warning: React Hook useEffect has a missing dependency: 'fetchPosts'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/blog/[id]/page.tsx
+61:9  Warning: 'router' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+90:6  Warning: React Hook useEffect has a missing dependency: 'fetchPost'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/inquiries/page.tsx
+43:10  Warning: 'UsersIcon' is defined but never used.  @typescript-eslint/no-unused-vars
+464:6  Warning: React Hook useEffect has a missing dependency: 'fetchInquiries'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/login/page.tsx
+8:9  Warning: 'router' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/admin/spa/inquiries/page.tsx
+179:6  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/spa/reservations/page.tsx
+229:6  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/yanlong/inquiries/page.tsx
+177:6  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/yanlong/reservations/page.tsx
+235:6  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/CTABanner.tsx
+18:3  Warning: 'subtitle' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/TestimonialSlider.tsx
+15:7  Warning: 'testimonials' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+ ⚠ Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/184) ...
+   Generating static pages (46/184)
+   Generating static pages (92/184)
+   Generating static pages (138/184)
+ ✓ Generating static pages (184/184)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                               Size  First Load JS  Revalidate  Expire
+┌ ƒ /                                                   1.5 kB         168 kB
+├ ƒ /_not-found                                          998 B         104 kB
+├ ● /[slug]                                            2.49 kB         154 kB
+├   ├ /phuket-old-town-hotel
+├   ├ /4-star-hotel-phuket
+├   ├ /luxury-hotel-phuket-city
+├   └ [+12 more paths]
+├ ƒ /accessibility                                       257 B         166 kB
+├ ƒ /admin                                             3.76 kB         110 kB
+├ ƒ /admin/analytics                                   4.99 kB         113 kB
+├ ƒ /admin/announcements                               5.19 kB         113 kB
+├ ƒ /admin/blog                                        3.63 kB         115 kB
+├ ƒ /admin/blog/[id]                                   4.25 kB         115 kB
+├ ƒ /admin/blog/[id]/preview                             166 B         106 kB
+├ ƒ /admin/blog/new                                    4.57 kB         116 kB
+├ ƒ /admin/campaign/kpi-calculator                      5.3 kB         108 kB
+├ ƒ /admin/downloads                                   4.38 kB         116 kB
+├ ƒ /admin/inquiries                                   5.97 kB         109 kB
+├ ƒ /admin/login                                       1.62 kB         166 kB
+├ ƒ /admin/seo                                         19.5 kB         122 kB
+├ ƒ /admin/settings                                    2.34 kB         105 kB
+├ ƒ /admin/spa/inquiries                               3.32 kB         106 kB
+├ ƒ /admin/spa/reservations                            3.52 kB         106 kB
+├ ƒ /admin/users                                       2.68 kB         105 kB
+├ ƒ /admin/yanlong/inquiries                            3.4 kB         106 kB
+├ ƒ /admin/yanlong/reservations                        3.54 kB         106 kB
+├ ƒ /api/admin/announcements                             231 B         103 kB
+├ ƒ /api/admin/auth/logout                               231 B         103 kB
+├ ƒ /api/admin/blog                                      231 B         103 kB
+├ ƒ /api/admin/blog/[id]                                 231 B         103 kB
+├ ƒ /api/admin/blog/categories                           231 B         103 kB
+├ ƒ /api/admin/blog/generate                             231 B         103 kB
+├ ƒ /api/admin/blog/versions                             231 B         103 kB
+├ ƒ /api/admin/downloads                                 231 B         103 kB
+├ ƒ /api/admin/inquiries                                 231 B         103 kB
+├ ƒ /api/admin/seo/keywords                              231 B         103 kB
+├ ƒ /api/admin/seo/monthly                               231 B         103 kB
+├ ƒ /api/admin/seo/report                                231 B         103 kB
+├ ƒ /api/admin/seo/stats                                 231 B         103 kB
+├ ƒ /api/admin/seo/sync                                  231 B         103 kB
+├ ƒ /api/admin/settings                                  231 B         103 kB
+├ ƒ /api/admin/spa/inquiries                             231 B         103 kB
+├ ƒ /api/admin/spa/reservations                          231 B         103 kB
+├ ƒ /api/admin/stats                                     231 B         103 kB
+├ ƒ /api/admin/stats/detailed                            231 B         103 kB
+├ ƒ /api/admin/upload                                    231 B         103 kB
+├ ƒ /api/admin/users                                     231 B         103 kB
+├ ƒ /api/admin/yanlong/inquiries                         231 B         103 kB
+├ ƒ /api/admin/yanlong/reservations                      231 B         103 kB
+├ ƒ /api/announcements                                   231 B         103 kB
+├ ƒ /api/announcements/[slug]                            231 B         103 kB
+├ ƒ /api/blog                                            231 B         103 kB
+├ ƒ /api/blog/[slug]                                     231 B         103 kB
+├ ƒ /api/contact                                         231 B         103 kB
+├ ƒ /api/cron/seo-report                                 231 B         103 kB
+├ ƒ /api/cron/seo-sync                                   231 B         103 kB
+├ ƒ /api/downloads                                       231 B         103 kB
+├ ƒ /api/feedback                                        231 B         103 kB
+├ ƒ /api/spa/book                                        231 B         103 kB
+├ ƒ /api/track                                           231 B         103 kB
+├ ƒ /artist                                            2.04 kB         168 kB
+├ ƒ /artist-story                                        250 B         166 kB
+├ ƒ /blog                                                266 B         166 kB
+├ ƒ /blog/[slug]                                         266 B         166 kB
+├ ƒ /contact                                             258 B         268 kB
+├ ƒ /cookie-policy                                       258 B         166 kB
+├ ƒ /dining                                              258 B         166 kB
+├ ƒ /disclaimer                                          257 B         166 kB
+├ ƒ /download-fact-sheets                               9.2 kB         259 kB
+├ ƒ /facilities                                          775 B         167 kB
+├ ƒ /hotel-policy                                        258 B         166 kB
+├ ƒ /m                                                 2.13 kB         114 kB
+├ ƒ /m/around                                            821 B         108 kB
+├ ● /m/around/[slug]                                   1.89 kB         110 kB
+├   ├ /m/around/old-town
+├   ├ /m/around/nature
+├   ├ /m/around/culture
+├   └ [+3 more paths]
+├ ƒ /m/chat                                            1.28 kB         104 kB
+├ ƒ /m/contact                                           376 B         205 kB
+├ ƒ /m/dining                                            848 B         113 kB
+├ ● /m/dining/[slug]                                   1.84 kB         114 kB
+├   ├ /m/dining/yan-long-chinese-restaurant
+├   └ /m/dining/twist-rooftop-restaurant-bar
+├ ƒ /m/events                                            190 B         225 kB
+├ ƒ /m/facilities                                        848 B         113 kB
+├ ƒ /m/feedback                                        2.59 kB         110 kB
+├ ƒ /m/more                                              821 B         108 kB
+├ ƒ /m/promotions                                        848 B         113 kB
+├ ● /m/promotions/[slug]                                 489 B         108 kB
+├   ├ /m/promotions/stay-2-pay-1
+├   ├ /m/promotions/family-nest
+├   ├ /m/promotions/sun-and-fun
+├   └ [+8 more paths]
+├ ƒ /m/rooms                                             848 B         113 kB
+├ ● /m/rooms/[slug]                                    1.49 kB         109 kB
+├   ├ /m/rooms/premier-superior
+├   ├ /m/rooms/premier-superior-partial-sea-view
+├   ├ /m/rooms/premier-deluxe
+├   └ [+3 more paths]
+├ ƒ /m/spa                                               848 B         113 kB
+├ ● /m/spa/[id]                                          848 B         113 kB
+├   ├ /m/spa/20
+├   ├ /m/spa/21
+├   ├ /m/spa/22
+├   └ [+16 more paths]
+├ ƒ /m/spa/book                                        7.37 kB         215 kB
+├ ƒ /m/weddings                                          191 B         226 kB
+├ ƒ /manifest.webmanifest                                231 B         103 kB
+├ ƒ /meeting-events                                    5.32 kB         270 kB
+├ ● /meeting-events/[type]                             2.37 kB         267 kB
+├   ├ /meeting-events/corporate-conference
+├   ├ /meeting-events/seminar-workshop
+├   ├ /meeting-events/product-launch
+├   └ [+10 more paths]
+├ ƒ /opengraph-image                                     231 B         103 kB
+├ ƒ /our-clients                                         257 B         166 kB
+├ ƒ /privacy-policy                                      258 B         166 kB
+├ ƒ /promotions                                        2.69 kB         154 kB
+├ ● /promotions/[slug]                                   177 B         111 kB
+├   ├ /promotions/stay-2-pay-1
+├   ├ /promotions/family-nest
+├   ├ /promotions/sun-and-fun
+├   └ [+8 more paths]
+├ ○ /robots.txt                                          231 B         103 kB
+├ ƒ /rooms-suites                                        258 B         166 kB
+├ ● /rooms-suites/[slug]                                 266 B         166 kB
+├   ├ /rooms-suites/premier-superior
+├   ├ /rooms-suites/premier-superior-partial-sea-view
+├   ├ /rooms-suites/premier-deluxe
+├   └ [+3 more paths]
+├ ƒ /royal-green                                       2.92 kB         151 kB
+├ ○ /sitemap.xml                                         231 B         103 kB          1h      1y
+├ ƒ /sustainability                                      253 B         166 kB
+├ ƒ /sustainability/activities                           266 B         166 kB
+├ ƒ /sustainability/cultural-historical                  266 B         166 kB
+├ ƒ /sustainability/michelin-restaurants                 257 B         166 kB
+├ ƒ /sustainability/natural-attractions                  266 B         166 kB
+├ ƒ /sustainability/transportation                       266 B         166 kB
+├ ƒ /terms-conditions                                    257 B         166 kB
+├ ƒ /twist-rooftop-restaurant-bar                        140 B         172 kB
+├ ƒ /wedding-venues                                    6.38 kB         273 kB
+├ ● /wedding-venues/[type]                             2.65 kB         269 kB
+├   ├ /wedding-venues/engagement-ceremony
+├   ├ /wedding-venues/thai-wedding
+├   ├ /wedding-venues/chinese-wedding
+├   └ [+3 more paths]
+└ ƒ /yan-long-chinese-restaurant                         140 B         172 kB
++ First Load JS shared by all                           103 kB
+  ├ chunks/1255-134e758cd096ae1f.js                    46.4 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js                54.2 kB
+  └ other shared chunks (total)                        2.01 kB
+
+
+ƒ Middleware                                           89.4 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

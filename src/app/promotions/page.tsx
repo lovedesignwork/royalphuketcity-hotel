@@ -1,3 +1,5 @@
+import { getPageAlternates } from "@/lib/seo-utils";
+import { isPromotionActive } from "@/lib/promotion-validity";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -12,10 +14,6 @@ import {
   getPromotionsPageCopy,
 } from "@/lib/i18n/promotions-copy";
 
-function isPromotionActive(validUntil: string): boolean {
-  return new Date(validUntil) >= new Date();
-}
-
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const t = getPromotionsPageCopy(locale);
@@ -23,19 +21,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t.metaTitle,
     description: t.metaDesc,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/promotions`,
-        th: `${SITE_CONFIG.url}/th/promotions`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${t.metaTitle} | Royal Phuket City Hotel`,
       description: t.metaDesc,
       url: `${SITE_CONFIG.url}${path}`,
       siteName: SITE_CONFIG.name,
-      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: t.metaTitle }],
+      images: [{ url: "/images/og-image.jpg", alt: t.metaTitle }],
       locale: locale === "th" ? "th_TH" : "en_US",
       type: "website",
     },
@@ -55,7 +47,7 @@ export default async function PromotionsPage() {
   const activePromotions = promotions.filter((p) => isPromotionActive(p.validUntil));
 
   return (
-    <main>
+    <div>
       <HeroSection
         title={t.heroTitle}
         subtitle={t.heroSubtitle}
@@ -79,7 +71,6 @@ export default async function PromotionsPage() {
                     alt={promo.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    quality={100}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4">
@@ -151,6 +142,6 @@ export default async function PromotionsPage() {
         description={t.ctaDesc}
         image="/images/HOTEL WEBSITE/RPC-Wide.jpg"
       />
-    </main>
+    </div>
   );
 }

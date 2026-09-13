@@ -155,13 +155,13 @@ export default function TestimonialSlider() {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "w-5 h-1.5 bg-[#8B7355]"
-                      : "w-1.5 h-1.5 bg-white/30 hover:bg-white/60"
-                  }`}
+                  type="button"
+                  className="flex h-6 w-6 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
                   aria-label={`Go to testimonial ${index + 1}`}
-                />
+                  aria-current={index === currentIndex ? "true" : undefined}
+                >
+                  <span aria-hidden="true" className={`h-1.5 rounded-full transition-all duration-300 ${index === currentIndex ? "w-5 bg-[#8B7355]" : "w-1.5 bg-white/30"}`} />
+                </button>
               ))}
             </div>
 

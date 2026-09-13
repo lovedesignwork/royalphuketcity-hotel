@@ -107,8 +107,6 @@ export default function WeddingPhotoSlider() {
                   fill
                   className="object-cover"
                   sizes="33vw"
-                  quality={100}
-                  unoptimized
                 />
               </div>
             ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { getCountryCallingCode, parsePhoneNumber } from "react-phone-number-input";
+import { getCountryCallingCode, isPossiblePhoneNumber, parsePhoneNumber } from "react-phone-number-input";
 import type { Country } from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 
@@ -137,6 +137,7 @@ interface CountryPhoneSelectorProps {
   onChange: (value: string) => void;
   defaultCountry?: Country;
   required?: boolean;
+  id?: string;
 }
 
 export default function CountryPhoneSelector({
@@ -144,34 +145,39 @@ export default function CountryPhoneSelector({
   onChange,
   defaultCountry = "TH",
   required = false,
+  id = "phone",
 }: CountryPhoneSelectorProps) {
   const [country, setCountry] = useState<Country>(defaultCountry);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const lastEmittedValue = useRef<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const phoneInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (value && !isInitialized) {
+    if (value === lastEmittedValue.current) return;
+    lastEmittedValue.current = value;
+    if (value) {
       try {
         const parsed = parsePhoneNumber(value);
-        if (parsed?.country) {
-          setCountry(parsed.country);
-          setPhoneNumber(parsed.nationalNumber || "");
-        }
+        if (parsed?.country) setCountry(parsed.country);
+        setPhoneNumber(parsed?.nationalNumber || value);
       } catch {
         const dialCode = getCountryCallingCode(defaultCountry);
         if (value.startsWith(`+${dialCode}`)) {
           setPhoneNumber(value.slice(dialCode.length + 1));
         }
       }
-      setIsInitialized(true);
-    } else if (!isInitialized) {
-      setIsInitialized(true);
+    } else {
+      setPhoneNumber("");
     }
-  }, [value, defaultCountry, isInitialized]);
+  }, [value, defaultCountry]);
+
+  useEffect(() => {
+    phoneInputRef.current?.setCustomValidity(value && !isPossiblePhoneNumber(value) ? "Please enter a valid phone number." : "");
+  }, [value]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -187,9 +193,11 @@ export default function CountryPhoneSelector({
   const buildFullNumber = useCallback(
     (countryCode: Country, phone: string): string => {
       if (!phone) return "";
+      const parsed = parsePhoneNumber(phone, countryCode);
+      if (parsed) return parsed.number;
       const dialCode = getCountryCallingCode(countryCode);
       const cleanPhone = phone.replace(/\D/g, "");
-      return `+${dialCode}${cleanPhone}`;
+      return cleanPhone ? `+${dialCode}${cleanPhone}` : "";
     },
     []
   );
@@ -198,7 +206,9 @@ export default function CountryPhoneSelector({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newPhone = e.target.value;
       setPhoneNumber(newPhone);
-      onChange(buildFullNumber(country, newPhone));
+      const fullNumber = buildFullNumber(country, newPhone);
+      lastEmittedValue.current = fullNumber;
+      onChange(fullNumber);
     },
     [country, onChange, buildFullNumber]
   );
@@ -207,7 +217,8 @@ export default function CountryPhoneSelector({
     (newCountry: Country) => {
       setCountry(newCountry);
       const fullNumber = buildFullNumber(newCountry, phoneNumber);
-      if (fullNumber) onChange(fullNumber);
+      lastEmittedValue.current = fullNumber;
+      onChange(fullNumber);
       setIsOpen(false);
       setSearchQuery("");
     },
@@ -226,10 +237,12 @@ export default function CountryPhoneSelector({
   return (
     <div className="flex w-full min-w-0 hairline-border bg-white focus-within:border-[--color-accent] transition-colors">
       {/* Country Code Selector */}
-      <div className="relative" ref={dropdownRef}>
+      <div className="relative" ref={dropdownRef} onKeyDown={(event) => { if (event.key === "Escape") { setIsOpen(false); dropdownRef.current?.querySelector("button")?.focus(); } }}>
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Choose phone country code"
+          aria-expanded={isOpen}
           className="flex items-center gap-2 px-3 py-3 hover:bg-gray-50 transition-colors min-w-[100px] justify-between border-r border-gray-200"
         >
           <span className="flex items-center gap-2">
@@ -252,13 +265,14 @@ export default function CountryPhoneSelector({
 
         {/* Dropdown */}
         {isOpen && (
-          <div className="absolute top-full left-0 mt-1 z-50 max-h-[350px] w-[min(280px,calc(100vw-2rem))] max-w-full overflow-hidden bg-white border border-gray-200 shadow-lg">
+          <div className="absolute top-full left-0 mt-1 z-50 max-h-[350px] w-[min(280px,calc(100vw-2rem))] overflow-hidden bg-white border border-gray-200 shadow-lg">
             {/* Search */}
             <div className="p-2 border-b border-gray-100">
               <input
                 ref={inputRef}
                 type="text"
                 placeholder="Search country..."
+                aria-label="Search phone country"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8B7355]"
@@ -305,7 +319,13 @@ export default function CountryPhoneSelector({
 
       {/* Phone Input */}
       <input
+        id={id}
+        ref={phoneInputRef}
         type="tel"
+        name="phone"
+        aria-label="Phone number"
+        autoComplete="tel-national"
+        maxLength={30}
         value={phoneNumber}
         onChange={handlePhoneChange}
         placeholder="Phone number"

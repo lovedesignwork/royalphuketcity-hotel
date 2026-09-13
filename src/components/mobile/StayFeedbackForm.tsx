@@ -78,7 +78,7 @@ export default function StayFeedbackForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-[16px] bg-[var(--m-card)] p-5 text-center">
+      <div role="status" className="rounded-[16px] bg-[var(--m-card)] p-5 text-center">
         <p className="text-sm text-[var(--m-gold)]">Thank you</p>
         <h2 className="mt-2 font-heading text-2xl">We read every note</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--m-muted)]">
@@ -144,6 +144,7 @@ export default function StayFeedbackForm() {
                 key={option.value}
                 type="button"
                 onClick={() => setStayAgain(option.value)}
+                aria-pressed={selected}
                 className={`min-h-11 rounded-[12px] text-sm ${
                   selected
                     ? "bg-[var(--m-gold)] font-medium text-white"
@@ -163,6 +164,7 @@ export default function StayFeedbackForm() {
         </label>
         <textarea
           id="feedback-comments"
+          maxLength={10000}
           rows={5}
           value={comments}
           onChange={(event) => setComments(event.target.value)}
@@ -177,6 +179,8 @@ export default function StayFeedbackForm() {
         </label>
         <input
           id="feedback-name"
+          autoComplete="name"
+          maxLength={150}
           value={name}
           onChange={(event) => setName(event.target.value)}
           className="w-full min-w-0 bg-white px-4 py-3 hairline-border focus:border-[--color-accent] focus:outline-none"
@@ -189,6 +193,7 @@ export default function StayFeedbackForm() {
         </label>
         <input
           id="feedback-room"
+          maxLength={30}
           value={roomNumber}
           onChange={(event) => setRoomNumber(event.target.value)}
           className="w-full min-w-0 bg-white px-4 py-3 hairline-border focus:border-[--color-accent] focus:outline-none"
@@ -201,6 +206,8 @@ export default function StayFeedbackForm() {
         </label>
         <input
           id="feedback-email"
+          autoComplete="email"
+          maxLength={254}
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -214,7 +221,7 @@ export default function StayFeedbackForm() {
       </div>
 
       {status === "error" && error ? (
-        <p className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</p>
+        <p role="alert" className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</p>
       ) : null}
 
       <button

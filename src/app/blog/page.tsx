@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import { HeroSection, SectionHeading } from "@/components";
+import { notFound } from "next/navigation";
+import { getPublishedPosts, parseBlogPage, type BlogPost } from "@/lib/blog";
 
-export const metadata: Metadata = {
-  title: "Blog | Royal Phuket City Hotel",
+const blogMetadata: Metadata = {
+  title: "Phuket Travel Guides & Hotel News",
   description:
     "Explore travel tips, local attractions, hotel news, and insider guides to Phuket Old Town from Royal Phuket City Hotel.",
   alternates: {
@@ -22,28 +24,19 @@ export const metadata: Metadata = {
   },
 };
 
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt?: string;
-  featured_image?: string;
-  published_at?: string;
-  word_count?: number;
-  blog_categories?: { name: string; slug: string };
-}
+type BlogPageProps = { searchParams: Promise<{ page?: string }> };
 
-async function getBlogPosts(): Promise<{ posts: BlogPost[]; total: number }> {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/blog?limit=12`, {
-      next: { revalidate: 60 },
-    });
-    if (!res.ok) return { posts: [], total: 0 };
-    return res.json();
-  } catch {
-    return { posts: [], total: 0 };
-  }
+export async function generateMetadata({ searchParams }: BlogPageProps): Promise<Metadata> {
+  const page = parseBlogPage((await searchParams).page);
+  const url = `${SITE_CONFIG.url}/blog${page > 1 ? `?page=${page}` : ""}`;
+  const title = `Phuket Travel Guides & Hotel News${page > 1 ? ` | Page ${page}` : ""}`;
+  return {
+    ...blogMetadata,
+    title,
+    alternates: { canonical: url },
+    openGraph: { ...blogMetadata.openGraph, title, url, images: [SITE_CONFIG.ogImage] },
+    twitter: { card: "summary_large_image", title, description: String(blogMetadata.description), images: [SITE_CONFIG.ogImage] },
+  };
 }
 
 function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
@@ -59,6 +52,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
                 src={post.featured_image}
                 alt={post.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
             ) : (
@@ -121,6 +115,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
               src={post.featured_image}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
@@ -173,19 +168,22 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
   );
 }
 
-export default async function BlogPage() {
-  const { posts } = await getBlogPosts();
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const page = parseBlogPage((await searchParams).page);
+  const { posts, total } = await getPublishedPosts(page, 12);
+  if (page > 1 && posts.length === 0) notFound();
+  const totalPages = Math.ceil(total / 12);
   const featuredPost = posts.length > 0 ? posts[0] : null;
   const remainingPosts = posts.slice(1);
 
   return (
-    <main>
+    <div>
       {/* Hero Section */}
       <HeroSection
         title="Stories & Insights"
         subtitle="Our Blog"
         description="Travel tips, local guides, and stories from Royal Phuket City Hotel"
-        image="https://images.unsplash.com/photo-1455587734955-081b22074882?q=80&w=2070&auto=format&fit=crop"
+        image="/images/HOTEL WEBSITE/HKT Old Town.jpg"
         height="medium"
       />
 
@@ -244,10 +242,17 @@ export default async function BlogPage() {
               </p>
             </div>
           ) : null}
+          {totalPages > 1 && (
+            <nav aria-label="Article pagination" className="mt-12 flex items-center justify-center gap-6">
+              {page > 1 && <Link rel="prev" className="underline underline-offset-4" href={page === 2 ? "/blog" : `/blog?page=${page - 1}`}>Previous articles</Link>}
+              <span>Page {page} of {totalPages}</span>
+              {page < totalPages && <Link rel="next" className="underline underline-offset-4" href={`/blog?page=${page + 1}`}>Next articles</Link>}
+            </nav>
+          )}
         </div>
       </section>
 
-      {/* Newsletter CTA */}
+      {/* Link to current offers; no newsletter service is configured. */}
       <section className="py-20 md:py-28 bg-[#8B7355]">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
@@ -255,24 +260,14 @@ export default async function BlogPage() {
               Stay Connected
             </p>
             <h2 className="font-heading text-3xl md:text-4xl text-white mb-4">
-              Subscribe to Our Newsletter
+              Discover Our Latest Offers
             </h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Receive the latest travel tips, exclusive offers, and stories from Royal Phuket City Hotel directly in your inbox.
+              Explore current room packages, dining offers, and experiences at Royal Phuket City Hotel.
             </p>
-            <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:border-white focus:outline-none transition-colors"
-              />
-              <button
-                type="submit"
-                className="px-8 py-4 bg-white text-[#8B7355] font-medium tracking-wider uppercase text-sm hover:bg-white/90 transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
+            <Link href="/promotions" className="inline-flex px-8 py-4 bg-white text-[#8B7355] font-medium tracking-wider uppercase text-sm hover:bg-white/90 transition-colors">
+              View Current Offers
+            </Link>
           </div>
         </div>
       </section>
@@ -280,7 +275,7 @@ export default async function BlogPage() {
       {/* Explore CTA */}
       <section className="relative py-24 md:py-32">
         <Image
-          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+          src="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
           alt="Royal Phuket City Hotel"
           fill
           className="object-cover"
@@ -316,6 +311,6 @@ export default async function BlogPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

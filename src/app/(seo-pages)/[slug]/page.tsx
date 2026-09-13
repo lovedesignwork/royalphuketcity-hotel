@@ -2,23 +2,12 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { SEO_PAGES, SEO_PAGE_SLUGS, SeoPageData, FAQItem } from "@/lib/seo-pages-data";
+import { SEO_PAGES, SEO_PAGE_SLUGS, SeoPageData } from "@/lib/seo-pages-data";
 import HeroSection from "@/components/HeroSection";
-
-function generateFAQSchema(faqs: FAQItem[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-}
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { FAQJsonLd, JsonLd } from "@/components/JsonLd";
+import { generatePageMetadata } from "@/lib/seo-utils";
+import { SITE_CONFIG } from "@/lib/constants";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -30,24 +19,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const pageData = SEO_PAGES[slug];
+  const pageData = Object.prototype.hasOwnProperty.call(SEO_PAGES, slug) ? SEO_PAGES[slug] : undefined;
 
   if (!pageData) {
-    return {
-      title: "Page Not Found",
-    };
+    notFound();
   }
 
-  return {
-    title: `${pageData.title} | Royal Phuket City Hotel`,
+  return generatePageMetadata({
+    title: pageData.title,
     description: pageData.metaDescription,
-    keywords: pageData.seoKeywords.join(", "),
-    openGraph: {
-      title: `${pageData.title} | Royal Phuket City Hotel`,
-      description: pageData.metaDescription,
-      images: [pageData.heroImage],
-    },
-  };
+    path: `/${slug}`,
+    ogImage: pageData.heroImage,
+  });
 }
 
 function getCategoryLabel(category: SeoPageData["category"]) {
@@ -61,13 +44,9 @@ function getCategoryLabel(category: SeoPageData["category"]) {
   return labels[category];
 }
 
-function getCategoryColor() {
-  return "bg-[#8B7355]";
-}
-
 export default async function SeoPage({ params }: PageProps) {
   const { slug } = await params;
-  const pageData = SEO_PAGES[slug];
+  const pageData = Object.prototype.hasOwnProperty.call(SEO_PAGES, slug) ? SEO_PAGES[slug] : undefined;
 
   if (!pageData) {
     notFound();
@@ -78,7 +57,18 @@ export default async function SeoPage({ params }: PageProps) {
     .filter(Boolean);
 
   return (
-    <main>
+    <div>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${SITE_CONFIG.url}/${slug}#webpage`,
+        url: `${SITE_CONFIG.url}/${slug}`,
+        name: pageData.title,
+        description: pageData.metaDescription,
+        inLanguage: "en",
+        isPartOf: { "@id": `${SITE_CONFIG.url}/#website` },
+        about: { "@id": `${SITE_CONFIG.url}/#hotel` },
+      }} />
       {/* Hero Section */}
       <HeroSection
         title={pageData.title}
@@ -87,19 +77,15 @@ export default async function SeoPage({ params }: PageProps) {
         height="medium"
       />
 
-      {/* FAQ Schema for GEO */}
+      {/* These answers are also rendered in the FAQ section below. */}
       {pageData.geo?.faqs && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(generateFAQSchema(pageData.geo.faqs)),
-          }}
-        />
+        <FAQJsonLd faqs={pageData.geo.faqs} />
       )}
 
       {/* Category Badge */}
       <div className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-6 py-4">
+          <Breadcrumbs items={[{ label: pageData.title, href: `/${slug}` }]} />
           <span className="inline-block px-4 py-1.5 text-xs tracking-widest uppercase text-white bg-[#8B7355]">
             {getCategoryLabel(pageData.category)}
           </span>
@@ -146,6 +132,36 @@ export default async function SeoPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {pageData.content.planningSections && (
+        <section className="py-12 md:py-16 bg-[--color-surface]">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto space-y-10">
+              {pageData.content.planningSections.map((section) => (
+                <div key={section.title}>
+                  <h2 className="font-heading text-2xl md:text-3xl text-[--color-text-primary] mb-4">
+                    {section.title}
+                  </h2>
+                  <div className="space-y-4">
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph} className="text-[--color-text-secondary] leading-relaxed">{paragraph}</p>
+                    ))}
+                  </div>
+                  <ul className="flex flex-wrap gap-x-6 gap-y-3 mt-5">
+                    {section.links.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="text-[#8B7355] underline underline-offset-4 hover:text-[#6d593f]">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Features Section - Only for hotel pages */}
       {pageData.content.features && pageData.category === "hotel" && (
@@ -476,15 +492,6 @@ export default async function SeoPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* SEO Keywords (Hidden) */}
-      <div className="sr-only" aria-hidden="true">
-        <h2>Related Keywords</h2>
-        <ul>
-          {pageData.seoKeywords.map((keyword, index) => (
-            <li key={index}>{keyword}</li>
-          ))}
-        </ul>
-      </div>
-    </main>
+    </div>
   );
 }

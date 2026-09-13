@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
+import { JsonLd } from "./JsonLd";
 
 export interface BreadcrumbItem {
   label: string;
@@ -26,12 +27,9 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <nav aria-label="Breadcrumb" className="py-4">
-        <ol className="flex items-center gap-2 text-sm text-[--color-text-secondary]">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-[--color-text-secondary]">
           {fullItems.map((item, index) => (
             <li key={item.href} className="flex items-center gap-2">
               {index > 0 && (
@@ -50,7 +48,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                 </svg>
               )}
               {index === fullItems.length - 1 ? (
-                <span className="text-[--color-text-primary] font-medium">
+                <span aria-current="page" className="text-[--color-text-primary] font-medium">
                   {item.label}
                 </span>
               ) : (

@@ -351,7 +351,7 @@ export default function EditBlogPostPage({
             </button>
           )}
           <a
-            href={`/blog/${slug}`}
+            href={`/admin/blog/${id}/preview`}
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"

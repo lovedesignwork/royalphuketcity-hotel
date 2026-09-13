@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateAntiSpam } from "@/lib/antispam";
+import { escapeHtml, formText, isEmail, isFormBody } from "@/lib/guest-form-validation";
 import {
   assignmentForInquiryType,
   primaryMailbox,
@@ -7,44 +8,40 @@ import {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const {
-      name,
-      email,
-      phone,
-      subject,
-      message,
-      inquiry_type,
-      // Anti-spam fields
-      _hp,
-      _ts,
-    } = body;
+    const body: unknown = await request.json().catch(() => null);
+    if (!isFormBody(body)) {
+      return NextResponse.json({ error: "Invalid form submission" }, { status: 400 });
+    }
+    const name = formText(body.name);
+    const email = formText(body.email);
+    const phone = formText(body.phone);
+    const subject = formText(body.subject);
+    const message = formText(body.message);
+    const inquiry_type = formText(body.inquiry_type) || "general";
+    if (!name || !isEmail(email) || !message || name.length > 150 || phone.length > 50 || subject.length > 300 || message.length > 10000) {
+      return NextResponse.json({ error: "Please provide your name, a valid email, and a message within 10,000 characters." }, { status: 400 });
+    }
 
     // Anti-spam validation
     const spamCheck = await validateAntiSpam({
-      honeypot: _hp,
-      formLoadedAt: _ts,
+      honeypot: formText(body._hp),
+      formLoadedAt: typeof body._ts === "number" ? body._ts : undefined,
       message,
       email,
       name,
     });
 
     if (!spamCheck.passed) {
-      console.log(`Spam blocked: ${spamCheck.reason} - ${email}`);
+      console.log(`Spam blocked: ${spamCheck.reason}`);
       return NextResponse.json(
         { error: spamCheck.reason || "Your submission was blocked" },
         { status: 400 }
       );
     }
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Name, email, and message are required" },
-        { status: 400 }
-      );
-    }
-
     let submissionId: string | null = null;
+    let staffEmailSent = false;
+    let confirmationEmailSent = false;
 
     // Initialize Supabase client if environment variables are set
     if (
@@ -81,8 +78,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Send email via Resend if API key is set
+    const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
+    const html = { name: escapeHtml(name), email: escapeHtml(email), phone: escapeHtml(phone), subject: escapeHtml(subject), message: escapeHtml(message).replace(/\n/g, "<br />"), inquiryType: escapeHtml(inquiry_type) };
+
+    // A saved inquiry stays accepted if an optional email notification fails.
     if (process.env.RESEND_API_KEY) {
+      try {
       const { Resend } = await import("resend");
       const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -90,11 +91,10 @@ export async function POST(request: NextRequest) {
       const isWeddingInquiry = inquiry_type === "wedding";
       const assignment = assignmentForInquiryType(inquiry_type);
       const replyMailbox = primaryMailbox(assignment);
-      const referenceNumber = submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : `RPC-${Date.now()}`;
 
       // Staff notification: To = person in charge, CC = matrix copy list.
       // replyTo is the guest so staff pressing Reply reaches the customer.
-      await resend.emails.send({
+      const notification = await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
         to: [...assignment.to],
         cc: [...assignment.cc],
@@ -115,15 +115,15 @@ export async function POST(request: NextRequest) {
               </h2>
               <p style="color: #666;"><strong>Reference Number:</strong> ${referenceNumber}</p>
               <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Name:</td><td style="padding: 8px 0; color: #666;">${name}</td></tr>
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #666;">${email}</td></tr>
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #666;">${phone || "Not provided"}</td></tr>
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Inquiry Type:</td><td style="padding: 8px 0; color: #666;">${inquiry_type || "General"}</td></tr>
-                ${subject ? `<tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Subject:</td><td style="padding: 8px 0; color: #666;">${subject}</td></tr>` : ""}
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Name:</td><td style="padding: 8px 0; color: #666;">${html.name}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #666;">${html.email}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #666;">${html.phone || "Not provided"}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Inquiry Type:</td><td style="padding: 8px 0; color: #666;">${html.inquiryType}</td></tr>
+                ${subject ? `<tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Subject:</td><td style="padding: 8px 0; color: #666;">${html.subject}</td></tr>` : ""}
               </table>
               <div style="background-color: white; padding: 20px; border-left: 4px solid #8B7355; margin: 20px 0;">
                 <h3 style="color: #333; margin-top: 0;">Message / Details:</h3>
-                <p style="color: #666; line-height: 1.6;">${message.replace(/\n/g, "<br />")}</p>
+                <p style="color: #666; line-height: 1.6;">${html.message}</p>
               </div>
               <p style="color: #888; font-size: 12px; margin-top: 30px;">
                 Submitted on ${new Date().toLocaleString("en-US", { dateStyle: "full", timeStyle: "short" })}
@@ -133,8 +133,12 @@ export async function POST(request: NextRequest) {
         `,
       });
 
-      // Guest confirmation. replyTo is the PIC mailbox for this inquiry type.
-      await resend.emails.send({
+      if (notification.error) throw new Error(notification.error.message);
+      staffEmailSent = true;
+
+      // Guest chat has no guest email; never send confirmation to its placeholder.
+      if (inquiry_type !== "guest_chat") {
+      const confirmation = await resend.emails.send({
         from: "Royal Phuket City Hotel <noreply@royalphuketcity.com>",
         to: [email],
         replyTo: replyMailbox,
@@ -148,7 +152,7 @@ export async function POST(request: NextRequest) {
               <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0;">Phuket Old Town, Thailand</p>
             </div>
             <div style="padding: 30px; background-color: #ffffff;">
-              <h2 style="color: #8B7355; margin-top: 0;">Thank You, ${name}!</h2>
+              <h2 style="color: #8B7355; margin-top: 0;">Thank You, ${html.name}!</h2>
               <p style="color: #666; line-height: 1.6;">
                 ${isEventInquiry 
                   ? "We have received your event inquiry and our dedicated Meetings & Events team will review your request."
@@ -162,13 +166,13 @@ export async function POST(request: NextRequest) {
               </div>
               <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px;">Your Submission Details:</h3>
               <table style="width: 100%; border-collapse: collapse;">
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold; width: 120px;">Name:</td><td style="padding: 8px 0; color: #666;">${name}</td></tr>
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #666;">${email}</td></tr>
-                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #666;">${phone || "Not provided"}</td></tr>
-                ${subject ? `<tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Subject:</td><td style="padding: 8px 0; color: #666;">${subject}</td></tr>` : ""}
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold; width: 120px;">Name:</td><td style="padding: 8px 0; color: #666;">${html.name}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Email:</td><td style="padding: 8px 0; color: #666;">${html.email}</td></tr>
+                <tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Phone:</td><td style="padding: 8px 0; color: #666;">${html.phone || "Not provided"}</td></tr>
+                ${subject ? `<tr><td style="padding: 8px 0; color: #333; font-weight: bold;">Subject:</td><td style="padding: 8px 0; color: #666;">${html.subject}</td></tr>` : ""}
               </table>
               <div style="background-color: #faf9f7; padding: 15px; border-left: 3px solid #8B7355; margin: 20px 0;">
-                <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.6;">${message.replace(/\n/g, "<br />")}</p>
+                <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.6;">${html.message}</p>
               </div>
               ${isEventInquiry ? `
               <div style="background-color: #8B7355; color: white; padding: 20px; margin: 20px 0; text-align: center;">
@@ -181,7 +185,7 @@ export async function POST(request: NextRequest) {
                 If you have any urgent inquiries, please contact us directly:
               </p>
               <p style="color: #666; font-size: 14px;">
-                <strong>Phone:</strong> +66 76 233 333<br />
+                <strong>Phone:</strong> +66 76 233 355<br />
                 <strong>Email:</strong> ${replyMailbox}
               </p>
             </div>
@@ -196,13 +200,23 @@ export async function POST(request: NextRequest) {
           </div>
         `,
       });
+      confirmationEmailSent = !confirmation.error;
+      if (confirmation.error) console.error("Contact confirmation email:", confirmation.error);
+      }
+      } catch (error) {
+        console.error("Contact email notification failed:", error);
+      }
     }
 
+    if (!submissionId && !staffEmailSent) {
+      return NextResponse.json({ error: "Your inquiry could not be delivered. Please try again later or call +66 76 233 355." }, { status: 503 });
+    }
     return NextResponse.json(
       { 
         success: true, 
         message: "Your inquiry has been submitted successfully.",
-        referenceNumber: submissionId ? `RPC-${submissionId.slice(0, 8).toUpperCase()}` : null
+        referenceNumber,
+        confirmationEmailSent,
       },
       { status: 200 }
     );

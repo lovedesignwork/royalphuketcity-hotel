@@ -1,0 +1,1356 @@
+[
+  {
+    "url": "http://localhost:3100/",
+    "status": 200,
+    "title": "Royal Phuket City Hotel | Luxury 4-Star Hotel in Phuket Old Town",
+    "description": "Experience luxury and comfort at Royal Phuket City Hotel, a 4-star hotel in the heart of Phuket Old Town. 251 elegant rooms, 5 dining venues, and world-class facilities.",
+    "canonical": "https://royalphuketcity.com",
+    "robots": "index, follow",
+    "h1": [
+      "EFFORTLESS COMFORT,\nEXCEPTIONAL LOCATION"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites",
+    "status": 200,
+    "title": "Rooms & Suites | Royal Phuket City Hotel",
+    "description": "Discover 251 elegant rooms and suites at Royal Phuket City Hotel. From Premier rooms to Executive Suites with stunning views of Phuket Old Town and the Andaman Sea.",
+    "canonical": "https://royalphuketcity.com/rooms-suites",
+    "robots": "index, follow",
+    "h1": [
+      "Rooms & Suites"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions",
+    "status": 200,
+    "title": "Promotions & Special Offers | Royal Phuket City Hotel",
+    "description": "Discover exclusive promotions and special offers at Royal Phuket City Hotel. Save on room rates, packages, and experiences in Phuket Old Town.",
+    "canonical": "https://royalphuketcity.com/promotions",
+    "robots": "index, follow",
+    "h1": [
+      "Exceptional Value for Your Stay"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/dining",
+    "status": 200,
+    "title": "Dining | Royal Phuket City Hotel",
+    "description": "Discover the dining venues at Royal Phuket City Hotel. From authentic Cantonese at Yan Long to rooftop cocktails at TWIST with panoramic views.",
+    "canonical": "https://royalphuketcity.com/dining",
+    "robots": "index, follow",
+    "h1": [
+      "Dining"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/facilities",
+    "status": 200,
+    "title": "Facilities | Royal Phuket City Hotel",
+    "description": "World-class facilities at Royal Phuket City Hotel: outdoor pool, fitness center, spa, EV charging stations, and complimentary Smart Bus shuttle service.",
+    "canonical": "https://royalphuketcity.com/facilities",
+    "robots": "index, follow",
+    "h1": [
+      "Everything You Need, All in One Place"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues",
+    "status": 200,
+    "title": "Wedding Venues | Royal Phuket City Hotel",
+    "description": "Create unforgettable wedding memories at Royal Phuket City Hotel. 27+ years of experience, elegant venues for up to 500 guests, and dedicated wedding planning team.",
+    "canonical": "https://royalphuketcity.com/wedding-venues",
+    "robots": "index, follow",
+    "h1": [
+      "The Venue of Your Dreams, The Service You Deserve"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events",
+    "status": 200,
+    "title": "Meeting & Events | Royal Phuket City Hotel",
+    "description": "Host successful meetings and events at Royal Phuket City Hotel. 9 versatile meeting rooms with state-of-the-art AV equipment and dedicated event planning support.",
+    "canonical": "https://royalphuketcity.com/meeting-events",
+    "robots": "index, follow",
+    "h1": [
+      "All-In-One Venue for All Kinds of Events"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/contact",
+    "status": 200,
+    "title": "Contact | Royal Phuket City Hotel",
+    "description": "Contact Royal Phuket City Hotel for reservations and inquiries. Located at 154 Phang-Nga Road, Phuket Old Town. Call +66 76 233 355.",
+    "canonical": "https://royalphuketcity.com/contact",
+    "robots": "index, follow",
+    "h1": [
+      "Contact Us"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/download-fact-sheets",
+    "status": 200,
+    "title": "Hotel Brochures & Fact Sheets | Royal Phuket City Hotel",
+    "description": "Explore Royal Phuket City Hotel fact sheets and presentations. Request brochures to plan hotel stays, meetings and events in Phuket Town.",
+    "canonical": "https://royalphuketcity.com/download-fact-sheets",
+    "robots": "index, follow",
+    "h1": [
+      "Downloads"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/artist",
+    "status": 200,
+    "title": "Artist | Royal Phuket City Hotel",
+    "description": "Meet the artists whose works grace Royal Phuket City Hotel. Discover paintings and sketches of Phuket Old Town's Sino-Portuguese heritage by Ch'ng Kiah Kiean, Pitirat Yosawat, and Dr. Thiwawat.",
+    "canonical": "https://royalphuketcity.com/artist",
+    "robots": "index, follow",
+    "h1": [
+      "Artist"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/artist-story",
+    "status": 200,
+    "title": "Artist Story | Royal Phuket City Hotel",
+    "description": "Explore the art collection at Royal Phuket City Hotel. Local Thai artists' works celebrating Phuket's rich Sino-Portuguese heritage and cultural traditions.",
+    "canonical": "https://royalphuketcity.com/artist-story",
+    "robots": "index, follow",
+    "h1": [
+      "Artist Story"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/royal-green",
+    "status": 200,
+    "title": "Royal Green | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel's RoyalGreen campaign - our step toward responsible, sustainable hospitality benefiting our guests, community, and planet.",
+    "canonical": "https://royalphuketcity.com/royal-green",
+    "robots": "index, follow",
+    "h1": [
+      "Royal Green"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/our-clients",
+    "status": 200,
+    "title": "Our Clients | Royal Phuket City Hotel",
+    "description": "Trusted by leading corporations, government agencies, and organizations for meetings, events, and corporate stays at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/our-clients",
+    "robots": "index, follow",
+    "h1": [
+      "Our Clients"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sustainability",
+    "status": 200,
+    "title": "Sustainability | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel's commitment to sustainability. Green Key certified, ESG practices, and sustainable tourism initiatives.",
+    "canonical": "https://royalphuketcity.com/sustainability",
+    "robots": "index, follow",
+    "h1": [
+      "Sustainability"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sustainability/activities",
+    "status": 200,
+    "title": "Activities Near Royal Phuket City Hotel",
+    "description": "Discover exciting activities near Royal Phuket City Hotel including island hopping, water parks, and adventure sports.",
+    "canonical": "https://royalphuketcity.com/sustainability/activities",
+    "robots": "index, follow",
+    "h1": [
+      "Activities & Adventures"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sustainability/cultural-historical",
+    "status": 200,
+    "title": "Cultural & Historical Attractions Near Royal Phuket City Hotel",
+    "description": "Explore Phuket's rich cultural heritage including temples, historic streets, and traditional markets near Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/sustainability/cultural-historical",
+    "robots": "index, follow",
+    "h1": [
+      "Cultural & Historical Attractions"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sustainability/michelin-restaurants",
+    "status": 200,
+    "title": "Michelin Restaurants Near Royal Phuket City Hotel",
+    "description": "Discover award-winning Michelin Guide restaurants near Royal Phuket City Hotel in Phuket Old Town.",
+    "canonical": "https://royalphuketcity.com/sustainability/michelin-restaurants",
+    "robots": "index, follow",
+    "h1": [
+      "Michelin Guide Restaurants"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sustainability/natural-attractions",
+    "status": 200,
+    "title": "Natural Attractions Near Royal Phuket City Hotel",
+    "description": "Discover beautiful natural attractions near Royal Phuket City Hotel including Khao Rang Viewpoint and Saphan Hin Park.",
+    "canonical": "https://royalphuketcity.com/sustainability/natural-attractions",
+    "robots": "index, follow",
+    "h1": [
+      "Natural Attractions"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sustainability/transportation",
+    "status": 200,
+    "title": "Public Transportation in Phuket | Royal Phuket City Hotel",
+    "description": "Guide to public transportation in Phuket including the free EV Smart Bus shuttle and local transport options near Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/sustainability/transportation",
+    "robots": "index, follow",
+    "h1": [
+      "Getting Around Phuket"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog",
+    "status": 200,
+    "title": "Phuket Travel Guides & Hotel News | Royal Phuket City Hotel",
+    "description": "Explore travel tips, local attractions, hotel news, and insider guides to Phuket Old Town from Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/blog",
+    "robots": "index, follow",
+    "h1": [
+      "Stories & Insights"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/accessibility",
+    "status": 200,
+    "title": "Accessibility | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel's commitment to accessibility for guests with disabilities. Learn about our accessible facilities, services, and accommodations.",
+    "canonical": "https://royalphuketcity.com/accessibility",
+    "robots": "index, follow",
+    "h1": [
+      "Accessibility"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites/premier-superior",
+    "status": 200,
+    "title": "Premier Superior | Royal Phuket City Hotel",
+    "description": "Premier Superior room at Royal Phuket City Hotel. 30 sqm of elegant comfort with City View. Perfect for up to 2 guests.",
+    "canonical": "https://royalphuketcity.com/rooms-suites/premier-superior",
+    "robots": "index, follow",
+    "h1": [
+      "Premier Superior"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "HotelRoom",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites/premier-superior-partial-sea-view",
+    "status": 200,
+    "title": "Premier Superior Sea View* | Royal Phuket City Hotel",
+    "description": "Premier Superior Sea View* room at Royal Phuket City Hotel. 30 sqm of elegant comfort with Sea View. Perfect for up to 2 guests.",
+    "canonical": "https://royalphuketcity.com/rooms-suites/premier-superior-partial-sea-view",
+    "robots": "index, follow",
+    "h1": [
+      "Premier Superior Sea View*"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "HotelRoom",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites/premier-deluxe",
+    "status": 200,
+    "title": "Premier Deluxe | Royal Phuket City Hotel",
+    "description": "Premier Deluxe room at Royal Phuket City Hotel. 38 sqm of elegant comfort with City View. Perfect for up to 2 guests.",
+    "canonical": "https://royalphuketcity.com/rooms-suites/premier-deluxe",
+    "robots": "index, follow",
+    "h1": [
+      "Premier Deluxe"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "HotelRoom",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites/premier-deluxe-partial-sea-view",
+    "status": 200,
+    "title": "Premier Deluxe Sea View* | Royal Phuket City Hotel",
+    "description": "Premier Deluxe Sea View* room at Royal Phuket City Hotel. 38 sqm of elegant comfort with Sea View. Perfect for up to 2 guests.",
+    "canonical": "https://royalphuketcity.com/rooms-suites/premier-deluxe-partial-sea-view",
+    "robots": "index, follow",
+    "h1": [
+      "Premier Deluxe Sea View*"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "HotelRoom",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites/suite-room",
+    "status": 200,
+    "title": "Suite | Royal Phuket City Hotel",
+    "description": "Suite room at Royal Phuket City Hotel. 64 sqm of elegant comfort with Panoramic City View. Perfect for up to 2 guests.",
+    "canonical": "https://royalphuketcity.com/rooms-suites/suite-room",
+    "robots": "index, follow",
+    "h1": [
+      "Suite"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "HotelRoom",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/rooms-suites/executive-suite",
+    "status": 200,
+    "title": "Executive Suite | Royal Phuket City Hotel",
+    "description": "Executive Suite room at Royal Phuket City Hotel. 75 sqm of elegant comfort with Panoramic Sea & City View. Perfect for up to 2 guests.",
+    "canonical": "https://royalphuketcity.com/rooms-suites/executive-suite",
+    "robots": "index, follow",
+    "h1": [
+      "Executive Suite"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "HotelRoom",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/yan-long-chinese-restaurant",
+    "status": 200,
+    "title": "Yan Long Authentic Chinese Restaurant | Royal Phuket City Hotel",
+    "description": "Authentic Cantonese cuisine at Yan Long Chinese Restaurant. Award-winning Peking duck, dim sum, and traditional Chinese dishes at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/yan-long-chinese-restaurant",
+    "robots": "index, follow",
+    "h1": [
+      "Yan Long Authentic Chinese Restaurant"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Restaurant"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/twist-rooftop-restaurant-bar",
+    "status": 200,
+    "title": "TWIST Rooftop Restaurant & Bar | Royal Phuket City Hotel",
+    "description": "TWIST Rooftop Restaurant & Bar on the 19th floor. Panoramic sunset views of Phuket, craft cocktails, and international cuisine at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/twist-rooftop-restaurant-bar",
+    "robots": "index, follow",
+    "h1": [
+      "TWIST Rooftop Restaurant & Bar"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Restaurant"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/stay-2-pay-1",
+    "status": 200,
+    "title": "The Stay 2 Pay 1 Offer | Promotions | Royal Phuket City Hotel",
+    "description": "Experience the heart of Phuket Old Town with our Stay 2 Pay 1 special. By planning your trip just 7 days in advance, you receive a complimentary second night, making this our most efficient rate for a two-night city escape.",
+    "canonical": "https://royalphuketcity.com/promotions/stay-2-pay-1",
+    "robots": "index, follow",
+    "h1": [
+      "The Stay 2 Pay 1 Offer"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/family-nest",
+    "status": 200,
+    "title": "Family Nest | Promotions | Royal Phuket City Hotel",
+    "description": "Gather the whole crew for the ultimate family getaway in Phuket Old Town. Our Family Nest package offers the perfect balance of togetherness and privacy with guaranteed connecting rooms and daily breakfast for everyone.",
+    "canonical": "https://royalphuketcity.com/promotions/family-nest",
+    "robots": "index, follow",
+    "h1": [
+      "Family Nest"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/sun-and-fun",
+    "status": 200,
+    "title": "Sun & Fun | Promotions | Royal Phuket City Hotel",
+    "description": "Make your next holiday a breeze with our Sun & Fun special, where kids stay and eat absolutely free. Tailored for small families, this package features rooms equipped with one double bed and one single bed.",
+    "canonical": "https://royalphuketcity.com/promotions/sun-and-fun",
+    "robots": "index, follow",
+    "h1": [
+      "Sun & Fun"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/splash-and-stay",
+    "status": 200,
+    "title": "Splash & Stay | Promotions | Royal Phuket City Hotel",
+    "description": "Dive into excitement with our all-in-one Splash & Stay bundle package. This premium offer pairs a relaxing two-night city escape with an adrenaline-pumping day at Phuket's premier Andamanda Water Park.",
+    "canonical": "https://royalphuketcity.com/promotions/splash-and-stay",
+    "robots": "index, follow",
+    "h1": [
+      "Splash & Stay"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/yan-long-dining",
+    "status": 200,
+    "title": "Yan Long Dining Offer | Promotions | Royal Phuket City Hotel",
+    "description": "Hotel guests receive 10% off the à la carte menu at Yan Long Authentic Chinese Restaurant. Peking Duck, dim sum, and Cantonese classics on the 1st floor.",
+    "canonical": "https://royalphuketcity.com/promotions/yan-long-dining",
+    "robots": "index, follow",
+    "h1": [
+      "Yan Long Dining Offer"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/spa-guest-recovery",
+    "status": 200,
+    "title": "Royal Wellness Spa Offer | Promotions | Royal Phuket City Hotel",
+    "description": "Restore your balance on the 3rd floor. Hotel guests receive 10% off all Royal Wellness Spa treatments, including Recovery Starter and couple rituals.",
+    "canonical": "https://royalphuketcity.com/promotions/spa-guest-recovery",
+    "robots": "index, follow",
+    "h1": [
+      "Royal Wellness Spa Offer"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/family-getaway",
+    "status": 200,
+    "title": "Happy Family Getaway | Promotions | Royal Phuket City Hotel",
+    "description": "Perfect for Thai families during school break! Enjoy quality time together with spacious rooms, kids' activities, and family-friendly dining.",
+    "canonical": "https://royalphuketcity.com/promotions/family-getaway",
+    "robots": "index, follow",
+    "h1": [
+      "Happy Family Getaway"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/songkran-package",
+    "status": 200,
+    "title": "Songkran @ RPC | Promotions | Royal Phuket City Hotel",
+    "description": "Celebrate Songkran in the heart of Phuket Old Town! Your perfect base camp for Thailand's biggest water festival with everything you need to join the fun.",
+    "canonical": "https://royalphuketcity.com/promotions/songkran-package",
+    "robots": "index, follow",
+    "h1": [
+      "Songkran @ RPC"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/april-residence-deal",
+    "status": 200,
+    "title": "The April Residence Deal | Promotions | Royal Phuket City Hotel",
+    "description": "Take advantage of our exclusive April Residence Deal, specifically curated for Thai nationals and residents. Experience the historic charm of Phuket Old Town with enterprise-grade hospitality and premium seasonal perks at an unbeatable rate.",
+    "canonical": "https://royalphuketcity.com/promotions/april-residence-deal",
+    "robots": "index, follow",
+    "h1": [
+      "The April Residence Deal"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/blissful-3-night",
+    "status": 200,
+    "title": "The Blissful 3-Night Package | Promotions | Royal Phuket City Hotel",
+    "description": "The Stay 3 Get More package is designed for guests seeking a complete retreat. This bundle integrates premium hospitality services — including professional spa therapy and curated dining — into a single, value-indexed rate of ฿5,397.",
+    "canonical": "https://royalphuketcity.com/promotions/blissful-3-night",
+    "robots": "index, follow",
+    "h1": [
+      "The Blissful 3-Night Package"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/promotions/weekly-stay-7",
+    "status": 200,
+    "title": "The 7-Day Weekly Stay | Promotions | Royal Phuket City Hotel",
+    "description": "Designed for extended exploration or a seamless workation, our Weekly Stay rate offers a fixed 7-night price of ฿10,493. This package provides the necessary infrastructure for longer visits, including laundry services and multiple dinner credits.",
+    "canonical": "https://royalphuketcity.com/promotions/weekly-stay-7",
+    "robots": "index, follow",
+    "h1": [
+      "The 7-Day Weekly Stay"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Offer",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues/engagement-ceremony",
+    "status": 200,
+    "title": "Engagement Ceremony | Royal Phuket City Hotel",
+    "description": "Host your dream engagement ceremony in Phuket at Royal Phuket City Hotel. Intimate venues, elegant settings, and 27+ years of experience creating unforgettable celebrations.",
+    "canonical": "https://royalphuketcity.com/wedding-venues/engagement-ceremony",
+    "robots": "index, follow",
+    "h1": [
+      "Engagement Ceremony"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues/thai-wedding",
+    "status": 200,
+    "title": "Thai Wedding | Royal Phuket City Hotel",
+    "description": "Experience authentic Thai wedding ceremonies in Phuket with traditional rituals, monks' blessings, and elegant venues at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/wedding-venues/thai-wedding",
+    "robots": "index, follow",
+    "h1": [
+      "Thai Wedding"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues/chinese-wedding",
+    "status": 200,
+    "title": "Chinese Wedding | Royal Phuket City Hotel",
+    "description": "Host an elegant Chinese wedding banquet in Phuket with traditional tea ceremonies, auspicious decorations, and eight-course dinners at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/wedding-venues/chinese-wedding",
+    "robots": "index, follow",
+    "h1": [
+      "Chinese Wedding"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues/muslim-wedding",
+    "status": 200,
+    "title": "Muslim Wedding | Royal Phuket City Hotel",
+    "description": "Plan your Nikah ceremony in Phuket with halal catering, Sharia-compliant arrangements, and elegant venues at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/wedding-venues/muslim-wedding",
+    "robots": "index, follow",
+    "h1": [
+      "Muslim Wedding"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues/western-wedding",
+    "status": 200,
+    "title": "Western Wedding | Royal Phuket City Hotel",
+    "description": "Host a classic Western wedding in Phuket with elegant ceremonies, first dances, and beautiful receptions at Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/wedding-venues/western-wedding",
+    "robots": "index, follow",
+    "h1": [
+      "Western Wedding"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/wedding-venues/lgbtq-wedding",
+    "status": 200,
+    "title": "LGBTQ+ Wedding | Royal Phuket City Hotel",
+    "description": "Celebrate your love with an inclusive LGBTQ+ wedding in Phuket. Royal Phuket City Hotel welcomes all couples with personalized ceremonies and joyful celebrations.",
+    "canonical": "https://royalphuketcity.com/wedding-venues/lgbtq-wedding",
+    "robots": "index, follow",
+    "h1": [
+      "LGBTQ+ Wedding"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/corporate-conference",
+    "status": 200,
+    "title": "Corporate Conference | Royal Phuket City Hotel",
+    "description": "Host your corporate conference in Phuket at Royal Phuket City Hotel. Professional venues accommodating up to 2,300 guests with state-of-the-art AV equipment, dedicated event teams, and 27+ years of MICE experience.",
+    "canonical": "https://royalphuketcity.com/meeting-events/corporate-conference",
+    "robots": "index, follow",
+    "h1": [
+      "Corporate Conference"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/seminar-workshop",
+    "status": 200,
+    "title": "Seminar & Workshop | Royal Phuket City Hotel",
+    "description": "Organize professional seminars and workshops in Phuket at Royal Phuket City Hotel. Flexible classroom setups, presentation technology, and expert event support for training sessions up to 800 attendees.",
+    "canonical": "https://royalphuketcity.com/meeting-events/seminar-workshop",
+    "robots": "index, follow",
+    "h1": [
+      "Seminar & Workshop"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/product-launch",
+    "status": 200,
+    "title": "Product Launch | Royal Phuket City Hotel",
+    "description": "Launch your product in style at Royal Phuket City Hotel. Dramatic reveal venues, LED displays, professional staging, and complete event production for impactful brand launches in Phuket.",
+    "canonical": "https://royalphuketcity.com/meeting-events/product-launch",
+    "robots": "index, follow",
+    "h1": [
+      "Product Launch"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/gala-dinner-award",
+    "status": 200,
+    "title": "Gala Dinner & Awards | Royal Phuket City Hotel",
+    "description": "Host prestigious gala dinners and award ceremonies in Phuket at Royal Phuket City Hotel. Elegant ballroom settings, gourmet dining, and professional event production for up to 1,000 banquet guests.",
+    "canonical": "https://royalphuketcity.com/meeting-events/gala-dinner-award",
+    "robots": "index, follow",
+    "h1": [
+      "Gala Dinner & Awards"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/stand-up-comedy",
+    "status": 200,
+    "title": "Stand-Up Comedy Show | Royal Phuket City Hotel",
+    "description": "Host stand-up comedy shows and entertainment events in Phuket at Royal Phuket City Hotel. Theatre-style seating for 2,300, professional stage and sound systems, and full production support.",
+    "canonical": "https://royalphuketcity.com/meeting-events/stand-up-comedy",
+    "robots": "index, follow",
+    "h1": [
+      "Stand-Up Comedy Show"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/religious-ceremony",
+    "status": 200,
+    "title": "Religious & Spiritual Ceremony | Royal Phuket City Hotel",
+    "description": "Host religious ceremonies and spiritual gatherings in Phuket at Royal Phuket City Hotel. Respectful facilities for Buddhist ceremonies, prayer meetings, and faith-based events.",
+    "canonical": "https://royalphuketcity.com/meeting-events/religious-ceremony",
+    "robots": "index, follow",
+    "h1": [
+      "Religious & Spiritual Ceremony"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/exhibition-trade-show",
+    "status": 200,
+    "title": "Exhibition & Trade Show | Royal Phuket City Hotel",
+    "description": "Host exhibitions and trade shows in Phuket at Royal Phuket City Hotel. 1,637 sqm exhibition space, drive-in access for large displays, and complete trade show infrastructure.",
+    "canonical": "https://royalphuketcity.com/meeting-events/exhibition-trade-show",
+    "robots": "index, follow",
+    "h1": [
+      "Exhibition & Trade Show"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/concert-live-performance",
+    "status": 200,
+    "title": "Concert & Live Performance | Royal Phuket City Hotel",
+    "description": "Host concerts and live performances in Phuket at Royal Phuket City Hotel. Professional stage, concert sound systems, and capacity for 2,300 guests for memorable musical events.",
+    "canonical": "https://royalphuketcity.com/meeting-events/concert-live-performance",
+    "robots": "index, follow",
+    "h1": [
+      "Concert & Live Performance"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/company-party-celebration",
+    "status": 200,
+    "title": "Company Party & Celebration | Royal Phuket City Hotel",
+    "description": "Host memorable company parties and celebrations in Phuket at Royal Phuket City Hotel. Year-end parties, staff appreciation events, and themed celebrations for up to 1,000 guests.",
+    "canonical": "https://royalphuketcity.com/meeting-events/company-party-celebration",
+    "robots": "index, follow",
+    "h1": [
+      "Company Party & Celebration"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/government-meeting",
+    "status": 200,
+    "title": "Government & Official Meeting | Royal Phuket City Hotel",
+    "description": "Host government meetings and official events in Phuket at Royal Phuket City Hotel. Secure facilities, professional protocols, and capacity for large-scale public sector gatherings.",
+    "canonical": "https://royalphuketcity.com/meeting-events/government-meeting",
+    "robots": "index, follow",
+    "h1": [
+      "Government & Official Meeting"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/talk-show-panel",
+    "status": 200,
+    "title": "Talk Show & Panel Discussion | Royal Phuket City Hotel",
+    "description": "Host professional talk shows and panel discussions in Phuket at Royal Phuket City Hotel. Broadcast-ready facilities, panel staging, and live streaming capabilities for thought leadership events.",
+    "canonical": "https://royalphuketcity.com/meeting-events/talk-show-panel",
+    "robots": "index, follow",
+    "h1": [
+      "Talk Show & Panel Discussion"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/graduation-ceremony",
+    "status": 200,
+    "title": "Graduation Ceremony | Royal Phuket City Hotel",
+    "description": "Host graduation ceremonies in Phuket at Royal Phuket City Hotel. Professional staging, comfortable seating for 2,300 guests, and complete ceremony support for academic institutions.",
+    "canonical": "https://royalphuketcity.com/meeting-events/graduation-ceremony",
+    "robots": "index, follow",
+    "h1": [
+      "Graduation Ceremony"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/meeting-events/team-building",
+    "status": 200,
+    "title": "Team Building Event | Royal Phuket City Hotel",
+    "description": "Organize team building events in Phuket at Royal Phuket City Hotel. Indoor and outdoor activities, facilitated programs, and complete logistics for corporate team development.",
+    "canonical": "https://royalphuketcity.com/meeting-events/team-building",
+    "robots": "index, follow",
+    "h1": [
+      "Team Building Event"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/phuket-old-town-hotel",
+    "status": 200,
+    "title": "Phuket Old Town Hotel | Royal Phuket City Hotel",
+    "description": "Stay near Phuket Old Town at Royal Phuket City Hotel. Compare 251 rooms and suites, explore local markets, and enjoy an outdoor pool and rooftop dining.",
+    "canonical": "https://royalphuketcity.com/phuket-old-town-hotel",
+    "robots": "index, follow",
+    "h1": [
+      "Phuket Old Town Hotel"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/4-star-hotel-phuket",
+    "status": 200,
+    "title": "4-Star Hotel in Phuket | Royal Phuket City Hotel",
+    "description": "Explore Royal Phuket City, a 4-star hotel in Phuket Town with 251 rooms, an outdoor pool, fitness centre, spa, restaurants and meeting facilities.",
+    "canonical": "https://royalphuketcity.com/4-star-hotel-phuket",
+    "robots": "index, follow",
+    "h1": [
+      "4-Star Hotel in Phuket"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/luxury-hotel-phuket-city",
+    "status": 200,
+    "title": "Luxury Hotel Phuket City | Royal Phuket City Hotel",
+    "description": "Experience luxury accommodation in Phuket City at Royal Phuket City Hotel. Elegant rooms, fine dining, and premium amenities in a convenient location.",
+    "canonical": "https://royalphuketcity.com/luxury-hotel-phuket-city",
+    "robots": "index, follow",
+    "h1": [
+      "Luxury Hotel Phuket City"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/best-hotel-phuket-town",
+    "status": 200,
+    "title": "Choosing a Hotel in Phuket Town | Royal Phuket City Hotel",
+    "description": "Choosing the best hotel for your Phuket Town trip? Compare Royal Phuket City's room sizes, Old Town location, pool, dining and booking conditions.",
+    "canonical": "https://royalphuketcity.com/best-hotel-phuket-town",
+    "robots": "index, follow",
+    "h1": [
+      "Choosing a Hotel in Phuket Town"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/phuket-city-center-hotel",
+    "status": 200,
+    "title": "Phuket City Center Hotel | Royal Phuket City Hotel",
+    "description": "Stay at Royal Phuket City Hotel in the heart of Phuket City. Central location with easy access to shopping, dining, and business districts.",
+    "canonical": "https://royalphuketcity.com/phuket-city-center-hotel",
+    "robots": "index, follow",
+    "h1": [
+      "Phuket City Center Hotel"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/budget-friendly-hotel-phuket",
+    "status": 200,
+    "title": "Budget Friendly Hotel Phuket | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel offers budget-friendly rates without compromising on quality. Affordable 4-star accommodation in Phuket Old Town.",
+    "canonical": "https://royalphuketcity.com/budget-friendly-hotel-phuket",
+    "robots": "index, follow",
+    "h1": [
+      "Budget Friendly Hotel Phuket"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/family-hotel-phuket",
+    "status": 200,
+    "title": "Family Hotel in Phuket | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel welcomes families with spacious rooms, kid-friendly amenities, and a safe location in Phuket Old Town. Perfect for family vacations.",
+    "canonical": "https://royalphuketcity.com/family-hotel-phuket",
+    "robots": "index, follow",
+    "h1": [
+      "Family Hotel in Phuket"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/business-hotel-phuket",
+    "status": 200,
+    "title": "Business Hotel Phuket | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel - The premier business hotel in Phuket with 9 meeting rooms, MICE facilities, high-speed WiFi, and convenient city location.",
+    "canonical": "https://royalphuketcity.com/business-hotel-phuket",
+    "robots": "index, follow",
+    "h1": [
+      "Business Hotel Phuket"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/hotel-with-pool-phuket-town",
+    "status": 200,
+    "title": "Hotel with Pool Phuket Town | Royal Phuket City Hotel",
+    "description": "Royal Phuket City Hotel features a beautiful outdoor swimming pool in Phuket Town. Cool off after exploring the Old Town attractions.",
+    "canonical": "https://royalphuketcity.com/hotel-with-pool-phuket-town",
+    "robots": "index, follow",
+    "h1": [
+      "Hotel with Pool Phuket Town"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/heritage-hotel-phuket",
+    "status": 200,
+    "title": "A Hotel Stay Near Phuket's Heritage Streets | Royal Phuket City Hotel",
+    "description": "Explore Phuket's heritage streets from Royal Phuket City Hotel. Plan walks to Sino-Portuguese shophouses, local museums, shrines and Old Town cafes.",
+    "canonical": "https://royalphuketcity.com/heritage-hotel-phuket",
+    "robots": "index, follow",
+    "h1": [
+      "A Hotel Stay Near Phuket's Heritage Streets"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/things-to-do-phuket-old-town",
+    "status": 200,
+    "title": "Things to Do in Phuket Old Town | Royal Phuket City Hotel",
+    "description": "Explore the best things to do in Phuket Old Town - from Sino-Portuguese architecture to local markets, street food, and cultural experiences. Your complete guide from Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/things-to-do-phuket-old-town",
+    "robots": "index, follow",
+    "h1": [
+      "Things to Do in Phuket Old Town"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "FAQPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/phuket-sunday-walking-street",
+    "status": 200,
+    "title": "Phuket Sunday Walking Street | Royal Phuket City Hotel",
+    "description": "Guide to Phuket Sunday Walking Street (Lard Yai) - the best night market in Phuket Old Town with local food, crafts, and entertainment. Walking distance from Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/phuket-sunday-walking-street",
+    "robots": "index, follow",
+    "h1": [
+      "Phuket Sunday Walking Street"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "FAQPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/sino-portuguese-architecture-phuket",
+    "status": 200,
+    "title": "Sino-Portuguese Architecture Phuket | Royal Phuket City Hotel",
+    "description": "Discover Phuket's unique Sino-Portuguese architecture - colorful shophouses, historic mansions, and cultural heritage. Walking tour guide from Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/sino-portuguese-architecture-phuket",
+    "robots": "index, follow",
+    "h1": [
+      "Sino-Portuguese Architecture Phuket"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/best-cafes-phuket-town",
+    "status": 200,
+    "title": "Best Cafes in Phuket Town | Royal Phuket City Hotel",
+    "description": "Discover the best cafes in Phuket Town - from heritage coffee shops to trendy specialty cafes. Your guide to Phuket Old Town's coffee scene near Royal Phuket City Hotel.",
+    "canonical": "https://royalphuketcity.com/best-cafes-phuket-town",
+    "robots": "index, follow",
+    "h1": [
+      "Best Cafes in Phuket Town"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/phuket-night-market-guide",
+    "status": 200,
+    "title": "Phuket Night Market Guide | Royal Phuket City Hotel",
+    "description": "Complete guide to Phuket night markets - Sunday Walking Street, Chillva Market, and more. Local tips from Royal Phuket City Hotel in Phuket Old Town.",
+    "canonical": "https://royalphuketcity.com/phuket-night-market-guide",
+    "robots": "index, follow",
+    "h1": [
+      "Phuket Night Market Guide"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog/best-street-food-near-royal-phuket-city",
+    "status": 200,
+    "title": "Best Street Food Near Royal Phuket City Hotel | Royal Phuket City Hotel",
+    "description": "Discover the best street food near Royal Phuket City Hotel. A guide to authentic Phuket flavors and local culinary gems.",
+    "canonical": "https://royalphuketcity.com/blog/best-street-food-near-royal-phuket-city",
+    "robots": "index, follow",
+    "h1": [
+      "Best Street Food Near Royal Phuket City Hotel"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Article"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog/culinary-journey-twist-rooftop-restaurant",
+    "status": 200,
+    "title": "A Culinary Journey Through TWIST Rooftop Restaurant | Royal Phuket City Hotel",
+    "description": "Discover TWIST Rooftop Restaurant at Royal Phuket City Hotel - stunning views, innovative cuisine, and unforgettable dining experiences.",
+    "canonical": "https://royalphuketcity.com/blog/culinary-journey-twist-rooftop-restaurant",
+    "robots": "index, follow",
+    "h1": [
+      "A Culinary Journey Through TWIST Rooftop Restaurant"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Article"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog/planning-dream-wedding-royal-phuket-city",
+    "status": 200,
+    "title": "Planning Your Dream Wedding at Royal Phuket City Hotel | Royal Phuket City Hotel",
+    "description": "Discover why Royal Phuket City Hotel is Phukets premier wedding venue with 27 years of experience and world-class facilities.",
+    "canonical": "https://royalphuketcity.com/blog/planning-dream-wedding-royal-phuket-city",
+    "robots": "index, follow",
+    "h1": [
+      "Planning Your Dream Wedding at Royal Phuket City Hotel"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Article"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog/royal-phuket-city-hotel-sustainability-journey",
+    "status": 200,
+    "title": "Royal Phuket City Hotel Goes Green: Our Sustainability Journey | Royal Phuket City Hotel",
+    "description": "Discover Royal Phuket City Hotels sustainability initiatives and our commitment to environmental responsibility through the Royal Green program.",
+    "canonical": "https://royalphuketcity.com/blog/royal-phuket-city-hotel-sustainability-journey",
+    "robots": "index, follow",
+    "h1": [
+      "Royal Phuket City Hotel Goes Green: Our Sustainability Journey"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Article"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog/top-10-things-to-do-in-phuket-old-town",
+    "status": 200,
+    "title": "Top 10 Things to Do in Phuket Old Town | Royal Phuket City Hotel",
+    "description": "Explore the top 10 must-do activities in Phuket Old Town, from historic Sino-Portuguese architecture to vibrant night markets.",
+    "canonical": "https://royalphuketcity.com/blog/top-10-things-to-do-in-phuket-old-town",
+    "robots": "index, follow",
+    "h1": [
+      "Top 10 Things to Do in Phuket Old Town"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Article"
+    ]
+  },
+  {
+    "url": "http://localhost:3100/blog/ultimate-relaxation-spa-wellness-guide",
+    "status": 200,
+    "title": "Ultimate Relaxation: Spa and Wellness Guide | Royal Phuket City Hotel",
+    "description": "Explore spa and wellness treatments at Royal Phuket City Hotel, from traditional Thai massage to modern aromatherapy.",
+    "canonical": "https://royalphuketcity.com/blog/ultimate-relaxation-spa-wellness-guide",
+    "robots": "index, follow",
+    "h1": [
+      "Ultimate Relaxation: Spa and Wellness Guide"
+    ],
+    "schemaTypes": [
+      "WebSite",
+      "Organization",
+      "Hotel",
+      "Article"
+    ]
+  }
+]

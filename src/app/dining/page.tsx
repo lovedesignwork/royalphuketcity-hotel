@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import { HeroSection, SectionHeading, RestaurantCard } from "@/components";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -13,13 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
   title: t.diningPage.metaTitle,
   description: t.diningPage.metaDesc,
-  alternates: {
-    canonical: `${SITE_CONFIG.url}${path}`,
-    languages: {
-      en: `${SITE_CONFIG.url}/dining`,
-      th: `${SITE_CONFIG.url}/th/dining`,
-    },
-  },
+  alternates: getPageAlternates(path, locale),
   openGraph: {
     title: "Dining | Royal Phuket City Hotel",
     description:
@@ -29,8 +24,6 @@ export async function generateMetadata(): Promise<Metadata> {
     images: [
       {
         url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
         alt: "Dining at Royal Phuket City Hotel",
       },
     ],

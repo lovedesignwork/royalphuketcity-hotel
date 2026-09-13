@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import RestaurantPageTemplate from "@/components/RestaurantPageTemplate";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -17,13 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: meta.name,
     description: meta.metaDesc,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/${slug}`,
-        th: `${SITE_CONFIG.url}/th/${slug}`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${meta.name} | ${locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel"}`,
       description: meta.ogDesc,
@@ -32,8 +27,6 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [
         {
           url: meta.image,
-          width: 1200,
-          height: 630,
           alt: meta.name,
         },
       ],

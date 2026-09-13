@@ -4,23 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE_CONFIG } from "@/lib/constants";
 import { HeroSection } from "@/components";
-
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt?: string;
-  content: string;
-  featured_image?: string;
-  featured_image_alt?: string;
-  meta_description?: string;
-  seo_keywords?: string[];
-  tags?: string[];
-  published_at?: string;
-  word_count?: number;
-  author?: string;
-  blog_categories?: { id: string; name: string; slug: string };
-}
+import { JsonLd } from "@/components/JsonLd";
+import { getPublishedPost, getPublishedPosts, type BlogPost } from "@/lib/blog";
 
 interface RelatedPost {
   id: string;
@@ -32,32 +17,9 @@ interface RelatedPost {
   blog_categories?: { name: string; slug: string };
 }
 
-async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/blog/${slug}?preview=true`, {
-      next: { revalidate: 60 },
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.post;
-  } catch {
-    return null;
-  }
-}
-
 async function getRelatedPosts(currentSlug: string): Promise<RelatedPost[]> {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/blog?limit=3`, {
-      next: { revalidate: 60 },
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.posts.filter((p: RelatedPost) => p.slug !== currentSlug).slice(0, 3);
-  } catch {
-    return [];
-  }
+  const { posts } = await getPublishedPosts(1, 4);
+  return posts.filter((post) => post.slug !== currentSlug).slice(0, 3);
 }
 
 export async function generateMetadata({
@@ -66,16 +28,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const post = await getPublishedPost(slug);
 
   if (!post) {
     return {
-      title: "Post Not Found | Royal Phuket City Hotel",
+      title: "Post Not Found",
+      robots: { index: false, follow: true },
     };
   }
 
   return {
-    title: `${post.title} | Royal Phuket City Hotel`,
+    title: post.title,
     description: post.meta_description || post.excerpt || post.title,
     keywords: post.seo_keywords?.join(", "),
     alternates: {
@@ -90,8 +53,6 @@ export async function generateMetadata({
         ? [
             {
               url: post.featured_image,
-              width: 1200,
-              height: 630,
               alt: post.featured_image_alt || post.title,
             },
           ]
@@ -99,6 +60,7 @@ export async function generateMetadata({
       locale: "en_US",
       type: "article",
       publishedTime: post.published_at,
+      modifiedTime: post.updated_at || post.published_at,
     },
     twitter: {
       card: "summary_large_image",
@@ -117,7 +79,7 @@ function ArticleJsonLd({ post }: { post: BlogPost }) {
     description: post.meta_description || post.excerpt,
     image: post.featured_image,
     datePublished: post.published_at,
-    dateModified: post.published_at,
+    dateModified: post.updated_at || post.published_at,
     author: {
       "@type": "Organization",
       name: "Royal Phuket City Hotel",
@@ -128,7 +90,7 @@ function ArticleJsonLd({ post }: { post: BlogPost }) {
       name: "Royal Phuket City Hotel",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_CONFIG.url}/images/logo.png`,
+        url: `${SITE_CONFIG.url}/images/rpc-icon-512.png`,
       },
     },
     mainEntityOfPage: {
@@ -139,12 +101,7 @@ function ArticleJsonLd({ post }: { post: BlogPost }) {
     keywords: post.seo_keywords?.join(", "),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 export default async function BlogPostPage({
@@ -153,7 +110,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const post = await getPublishedPost(slug);
 
   if (!post) {
     notFound();
@@ -163,14 +120,14 @@ export default async function BlogPostPage({
   const readingTime = post.word_count ? Math.ceil(post.word_count / 200) : 3;
 
   return (
-    <main>
+    <div>
       <ArticleJsonLd post={post} />
 
       {/* Hero Section */}
       <HeroSection
         title={post.title}
         subtitle={post.blog_categories?.name || "Blog"}
-        image={post.featured_image || "https://images.unsplash.com/photo-1455587734955-081b22074882?q=80&w=2070&auto=format&fit=crop"}
+        image={post.featured_image || "/images/HOTEL WEBSITE/HKT Old Town.jpg"}
         height="medium"
       />
 
@@ -345,6 +302,7 @@ export default async function BlogPostPage({
                           src={relatedPost.featured_image}
                           alt={relatedPost.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
@@ -416,6 +374,6 @@ export default async function BlogPostPage({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

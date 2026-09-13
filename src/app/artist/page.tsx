@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import { HeroSection, SectionHeading } from "@/components";
@@ -13,15 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const path = localizeHref("/artist", locale);
   const siteName = locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel";
   return {
-    title: `${t.metaTitle} | ${siteName}`,
+    title: t.metaTitle,
     description: t.metaDesc,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/artist`,
-        th: `${SITE_CONFIG.url}/th/artist`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${t.metaTitle} | ${siteName}`,
       description: t.ogDesc,
@@ -30,8 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [
         {
           url: "/images/og-image.jpg",
-          width: 1200,
-          height: 630,
           alt: t.metaTitle,
         },
       ],
@@ -53,7 +46,7 @@ export default async function ArtistPage() {
   const artists = getLocalizedArtists(locale);
 
   return (
-    <main>
+    <div>
       <HeroSection
         title={t.heroTitle}
         subtitle={t.heroSubtitle}
@@ -138,6 +131,6 @@ export default async function ArtistPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

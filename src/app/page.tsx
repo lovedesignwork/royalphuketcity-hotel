@@ -28,6 +28,8 @@ export default async function HomePage() {
         title={t.home.heroTitle}
         subtitle={t.home.heroSubtitle}
         image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
+        imageSizes="(max-width: 768px) 205vh, 100vw"
+        imageQuality={60}
         showReserveButton
         height="full"
       />
@@ -91,8 +93,6 @@ export default async function HomePage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
-                    quality={100}
-                    unoptimized
                   />
                 </div>
                 <div className="relative aspect-square img-hover">
@@ -122,8 +122,6 @@ export default async function HomePage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
-                    quality={100}
-                    unoptimized
                   />
                 </div>
               </div>
@@ -219,7 +217,7 @@ export default async function HomePage() {
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-5">
                     {/* Icon */}
-                    <div className="w-11 h-11 flex-shrink-0 flex items-center justify-center border border-[#8B7355] text-[#8B7355]">
+                    <div className="w-11 h-11 flex-shrink-0 flex items-center justify-center border border-[#8B7355] text-[#806849]">
                       {item.icon}
                     </div>
                     {/* Text */}
@@ -330,18 +328,18 @@ export default async function HomePage() {
                     { value: "800", label: t.home.miceBallroom },
                   ].map((stat) => (
                     <div key={stat.label}>
-                      <p className="font-heading text-3xl text-[#8B7355]">{stat.value}</p>
+                      <p className="font-heading text-3xl text-[#806849]">{stat.value}</p>
                       <p className="label-accent text-[10px] sm:text-xs mt-1">{stat.label}</p>
                     </div>
                   ))}
                 </div>
 
                 <LocaleHomeLink href={localizeHref("/meeting-events", locale)} className="inline-flex items-center gap-3 group">
-                  <span className="text-[#8B7355] text-[11px] tracking-[0.2em] uppercase font-medium relative">
+                  <span className="text-[#806849] text-[11px] tracking-[0.2em] uppercase font-medium relative">
                     {t.common.exploreVenues}
                     <span className="absolute left-0 -bottom-0.5 w-full h-px bg-[#8B7355]/30 group-hover:bg-[#8B7355] transition-colors duration-300" />
                   </span>
-                  <svg className="w-4 h-4 text-[#8B7355] transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#806849] transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </LocaleHomeLink>
@@ -461,7 +459,7 @@ export default async function HomePage() {
                   <p className="font-heading text-white text-xl mb-1">{venue.name}</p>
                   <div className="flex items-center gap-3 text-[10px] text-white/60 tracking-wider uppercase">
                     <span>{venue.capacity}</span>
-                    <span className="text-[#8B7355]">·</span>
+                    <span className="text-[#806849]">·</span>
                     <span>{venue.size}</span>
                   </div>
                 </div>

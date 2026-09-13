@@ -2,16 +2,14 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { generatePageMetadata } from "@/lib/seo-utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: "Public Transportation in Phuket | Royal Phuket City Hotel",
   description:
     "Guide to public transportation in Phuket including the free EV Smart Bus shuttle and local transport options near Royal Phuket City Hotel.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/sustainability/transportation`,
-  },
-};
+  path: "/sustainability/transportation",
+});
 
 const transportOptions = [
   {

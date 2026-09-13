@@ -1,0 +1,38 @@
+
+> royal-phuket-city@0.1.0 lint
+> eslint src next.config.ts
+
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\blog\[id]\page.tsx
+  61:9  warning  'router' is assigned a value but never used                                                                   @typescript-eslint/no-unused-vars
+  90:6  warning  React Hook useEffect has a missing dependency: 'fetchPost'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\blog\page.tsx
+  54:6  warning  React Hook useEffect has a missing dependency: 'fetchPosts'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\inquiries\page.tsx
+   43:10  warning  'UsersIcon' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+  464:6   warning  React Hook useEffect has a missing dependency: 'fetchInquiries'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\login\page.tsx
+  8:9  warning  'router' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\spa\inquiries\page.tsx
+  179:6  warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\spa\reservations\page.tsx
+  229:6  warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\yanlong\inquiries\page.tsx
+  177:6  warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\app\admin\yanlong\reservations\page.tsx
+  235:6  warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\0-WORK\ROYAL PHUKET CITY\src\components\CTABanner.tsx
+  18:3  warning  'subtitle' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\0-WORK\ROYAL PHUKET CITY\src\components\TestimonialSlider.tsx
+  15:7  warning  'testimonials' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 12 problems (0 errors, 12 warnings)

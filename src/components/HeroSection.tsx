@@ -10,6 +10,8 @@ interface HeroSectionProps {
   subtitle?: string;
   description?: string;
   image: string;
+  imageSizes?: string;
+  imageQuality?: number;
   showReserveButton?: boolean;
   height?: "full" | "large" | "medium" | "small";
   overlay?: "dark" | "medium" | "light";
@@ -22,6 +24,8 @@ export default function HeroSection({
   subtitle,
   description,
   image,
+  imageSizes = "100vw",
+  imageQuality = 75,
   showReserveButton = false,
   height = "full",
   overlay = "medium",
@@ -61,8 +65,10 @@ export default function HeroSection({
         alt={title}
         fill
         priority
+        fetchPriority="high"
         className="object-cover"
-        sizes="100vw"
+        sizes={imageSizes}
+        quality={imageQuality}
       />
 
       {/* Overlay */}
@@ -75,7 +81,7 @@ export default function HeroSection({
       <div className={`relative h-full flex items-center justify-center ${innerWrapperClass}`}>
         <div className="container mx-auto px-6 text-center text-white">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateAntiSpam } from "@/lib/antispam";
 import { EMAIL_ASSIGNMENTS } from "@/lib/email-routing";
+import { formText, isEmail, isFormBody } from "@/lib/guest-form-validation";
 
 const ROOMS_ASSIGNMENT = EMAIL_ASSIGNMENTS.feedback;
 
@@ -16,6 +17,7 @@ function escapeHtml(value: string): string {
 }
 
 function score(value: unknown): number | null {
+  if (typeof value !== "number") return null;
   const n = Number(value);
   if (!Number.isInteger(n) || n < 1 || n > 5) return null;
   return n;
@@ -23,21 +25,29 @@ function score(value: unknown): number | null {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body: unknown = await request.json().catch(() => null);
+    if (!isFormBody(body)) {
+      return NextResponse.json({ success: false, error: "Invalid feedback submission" }, { status: 400 });
+    }
     const overall = score(body.overall);
     const room = body.room ? score(body.room) : null;
     const cleanliness = body.cleanliness ? score(body.cleanliness) : null;
     const staff = body.staff ? score(body.staff) : null;
     const dining = body.dining ? score(body.dining) : null;
-    const stayAgain = STAY_AGAIN.includes(body.stayAgain) ? body.stayAgain : null;
+    const stayAgain = STAY_AGAIN.find((option) => option === body.stayAgain) ?? null;
     const comments = typeof body.comments === "string" ? body.comments.trim() : "";
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const roomNumber = typeof body.roomNumber === "string" ? body.roomNumber.trim() : "";
 
+    const invalidOptionalRating = RATINGS.slice(1).some((key) => body[key] !== undefined && body[key] !== null && body[key] !== 0 && score(body[key]) === null);
+    if (!overall || invalidOptionalRating || (body.stayAgain && !stayAgain) || (email && !isEmail(email)) || name.length > 150 || roomNumber.length > 30 || comments.length > 10000) {
+      return NextResponse.json({ success: false, error: "Please check your ratings and contact details." }, { status: 400 });
+    }
+
     const spamCheck = await validateAntiSpam({
-      honeypot: body._hp,
-      formLoadedAt: body._ts,
+      honeypot: formText(body._hp),
+      formLoadedAt: typeof body._ts === "number" ? body._ts : undefined,
       message: comments || "stay survey",
       email: email || "guest@royalphuketcity.com",
       name: name || "Hotel guest",
@@ -101,6 +111,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (process.env.RESEND_API_KEY) {
+      try {
       const { Resend } = await import("resend");
       const resend = new Resend(process.env.RESEND_API_KEY);
       const rows = RATINGS.map((key) => {
@@ -108,7 +119,7 @@ export async function POST(request: NextRequest) {
         return `<tr><td style="padding:6px 0;text-transform:capitalize">${key}</td><td>${value ?? "-"} / 5</td></tr>`;
       }).join("");
 
-      await resend.emails.send({
+      const notification = await resend.emails.send({
         from: "Royal Phuket City <noreply@royalphuketcity.com>",
         to: [...ROOMS_ASSIGNMENT.to],
         cc: [...ROOMS_ASSIGNMENT.cc],
@@ -130,6 +141,10 @@ export async function POST(request: NextRequest) {
           </div>
         `,
       });
+      if (notification.error) console.error("Feedback notification email:", notification.error);
+      } catch (error) {
+        console.error("Feedback notification failed after feedback was saved:", error);
+      }
     }
 
     return NextResponse.json({ success: true, id: data.id });

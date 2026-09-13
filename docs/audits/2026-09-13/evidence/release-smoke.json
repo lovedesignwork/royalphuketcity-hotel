@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "name": "Final 1440px homepage: hero, carousel and overflow",
+      "status": "pass",
+      "detail": {
+        "complete": true,
+        "naturalWidth": 1440,
+        "src": "http://localhost:3100/_next/image?url=%2Fimages%2FHOTEL%20WEBSITE%2FRPC-Main-Image.jpg&w=1920&q=60",
+        "sizes": "(max-width: 768px) 205vh, 100vw"
+      }
+    },
+    {
+      "name": "Final 390px homepage: hero, carousel and overflow",
+      "status": "pass",
+      "detail": {
+        "complete": true,
+        "naturalWidth": 1730,
+        "src": "http://localhost:3100/_next/image?url=%2Fimages%2FHOTEL%20WEBSITE%2FRPC-Main-Image.jpg&w=1920&q=60",
+        "sizes": "(max-width: 768px) 205vh, 100vw"
+      }
+    },
+    {
+      "name": "Valid guest route /m/rooms/premier-superior",
+      "status": "pass"
+    },
+    {
+      "name": "Valid guest route /m/dining/yan-long-chinese-restaurant",
+      "status": "pass"
+    },
+    {
+      "name": "Valid guest route /m/around/old-town",
+      "status": "pass"
+    },
+    {
+      "name": "Unknown guest route /m/rooms/missing",
+      "status": "pass"
+    },
+    {
+      "name": "Unknown guest route /m/dining/constructor",
+      "status": "pass"
+    },
+    {
+      "name": "Unknown guest route /m/around/missing",
+      "status": "pass"
+    },
+    {
+      "name": "Unknown guest route /m/unknown-page",
+      "status": "pass"
+    },
+    {
+      "name": "Anonymous admin API rejects access",
+      "status": "pass"
+    },
+    {
+      "name": "Localized admin API rejects alias",
+      "status": "pass"
+    },
+    {
+      "name": "Optimized hero supports AVIF and WebP fallback",
+      "status": "pass",
+      "detail": {
+        "image/avif": 127696,
+        "image/webp": 291304
+      }
+    }
+  ],
+  "errors": []
+}

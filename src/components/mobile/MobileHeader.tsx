@@ -26,7 +26,7 @@ function headerFor(path: string): { title: string | null; backTo: string | null;
   if (path === "/weddings") return { title: "Weddings", backTo: "/more", home: false };
   if (path === "/events") return { title: "Events", backTo: "/more", home: false };
   if (path === "/around") return { title: "Around Phuket", backTo: null, home: false };
-  if (path === "/chat") return { title: "Live chat", backTo: "/", home: false };
+  if (path === "/chat") return { title: "Front desk", backTo: "/", home: false };
   if (path === "/around/old-town") return { title: "Local Experiences", backTo: "/around", home: false };
   if (path === "/around/nature") return { title: "Nature", backTo: "/around", home: false };
   if (path === "/around/culture") return { title: "Culture", backTo: "/around", home: false };
@@ -87,7 +87,7 @@ export default function MobileHeader() {
             <MobileLink
               href="/chat"
               className="flex h-11 w-11 items-center justify-center rounded-full bg-white/18 text-white transition-transform duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--m-gold)]"
-              aria-label="Live chat with the front desk"
+              aria-label="Message the front desk"
             >
               <ChatCircle size={22} weight="fill" aria-hidden="true" />
             </MobileLink>

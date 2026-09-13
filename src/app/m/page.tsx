@@ -15,6 +15,7 @@ import MobileAnnouncement from "@/components/mobile/MobileAnnouncement";
 import MobileLink from "@/components/mobile/MobileLink";
 import { HOTEL_INFO, PROMOTIONS, RESTAURANTS } from "@/lib/constants";
 import { desktopCanonicalUrl, mobileRobots } from "@/lib/mobile";
+import { isPromotionActive } from "@/lib/promotion-validity";
 
 export const metadata = {
   title: "Your stay",
@@ -26,12 +27,6 @@ export const metadata = {
 
 const telHref = `tel:${HOTEL_INFO.phone.replace(/\s/g, "")}`;
 
-function isPromotionActive(validUntil: string): boolean {
-  return new Date(validUntil) >= new Date();
-}
-
-const activePromotions = PROMOTIONS.filter((promo) => isPromotionActive(promo.validUntil));
-
 const today = [
   { label: "Breakfast", value: "6:30 AM - 10:30 AM", where: "TWIST, 19th floor" },
   { label: "Pool", value: "7:00 AM - 9:00 PM", where: "3rd floor" },
@@ -40,6 +35,7 @@ const today = [
 ];
 
 export default function MobileHomePage() {
+  const activePromotions = PROMOTIONS.filter((promo) => isPromotionActive(promo.validUntil));
   return (
     <div className="mobile-content">
       <section className="relative h-[320px] overflow-hidden">

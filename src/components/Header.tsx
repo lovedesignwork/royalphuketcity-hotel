@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EXTERNAL_LINKS } from "@/lib/constants";
 import { getNavLinks } from "@/lib/i18n/nav";
@@ -14,6 +14,7 @@ export default function Header() {
   const { locale, t } = useLocale();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
   const nav = getNavLinks(t);
   const allNavLinks = [...nav.left, ...nav.right];
   const isThai = locale === "th";
@@ -69,7 +70,7 @@ export default function Header() {
                 style={{ maxWidth: "calc(100% - 360px)" }}
               >
                 <div className="w-full h-px bg-[#8b7355] mb-2" />
-                <nav className="flex items-center justify-center gap-2 lg:gap-3 xl:gap-5">
+                <nav aria-label="Main navigation" className="flex items-center justify-center gap-2 lg:gap-3 xl:gap-5">
                   {allNavLinks.map((link) => {
                     const hasDropdown = "dropdown" in link && link.dropdown;
                     return (
@@ -78,9 +79,17 @@ export default function Header() {
                         className="relative"
                         onMouseEnter={() => hasDropdown && setActiveDropdown(link.label)}
                         onMouseLeave={() => setActiveDropdown(null)}
+                        onFocus={() => hasDropdown && setActiveDropdown(link.label)}
+                        onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActiveDropdown(null); }}
+                        onKeyDown={(event) => {
+                          if (event.key === "Escape") {
+                            event.currentTarget.querySelector<HTMLElement>("button, a")?.focus();
+                            setActiveDropdown(null);
+                          }
+                        }}
                       >
                         {link.href === "#" ? (
-                          <button className={`${navClass} cursor-default`}>
+                          <button type="button" aria-expanded={activeDropdown === link.label} onClick={() => setActiveDropdown(link.label)} className={navClass}>
                             {link.label}
                             {hasDropdown && (
                               <svg className="w-2 h-2 xl:w-2.5 xl:h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +98,7 @@ export default function Header() {
                             )}
                           </button>
                         ) : (
-                          <LocaleLink href={link.href} className={navClass}>
+                          <LocaleLink href={link.href} className={navClass} aria-expanded={hasDropdown ? activeDropdown === link.label : undefined}>
                             {link.label}
                             {hasDropdown && (
                               <svg className="w-2 h-2 xl:w-2.5 xl:h-2.5 ml-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +116,7 @@ export default function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 8 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg border border-gray-100 z-50"
+                                className="absolute top-full left-0 w-56 bg-white shadow-lg border border-gray-100 z-50"
                               >
                                 <div className="py-1">
                                   {link.dropdown.map((item) => (
@@ -154,6 +163,8 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(true)}
                   className="p-2 text-gray-700 min-h-11 min-w-11"
                   aria-label={t.header.openMenu}
+                  aria-expanded={isMobileMenuOpen}
+                  aria-controls="mobile-navigation"
                 >
                   <svg
                     className="w-6 h-6"
@@ -177,7 +188,7 @@ export default function Header() {
 
       <MobileMenu
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={closeMobileMenu}
       />
     </>
   );

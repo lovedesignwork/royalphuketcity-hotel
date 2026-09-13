@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,16 +36,10 @@ export async function generateMetadata({
   const path = localizeHref(`/wedding-venues/${weddingType.slug}`, locale);
 
   return {
-    title: `${weddingType.title} | Royal Phuket City Hotel`,
+    title: weddingType.title,
     description: weddingType.metaDescription,
     keywords: weddingType.seoKeywords.join(", "),
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/wedding-venues/${weddingType.slug}`,
-        th: `${SITE_CONFIG.url}/th/wedding-venues/${weddingType.slug}`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${weddingType.title} | Royal Phuket City Hotel`,
       description: weddingType.metaDescription,
@@ -53,8 +48,6 @@ export async function generateMetadata({
       images: [
         {
           url: weddingType.heroImage,
-          width: 1200,
-          height: 630,
           alt: weddingType.title,
         },
       ],
@@ -81,7 +74,7 @@ export default async function WeddingTypePage({
   const otherWeddingTypes = WEDDING_TYPE_SLUGS.filter((slug) => slug !== type).slice(0, 3);
 
   return (
-    <main>
+    <div>
       {/* Hero Section */}
       <HeroSection
         title={weddingType.title}
@@ -195,8 +188,6 @@ export default async function WeddingTypePage({
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 33vw"
-                  quality={100}
-                  unoptimized
                 />
               </div>
             ))}
@@ -296,6 +287,6 @@ export default async function WeddingTypePage({
           ))}
         </ul>
       </section>
-    </main>
+    </div>
   );
 }

@@ -30,7 +30,7 @@ export default function GuestChatForm() {
         }),
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Could not send your message");
+      if (!response.ok || !data.success) throw new Error(data.error || "Could not send your message");
       setStatus("success");
       setMessage("");
     } catch (err) {
@@ -41,10 +41,10 @@ export default function GuestChatForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-[16px] bg-[var(--m-card)] p-5">
+      <div role="status" className="rounded-[16px] bg-[var(--m-card)] p-5">
         <p className="font-heading text-xl">Message sent</p>
         <p className="mt-2 text-sm text-[var(--m-muted)]">
-          The front desk has your note. They will call the room or reply shortly.
+          The front desk has your note and room number. For urgent requests, please call the front desk.
         </p>
       </div>
     );
@@ -57,13 +57,17 @@ export default function GuestChatForm() {
         <span className="mb-1.5 block font-medium">Your name</span>
         <input
           value={name}
+          autoComplete="name"
+          maxLength={150}
           onChange={(event) => setName(event.target.value)}
           className="w-full bg-white px-4 py-3 hairline-border focus:border-[--color-accent] focus:outline-none"
         />
       </label>
       <label className="block">
-        <span className="mb-1.5 block font-medium">Room number</span>
+        <span className="mb-1.5 block font-medium">Room number (required)</span>
         <input
+          required
+          maxLength={30}
           value={roomNumber}
           onChange={(event) => setRoomNumber(event.target.value)}
           className="w-full bg-white px-4 py-3 hairline-border focus:border-[--color-accent] focus:outline-none"
@@ -74,13 +78,14 @@ export default function GuestChatForm() {
         <textarea
           required
           rows={5}
+          maxLength={10000}
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder="What do you need?"
           className="w-full bg-white px-4 py-3 hairline-border focus:border-[--color-accent] focus:outline-none"
         />
       </label>
-      {error ? <p className="text-sm text-red-600">{error}</p> : null}
+      {error ? <p role="alert" className="text-sm text-red-600">{error}</p> : null}
       <button
         type="submit"
         disabled={status === "sending"}

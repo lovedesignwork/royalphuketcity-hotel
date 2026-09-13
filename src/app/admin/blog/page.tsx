@@ -297,7 +297,7 @@ export default function BlogListPage() {
                             </svg>
                           </Link>
                           <a
-                            href={`/blog/${post.slug}`}
+                            href={`/admin/blog/${post.id}/preview`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"

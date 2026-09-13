@@ -69,7 +69,7 @@ export default function ContactForm() {
 
       const data = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
         throw new Error(data.error || "Something went wrong");
       }
 
@@ -88,14 +88,14 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Success Message */}
       {status === "success" && (
-        <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm">
+        <div role="status" className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm">
           <p className="font-medium">{t.form.success}</p>
         </div>
       )}
 
       {/* Error Message */}
       {status === "error" && (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm">
+        <div role="alert" className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm">
           <p className="font-medium">{t.form.error}</p>
           <p>{errorMessage}</p>
         </div>
@@ -114,6 +114,8 @@ export default function ContactForm() {
             type="text"
             id="name"
             name="name"
+            autoComplete="name"
+            maxLength={150}
             value={formData.name}
             onChange={handleChange}
             required
@@ -134,6 +136,8 @@ export default function ContactForm() {
             type="email"
             id="email"
             name="email"
+            autoComplete="email"
+            maxLength={254}
             value={formData.email}
             onChange={handleChange}
             required
@@ -147,6 +151,7 @@ export default function ContactForm() {
         {/* Phone */}
         <div>
           <label
+            htmlFor="phone"
             className="block label-accent text-[--color-text-primary] mb-2"
           >
             {t.form.phone}
@@ -205,6 +210,7 @@ export default function ContactForm() {
           type="text"
           id="subject"
           name="subject"
+          maxLength={300}
           value={formData.subject}
           onChange={handleChange}
           className="w-full px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
@@ -223,6 +229,7 @@ export default function ContactForm() {
         <textarea
           id="message"
           name="message"
+          maxLength={10000}
           value={formData.message}
           onChange={handleChange}
           required

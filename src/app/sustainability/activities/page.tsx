@@ -2,16 +2,14 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { generatePageMetadata } from "@/lib/seo-utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: "Activities Near Royal Phuket City Hotel",
   description:
     "Discover exciting activities near Royal Phuket City Hotel including island hopping, water parks, and adventure sports.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/sustainability/activities`,
-  },
-};
+  path: "/sustainability/activities",
+});
 
 const activities = [
   {

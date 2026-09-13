@@ -1,128 +1,81 @@
 import type { MetadataRoute } from "next";
-import { SITE_CONFIG, ROOMS, RESTAURANTS, PROMOTIONS } from "@/lib/constants";
+import { SITE_CONFIG, RESTAURANTS, PROMOTIONS } from "@/lib/constants";
+import { ROOM_DETAILS } from "@/lib/room-data";
+import { SEO_PAGE_SLUGS } from "@/lib/seo-pages-data";
+import { WEDDING_TYPE_SLUGS } from "@/lib/wedding-types-data";
+import { MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
+import { SHOW_LANGUAGE_SWITCHER } from "@/lib/i18n/config";
+import { getPageAlternates } from "@/lib/seo-utils";
+import { getPublishedPostSitemapEntries } from "@/lib/blog";
+
+// Refresh published posts without requiring a deployment after every article.
+export const revalidate = 3600;
+
+const STATIC_PATHS = [
+  "/",
+  "/rooms-suites",
+  "/promotions",
+  "/dining",
+  "/facilities",
+  "/wedding-venues",
+  "/meeting-events",
+  "/contact",
+  "/download-fact-sheets",
+  "/artist",
+  "/artist-story",
+  "/royal-green",
+  "/our-clients",
+  "/sustainability",
+  "/sustainability/activities",
+  "/sustainability/cultural-historical",
+  "/sustainability/michelin-restaurants",
+  "/sustainability/natural-attractions",
+  "/sustainability/transportation",
+  "/blog",
+  // Legal policy routes intentionally set noindex and stay out of the sitemap.
+  "/accessibility",
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = SITE_CONFIG.url;
-  const now = new Date();
-
-  // Static pages with their priorities and change frequencies
-  const staticPages: MetadataRoute.Sitemap = [
-    // Homepage - highest priority
-    { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1.0 },
-
-    // Core booking pages - high priority
-    { url: `${baseUrl}/rooms-suites`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/promotions`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/dining`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/facilities`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/wedding-venues`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/meeting-events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-
-    // Contact
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/download-fact-sheets`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-
-    // About section
-    { url: `${baseUrl}/artist`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/artist-story`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/royal-green`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/our-clients`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/sustainability`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-
-    // Sustainability sub-pages
-    { url: `${baseUrl}/sustainability/activities`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/sustainability/cultural-historical`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/sustainability/michelin-restaurants`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/sustainability/natural-attractions`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/sustainability/transportation`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-
-    // Blog
-    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-
-    // Policy pages - low priority
-    { url: `${baseUrl}/hotel-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/cookie-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms-conditions`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/disclaimer`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/accessibility`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+  const paths = [
+    ...STATIC_PATHS,
+    ...Object.keys(ROOM_DETAILS).map((slug) => `/rooms-suites/${slug}`),
+    ...RESTAURANTS.map(({ slug }) => `/${slug}`),
+    ...PROMOTIONS.map(({ slug }) => `/promotions/${slug}`),
+    ...WEDDING_TYPE_SLUGS.map((slug) => `/wedding-venues/${slug}`),
+    ...MICE_EVENT_TYPE_SLUGS.map((slug) => `/meeting-events/${slug}`),
+    ...SEO_PAGE_SLUGS.map((slug) => `/${slug}`),
   ];
 
-  // Dynamic room pages
-  const roomPages: MetadataRoute.Sitemap = ROOMS.map((room) => ({
-    url: `${baseUrl}/rooms-suites/${room.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  const pages: MetadataRoute.Sitemap = [...new Set(paths)].flatMap((path) => {
+    const alternates = getPageAlternates(path);
+    const englishPage = { url: new URL(path, SITE_CONFIG.url).toString() };
 
-  // Dynamic restaurant pages
-  const restaurantPages: MetadataRoute.Sitemap = RESTAURANTS.map((restaurant) => ({
-    url: `${baseUrl}/${restaurant.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+    // The Thai copy is still a preview. Do not submit noindexed pages or
+    // advertise language alternates until the existing launch flag is enabled.
+    if (!SHOW_LANGUAGE_SWITCHER) return [englishPage];
 
-  // Dynamic promotion pages
-  const promotionPages: MetadataRoute.Sitemap = PROMOTIONS.map((promo) => ({
-    url: `${baseUrl}/promotions/${promo.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
-
-  // Wedding venue type pages
-  const weddingTypes = [
-    "engagement-ceremony",
-    "thai-wedding",
-    "chinese-wedding",
-    "muslim-wedding",
-    "western-wedding",
-    "lgbtq-wedding",
-  ];
-  const weddingPages: MetadataRoute.Sitemap = weddingTypes.map((type) => ({
-    url: `${baseUrl}/wedding-venues/${type}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  // Meeting & event type pages
-  const eventTypes = [
-    "corporate-conference",
-    "seminar-workshop",
-    "product-launch",
-    "gala-dinner-award",
-    "exhibition-trade-show",
-    "concert-live-performance",
-    "stand-up-comedy",
-    "talk-show-panel",
-    "graduation-ceremony",
-  ];
-  const eventPages: MetadataRoute.Sitemap = eventTypes.map((type) => ({
-    url: `${baseUrl}/meeting-events/${type}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  const englishPages = [
-    ...staticPages,
-    ...roomPages,
-    ...restaurantPages,
-    ...promotionPages,
-    ...weddingPages,
-    ...eventPages,
-  ];
-
-  const thaiPages: MetadataRoute.Sitemap = englishPages.map((page) => {
-    const path = page.url.replace(baseUrl, "") || "/";
-    return {
-      ...page,
-      url: path === "/" ? `${baseUrl}/th` : `${baseUrl}/th${path}`,
-    };
+    const languages = alternates?.languages as Record<string, string>;
+    return [
+      { ...englishPage, alternates: { languages } },
+      { url: languages.th, alternates: { languages } },
+    ];
   });
 
-  return [...englishPages, ...thaiPages];
+  const posts = await getPublishedPostSitemapEntries();
+  for (const post of posts) {
+    // Slugs are a single path segment. Encoding also protects XML URL values.
+    const url = new URL(`/blog/${encodeURIComponent(post.slug)}`, SITE_CONFIG.url).toString();
+    const modified = [post.updated_at, post.published_at]
+      .filter((value): value is string => Boolean(value))
+      .map((value) => new Date(value))
+      .filter((date) => Number.isFinite(date.getTime()) && date.getTime() <= Date.now())
+      .sort((a, b) => b.getTime() - a.getTime())[0];
+
+    pages.push({ url, ...(modified && { lastModified: modified.toISOString() }) });
+  }
+
+  // Static content has no editorial timestamps. Omitting lastmod is more
+  // accurate than claiming every page changed whenever the sitemap is served.
+  return [...new Map(pages.map((page) => [page.url, page])).values()];
 }

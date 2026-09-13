@@ -197,7 +197,7 @@ export const RESTAURANTS = [
     hours: "11:00 AM – 10:00 PM",
     shortDescription:
       "Authentic Cantonese cuisine with dim sum specialties and private dining rooms.",
-    image: "/images/Mobile app/YANLONG/ปก 01 copy_resize.jpg",
+    image: "/images/Mobile%20app/YANLONG/%E0%B8%9B%E0%B8%81%2001%20copy_resize.jpg",
   },
   {
     slug: "twist-rooftop-restaurant-bar",
@@ -224,7 +224,7 @@ export const FACILITIES = [
   },
   {
     name: "Fitness Center",
-    description: "State-of-the-art equipment available 24 hours.",
+    description: "Modern fitness equipment, open daily from 7 AM to 9 PM.",
     image: "/images/Mobile app/FACILITIES/Gym 1_resize.jpg",
   },
   {
@@ -374,7 +374,7 @@ export const PROMOTIONS = [
     category: "Dining",
     validFrom: "2026-01-01",
     validUntil: "2026-12-31",
-    image: "/images/Mobile app/YANLONG/ปก 01 copy_resize.jpg",
+    image: "/images/Mobile%20app/YANLONG/%E0%B8%9B%E0%B8%81%2001%20copy_resize.jpg",
     shortDescription:
       "Hotel guests receive 10% off the à la carte menu at Yan Long Authentic Chinese Restaurant. Peking Duck, dim sum, and Cantonese classics on the 1st floor.",
     highlights: [

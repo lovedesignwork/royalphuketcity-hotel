@@ -148,8 +148,8 @@ export default async function Footer() {
     ? "font-heading text-sm text-[--color-text-primary] mb-4 font-semibold"
     : "font-heading text-sm text-[--color-text-primary] mb-4 uppercase tracking-wider";
   const legalClass = isThai
-    ? "text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
-    : "text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors uppercase tracking-wider";
+    ? "text-xs text-[--color-text-secondary] hover:text-[#806849] transition-colors"
+    : "text-xs text-[--color-text-secondary] hover:text-[#806849] transition-colors uppercase tracking-wider";
 
   const seoColumns = [
     { title: t.footer.seoHotel, hrefs: seoHrefs.phuketHotel1, texts: labels.phuketHotel1 },
@@ -167,13 +167,13 @@ export default async function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {seoColumns.map((column) => (
               <div key={column.title}>
-                <h5 className={headingClass}>{column.title}</h5>
+                <h2 className={headingClass}>{column.title}</h2>
                 <ul className="space-y-2">
                   {column.hrefs.map((href, index) => (
                     <li key={`${href}-${column.texts[index]}`}>
                       <LocaleFooterLink
                         href={localizeHref(href, locale)}
-                        className="text-xs text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
+                        className="text-xs text-[--color-text-secondary] hover:text-[#806849] transition-colors"
                       >
                         {column.texts[index]}
                       </LocaleFooterLink>
@@ -201,15 +201,15 @@ export default async function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-[23px] text-[--color-text-primary] mb-6">
+            <h2 className="font-heading text-[23px] text-[--color-text-primary] mb-6">
               {t.footer.reachOut}
-            </h4>
+            </h2>
             <address className="not-italic space-y-4">
               <p className="text-sm text-[--color-text-secondary]">
                 <span className="text-[--color-text-primary]">{t.footer.email}:</span>{" "}
                 <a
                   href={`mailto:${HOTEL_INFO.email}`}
-                  className="hover:text-[--color-accent] transition-colors"
+                  className="hover:text-[#806849] transition-colors"
                 >
                   {HOTEL_INFO.email}
                 </a>
@@ -218,7 +218,7 @@ export default async function Footer() {
                 <span className="text-[--color-text-primary]">{t.footer.tel}:</span>{" "}
                 <a
                   href={`tel:${HOTEL_INFO.phone.replace(/\s/g, "")}`}
-                  className="hover:text-[--color-accent] transition-colors"
+                  className="hover:text-[#806849] transition-colors"
                 >
                   {HOTEL_INFO.phone}
                 </a>
@@ -232,7 +232,7 @@ export default async function Footer() {
                   href={EXTERNAL_LINKS.googleMaps}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-sm text-[--color-text-secondary] hover:text-[--color-accent] transition-colors inline-flex items-center gap-2 border-b-2 border-[#8B7355] pb-1 ${
+                  className={`text-sm text-[--color-text-secondary] hover:text-[#806849] transition-colors inline-flex items-center gap-2 border-b-2 border-[#8B7355] pb-1 ${
                     isThai ? "" : "uppercase tracking-wider"
                   }`}
                 >
@@ -256,9 +256,9 @@ export default async function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-[23px] text-[--color-text-primary] mb-6">
+            <h2 className="font-heading text-[23px] text-[--color-text-primary] mb-6">
               {t.footer.connect}
-            </h4>
+            </h2>
 
             <div className="flex items-center gap-2 mb-6">
               <span className="text-sm text-[--color-text-secondary] mr-2">{t.footer.stayConnected}:</span>
@@ -266,7 +266,7 @@ export default async function Footer() {
                 href={EXTERNAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-[--color-text-secondary] hover:text-[#806849] transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -277,7 +277,7 @@ export default async function Footer() {
                 href={EXTERNAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-[--color-text-secondary] hover:text-[#806849] transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -286,7 +286,7 @@ export default async function Footer() {
               </a>
               <a
                 href={`mailto:${HOTEL_INFO.email}`}
-                className="w-8 h-8 flex items-center justify-center text-[--color-text-secondary] hover:text-[--color-accent] transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-[--color-text-secondary] hover:text-[#806849] transition-colors"
                 aria-label="Email"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -299,7 +299,7 @@ export default async function Footer() {
               href={EXTERNAL_LINKS.booking}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-6 py-3 border border-[#8B7355] text-[#8B7355] text-sm hover:bg-[#8B7355] hover:text-white transition-colors ${
+              className={`inline-flex items-center gap-2 px-6 py-3 border border-[#8B7355] text-[#806849] text-sm hover:bg-[#806849] hover:text-white transition-colors ${
                 isThai ? "" : "tracking-wider uppercase"
               }`}
             >

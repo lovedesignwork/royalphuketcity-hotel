@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import { HeroSection, SectionHeading } from "@/components";
 import ContactForm from "@/components/ContactForm";
@@ -12,13 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
   title: t.contactPage.metaTitle,
   description: t.contactPage.metaDesc,
-  alternates: {
-    canonical: `${SITE_CONFIG.url}${localizeHref("/contact", locale)}`,
-    languages: {
-      en: `${SITE_CONFIG.url}/contact`,
-      th: `${SITE_CONFIG.url}/th/contact`,
-    },
-  },
+  alternates: getPageAlternates("/contact", locale),
   openGraph: {
     title: `${t.contactPage.metaTitle} | ${locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel"}`,
     description: t.contactPage.metaDesc,
@@ -27,8 +22,6 @@ export async function generateMetadata(): Promise<Metadata> {
     images: [
       {
         url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
         alt: "Contact Royal Phuket City Hotel",
       },
     ],

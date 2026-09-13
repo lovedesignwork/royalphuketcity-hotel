@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import type { Country } from "react-phone-number-input";
-import flags from "react-phone-number-input/flags";
 
 const COUNTRIES: { code: Country; name: string }[] = [
   { code: "TH", name: "Thailand" },
@@ -135,123 +133,23 @@ interface CountrySelectorProps {
   value: string;
   onChange: (value: string) => void;
   required?: boolean;
+  id?: string;
 }
 
-export default function CountrySelector({
-  value,
-  onChange,
-  required = false,
-}: CountrySelectorProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-        setSearchQuery("");
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const selectedCountry = COUNTRIES.find((c) => c.name === value);
-  const FlagComponent = selectedCountry ? flags[selectedCountry.code] : null;
-
-  const filteredCountries = COUNTRIES.filter((c) =>
-    c.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const handleSelect = (countryName: string) => {
-    onChange(countryName);
-    setIsOpen(false);
-    setSearchQuery("");
-  };
-
+export default function CountrySelector({ value, onChange, required = false, id = "country" }: CountrySelectorProps) {
   return (
-    <div className="relative flex-1" ref={dropdownRef}>
-      {/* Display Button */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-4 py-3 bg-white hairline-border text-left flex items-center justify-between focus:border-[--color-accent] focus:outline-none transition-colors ${
-          !value ? "text-gray-400" : "text-gray-900"
-        }`}
-      >
-        <span className="flex items-center gap-3">
-          {FlagComponent && (
-            <span className="w-5 h-4 flex-shrink-0 overflow-hidden rounded-sm">
-              <FlagComponent title={value} />
-            </span>
-          )}
-          <span>{value || "Select Country"}</span>
-        </span>
-        <svg
-          className={`w-4 h-4 text-gray-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-
-      {/* Hidden input for form submission */}
-      <input type="hidden" name="country" value={value} required={required} />
-
-      {/* Dropdown */}
-      {isOpen && (
-        <div className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-200 shadow-lg z-50 max-h-[350px] overflow-hidden">
-          {/* Search */}
-          <div className="p-2 border-b border-gray-100">
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Search country..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8B7355]"
-              autoFocus
-            />
-          </div>
-
-          {/* Country List */}
-          <div className="max-h-[280px] overflow-y-auto">
-            {filteredCountries.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-gray-500">No country found.</div>
-            ) : (
-              filteredCountries.map((c) => {
-                const Flag = flags[c.code];
-                return (
-                  <button
-                    key={c.code}
-                    type="button"
-                    onClick={() => handleSelect(c.name)}
-                    className={`w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-50 text-left ${
-                      value === c.name ? "bg-[#8B7355]/10" : ""
-                    }`}
-                  >
-                    {Flag && (
-                      <span className="w-5 h-4 flex-shrink-0 overflow-hidden rounded-sm">
-                        <Flag title={c.name} />
-                      </span>
-                    )}
-                    <span className="flex-1 text-sm">{c.name}</span>
-                    {value === c.name && (
-                      <svg className="w-4 h-4 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    )}
-                  </button>
-                );
-              })
-            )}
-          </div>
-        </div>
-      )}
-    </div>
+    <select
+      id={id}
+      name="country"
+      aria-label="Country"
+      autoComplete="country-name"
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      required={required}
+      className="w-full min-w-0 px-4 py-3 bg-white hairline-border focus:border-[--color-accent] focus:outline-none transition-colors"
+    >
+      <option value="">Select Country</option>
+      {COUNTRIES.map((country) => <option key={country.code} value={country.name}>{country.name}</option>)}
+    </select>
   );
 }

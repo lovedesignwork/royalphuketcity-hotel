@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import { HeroSection, SectionHeading, RoomCard } from "@/components";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -13,13 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
   title: t.roomsPage.metaTitle,
   description: t.roomsPage.metaDesc,
-  alternates: {
-    canonical: `${SITE_CONFIG.url}${path}`,
-    languages: {
-      en: `${SITE_CONFIG.url}/rooms-suites`,
-      th: `${SITE_CONFIG.url}/th/rooms-suites`,
-    },
-  },
+  alternates: getPageAlternates(path, locale),
   openGraph: {
     title: "Rooms & Suites | Royal Phuket City Hotel",
     description:
@@ -29,8 +24,6 @@ export async function generateMetadata(): Promise<Metadata> {
     images: [
       {
         url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
         alt: "Rooms & Suites at Royal Phuket City Hotel",
       },
     ],

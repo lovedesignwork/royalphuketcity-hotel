@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -32,16 +33,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const path = localizeHref(`/meeting-events/${eventData.slug}`, locale);
 
   return {
-    title: `${eventData.title} | Royal Phuket City Hotel`,
+    title: eventData.title,
     description: eventData.metaDescription,
     keywords: eventData.seoKeywords.join(", "),
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/meeting-events/${eventData.slug}`,
-        th: `${SITE_CONFIG.url}/th/meeting-events/${eventData.slug}`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${eventData.title} | Royal Phuket City Hotel`,
       description: eventData.metaDescription,
@@ -68,7 +63,7 @@ export default async function MiceEventTypePage({ params }: PageProps) {
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return (
-    <main>
+    <div>
       {/* Hero Section */}
       <HeroSection
         title={eventData.title}
@@ -301,8 +296,6 @@ export default async function MiceEventTypePage({ params }: PageProps) {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 33vw, 20vw"
-                  quality={100}
-                  unoptimized
                 />
               </div>
             ))}
@@ -421,6 +414,6 @@ export default async function MiceEventTypePage({ params }: PageProps) {
           ))}
         </ul>
       </div>
-    </main>
+    </div>
   );
 }

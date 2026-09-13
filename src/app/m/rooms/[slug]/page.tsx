@@ -7,14 +7,17 @@ import { mobileMetadata } from "@/lib/mobile";
 
 type Params = { slug: string };
 
+// This catalog changes with deployments; unknown slugs must return HTTP 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return ROOMS.map((room) => ({ slug: room.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const room = ROOM_DETAILS[slug];
-  if (!room) return mobileMetadata("Room", "/rooms");
+  const room = Object.prototype.hasOwnProperty.call(ROOM_DETAILS, slug) ? ROOM_DETAILS[slug] : undefined;
+  if (!room) notFound();
   return mobileMetadata(room.name, `/rooms/${slug}`, room.description[0]);
 }
 
@@ -24,7 +27,7 @@ export default async function MobileRoomDetailPage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const room = ROOM_DETAILS[slug];
+  const room = Object.prototype.hasOwnProperty.call(ROOM_DETAILS, slug) ? ROOM_DETAILS[slug] : undefined;
   if (!room) notFound();
 
   return (

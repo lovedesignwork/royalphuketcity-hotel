@@ -2,16 +2,14 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { generatePageMetadata } from "@/lib/seo-utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: "Cultural & Historical Attractions Near Royal Phuket City Hotel",
   description:
     "Explore Phuket's rich cultural heritage including temples, historic streets, and traditional markets near Royal Phuket City Hotel.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/sustainability/cultural-historical`,
-  },
-};
+  path: "/sustainability/cultural-historical",
+});
 
 const attractions = [
   {

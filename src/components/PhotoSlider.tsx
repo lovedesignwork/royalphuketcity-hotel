@@ -106,8 +106,6 @@ export default function PhotoSlider() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 700px"
-                  quality={100}
-                  unoptimized={!photos[getIndex(offset)].src.startsWith("http")}
                 />
               </div>
             ))}
@@ -138,7 +136,7 @@ export default function PhotoSlider() {
       </button>
 
       {/* Dot Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-0.5 z-10">
         {photos.map((_, i) => (
           <button
             key={i}
@@ -146,13 +144,13 @@ export default function PhotoSlider() {
               setDirection(i > current ? 1 : -1);
               setCurrent(i);
             }}
-            className={`transition-all duration-300 rounded-full ${
-              i === current
-                ? "w-5 h-1.5 bg-white"
-                : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
-            }`}
+            type="button"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
             aria-label={`Go to photo ${i + 1}`}
-          />
+            aria-current={i === current ? "true" : undefined}
+          >
+            <span aria-hidden="true" className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "w-5 bg-white" : "w-1.5 bg-white/50"}`} />
+          </button>
         ))}
       </div>
     </section>

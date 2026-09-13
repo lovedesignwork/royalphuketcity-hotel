@@ -19,6 +19,7 @@ interface SubmittedData {
   numberOfGuests: number;
   eventDetails: string;
   referenceNumber?: string;
+  confirmationEmailSent?: boolean;
 }
 
 export default function EventInquiryForm({ compact = false }: { compact?: boolean }) {
@@ -35,6 +36,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
     eventDetails: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null);
   const formLoadedAt = useRef(Date.now());
@@ -43,7 +45,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: name === "numberOfGuests" ? Number(value) : value }));
   };
 
   const handlePhoneChange = (value: string) => {
@@ -62,6 +64,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrorMessage("");
 
     // Get honeypot value
     const form = e.target as HTMLFormElement;
@@ -86,10 +89,11 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && data.success) {
         setSubmittedData({
           ...formData,
           referenceNumber: data.referenceNumber,
+          confirmationEmailSent: data.confirmationEmailSent === true,
         });
         setSubmitStatus("success");
         setFormData({
@@ -104,6 +108,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
         });
         formLoadedAt.current = Date.now();
       } else {
+        setErrorMessage(data.error || "");
         setSubmitStatus("error");
       }
     } catch {
@@ -150,19 +155,22 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
           <div
             className={
               compact
-                ? "relative min-w-0 overflow-hidden rounded-[16px] bg-[var(--m-card)] p-4"
+                ? "relative min-w-0 rounded-[16px] bg-[var(--m-card)] p-4"
                 : "relative outline outline-[4px] md:outline-[8px] lg:outline-[12px] outline-white border-2 border-[#8B7355] bg-white p-8 md:p-12"
             }
           >
-            <form onSubmit={handleSubmit} className="min-w-0 space-y-5">
+            <form hidden={submitStatus === "success"} onSubmit={handleSubmit} className="min-w-0 space-y-5">
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-fullName" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.fullName}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.firstLast}</span>
               </label>
               <input
                 type="text"
+                id="event-fullName"
                 name="fullName"
+                autoComplete="name"
+                maxLength={150}
                 value={formData.fullName}
                 onChange={handleChange}
                 required
@@ -171,13 +179,16 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-email" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.email}</span>
               </label>
               <div className={compact ? "relative min-w-0 w-full" : "flex-1 relative"}>
                 <input
                   type="email"
-                  name="email"
+                  id="event-email"
+                name="email"
+                  autoComplete="email"
+                  maxLength={254}
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -190,12 +201,13 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-phone" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.phone}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.whatsapp}</span>
               </label>
               <div className="min-w-0 w-full">
               <CountryPhoneSelector
+                id="event-phone"
                 value={formData.phone}
                 onChange={handlePhoneChange}
                 defaultCountry="TH"
@@ -205,11 +217,12 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-country" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.country}</span>
               </label>
               <div className="min-w-0 w-full">
               <CountrySelector
+                id="event-country"
                 value={formData.country}
                 onChange={handleCountryChange}
                 required
@@ -218,12 +231,13 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-companyName" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.company}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.optional}</span>
               </label>
               <input
                 type="text"
+                id="event-companyName"
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleChange}
@@ -232,11 +246,12 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-eventDate" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.eventDate}</span>
               </label>
               <div className="min-w-0 w-full">
               <CalendarPicker
+                id="event-eventDate"
                 value={formData.eventDate}
                 onChange={handleDateChange}
                 required
@@ -245,7 +260,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             <div className={row}>
-              <label className={labelCls}>
+              <label htmlFor="event-numberOfGuests" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.guests}</span>
                 <span className="block text-sm text-[--color-text-secondary] italic">{t.attendees}</span>
               </label>
@@ -253,7 +268,8 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
                 <div className="flex min-w-0 items-center gap-3">
                   <input
                     type="range"
-                    name="numberOfGuests"
+                    id="event-numberOfGuests"
+                name="numberOfGuests"
                     min="10"
                     max="2300"
                     step="10"
@@ -266,18 +282,20 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
                   </span>
                 </div>
                 <div className="flex justify-between text-xs text-[--color-text-secondary] mt-1">
-                  <span>50</span>
+                  <span>10</span>
                   <span>2300</span>
                 </div>
               </div>
             </div>
 
             <div className={rowTop}>
-              <label className={labelCls}>
+              <label htmlFor="event-eventDetails" className={labelCls}>
                 <span className="text-[--color-text-primary] font-medium">{t.details}</span>
               </label>
               <textarea
+                id="event-eventDetails"
                 name="eventDetails"
+                maxLength={8000}
                 value={formData.eventDetails}
                 onChange={handleChange}
                 rows={5}
@@ -310,8 +328,8 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
             </div>
 
             {submitStatus === "error" && (
-              <div className="p-4 bg-red-50 text-red-700 border border-red-200 text-sm">
-                  {t.error}{" "}
+              <div role="alert" className="p-4 bg-red-50 text-red-700 border border-red-200 text-sm">
+                  {errorMessage || t.error}{" "}
                   <a href="mailto:reservation@royalphuketcity.com" className="underline font-medium">
                     reservation@royalphuketcity.com
                   </a>
@@ -321,7 +339,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
 
           {/* Success Message - Full Takeover */}
           {submitStatus === "success" && submittedData && (
-            <div className={compact ? "bg-[var(--m-card)] flex flex-col items-center p-2" : "absolute inset-0 bg-white flex flex-col items-center justify-center p-8 md:p-12"}>
+            <div role="status" className={compact ? "bg-[var(--m-card)] flex flex-col items-center p-2" : "bg-white flex flex-col items-center justify-center p-4 md:p-8"}>
               {/* Success Icon */}
               <div className="w-20 h-20 bg-[#8B7355] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -373,7 +391,7 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
                   <div className="flex justify-between">
                     <dt className="text-[--color-text-secondary]">{t.eventDate}:</dt>
                     <dd className="text-[--color-text-primary] font-medium">
-                      {new Date(submittedData.eventDate).toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
+                      {new Date(`${submittedData.eventDate}T00:00:00`).toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
                         weekday: "short",
                         day: "numeric",
                         month: "short",
@@ -389,12 +407,14 @@ export default function EventInquiryForm({ compact = false }: { compact?: boolea
               </div>
 
               {/* Confirmation Email Notice */}
+              {submittedData.confirmationEmailSent && (
               <div className="flex items-center gap-3 text-sm text-[--color-text-secondary] mb-8">
                 <svg className="w-5 h-5 text-[#8B7355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
                 <span>{t.confirmEmail} <strong>{submittedData.email}</strong></span>
               </div>
+              )}
 
               {/* Response Time */}
               <div className="bg-[#8B7355] text-white px-6 py-4 text-center mb-8">

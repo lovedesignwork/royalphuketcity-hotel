@@ -7,21 +7,19 @@ import { getLocale } from "@/lib/i18n/get-locale";
 export const metadata: Metadata = {
   title: "Facilities",
   description:
-    "World-class facilities at Royal Phuket City Hotel: rooftop pool, fitness center, spa, EV charging stations, and complimentary Smart Bus shuttle service.",
+    "World-class facilities at Royal Phuket City Hotel: outdoor pool, fitness center, spa, EV charging stations, and complimentary Smart Bus shuttle service.",
   alternates: {
     canonical: `${SITE_CONFIG.url}/facilities`,
   },
   openGraph: {
     title: "Facilities | Royal Phuket City Hotel",
     description:
-      "World-class facilities including rooftop pool, fitness center, spa, and complimentary shuttle service.",
+      "World-class facilities including outdoor pool, fitness center, spa, and complimentary shuttle service.",
     url: `${SITE_CONFIG.url}/facilities`,
     siteName: SITE_CONFIG.name,
     images: [
       {
         url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
         alt: "Facilities at Royal Phuket City Hotel",
       },
     ],
@@ -32,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Facilities | Royal Phuket City Hotel",
     description:
-      "World-class facilities including rooftop pool, fitness center, spa, and shuttle service.",
+      "World-class facilities including outdoor pool, fitness center, spa, and shuttle service.",
     images: ["/images/og-image.jpg"],
   },
 };

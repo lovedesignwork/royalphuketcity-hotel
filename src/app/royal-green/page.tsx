@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import CTABanner from "@/components/CTABanner";
@@ -12,20 +13,15 @@ export async function generateMetadata(): Promise<Metadata> {
   const path = localizeHref("/royal-green", locale);
   const siteName = locale === "th" ? "โรงแรมรอยัล ภูเก็ต ซิตี้" : "Royal Phuket City Hotel";
   return {
-    title: `${t.metaTitle} | ${siteName}`,
+    title: t.metaTitle,
     description: t.metaDesc,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/royal-green`,
-        th: `${SITE_CONFIG.url}/th/royal-green`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${t.metaTitle} | ${siteName}`,
       description: t.ogDesc,
       url: `${SITE_CONFIG.url}${path}`,
       siteName: SITE_CONFIG.name,
+      images: [{ url: SITE_CONFIG.ogImage, alt: siteName }],
       locale: locale === "th" ? "th_TH" : "en_US",
       type: "website",
     },
@@ -37,7 +33,7 @@ export default async function RoyalGreenPage() {
   const t = getRoyalGreenCopy(locale);
 
   return (
-    <main>
+    <div>
       <HeroSection
         title={t.heroTitle}
         subtitle={t.heroSubtitle}
@@ -142,6 +138,6 @@ export default async function RoyalGreenPage() {
         description={t.ctaDesc}
         image="/images/HOTEL WEBSITE/RPC-Wide.jpg"
       />
-    </main>
+    </div>
   );
 }

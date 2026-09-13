@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import LocaleLink from "@/components/i18n/LocaleLink";
-
-const STORAGE_KEY = "rpc-cookie-consent";
+import { COOKIE_CONSENT_EVENT, COOKIE_CONSENT_KEY } from "@/lib/cookie-consent";
 
 export default function CookieConsent({ aboveTabBar = false }: { aboveTabBar?: boolean }) {
   const { t } = useLocale();
@@ -14,21 +13,23 @@ export default function CookieConsent({ aboveTabBar = false }: { aboveTabBar?: b
   useEffect(() => {
     setMounted(true);
     try {
-      const choice = localStorage.getItem(STORAGE_KEY);
+      const choice = localStorage.getItem(COOKIE_CONSENT_KEY);
       if (!choice) {
         const t = setTimeout(() => setVisible(true), 600);
         return () => clearTimeout(t);
       }
     } catch {
+      setVisible(true);
     }
   }, []);
 
   const handleChoice = (choice: "accepted" | "declined") => {
     try {
-      localStorage.setItem(STORAGE_KEY, choice);
-      localStorage.setItem(`${STORAGE_KEY}-at`, new Date().toISOString());
+      localStorage.setItem(COOKIE_CONSENT_KEY, choice);
+      localStorage.setItem(`${COOKIE_CONSENT_KEY}-at`, new Date().toISOString());
     } catch {
     }
+    window.dispatchEvent(new Event(COOKIE_CONSENT_EVENT));
     setVisible(false);
   };
 
@@ -73,7 +74,7 @@ export default function CookieConsent({ aboveTabBar = false }: { aboveTabBar?: b
                   href="/cookie-policy"
                   className="underline text-[#C4A777]"
                 >
-                  {t.cookie.learnMore}
+                  {t.cookie.policy}
                 </LocaleLink>
               </p>
             </div>

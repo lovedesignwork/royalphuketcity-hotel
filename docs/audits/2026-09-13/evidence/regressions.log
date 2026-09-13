@@ -1,0 +1,69 @@
+
+> royal-phuket-city@0.1.0 test
+> node --test scripts/*-regression.cjs
+
+PASS public article API cannot reveal a draft through preview=true
+PASS published article stays readable
+PASS future-dated articles remain unavailable in pages, listings and sitemap
+PASS invalid or excessive pagination never sends invalid database ranges
+PASS page two reaches older articles and preserves total count
+PASS sitemap paginates beyond the database 1000-row cap
+PASS sitemap preserves a database failure instead of publishing an empty replacement
+PASS category filtering requests an inner join to exclude unrelated posts
+8/8 passed
+✔ scripts\blog-regression.cjs (627.1737ms)
+PASS contact never reports success with no delivery destination
+PASS contact treats a returned mail error as failed delivery
+PASS saved contact remains accepted if mail throws (no duplicate retry)
+PASS email-only contact returns the same usable reference sent by email
+PASS contact escapes guest HTML in notification and confirmation
+PASS contact rejects malformed field types and invalid email as 400
+PASS Thai guest messages pass antispam
+PASS spa uses catalog price and guest count rather than client claims
+PASS spa rejects invalid treatment, duration, date and times before persistence
+PASS saved spa booking remains accepted if notification fails
+PASS saved feedback remains accepted if notification fails
+PASS feedback rejects invalid optional ratings and email
+PASS guest chat never sends a confirmation to the placeholder address
+PASS hotel date uses Bangkok around UTC midnight and slots reject elapsed hours
+PASS native calendar minimum preserves the local day in eastern and western timezones
+PASS spa dates are consecutive Bangkok days across a visitor daylight-saving change
+PASS calendar minimum is identical on a UTC server and Bangkok browser
+17/17 guest-form regression checks passed
+✔ scripts\guest-form-regression.cjs (1698.4082ms)
+✔ anonymous admin APIs stop GET/POST/PATCH/DELETE instead of continuing protected handlers (335.9321ms)
+✔ signed-in non-admin APIs reject with 403 and never carry a continuation header (114.9559ms)
+✔ authorized admin requests still continue through middleware (58.695ms)
+✔ Thai API aliases reject before any rewrite or handler for both hosts and methods (88.0586ms)
+✔ Thai admin aliases canonicalize to the protected desktop route with their query intact (75.9408ms)
+✔ canonical mobile-host admin requests redirect to desktop authentication (58.7019ms)
+✔ public APIs and localized public pages keep working (63.9073ms)
+✔ guest rooms: only catalog routes are allowed and unknown metadata/rendering reject (145.011ms)
+✔ guest dining: only catalog routes are allowed and unknown metadata/rendering reject (25.505ms)
+✔ guest around: only catalog routes are allowed and unknown metadata/rendering reject (34.0965ms)
+✔ canonical URLs ignore tracking/hash and normalize locale and trailing slashes (194.2082ms)
+✔ room metadata points to its actual route and branding appears once (45.3609ms)
+✔ Thai previews remain noindex without prematurely advertising translations (57.8669ms)
+✔ approved language variants have reciprocal self-inclusive alternates (41.5973ms)
+✔ sitemap covers every real page type without duplicates or preview/admin/guest URLs (135.9037ms)
+✔ sitemap uses real article timestamps, rejects invalid/future dates, and encodes slugs (121.964ms)
+✔ sitemap fails regeneration on database failure instead of caching missing articles (123.1453ms)
+✔ robots permits rendering resources and noindex pages while excluding APIs (24.6943ms)
+✔ JSON-LD keeps script-closing content inert while preserving text (13.2999ms)
+✔ promotion prices do not concatenate nights, rooms or percentages (17.8313ms)
+✔ hotel and publishing organization share an entity and public contact details (4.8241ms)
+✔ room images are absolute, decimal floor sizes are retained and breadcrumbs accept absolute URLs (3.348ms)
+✔ all 15 landing pages render content, breadcrumbs, matching FAQs and unique canonicals (175.8131ms)
+✔ unknown and inherited object-key slugs return not found instead of errors or indexable pages (1.852ms)
+✔ all live room detail components render the room schema with their visible specifications (80.0345ms)
+✔ both actual restaurant templates render JSON-LD with the displayed name, cuisine and telephone (97.1996ms)
+✔ date-only promotions remain active until Phuket midnight and expire immediately after (1.4359ms)
+✔ actual promotion detail pages use correct price or omit price on discount-only offers (83.0685ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1719.0233

@@ -1,3 +1,5 @@
+import { getPageAlternates } from "@/lib/seo-utils";
+import { isPromotionActive } from "@/lib/promotion-validity";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -14,10 +16,6 @@ import {
 
 interface PageProps {
   params: Promise<{ slug: string }>;
-}
-
-function isPromotionActive(validUntil: string): boolean {
-  return new Date(validUntil) >= new Date();
 }
 
 export async function generateStaticParams() {
@@ -44,13 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${promo.title} | ${t.promotions}`,
     description: promo.shortDescription,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/promotions/${slug}`,
-        th: `${SITE_CONFIG.url}/th/promotions/${slug}`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${promo.title} | Royal Phuket City Hotel`,
       description: promo.shortDescription,
@@ -59,8 +51,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [
         {
           url: promo.image,
-          width: 1200,
-          height: 630,
           alt: promo.title,
         },
       ],
@@ -93,7 +83,7 @@ export default async function PromotionDetailPage({ params }: PageProps) {
   );
 
   return (
-    <main>
+    <div>
       <OfferJsonLd
         name={promo.title}
         description={promo.shortDescription}
@@ -285,6 +275,6 @@ export default async function PromotionDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

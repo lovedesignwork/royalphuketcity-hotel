@@ -22,12 +22,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const room = ROOM_DETAILS[slug];
+  const room = Object.prototype.hasOwnProperty.call(ROOM_DETAILS, slug) ? ROOM_DETAILS[slug] : undefined;
 
   if (!room) {
-    return {
-      title: "Room Not Found | Royal Phuket City Hotel",
-    };
+    notFound();
   }
 
   return {
@@ -44,8 +42,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: room.images[0].src,
-          width: 1200,
-          height: 630,
           alt: room.images[0].alt,
         },
       ],
@@ -63,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function RoomDetailPage({ params }: Props) {
   const { slug } = await params;
-  const room = ROOM_DETAILS[slug];
+  const room = Object.prototype.hasOwnProperty.call(ROOM_DETAILS, slug) ? ROOM_DETAILS[slug] : undefined;
 
   if (!room) {
     notFound();

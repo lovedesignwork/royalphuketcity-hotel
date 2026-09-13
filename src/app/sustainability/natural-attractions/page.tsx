@@ -2,16 +2,14 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { generatePageMetadata } from "@/lib/seo-utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: "Natural Attractions Near Royal Phuket City Hotel",
   description:
     "Discover beautiful natural attractions near Royal Phuket City Hotel including Khao Rang Viewpoint and Saphan Hin Park.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/sustainability/natural-attractions`,
-  },
-};
+  path: "/sustainability/natural-attractions",
+});
 
 const attractions = [
   {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EXTERNAL_LINKS, HOTEL_INFO } from "@/lib/constants";
 import { getNavLinks } from "@/lib/i18n/nav";
@@ -20,6 +20,30 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const nav = getNavLinks(t);
   const allLinks = [...nav.left, ...nav.right];
   const isThai = locale === "th";
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    panelRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { event.preventDefault(); onClose(); return; }
+      if (event.key !== "Tab") return;
+      const items = Array.from(panelRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select, [tabindex="0"]') ?? []).filter((item) => item.getClientRects().length > 0);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      previousFocus?.focus();
+    };
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
@@ -35,6 +59,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           />
 
           <motion.div
+            ref={panelRef}
+            id="mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label={t.header.openMenu}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -76,12 +105,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
               )}
 
-              <nav className="space-y-1">
+              <nav aria-label="Main navigation" className="space-y-1">
                 {allLinks.map((link) => (
                   <div key={link.label} className="hairline-border-b">
                     {"dropdown" in link && link.dropdown ? (
                       <>
                         <button
+                          aria-expanded={expandedDropdown === link.label}
                           onClick={() =>
                             setExpandedDropdown(
                               expandedDropdown === link.label ? null : link.label

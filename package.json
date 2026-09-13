@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src next.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test scripts/*-regression.cjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -14,7 +16,7 @@
     "@supabase/supabase-js": "^2.49.0",
     "framer-motion": "^12.0.0",
     "googleapis": "^176.0.0",
-    "next": "^15.2.0",
+    "next": "^15.5.25",
     "react": "^19.0.0",
     "react-country-flag": "^3.1.0",
     "react-dom": "^19.0.0",
@@ -27,9 +29,12 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^15.2.0",
-    "postcss": "^8.5.0",
+    "eslint-config-next": "^15.5.25",
+    "postcss": "^8.5.28",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0"
+  },
+  "overrides": {
+    "postcss": "$postcss"
   }
 }

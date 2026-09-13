@@ -65,7 +65,8 @@ function hasSpamPatterns(content: string): boolean {
   if (/(.)\1{10,}/.test(content)) return true;
 
   // Check for too many special characters (often spam)
-  const specialCharRatio = (content.match(/[^\w\s]/g) || []).length / content.length;
+  // Unicode letters/marks include Thai and other guest languages.
+  const specialCharRatio = (content.match(/[^\p{L}\p{M}\p{N}\s]/gu) || []).length / content.length;
   if (content.length > 50 && specialCharRatio > 0.3) return true;
 
   return false;

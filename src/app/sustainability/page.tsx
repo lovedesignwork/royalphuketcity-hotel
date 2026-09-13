@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import { HeroSection, CTABanner } from "@/components";
@@ -15,18 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t.metaTitle,
     description: t.metaDesc,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/sustainability`,
-        th: `${SITE_CONFIG.url}/th/sustainability`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${t.metaTitle} | ${siteName}`,
       description: t.ogDesc,
       url: `${SITE_CONFIG.url}${path}`,
       siteName: SITE_CONFIG.name,
+      images: [{ url: SITE_CONFIG.ogImage, alt: siteName }],
       locale: locale === "th" ? "th_TH" : "en_US",
       type: "website",
     },
@@ -152,7 +148,6 @@ export default async function SustainabilityPage() {
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 672px"
-                  quality={100}
                 />
               </div>
             </div>
@@ -195,7 +190,6 @@ export default async function SustainabilityPage() {
                   height={497}
                   className="w-full h-auto object-contain"
                   sizes="(max-width: 768px) 100vw, 896px"
-                  unoptimized
                 />
               </div>
             </div>

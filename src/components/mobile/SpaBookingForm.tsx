@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import CountryPhoneSelector from "@/components/CountryPhoneSelector";
 import MobileLink from "@/components/mobile/MobileLink";
 import { EXTERNAL_LINKS } from "@/lib/constants";
+import { hotelDatesAhead, isFutureSpaSlot, SPA_BOOKING_TIMES } from "@/lib/guest-form-validation";
 import {
   HOTEL_GUEST_DISCOUNT,
   formatBaht,
@@ -13,28 +14,6 @@ import {
   spaTreatments,
   type Treatment,
 } from "@/lib/spa-treatments";
-
-const TIMES = [
-  "10:00",
-  "11:00",
-  "12:00",
-  "13:00",
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-  "18:00",
-  "19:00",
-  "20:00",
-];
-
-function datesAhead(days: number) {
-  return Array.from({ length: days }, (_, index) => {
-    const date = new Date();
-    date.setDate(date.getDate() + index);
-    return date.toISOString().slice(0, 10);
-  });
-}
 
 function formatDay(value: string) {
   return new Date(`${value}T00:00:00`).toLocaleDateString("en-US", {
@@ -68,7 +47,7 @@ export default function SpaBookingForm() {
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
 
-  const dates = useMemo(() => datesAhead(14), []);
+  const dates = useMemo(() => hotelDatesAhead(14), []);
   const discounted = Math.round(price * (1 - HOTEL_GUEST_DISCOUNT));
 
   const chooseTreatment = (next: Treatment) => {
@@ -85,8 +64,8 @@ export default function SpaBookingForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!treatment || !date || !time || !name || !email || !phone || !roomNumber) {
-      setError("Choose a treatment, time, and your name, email, and room number.");
+    if (!treatment || !isFutureSpaSlot(date, time) || !name.trim() || !email.trim() || !phone || !roomNumber.trim()) {
+      setError("Choose a treatment and future appointment time, and enter your name, email, phone, and room number.");
       setStatus("error");
       return;
     }
@@ -129,17 +108,18 @@ export default function SpaBookingForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-[16px] bg-[var(--m-card)] p-5 text-center">
+      <div role="status" className="rounded-[16px] bg-[var(--m-card)] p-5 text-center">
         <p className="text-sm text-[var(--m-gold)]">Request sent</p>
-        <h2 className="mt-2 font-heading text-2xl">See you at the spa</h2>
+        <h2 className="mt-2 font-heading text-2xl">Your spa request is received</h2>
         {reference ? (
           <p className="mt-3 text-sm text-[var(--m-muted)]">
             Reference <span className="font-medium text-[var(--m-ink)]">{reference}</span>
           </p>
         ) : null}
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--m-muted)]">
-          {treatment?.name} on {date ? formatDay(date) : ""} at {time}. Pay at the spa on the
-          3rd floor. Hotel guest 10% is already applied.
+          Requested: {treatment?.name} on {date ? formatDay(date) : ""} at {time} (Phuket time).
+          The spa team will confirm availability. Once confirmed, pay at the spa on the
+          3rd floor. Your estimate includes the 10% hotel guest discount.
         </p>
         <MobileLink
           href="/spa"
@@ -154,7 +134,7 @@ export default function SpaBookingForm() {
   return (
     <form onSubmit={handleSubmit} className="min-w-0 space-y-5">
       <p className="text-sm text-[var(--m-muted)]">
-        Book a slot during your stay. Pay at the spa. Hotel guests get 10% off.
+        Request a slot during your stay. The spa will confirm availability. Pay at the spa. Hotel guests get 10% off.
       </p>
 
       <div className="min-w-0">
@@ -193,6 +173,7 @@ export default function SpaBookingForm() {
                   key={option.duration}
                   type="button"
                   onClick={() => chooseDuration(option)}
+                  aria-pressed={selected}
                   className={`min-h-11 rounded-full px-4 text-sm ${
                     selected
                       ? "bg-[var(--m-gold)] font-medium text-white"
@@ -217,7 +198,8 @@ export default function SpaBookingForm() {
                 <button
                   key={value}
                   type="button"
-                  onClick={() => setDate(value)}
+                  onClick={() => { setDate(value); setTime(""); }}
+                  aria-pressed={selected}
                   className={`min-h-11 min-w-[4.5rem] rounded-[12px] px-3 text-sm ${
                     selected
                       ? "bg-[var(--m-gold)] font-medium text-white"
@@ -233,16 +215,19 @@ export default function SpaBookingForm() {
       </fieldset>
 
       <fieldset className="min-w-0">
-        <legend className="mb-1.5 font-medium">Time</legend>
+        <legend className="mb-1.5 font-medium">Time (Phuket)</legend>
         <div className="grid grid-cols-4 gap-2">
-          {TIMES.map((value) => {
+          {SPA_BOOKING_TIMES.map((value) => {
             const selected = value === time;
+            const unavailable = !date || !isFutureSpaSlot(date, value);
             return (
               <button
                 key={value}
                 type="button"
                 onClick={() => setTime(value)}
-                className={`min-h-11 rounded-[12px] text-sm ${
+                aria-pressed={selected}
+                disabled={unavailable}
+                className={`min-h-11 rounded-[12px] text-sm disabled:opacity-40 disabled:cursor-not-allowed ${
                   selected
                     ? "bg-[var(--m-gold)] font-medium text-white"
                     : "bg-[var(--m-card)]"
@@ -261,6 +246,8 @@ export default function SpaBookingForm() {
         </label>
         <input
           id="spa-name"
+          autoComplete="name"
+          maxLength={150}
           required
           value={name}
           onChange={(event) => setName(event.target.value)}
@@ -274,6 +261,8 @@ export default function SpaBookingForm() {
         </label>
         <input
           id="spa-email"
+          autoComplete="email"
+          maxLength={254}
           type="email"
           required
           value={email}
@@ -293,6 +282,7 @@ export default function SpaBookingForm() {
         </label>
         <input
           id="spa-room"
+          maxLength={30}
           required
           value={roomNumber}
           onChange={(event) => setRoomNumber(event.target.value)}
@@ -307,6 +297,7 @@ export default function SpaBookingForm() {
         </label>
         <textarea
           id="spa-notes"
+          maxLength={5000}
           rows={3}
           value={notes}
           onChange={(event) => setNotes(event.target.value)}
@@ -338,7 +329,7 @@ export default function SpaBookingForm() {
       ) : null}
 
       {status === "error" && error ? (
-        <p className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</p>
+        <p role="alert" className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</p>
       ) : null}
 
       <button
@@ -346,7 +337,7 @@ export default function SpaBookingForm() {
         disabled={status === "sending"}
         className="flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--m-gold)] px-5 text-sm font-medium text-white disabled:opacity-50"
       >
-        {status === "sending" ? "Sending request..." : "Book treatment"}
+        {status === "sending" ? "Sending request..." : "Request treatment"}
       </button>
 
       {treatment ? (

@@ -1,3 +1,4 @@
+import { getPageAlternates } from "@/lib/seo-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,13 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t.metaTitle,
     description: t.metaDesc,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${path}`,
-      languages: {
-        en: `${SITE_CONFIG.url}/meeting-events`,
-        th: `${SITE_CONFIG.url}/th/meeting-events`,
-      },
-    },
+    alternates: getPageAlternates(path, locale),
     openGraph: {
       title: `${t.metaTitle} | Royal Phuket City Hotel`,
       description: t.metaDesc,
@@ -33,8 +28,6 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [
         {
           url: "/images/og-image.jpg",
-          width: 1200,
-          height: 630,
           alt: t.metaTitle,
         },
       ],

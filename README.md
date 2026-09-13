@@ -4,7 +4,7 @@ A modern, elegant hotel website built with Next.js, featuring a luxury minimalis
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 15.5 (App Router)
 - **Styling:** Tailwind CSS 4
 - **Language:** TypeScript (strict mode)
 - **Animations:** Framer Motion
@@ -16,7 +16,7 @@ A modern, elegant hotel website built with Next.js, featuring a luxury minimalis
 
 ### Prerequisites
 
-- Node.js 18.17 or later
+- Node.js 22 or later (audit validation used Node.js 24)
 - npm or yarn
 
 ### Installation
@@ -137,9 +137,38 @@ vercel
 
 - Unique `<title>` and `<meta description>` per page
 - Open Graph tags for social sharing
-- JSON-LD structured data (Hotel, LocalBusiness)
+- JSON-LD structured data for the hotel, rooms, restaurants, offers, articles, and breadcrumbs
 - Auto-generated `sitemap.xml` and `robots.txt`
 - Semantic HTML throughout
+
+Public metadata is included in the initial HTML head. The sitemap includes published
+articles and real content routes; it excludes private pages, noindexed policies, and
+Thai previews. Thai indexing and reciprocal language alternatives follow
+`SHOW_LANGUAGE_SWITCHER` in `src/lib/i18n/config.ts`, which stays off until the
+translations are approved. Set `GOOGLE_SITE_VERIFICATION` only to a real Search
+Console HTML verification token, if that verification method is used.
+
+Blog pages read published articles directly from the server database. Saved draft
+previews require an authenticated admin at `/admin/blog/[id]/preview`. Public
+`?preview=true` URLs do not grant access to drafts.
+
+## Validation
+
+```bash
+npm run lint
+npm test
+npm run typecheck
+npm run build
+```
+
+The regression suites mock database and email services. They cover admin route
+authorization, article visibility and pagination, sitemap metadata, structured
+data, guest submission failures, and Phuket date boundaries. They never send live
+inquiries, payments, or email. Browser audit results and remaining deployment checks
+are recorded in `docs/audits/2026-09-13/FULL-AUDIT-REPORT.md`.
+
+Next.js is kept on the patched 15.5 maintenance line. The PostCSS override uses the
+patched project version for Next.js as well; verify `npm audit` before removing it.
 
 ## Performance
 

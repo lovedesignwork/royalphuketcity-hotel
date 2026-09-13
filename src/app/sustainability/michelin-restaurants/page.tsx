@@ -1,16 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { HeroSection } from "@/components";
-import { SITE_CONFIG } from "@/lib/constants";
+import { generatePageMetadata } from "@/lib/seo-utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: "Michelin Restaurants Near Royal Phuket City Hotel",
   description:
     "Discover award-winning Michelin Guide restaurants near Royal Phuket City Hotel in Phuket Old Town.",
-  alternates: {
-    canonical: `${SITE_CONFIG.url}/sustainability/michelin-restaurants`,
-  },
-};
+  path: "/sustainability/michelin-restaurants",
+});
 
 const restaurants = [
   {
@@ -58,7 +56,7 @@ export default function MichelinRestaurantsPage() {
         title="Michelin Guide Restaurants"
         subtitle="Culinary Excellence in Phuket"
         description="Experience award-winning dining near Royal Phuket City Hotel"
-        image="/images/HOTEL WEBSITE/YL Food 002.jpg"
+        image="/images/Mobile app/YANLONG/Eating Pekking Duck_resize.jpg"
         height="medium"
       />
 

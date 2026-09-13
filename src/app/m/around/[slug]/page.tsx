@@ -7,6 +7,9 @@ import { mobileMetadata } from "@/lib/mobile";
 
 type Params = { slug: string };
 
+// This catalog changes with deployments; unknown slugs must return HTTP 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return AROUND_SECTIONS.map((item) => ({ slug: item.slug }));
 }
@@ -14,7 +17,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const section = getAroundSection(slug);
-  if (!section) return mobileMetadata("Around Phuket", "/around");
+  if (!section) notFound();
   return mobileMetadata(section.title, `/around/${slug}`, section.intro);
 }
 

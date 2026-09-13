@@ -5,12 +5,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import DesktopSiteChrome from "@/components/DesktopSiteChrome";
-import { HotelJsonLd, LocalBusinessJsonLd, WebSiteJsonLd, OrganizationJsonLd } from "@/components/JsonLd";
+import { HotelJsonLd, WebSiteJsonLd, OrganizationJsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/Analytics";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { getInnerPathname, getLocale } from "@/lib/i18n/get-locale";
 import { getDictionary } from "@/lib/i18n/messages";
-import { localizeHref } from "@/lib/i18n/path";
+import { SHOW_LANGUAGE_SWITCHER } from "@/lib/i18n/config";
+import { getPageAlternates } from "@/lib/seo-utils";
 import { getMobileFlags } from "@/lib/mobile-server";
 import "./globals.css";
 
@@ -18,8 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const t = getDictionary(locale);
   const path = await getInnerPathname();
-  const enUrl = new URL(path, SITE_CONFIG.url).toString();
-  const thUrl = new URL(localizeHref(path, "th"), SITE_CONFIG.url).toString();
+  const alternates = getPageAlternates(path, locale);
+  const index = locale !== "th" || SHOW_LANGUAGE_SWITCHER;
+  const googleVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
 
   return {
     metadataBase: new URL(SITE_CONFIG.url),
@@ -64,47 +66,39 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       siteName: SITE_CONFIG.name,
       locale: locale === "th" ? "th_TH" : "en_US",
-      alternateLocale: locale === "th" ? ["en_US"] : ["th_TH"],
-      url: locale === "th" ? thUrl : enUrl,
-      title: t.meta.titleDefault,
-      description: t.meta.description,
+      ...(SHOW_LANGUAGE_SWITCHER ? {
+        alternateLocale: locale === "th" ? ["en_US"] : ["th_TH"],
+      } : {}),
+      url: alternates?.canonical as string,
+      // Next inherits the final page title/description when these are omitted.
       images: [
         {
           url: "/images/og-image.jpg",
-          width: 1200,
-          height: 630,
+          width: 2489,
+          height: 1217,
           alt: t.meta.ogAlt,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: t.meta.titleDefault,
-      description: t.meta.description,
-      images: ["/images/og-image.jpg"],
+      // Let Next populate this card from the current page's Open Graph data.
     },
     robots: {
-      index: true,
+      index,
       follow: true,
       googleBot: {
-        index: true,
+        index,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,
       },
     },
-    alternates: {
-      canonical: locale === "th" ? thUrl : enUrl,
-      languages: {
-        en: enUrl,
-        th: thUrl,
-        "x-default": enUrl,
-      },
-    },
-    verification: {
-      google: "google-site-verification-code",
-    },
+    alternates,
+    ...(googleVerification && {
+      verification: { google: googleVerification },
+    }),
     icons: {
       icon: "/images/rpc-icon.svg",
       shortcut: "/images/rpc-icon.svg",
@@ -136,7 +130,6 @@ export default async function RootLayout({
             <WebSiteJsonLd />
             <OrganizationJsonLd />
             <HotelJsonLd />
-            <LocalBusinessJsonLd />
           </>
         )}
       </head>

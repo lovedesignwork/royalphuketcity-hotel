@@ -1,0 +1,51 @@
+[
+  {
+    "path": "/hotel-policy",
+    "status": 200
+  },
+  {
+    "path": "/terms-conditions",
+    "status": 200
+  },
+  {
+    "path": "/privacy-policy",
+    "status": 200
+  },
+  {
+    "path": "/cookie-policy",
+    "status": 200
+  },
+  {
+    "path": "/disclaimer",
+    "status": 200
+  },
+  {
+    "path": "/api/admin/blog",
+    "status": 401
+  },
+  {
+    "path": "/th/api/admin/blog",
+    "status": 404
+  },
+  {
+    "path": "/constructor",
+    "status": 404
+  },
+  {
+    "path": "/rooms-suites/constructor",
+    "status": 404
+  },
+  {
+    "path": "/m/rooms/constructor",
+    "status": 404
+  },
+  {
+    "path": "/m/dining/constructor",
+    "status": 404
+  },
+  {
+    "path": "optimized Thai image",
+    "status": 200,
+    "bytes": 44535
+  }
+]
