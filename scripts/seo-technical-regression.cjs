@@ -111,10 +111,17 @@ test("sitemap fails regeneration on database failure instead of caching missing 
 
 test("robots permits rendering resources and noindex pages while excluding APIs", () => {
   const robots = harness().load("src/app/robots.ts").default();
-  const rule = robots.rules.find(({ userAgent }) => userAgent === "*");
-  for (const route of ["/_next/static/app.js", "/_next/image", "/m/contact", "/admin/login"]) {
-    assert(!rule.disallow.some((blocked) => route.startsWith(blocked.replace(/\$$/, ""))));
+  // Named groups replace the wildcard policy; each must retain API exclusions
+  // without blocking the assets or pages needed to read noindex metadata.
+  for (const agent of ["*", "OAI-SearchBot", "ChatGPT-User", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User", "Googlebot", "Googlebot-Image", "bingbot"]) {
+    const rule = robots.rules.find(({ userAgent }) => [userAgent].flat().includes(agent));
+    assert(rule, `Missing crawler policy: ${agent}`);
+    assert.equal(rule.allow, "/");
+    for (const route of ["/wedding-venues", "/meeting-events", "/_next/static/app.js", "/_next/image", "/m/contact", "/admin/login"]) {
+      assert(!rule.disallow.some((blocked) => route.startsWith(blocked.replace(/\$$/, ""))), `${agent}: ${route}`);
+    }
+    assert(rule.disallow.includes("/api$"));
+    assert(rule.disallow.includes("/api/"));
   }
-  assert(rule.disallow.includes("/api/"));
   assert.equal(robots.sitemap, "https://royalphuketcity.com/sitemap.xml");
 });
