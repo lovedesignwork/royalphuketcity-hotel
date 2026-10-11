@@ -20,9 +20,11 @@ interface RelatedPost {
   blog_categories?: { name: string; slug: string };
 }
 
-async function getRelatedPosts(currentSlug: string): Promise<RelatedPost[]> {
-  const { posts } = await getPublishedPosts(1, 4);
-  return posts.filter((post) => post.slug !== currentSlug).slice(0, 3);
+async function getRelatedPosts(current: BlogPost): Promise<RelatedPost[]> {
+  const { posts } = await getPublishedPosts(1, 100);
+  const score = (post: BlogPost) => (post.blog_categories?.slug && post.blog_categories.slug === current.blog_categories?.slug ? 5 : 0)
+    + (post.tags || []).filter(tag => current.tags?.includes(tag)).length;
+  return posts.filter(post => post.slug !== current.slug).sort((a, b) => score(b) - score(a)).slice(0, 3);
 }
 
 export async function generateBlogMetadata({
@@ -119,7 +121,7 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const relatedPosts = await getRelatedPosts(slug);
+  const relatedPosts = await getRelatedPosts(post);
   const readingTime = post.word_count ? Math.ceil(post.word_count / 200) : 3;
 
   return (
@@ -181,13 +183,13 @@ export default async function BlogPostPage({
 
             {/* Content */}
             <div
-              className="prose prose-lg max-w-none 
-                prose-headings:font-heading 
-                prose-headings:text-[--color-text-primary] 
+              className="blog-prose prose prose-lg max-w-none
+                prose-headings:font-heading
+                prose-headings:text-[--color-text-primary]
                 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
                 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
                 prose-p:text-[--color-text-secondary] prose-p:leading-relaxed
-                prose-a:text-[--color-accent] prose-a:no-underline hover:prose-a:underline 
+                prose-a:text-[--color-accent] prose-a:no-underline hover:prose-a:underline
                 prose-img:rounded-none prose-img:my-8
                 prose-strong:text-[--color-text-primary]
                 prose-blockquote:border-l-[--color-accent] prose-blockquote:bg-[--color-surface] prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:not-italic
@@ -201,9 +203,9 @@ export default async function BlogPostPage({
             {/* Tags */}
             {post.tags && post.tags.length > 0 && (
               <div className="mt-16 pt-8 border-t border-gray-200">
-                <h3 className="label-accent text-[--color-accent] mb-4">
+                <h2 className="label-accent text-[--color-accent] mb-4">
                   Tags
-                </h3>
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag, i) => (
                     <span
@@ -285,7 +287,7 @@ export default async function BlogPostPage({
                       <h3 className="font-heading text-lg text-[--color-text-primary] group-hover:text-[--color-accent] transition-colors line-clamp-2 mb-2">
                         {relatedPost.title}
                       </h3>
-                      
+
                     </div>
                   </article>
                 </Link>
