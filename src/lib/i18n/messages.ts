@@ -56,6 +56,7 @@ const en = {
     yanLong: "Yan Long Chinese Restaurant",
     twist: "TWIST Rooftop Restaurant & Bar",
     about: "About",
+    blog: "Blog",
     artist: "Artist",
     royalGreen: "Royal Green",
     sustainability: "Sustainability",
@@ -418,6 +419,7 @@ const th: DictionaryShape<typeof en> = {
     switchToThai: "อ่านเว็บไซต์เป็นภาษาไทย",
   },
   nav: {
+    blog: "บทความ",
     home: "หน้าแรก",
     rooms: "ห้องพัก",
     allRooms: "ห้องพักทั้งหมด",

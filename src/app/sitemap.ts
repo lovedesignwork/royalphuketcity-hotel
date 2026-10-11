@@ -6,6 +6,7 @@ import { WEDDING_TYPE_SLUGS } from "@/lib/wedding-types-data";
 import { MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
 import { SHOW_LANGUAGE_SWITCHER } from "@/lib/i18n/config";
 import { getPageAlternates } from "@/lib/seo-utils";
+import { getBlogPath } from "@/lib/blog-path";
 import { getPublishedPostSitemapEntries } from "@/lib/blog";
 
 // Refresh published posts without requiring a deployment after every article.
@@ -65,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPublishedPostSitemapEntries();
   for (const post of posts) {
     // Slugs are a single path segment. Encoding also protects XML URL values.
-    const url = new URL(`/blog/${encodeURIComponent(post.slug)}`, SITE_CONFIG.url).toString();
+    const url = new URL(getBlogPath(post.slug), SITE_CONFIG.url).toString();
     const modified = [post.updated_at, post.published_at]
       .filter((value): value is string => Boolean(value))
       .map((value) => new Date(value))

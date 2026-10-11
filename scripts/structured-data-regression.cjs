@@ -19,6 +19,7 @@ function load(filename) {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
   }).outputText;
   function localRequire(name) {
+    if (name === "@/lib/blog") return { getPublishedPost: async () => null, getPublishedPosts: async () => ({posts: [], total: 0}) };
     if (name === "next/navigation") return { notFound: () => { throw new Error("NEXT_NOT_FOUND"); } };
     if (name === "next/link") return ({ children, href, ...props }) => React.createElement("a", { href, ...props }, children);
     if (name === "@/components/i18n/LocaleLink") return ({ children, href, ...props }) => React.createElement("a", { href, ...props }, children);

@@ -8,6 +8,7 @@ import {
   CTABanner,
   AnnouncementSection,
 } from "@/components";
+import LatestBlogs from "@/components/LatestBlogs";
 import PhotoSlider from "@/components/PhotoSlider";
 import { HOTEL_INFO } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -603,8 +604,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Blog Section - hidden, uncomment to show */}
-      {/* <BlogSection /> */}
+      {/* Latest three published articles, independent of the footer. */}
+      {locale === "en" && <LatestBlogs />}
 
       {/* Testimonials */}
       <TestimonialSlider />

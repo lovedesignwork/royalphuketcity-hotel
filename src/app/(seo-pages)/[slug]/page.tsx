@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getPublishedPost } from "@/lib/blog";
 import Image from "next/image";
 import Link from "next/link";
 import { SEO_PAGES, SEO_PAGE_SLUGS, SeoPageData } from "@/lib/seo-pages-data";
@@ -7,6 +8,7 @@ import HeroSection from "@/components/HeroSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { FAQJsonLd, JsonLd } from "@/components/JsonLd";
 import { generatePageMetadata } from "@/lib/seo-utils";
+import BlogArticle, { generateBlogMetadata } from "@/components/BlogArticle";
 import { SITE_CONFIG } from "@/lib/constants";
 
 interface PageProps {
@@ -22,7 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageData = Object.prototype.hasOwnProperty.call(SEO_PAGES, slug) ? SEO_PAGES[slug] : undefined;
 
   if (!pageData) {
-    notFound();
+    if (!await getPublishedPost(slug)) notFound();
+    return generateBlogMetadata({ params });
   }
 
   return generatePageMetadata({
@@ -49,7 +52,8 @@ export default async function SeoPage({ params }: PageProps) {
   const pageData = Object.prototype.hasOwnProperty.call(SEO_PAGES, slug) ? SEO_PAGES[slug] : undefined;
 
   if (!pageData) {
-    notFound();
+    if (!await getPublishedPost(slug)) notFound();
+    return <BlogArticle params={params} />;
   }
 
   const relatedPages = pageData.relatedPages
