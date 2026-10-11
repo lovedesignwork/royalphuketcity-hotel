@@ -4,7 +4,7 @@ import { SEO_PAGE_SLUGS } from "@/lib/seo-pages-data";
 // collision remain readable under /blog instead of redirecting to another page.
 const reserved = new Set([
   ...SEO_PAGE_SLUGS, "admin", "api", "m", "th", "blog", "contact", "rooms-suites",
-  "promotions", "good-eatz-154", "facilities", "dining", "wedding-venues", "meeting-events",
+  "promotions", "sales-kit", "good-eatz-154", "facilities", "dining", "wedding-venues", "meeting-events",
   "artist", "artist-story", "royal-green", "our-clients", "sustainability",
   "download-fact-sheets", "hotel-policy", "privacy-policy", "cookie-policy",
   "terms-conditions", "disclaimer", "accessibility", "yan-long-chinese-restaurant",

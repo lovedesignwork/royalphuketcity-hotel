@@ -10,7 +10,8 @@ import { getBlogPath } from "@/lib/blog-path";
 import { getPublishedPostSitemapEntries } from "@/lib/blog";
 
 // Refresh published posts without requiring a deployment after every article.
-export const revalidate = 3600;
+// Database publication must be discoverable without waiting for a rebuild.
+export const dynamic = "force-dynamic";
 
 const STATIC_PATHS = [
   "/",
