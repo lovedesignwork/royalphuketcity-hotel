@@ -98,11 +98,11 @@ test("sitemap uses real article timestamps, rejects invalid/future dates, and en
     { slug: "missing-date", updated_at: "2099-01-01T00:00:00Z" },
   ];
   const sitemap = await harness({ posts }).load("src/app/sitemap.ts").default();
-  const news = sitemap.find(({ url }) => url.endsWith("/blog/hotel-news"));
+  const news = sitemap.find(({ url }) => url.endsWith("/hotel-news"));
   assert.equal(news.lastModified, "2025-04-05T12:00:00.000Z");
-  const guide = sitemap.find(({ url }) => url.endsWith("/blog/guide%20%26%20tips"));
+  const guide = sitemap.find(({ url }) => url.endsWith("/guide%20%26%20tips"));
   assert.equal(guide.lastModified, "2025-01-01T00:00:00.000Z");
-  assert.equal(sitemap.find(({ url }) => url.endsWith("/blog/missing-date")).lastModified, undefined);
+  assert.equal(sitemap.find(({ url }) => url.endsWith("/missing-date")).lastModified, undefined);
 });
 
 test("sitemap fails regeneration on database failure instead of caching missing articles", async () => {

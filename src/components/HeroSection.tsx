@@ -10,6 +10,7 @@ interface HeroSectionProps {
   subtitle?: string;
   description?: string;
   image: string;
+  imageAlt?: string;
   imageSizes?: string;
   imageQuality?: number;
   showReserveButton?: boolean;
@@ -24,6 +25,7 @@ export default function HeroSection({
   subtitle,
   description,
   image,
+  imageAlt,
   imageSizes = "100vw",
   imageQuality = 75,
   showReserveButton = false,
@@ -62,7 +64,7 @@ export default function HeroSection({
       {/* Background Image */}
       <Image
         src={image}
-        alt={title}
+        alt={imageAlt || title}
         fill
         priority
         fetchPriority="high"

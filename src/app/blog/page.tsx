@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getBlogPath } from "@/lib/blog-path";
 import { SITE_CONFIG } from "@/lib/constants";
 import { HeroSection, SectionHeading } from "@/components";
 import { notFound } from "next/navigation";
@@ -44,13 +45,13 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
 
   if (featured) {
     return (
-      <Link href={`/blog/${post.slug}`} className="group block">
+      <Link href={getBlogPath(post.slug)} className="group block">
         <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="relative aspect-[4/3] overflow-hidden">
             {post.featured_image ? (
               <Image
                 src={post.featured_image}
-                alt={post.title}
+                alt={post.featured_image_alt || post.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -88,16 +89,6 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
               </p>
             )}
             <div className="flex items-center gap-4 text-sm text-[--color-text-secondary]">
-              <span>
-                {post.published_at
-                  ? new Date(post.published_at).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })
-                  : ""}
-              </span>
-              <span className="w-1 h-1 bg-[--color-accent] rounded-full" />
               <span>{readingTime} min read</span>
             </div>
           </div>
@@ -107,13 +98,13 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
   }
 
   return (
-    <Link href={`/blog/${post.slug}`} className="group block">
+    <Link href={getBlogPath(post.slug)} className="group block">
       <article className="h-full border border-gray-200 hover:border-[#8B7355] transition-colors hover:shadow-lg bg-white">
         <div className="relative aspect-[16/10] overflow-hidden">
           {post.featured_image ? (
             <Image
               src={post.featured_image}
-              alt={post.title}
+              alt={post.featured_image_alt || post.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -151,15 +142,6 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
             </p>
           )}
           <div className="flex items-center justify-between text-sm text-[--color-text-secondary]">
-            <span>
-              {post.published_at
-                ? new Date(post.published_at).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })
-                : ""}
-            </span>
             <span>{readingTime} min read</span>
           </div>
         </div>
@@ -252,65 +234,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div>
       </section>
 
-      {/* Link to current offers; no newsletter service is configured. */}
-      <section className="py-20 md:py-28 bg-[#8B7355]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-white/60 uppercase tracking-widest text-sm mb-4">
-              Stay Connected
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl text-white mb-4">
-              Discover Our Latest Offers
-            </h2>
-            <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Explore current room packages, dining offers, and experiences at Royal Phuket City Hotel.
-            </p>
-            <Link href="/promotions" className="inline-flex px-8 py-4 bg-white text-[#8B7355] font-medium tracking-wider uppercase text-sm hover:bg-white/90 transition-colors">
-              View Current Offers
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Explore CTA */}
-      <section className="relative py-24 md:py-32">
-        <Image
-          src="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
-          alt="Royal Phuket City Hotel"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative container mx-auto px-6">
-          <div className="text-center text-white max-w-3xl mx-auto">
-            <p className="label-accent text-[#8B7355] mb-4">Experience Phuket</p>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-4">
-              Plan Your Stay With Us
-            </h2>
-            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              Discover the charm of Phuket Old Town at Royal Phuket City Hotel. From comfortable rooms to exceptional dining, we offer everything for an unforgettable experience.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/rooms-suites"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B7355] text-white font-medium tracking-wide uppercase text-sm hover:bg-[#7a6548] transition-colors"
-              >
-                View Rooms
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                </svg>
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/30 text-white font-medium tracking-wide uppercase text-sm hover:bg-white/10 transition-colors"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

@@ -104,6 +104,7 @@ export const NAV_LINKS = {
       label: "About",
       href: "#",
       dropdown: [
+        { label: "Blog", href: "/blog" },
         { label: "Artist", href: "/artist" },
         { label: "Royal Green", href: "/royal-green" },
         { label: "Sustainability", href: "/sustainability" },
