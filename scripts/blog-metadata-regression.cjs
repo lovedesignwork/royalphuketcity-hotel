@@ -17,6 +17,7 @@ function metadataFor(post) {
   function requireMock(name) {
     if (name === "@/lib/constants") return { SITE_CONFIG: { name: hotelName, url: origin } };
     if (name === "@/lib/blog") return { getPublishedPost: async () => post };
+    if (name === "@/lib/article-content") return {};
     if (name === "@/lib/blog-path") return { getBlogPath: slug => `/${slug}` };
     if (name === "@/lib/article-editorial") {
       const editorial = { exports: {} };

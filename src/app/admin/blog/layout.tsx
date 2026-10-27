@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-
-export default function HiddenBlogLayout() {
-  redirect("/admin");
+export default function BlogAdminLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

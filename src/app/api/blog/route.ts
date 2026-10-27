@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getPublishedPosts, parseBlogPage } from "@/lib/blog";
+import { publicArticle } from "@/lib/article-content";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
@@ -7,7 +8,7 @@ export async function GET(request: NextRequest) {
   const limit = parseBlogPage(searchParams.get("limit"), 12, 100);
   try {
     const { posts, total } = await getPublishedPosts(page, limit, searchParams.get("category"));
-    return NextResponse.json({ posts, total, page, limit, totalPages: Math.ceil(total / limit) });
+    return NextResponse.json({ posts: posts.map(publicArticle), total, page, limit, totalPages: Math.ceil(total / limit) });
   } catch (error) {
     console.error("Error fetching published articles:", error);
     return NextResponse.json({ error: "Articles are temporarily unavailable" }, { status: 503 });

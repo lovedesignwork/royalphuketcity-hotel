@@ -41,7 +41,6 @@ export async function generateMetadata({ searchParams }: BlogPageProps): Promise
 }
 
 function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
-  const readingTime = post.word_count ? Math.ceil(post.word_count / 200) : 3;
 
   if (featured) {
     return (
@@ -89,7 +88,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
               </p>
             )}
             <div className="flex items-center gap-4 text-sm text-[--color-text-secondary]">
-              <span>{readingTime} min read</span>
+
             </div>
           </div>
         </article>
@@ -142,7 +141,7 @@ function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boole
             </p>
           )}
           <div className="flex items-center justify-between text-sm text-[--color-text-secondary]">
-            <span>{readingTime} min read</span>
+
           </div>
         </div>
       </article>

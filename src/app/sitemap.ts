@@ -69,13 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const post of posts) {
     // Slugs are a single path segment. Encoding also protects XML URL values.
     const url = new URL(getBlogPath(post.slug), SITE_CONFIG.url).toString();
-    const modified = [post.updated_at, post.published_at]
-      .filter((value): value is string => Boolean(value))
-      .map((value) => new Date(value))
-      .filter((date) => Number.isFinite(date.getTime()) && date.getTime() <= Date.now())
-      .sort((a, b) => b.getTime() - a.getTime())[0];
-
-    pages.push({ url, ...(modified && { lastModified: modified.toISOString() }) });
+    pages.push({ url });
   }
 
   // Static content has no editorial timestamps. Omitting lastmod is more

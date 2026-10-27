@@ -103,7 +103,7 @@ test("sitemap covers every real page type without duplicates or preview/admin/gu
   }
 });
 
-test("sitemap uses real article timestamps, rejects invalid/future dates, and encodes slugs", async () => {
+test("sitemap keeps article timestamps private and encodes slugs", async () => {
   const posts = [
     { slug: "hotel-news", updated_at: "2025-04-05T12:00:00Z", published_at: "2025-03-01T12:00:00Z" },
     { slug: "guide & tips", updated_at: "invalid", published_at: "2025-01-01T00:00:00Z" },
@@ -111,9 +111,9 @@ test("sitemap uses real article timestamps, rejects invalid/future dates, and en
   ];
   const sitemap = await harness({ posts }).load("src/app/sitemap.ts").default();
   const news = sitemap.find(({ url }) => url.endsWith("/hotel-news"));
-  assert.equal(news.lastModified, "2025-04-05T12:00:00.000Z");
+  assert.equal(news.lastModified, undefined);
   const guide = sitemap.find(({ url }) => url.endsWith("/guide%20%26%20tips"));
-  assert.equal(guide.lastModified, "2025-01-01T00:00:00.000Z");
+  assert.equal(guide.lastModified, undefined);
   assert.equal(sitemap.find(({ url }) => url.endsWith("/missing-date")).lastModified, undefined);
 });
 

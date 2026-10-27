@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white w-full z-50 sticky top-0 border-b border-gray-200">
+      <header className="bg-white w-full z-50 sticky top-0 border-b border-gray-200 shadow-[0_3px_12px_rgba(0,0,0,0.05)]">
         <div className="hidden lg:block">
           <div className="container mx-auto px-6 relative">
             <LocaleLink href="/" className="absolute left-6 top-1/2 -translate-y-1/2 z-10">

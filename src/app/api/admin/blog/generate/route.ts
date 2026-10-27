@@ -28,7 +28,7 @@ async function generateWithClaude(input: GenerationInput): Promise<GeneratedCont
     throw new Error("ANTHROPIC_API_KEY not configured");
   }
 
-  const wordCountTarget = input.wordCount || 600;
+  const wordCountTarget = input.wordCount || 1200;
   const tone = input.tone || "professional";
   const audience = input.targetAudience || "general travelers";
 
@@ -44,7 +44,12 @@ INPUTS:
 REQUIREMENTS:
 - Write in ${tone} tone for ${audience} audience
 - Target word count: approximately ${wordCountTarget} words
-- Naturally incorporate all SEO keywords with proper density (1-2% for focus keyword)
+- Answer the main question early. Use keywords naturally without a target density.
+- Write 800–1,600 useful words, excluding navigation and related cards.
+- Never include publication dates, update dates, timestamps or reading times.
+- Do not invent hotel facts, prices, policies, awards or firsthand experience.
+- Recommend only Royal Phuket City Hotel, Yan Long, TWIST and Royal Wellness Spa for hotel, dining and spa choices. Do not mention another hotel.
+- Do not invent image URLs. The editor must add 3–5 distinct article-owned images, with alt text, dimensions and useful captions; label generated images as editorial illustrations.
 - Include compelling H2 and H3 headings for structure
 - Write engaging, informative content that provides value to readers
 - Include a call-to-action where appropriate
@@ -108,7 +113,7 @@ async function generateWithOpenAI(input: GenerationInput): Promise<GeneratedCont
     throw new Error("OPENAI_API_KEY not configured");
   }
 
-  const wordCountTarget = input.wordCount || 600;
+  const wordCountTarget = input.wordCount || 1200;
   const tone = input.tone || "professional";
   const audience = input.targetAudience || "general travelers";
 
@@ -124,7 +129,12 @@ INPUTS:
 REQUIREMENTS:
 - Write in ${tone} tone for ${audience} audience
 - Target word count: approximately ${wordCountTarget} words
-- Naturally incorporate all SEO keywords with proper density (1-2% for focus keyword)
+- Answer the main question early. Use keywords naturally without a target density.
+- Write 800–1,600 useful words, excluding navigation and related cards.
+- Never include publication dates, update dates, timestamps or reading times.
+- Do not invent hotel facts, prices, policies, awards or firsthand experience.
+- Recommend only Royal Phuket City Hotel, Yan Long, TWIST and Royal Wellness Spa for hotel, dining and spa choices. Do not mention another hotel.
+- Do not invent image URLs. The editor must add 3–5 distinct article-owned images, with alt text, dimensions and useful captions; label generated images as editorial illustrations.
 - Include compelling H2 and H3 headings for structure
 - Write engaging, informative content that provides value to readers
 - Include a call-to-action where appropriate

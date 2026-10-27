@@ -39,6 +39,7 @@ function harness(rows = [], failure = false) {
       if(name==='react') return {cache:fn=>fn};
       if(name==='@/lib/supabase') return {getSupabaseClient:()=>db};
       if(name==='next/server') return {NextResponse:{json:(data,opts)=>({data,status:opts?.status||200})}};
+      if(name==='@/lib/article-content') return load('src/lib/article-content.ts');
       if(name==='@/lib/blog') return load('src/lib/blog.ts');
       throw new Error(`Unmocked import ${name}`);
     };
@@ -53,6 +54,12 @@ test('public article API cannot reveal a draft through preview=true',async()=>{
   const h=harness([{...article,status:'draft'}]);
   const r=await h.load('src/app/api/blog/[slug]/route.ts').GET({nextUrl:new URL('https://example.test/api/blog/published-guide?preview=true')},{params:Promise.resolve({slug:article.slug})});
   assert.equal(r.status,404); assert.equal(r.data.post,undefined);
+});
+test('public article JSON excludes all internal timestamps',async()=>{
+  const h=harness([article]);
+  const r=await h.load('src/app/api/blog/[slug]/route.ts').GET({}, {params:Promise.resolve({slug:article.slug})});
+  assert.equal(r.status,200);
+  for(const key of ['published_at','updated_at','created_at','scheduled_at']) assert.equal(key in r.data.post,false);
 });
 test('published article stays readable',async()=>{
   const h=harness([article]);

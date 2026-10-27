@@ -260,3 +260,7 @@ h1, h2, h3, h4, h5, h6 {
 .blog-prose table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 .blog-prose th, .blog-prose td { border: 1px solid #ddd; padding: .75rem; text-align: left; vertical-align: top; }
 .blog-prose th { background: #f6f3ee; }
+.blog-prose h2, .blog-prose h3 { scroll-margin-top: 7rem; }
+.blog-prose .article-action { border-left: 2px solid #8B7355; padding: 1.25rem 1.5rem; background: #FAFAFA; margin-top: 2.5rem; }
+.blog-prose caption { text-align: left; font-weight: 600; margin-bottom: .75rem; }
+.article-contents summary::marker { color: #8B7355; }

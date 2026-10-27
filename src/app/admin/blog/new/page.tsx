@@ -4,6 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { countArticleWords } from "@/lib/article-content";
+import ArticleImageTools from "@/components/ArticleImageTools";
 
 interface Category {
   id: string;
@@ -21,8 +23,8 @@ const TONES = [
 ];
 
 const WORD_COUNTS = [
-  { value: 300, label: "Short (~300 words)" },
-  { value: 600, label: "Medium (~600 words)" },
+  { value: 800, label: "Concise (~800 words)" },
+  { value: 1600, label: "Detailed (~1600 words)" },
   { value: 1200, label: "Long (~1200 words)" },
   { value: 0, label: "Custom" },
 ];
@@ -51,12 +53,13 @@ export default function NewBlogPostPage() {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [keywordInput, setKeywordInput] = useState("");
   const [focusKeyword, setFocusKeyword] = useState("");
-  const [wordCount, setWordCount] = useState(600);
-  const [customWordCount, setCustomWordCount] = useState(600);
+  const [wordCount, setWordCount] = useState(1200);
+  const [customWordCount, setCustomWordCount] = useState(1200);
   const [tone, setTone] = useState("professional");
   const [targetAudience, setTargetAudience] = useState("travelers");
   const [categoryId, setCategoryId] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
+  const [featuredImageAlt, setFeaturedImageAlt] = useState("");
   const [featuredImagePath, setFeaturedImagePath] = useState("");
 
   // Generated fields
@@ -226,6 +229,7 @@ export default function NewBlogPostPage() {
           excerpt,
           content,
           featured_image: featuredImage || null,
+          featured_image_alt: featuredImageAlt,
           meta_description: metaDescription,
           seo_keywords: keywords,
           focus_keyword: focusKeyword,
@@ -234,7 +238,7 @@ export default function NewBlogPostPage() {
           status,
           tone,
           target_audience: targetAudience,
-          word_count: content.split(/\s+/).length,
+          word_count: countArticleWords(content),
           seo_score: seoScore,
         }),
       });
@@ -458,7 +462,7 @@ export default function NewBlogPostPage() {
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  accept="image/jpeg,image/png,image/webp,image/avif"
                   onChange={handleImageUpload}
                   className="hidden"
                 />
@@ -569,6 +573,7 @@ export default function NewBlogPostPage() {
               <p className="text-gray-500 max-w-md mx-auto">
                 Fill in the input fields on the left (at minimum, add some SEO keywords), then click &ldquo;Generate with AI&rdquo; to create your blog post.
               </p>
+              <button type="button" className="mt-6 px-5 py-3 border border-[#8B7355] rounded-lg text-[#705C42]" onClick={() => { setGeneratedTitle(title); setContent("<h2>Start with the reader’s main question</h2>\n<p>Write your article here.</p>"); }}>Write or paste an article manually</button>
             </div>
           ) : (
             <>
@@ -640,15 +645,18 @@ export default function NewBlogPostPage() {
                     Content
                   </label>
                   <span className="text-sm text-gray-500">
-                    {content.split(/\s+/).filter(Boolean).length} words
+                    {countArticleWords(content)} words
                   </span>
                 </div>
+                <p className="text-sm text-gray-500 mb-3">Publish 800–1,600 words with one featured image and 2–4 different supporting images. Add alt text, image dimensions and captions; label generated images as editorial illustrations. Dates and reading times stay private. Use original photos assigned only to this article.</p>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Featured image description<input value={featuredImageAlt} onChange={e => setFeaturedImageAlt(e.target.value)} className="block w-full mt-1 mb-4 px-3 py-2 border border-gray-300 rounded-lg" placeholder="Describe the actual photograph" /></label>
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   rows={20}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none resize-none font-mono text-sm"
                 />
+                <ArticleImageTools onInsert={html => setContent(current => current + "\n" + html)} />
               </div>
 
               {/* Tags */}

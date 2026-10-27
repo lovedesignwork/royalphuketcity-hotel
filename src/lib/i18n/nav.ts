@@ -63,12 +63,12 @@ export function getNavLinks(t: Dictionary) {
         label: t.nav.about,
         href: "#",
         dropdown: [
-          { label: t.nav.blog, href: "/blog" },
           { label: t.nav.artist, href: "/artist" },
           { label: t.nav.royalGreen, href: "/royal-green" },
           { label: t.nav.sustainability, href: "/sustainability" },
         ],
       },
+      { label: t.nav.blog, href: "/blog" },
       { label: t.nav.contact, href: "/contact" },
     ],
   };

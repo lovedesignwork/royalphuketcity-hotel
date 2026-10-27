@@ -1,0 +1,1648 @@
+{
+  "version": 1,
+  "policy": "One source photograph or generation belongs to one article. Responsive variants are the same asset. A crop, rename or re-encoding does not create a new asset.",
+  "existingArticles": [
+    {
+      "slug": "ultimate-relaxation-spa-wellness-guide",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop"
+        }
+      ]
+    },
+    {
+      "slug": "culinary-journey-twist-rooftop-restaurant",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
+        }
+      ]
+    },
+    {
+      "slug": "phuket-wedding-reception-checklist",
+      "images": [
+        {
+          "url": "/images/blog/phuket-wedding-reception-checklist/floral-setting.webp",
+          "sha256": "0a63abdab4849006a900699a44afd4713d6907436f923f29112d83ae7906ba28",
+          "dhash": "12317894677526653000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-checklist/arrival-route.webp",
+          "sha256": "ee6a8bcf6da555df10f4249e2e808fe9d0f06bff48ba7d135441ea76a4c16196",
+          "dhash": "9551234284752304000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-checklist/ceremony-detail.webp",
+          "sha256": "3c9afda3992941234ce55843d067ed191d5e2775ce22db50e73a3a65a2d95c35",
+          "dhash": "10701832831563756000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-checklist/reception-details.webp",
+          "sha256": "01fe3c0de0e21c6bc76aceb7ed387ab7d945ec0e302433808c486900864dde68",
+          "dhash": "12781471346260711000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-checklist/evening-celebration.webp",
+          "sha256": "4f98609714ff7bdc9c1235c05445807531f963e3e26cad7f4367c5b70b3380f8",
+          "dhash": "12824268166918408000"
+        }
+      ]
+    },
+    {
+      "slug": "family-room-or-suite-phuket",
+      "images": [
+        {
+          "url": "/images/blog/family-room-or-suite-phuket/family-sofa.webp",
+          "sha256": "dbaf21bd1e3fced66e393a2c87c0c3ed63211aab5bffd8e939b62e72aa1d53e2",
+          "dhash": "4932058487993165000"
+        },
+        {
+          "url": "/images/blog/family-room-or-suite-phuket/packing-cubes-hotel-photo.webp",
+          "sha256": "7351c05ad15e8e4935a8e4518a7e7387c245b20b7ae09f44108f798ec107a959",
+          "dhash": "15055614019144950000"
+        },
+        {
+          "url": "/images/blog/family-room-or-suite-phuket/suite-bedroom.webp",
+          "sha256": "20a5c3b60a2e4f6f48a347cebf93d219963715d2fd51e23aa0fa53b0d91018a3",
+          "dhash": "13685564198668300000"
+        },
+        {
+          "url": "/images/blog/family-room-or-suite-phuket/room-bathroom.webp",
+          "sha256": "dfa47df36be9b1a01e4e40174f346d870c87e315fefff94218e9f8e940b48bf0",
+          "dhash": "2596093417804215000"
+        },
+        {
+          "url": "/images/blog/family-room-or-suite-phuket/family-breakfast-hotel-photo.webp",
+          "sha256": "8020d9f0581e3d149d8ad5a1f3da4d0bd44fe7861839d5ea3cdc589acea97802",
+          "dhash": "14759612001622410000"
+        }
+      ]
+    },
+    {
+      "slug": "shared-chinese-meal-phuket-town",
+      "images": [
+        {
+          "url": "/images/blog/shared-chinese-meal-phuket-town/dining-room.webp",
+          "sha256": "f9ecf3077d50e96c56caca74d66d830d442a3713495f1a687c51207d6db526d4",
+          "dhash": "7595647503302169000"
+        },
+        {
+          "url": "/images/blog/shared-chinese-meal-phuket-town/shared-dishes.webp",
+          "sha256": "595d8edd37b41467bce8c0a3816086a64989c71bcdc65f6da0e42221c550bf14",
+          "dhash": "14739919389162770000"
+        },
+        {
+          "url": "/images/blog/shared-chinese-meal-phuket-town/tea-pouring.webp",
+          "sha256": "6a2d2f6592a8c39183f65b4dd8ad568ddad15b7b50628860c2673ccb3caba106",
+          "dhash": "14769750368588320000"
+        },
+        {
+          "url": "/images/blog/shared-chinese-meal-phuket-town/private-table.webp",
+          "sha256": "5e09d7871f009a8bb04dd178866027a27a780321c8d136b462090c7bbca8984a",
+          "dhash": "17433970930235054000"
+        },
+        {
+          "url": "/images/blog/shared-chinese-meal-phuket-town/wall-panels.webp",
+          "sha256": "efe25a0f4ffc9024ea1e0ad74bd810f59c1190fa80a706297de45854afe59bf5",
+          "dhash": "15046755966491202000"
+        }
+      ]
+    },
+    {
+      "slug": "phuket-wedding-reception-timeline",
+      "images": [
+        {
+          "url": "/images/blog/phuket-wedding-reception-timeline/couple-priorities.webp",
+          "sha256": "c01aa9c6ba564393ea2dd6b1b5000ab954845b79e5e3d170e5a0409a5cf42495",
+          "dhash": "15201307276824326000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-timeline/family-moment.webp",
+          "sha256": "3e14b0b58c437242949822f51220431a513ffe48b4a243cdbdacf76b9f268b89",
+          "dhash": "14545173461507414000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-timeline/meal-place-hotel-photo.webp",
+          "sha256": "e12d428ef178a71e150d58cc7210d19ff82ebc07c6ad23a0515a5a83dcfe41ee",
+          "dhash": "6977417376819110000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-timeline/speech-cue-hotel-photo.webp",
+          "sha256": "30ed72615051153c8fa9caa97687ca10cc2a767220b45bc6f0e61d6db3c62c69",
+          "dhash": "10731216929211814000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-reception-timeline/dessert-moment-hotel-photo.webp",
+          "sha256": "5838672635405f16692f2cc48c8b4370ab20585bc2819563878d086390b4815a",
+          "dhash": "3830788473320950000"
+        }
+      ]
+    },
+    {
+      "slug": "best-street-food-near-royal-phuket-city",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
+        }
+      ]
+    },
+    {
+      "slug": "royal-phuket-city-hotel-sustainability-journey",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2070&auto=format&fit=crop"
+        }
+      ]
+    },
+    {
+      "slug": "meeting-rooms-phuket-checklist",
+      "images": [
+        {
+          "url": "/images/blog/meeting-rooms-phuket-checklist/conference-scene-hotel-photo.webp",
+          "sha256": "e5ffe1854ed67bf67f9071ae7c6c2c493f72d86c5b256519e05e38d408bcb71e",
+          "dhash": "16749136504281068000"
+        },
+        {
+          "url": "/images/blog/meeting-rooms-phuket-checklist/participation-plan-hotel-photo.webp",
+          "sha256": "62ddc4b17f425a866ef09b6c9fe7092f9eebfad65192481b2a43708a23a12eac",
+          "dhash": "13182283377734636000"
+        },
+        {
+          "url": "/images/blog/meeting-rooms-phuket-checklist/presentation-kit-hotel-photo.webp",
+          "sha256": "39e6a96a98472d69213450e7ca5e3e0faf9864ceb42515fdbff3562e82b89b63",
+          "dhash": "3239256374033919000"
+        },
+        {
+          "url": "/images/blog/meeting-rooms-phuket-checklist/coffee-break-hotel-photo.webp",
+          "sha256": "dd3d25307baed9422e19940f7426b7c3e9ee31716a6f2593b8bd14f7a80080f4",
+          "dhash": "12949208373216745000"
+        },
+        {
+          "url": "/images/blog/meeting-rooms-phuket-checklist/guest-accommodation.webp",
+          "sha256": "8b091606f005deb943ec60c77c2a230470103def0bf4527c1d5dc1e8f83d816e",
+          "dhash": "1808697905065331500"
+        }
+      ]
+    },
+    {
+      "slug": "phuket-town-or-patong",
+      "images": [
+        {
+          "url": "/images/blog/phuket-town-or-patong/city-streets.webp",
+          "sha256": "cde28856d12dddf7c5fc7036469d5f0680be1516ebfb12f1b782da30089bdc66",
+          "dhash": "6483990860189692000"
+        },
+        {
+          "url": "/images/blog/phuket-town-or-patong/phuket-town.webp",
+          "sha256": "6ef441ea31560c1bf172d1432e5c094466365785caef9acc326218c14475b4f3",
+          "dhash": "18446434904712480000"
+        },
+        {
+          "url": "/images/blog/phuket-town-or-patong/split-stay-packing-hotel-photo.webp",
+          "sha256": "29dc8a329df42d1c978d17d6fe8c71fb4ec8edf2aef5e5ec493739decc83d722",
+          "dhash": "16674410251214348000"
+        },
+        {
+          "url": "/images/blog/phuket-town-or-patong/room-refreshments.webp",
+          "sha256": "dcd464c3dfc99e863ebfc978d7edff2ead5a6f3eb4bc3d4a47e45f00116acbc2",
+          "dhash": "655392795416540900"
+        },
+        {
+          "url": "/images/blog/phuket-town-or-patong/hotel-reception.webp",
+          "sha256": "7c33fe147b54a53b3564a808b3e279fe7d83561a0aee5335b9f0bc2d255ae96c",
+          "dhash": "3878049046381137000"
+        }
+      ]
+    },
+    {
+      "slug": "rooftop-dinner-phuket-town",
+      "images": [
+        {
+          "url": "/images/blog/rooftop-dinner-phuket-town/twist-dinner.webp",
+          "sha256": "e9da5fae261bdfca960c5017a6ff7c625222a0a5f2b8f297933eede743c6ee54",
+          "dhash": "14264294976453140000"
+        },
+        {
+          "url": "/images/blog/rooftop-dinner-phuket-town/table-setting-hotel-photo.webp",
+          "sha256": "6b0dfa6e559b1ed92f5e1cd1aed400ab4c6c6a030c88f948865639962aeb7276",
+          "dhash": "4211263025263462400"
+        },
+        {
+          "url": "/images/blog/rooftop-dinner-phuket-town/twist-evening.webp",
+          "sha256": "42c9315e7f6e6e56d112daea82939883bf6dbbbdbbe3c071593e7d9420af5b66",
+          "dhash": "7196913570568794000"
+        },
+        {
+          "url": "/images/blog/rooftop-dinner-phuket-town/shared-meal-hotel-photo.webp",
+          "sha256": "2b9842b0fd9e5878531798707d2959ef8d79b75d401387df372032d9ca41c0bd",
+          "dhash": "17045573951249807000"
+        },
+        {
+          "url": "/images/blog/rooftop-dinner-phuket-town/celebration-still-life-hotel-photo.webp",
+          "sha256": "2520b00bfd0ead8aa74aa2314246a7c4953b10c0a29d74228af6c75cff0d5e84",
+          "dhash": "8393716781531031000"
+        }
+      ]
+    },
+    {
+      "slug": "planning-dream-wedding-royal-phuket-city",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+        }
+      ]
+    },
+    {
+      "slug": "compare-phuket-wedding-packages",
+      "images": [
+        {
+          "url": "/images/blog/compare-phuket-wedding-packages/priority-bowls-hotel-photo.webp",
+          "sha256": "9e78a250f2c7f407741b177e671e2bf068df89ebbd4bd29db1153e28b7b026d8",
+          "dhash": "12852517374180116000"
+        },
+        {
+          "url": "/images/blog/compare-phuket-wedding-packages/shared-dining.webp",
+          "sha256": "775cabed31ff7960e1930682258497f8f831ef3bc0aacb0043b156f4b63e43b2",
+          "dhash": "8624517354267348000"
+        },
+        {
+          "url": "/images/blog/compare-phuket-wedding-packages/ceiling-detail-hotel-photo.webp",
+          "sha256": "bd58cde9713572696cc688cf5a4d6f13a09024842b6d21e0a289e75851b7bd97",
+          "dhash": "1419687954782380500"
+        },
+        {
+          "url": "/images/blog/compare-phuket-wedding-packages/guest-room.webp",
+          "sha256": "68dd542a325400aa7c934bc7e2a6f56103722c4a239a74a08bbc8b3d6b0b461e",
+          "dhash": "13894046386423577000"
+        },
+        {
+          "url": "/images/blog/compare-phuket-wedding-packages/ribbon-options-hotel-photo.webp",
+          "sha256": "0be102e56a26d80f525bcc2cb12a05bfc4b6b23d1915e276ca464ed1451472b1",
+          "dhash": "15977009982107734000"
+        }
+      ]
+    },
+    {
+      "slug": "vegetarian-dining-phuket-town",
+      "images": [
+        {
+          "url": "/images/blog/vegetarian-dining-phuket-town/fresh-produce-hotel-photo.webp",
+          "sha256": "d2f80347c2524be937afa80e97b9ee70dcc1bc158b455789b8e8ea43a3226977",
+          "dhash": "1747645425296375800"
+        },
+        {
+          "url": "/images/blog/vegetarian-dining-phuket-town/vegetable-bowl-hotel-photo.webp",
+          "sha256": "6e75277bee0d9ad5a8e9f3372c8bd167633433c147126ae4bf49c0bb7ad4c85f",
+          "dhash": "85904239333108690"
+        },
+        {
+          "url": "/images/blog/vegetarian-dining-phuket-town/sauce-bowls-hotel-photo.webp",
+          "sha256": "f5dbe25616318d7b133c48a7dcf94e99971821cb2ac82be22558d23bab88aaed",
+          "dhash": "11139715923603646000"
+        },
+        {
+          "url": "/images/blog/vegetarian-dining-phuket-town/individual-plate-hotel-photo.webp",
+          "sha256": "a0c2be411b953a5311474d2a65d9ef12d97a0457c9f21a03e264d0642bc2d8c9",
+          "dhash": "11090510128698110000"
+        },
+        {
+          "url": "/images/blog/vegetarian-dining-phuket-town/tea-conversation-hotel-photo.webp",
+          "sha256": "140883b99251b9ca8683c545fe2502c370a4dc47bcebca322d7c6454b52a9fba",
+          "dhash": "3700684753223915000"
+        }
+      ]
+    },
+    {
+      "slug": "residential-conference-phuket",
+      "images": [
+        {
+          "url": "/images/blog/residential-conference-phuket/meeting-setting.webp",
+          "sha256": "6edfcf6c0bc3abbf4d6b4a860cd0e2921b522c45468c09719249a51c8eecb863",
+          "dhash": "8184681878665163000"
+        },
+        {
+          "url": "/images/blog/residential-conference-phuket/overnight-room.webp",
+          "sha256": "36bbfe099ea8a88c81b891bb8b096f7231e5d680b67cb7265fa1bd532bf6554d",
+          "dhash": "15015040545026630000"
+        },
+        {
+          "url": "/images/blog/residential-conference-phuket/working-desk.webp",
+          "sha256": "a869e85e705f6919815e2eb83fdf0979eea0a0c22c200b6ec55c3d4a3ed3d1af",
+          "dhash": "5700215991337659000"
+        },
+        {
+          "url": "/images/blog/residential-conference-phuket/lobby-time.webp",
+          "sha256": "a11742679bcbfbb5dffc444bbabe111a9ee07f1fe16fca31407b3a15bb79d637",
+          "dhash": "3181965472101987000"
+        },
+        {
+          "url": "/images/blog/residential-conference-phuket/restaurant-meal.webp",
+          "sha256": "be043da33516a19a33e3dd5d3b6651bd874ae1ceeea545f553c9696b6a7d7c47",
+          "dhash": "3281684542052814000"
+        }
+      ]
+    },
+    {
+      "slug": "top-10-things-to-do-in-phuket-old-town",
+      "images": [
+        {
+          "url": "/images/blog/top-10-things-to-do-in-phuket-old-town/thalang-road-cover.webp",
+          "sha256": "f34d7abe22941f093093e692812586b797c4698835ecab74f7415847262da9f0",
+          "dhash": "3598786164031765000"
+        },
+        {
+          "url": "/images/blog/top-10-things-to-do-in-phuket-old-town/soi-rommanee.webp",
+          "sha256": "f4cf91648e375a9f2f07de57260d4214ce21f6f5016ddf129cd8792a5342cd01",
+          "dhash": "460899278028550200"
+        },
+        {
+          "url": "/images/blog/top-10-things-to-do-in-phuket-old-town/thalang-sunday-market.webp",
+          "sha256": "7ecd2836e105b397a10aa9dc1acaafcf6099017386bdb5094e5581feb67afc98",
+          "dhash": "10075381303334670000"
+        },
+        {
+          "url": "/images/blog/top-10-things-to-do-in-phuket-old-town/old-town-street-art.webp",
+          "sha256": "d20c80009228869c2f58898fd40c38fe0a85dd4b2ae26af5aabbc919cf584a05",
+          "dhash": "13161531069100982000"
+        },
+        {
+          "url": "/images/blog/top-10-things-to-do-in-phuket-old-town/old-town-cafe.webp",
+          "sha256": "94a0d3c5a099c900d1357a1f34b963ebe854db0979d5a61658c2813f77bc0a87",
+          "dhash": "4123586905594428000"
+        }
+      ]
+    },
+    {
+      "slug": "conference-agenda-planning-phuket",
+      "images": [
+        {
+          "url": "/images/blog/conference-agenda-planning-phuket/group-discussion.webp",
+          "sha256": "b4c106ab357acbf7e3e8c7283bb6f23081bc967e7c8c200cc7b9f46d62b6d919",
+          "dhash": "9846070849768786000"
+        },
+        {
+          "url": "/images/blog/conference-agenda-planning-phuket/explanation.webp",
+          "sha256": "6b2f9f50a833a4392aa0d12e78adaa428c0dbfbc7896139b4f714696418f3d06",
+          "dhash": "5676456162262579000"
+        },
+        {
+          "url": "/images/blog/conference-agenda-planning-phuket/host-microphone.webp",
+          "sha256": "ec173354c162907c04dbb04ed2c52fb0022609e253ac14a1b1317116c8825f1b",
+          "dhash": "15776873313347957000"
+        },
+        {
+          "url": "/images/blog/conference-agenda-planning-phuket/guest-speaker.webp",
+          "sha256": "70cbd43f171daa2b8c2f7455443fb2f1873900830032ba6ee62143f68a93790a",
+          "dhash": "1746192918081574700"
+        },
+        {
+          "url": "/images/blog/conference-agenda-planning-phuket/presentation.webp",
+          "sha256": "0f0083ae157def1899eac66dfe0dfe06f0b2b8a11e4d30c1aef78e123dcddbf3",
+          "dhash": "543646262204983800"
+        }
+      ]
+    },
+    {
+      "slug": "phuket-hotel-arrival-departure",
+      "images": [
+        {
+          "url": "/images/blog/phuket-hotel-arrival-departure/hotel-entrance.webp",
+          "sha256": "db4edd00f03959ceec352ac06a813b3670454662a7e349636b1877acc1211170",
+          "dhash": "14758012554779560000"
+        },
+        {
+          "url": "/images/blog/phuket-hotel-arrival-departure/family-rest.webp",
+          "sha256": "023b301d458e7907cda615cab5adc2bac22cfc9fd8278cfb5732dbc8fd16db1c",
+          "dhash": "15067191999469914000"
+        },
+        {
+          "url": "/images/blog/phuket-hotel-arrival-departure/lounge-setting.webp",
+          "sha256": "56fda99ebc620b2d702ab96958718ee2cf7f7dfbedf4a097321c6d4d0c3cc70b",
+          "dhash": "237398920014961100"
+        },
+        {
+          "url": "/images/blog/phuket-hotel-arrival-departure/transport-setting.webp",
+          "sha256": "81256e74235af17bca06ccaadb24fb7062d3bc182165054ec44c2630317223bf",
+          "dhash": "8993346424806235000"
+        },
+        {
+          "url": "/images/blog/phuket-hotel-arrival-departure/room-time.webp",
+          "sha256": "5a16b1a10bf72adade5c5dbebfe07d762cf2b5a25367abac557c4ae65bf6b03f",
+          "dhash": "874617257589546200"
+        }
+      ]
+    },
+    {
+      "slug": "hotel-or-villa-phuket",
+      "images": [
+        {
+          "url": "/images/blog/hotel-or-villa-phuket/morning-preparation-hotel-photo.webp",
+          "sha256": "fa5f42bdd8d61e6aba46f27f2dd43c3a3b85459eff9bb451b6655e6ad8d51617",
+          "dhash": "2102006007881769000"
+        },
+        {
+          "url": "/images/blog/hotel-or-villa-phuket/hotel-desk.webp",
+          "sha256": "0e767ed98a324001d86282a56a686f9148ccbf3262a5dab9f8473763a4e99c16",
+          "dhash": "9105387674856779000"
+        },
+        {
+          "url": "/images/blog/hotel-or-villa-phuket/shared-lounge-hotel-photo.webp",
+          "sha256": "eda8c324effa9fddb69f173b97cdf5b60a36c30edb109b52537f17bfa69eb858",
+          "dhash": "14612272198410420000"
+        },
+        {
+          "url": "/images/blog/hotel-or-villa-phuket/breakfast-arrangement-hotel-photo.webp",
+          "sha256": "4d913fe04cc3caad8e6701db87bad600fa3cce3d7c358b9caa4f74154e477fa6",
+          "dhash": "14449839485871512000"
+        },
+        {
+          "url": "/images/blog/hotel-or-villa-phuket/hotel-breakfast.webp",
+          "sha256": "6841a144c3e5b01648b84caf55279edf738c0e44680cada8998204d1db7f689c",
+          "dhash": "1041309208256112300"
+        }
+      ]
+    },
+    {
+      "slug": "dim-sum-phuket-town-guide",
+      "images": [
+        {
+          "url": "/images/blog/dim-sum-phuket-town-guide/yan-long-setting.webp",
+          "sha256": "faea9607c9cd9c9d13432573d0d71214a8bb4c508221220bbae53a4fd46b16a1",
+          "dhash": "8265955298335033000"
+        },
+        {
+          "url": "/images/blog/dim-sum-phuket-town-guide/steamed-bun.webp",
+          "sha256": "5d0e44b252c94b6c4d53de7c00e2226039d0712a33dac50087ff7f5c3f8c8638",
+          "dhash": "16492998698731364000"
+        },
+        {
+          "url": "/images/blog/dim-sum-phuket-town-guide/menu-variety.webp",
+          "sha256": "a9660b50b6720e4e3fe40622a3a8d6a71eabc9b5106b48b78d73d5e0a8ffc99e",
+          "dhash": "9733169866461200000"
+        },
+        {
+          "url": "/images/blog/dim-sum-phuket-town-guide/dining-together.webp",
+          "sha256": "6a2e9b31c9dae3bb181687073b00c420673adfab6190b6c8d2e6e03b3d3f3b9a",
+          "dhash": "3465581695036604400"
+        },
+        {
+          "url": "/images/blog/dim-sum-phuket-town-guide/larger-meal.webp",
+          "sha256": "08b1e60c96fe5595dc8e7c357cda72c4baf107e2d04859ebe5ba18eb5983eda8",
+          "dhash": "8168570758352259000"
+        }
+      ]
+    },
+    {
+      "slug": "phuket-wedding-guest-information",
+      "images": [
+        {
+          "url": "/images/blog/phuket-wedding-guest-information/ceremony-setting.webp",
+          "sha256": "bc19b0f54fb845b3f0695d3dec9b64062685964eb6d1e8ef78e9062f28646022",
+          "dhash": "16779460914720109000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-guest-information/guest-arrival.webp",
+          "sha256": "770e90c6facddb1eb6470a369c7d1fb4db6e6d7290068b4ed6e6a82ac72722a0",
+          "dhash": "8175283351166636000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-guest-information/family-participation.webp",
+          "sha256": "bd67da8aba25c07f5eda606670dad83a4e172c4fc50fcbb79d4043ab8be5605e",
+          "dhash": "17334866881113387000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-guest-information/hotel-location.webp",
+          "sha256": "8725f6ba6df324400bef5ce370543c8d7ae105c4863f89f86b87109638585110",
+          "dhash": "3762934496673125000"
+        },
+        {
+          "url": "/images/blog/phuket-wedding-guest-information/meal-requests.webp",
+          "sha256": "0d80e612c8a80cc2870bb92208bda822652559a45d8d869714dd6ef9b7121613",
+          "dhash": "18349578909923970000"
+        }
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "topic": 1,
+      "slug": "phuket-old-town-two-day-itinerary",
+      "images": [
+        {
+          "url": "/images/blog/phuket-old-town-two-day-itinerary/old-town-streets.webp",
+          "role": "featured",
+          "alt": "Colourful shophouses along Thalang Road in Phuket Old Town",
+          "width": 1600,
+          "height": 900,
+          "bytes": 214776,
+          "sha256": "d75e53374eeb956fffbc0a916d6bc914dab83cd1c9a6db9b8cd5c8098b7bba92",
+          "sourceSha256": "ce4caee6c8e2f832ce4e521364a4546fb3b5423b9fb85dc5e3572591277c0f12",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/cultural-historical/thalang road (3).jpg",
+          "sourceDhash": "17462372889588947000",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/old-town-streets-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/old-town-streets-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/old-town-streets.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/phuket-old-town-two-day-itinerary/thalang-road-walk.webp",
+          "role": "supporting",
+          "alt": "A quieter view of Thalang Road from the hotel’s supplied local photography",
+          "width": 604,
+          "height": 404,
+          "bytes": 60878,
+          "sha256": "5c8dc579f0038e90339ce3df61193ac4fa0cc56c999da5111487f8b3fc50b351",
+          "sourceSha256": "680f9344ab3ef98bc52b96b28d05d38d437107885144b42e01e8815a9632a7e0",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/cultural-historical/thalang road (1).jpg",
+          "sourceDhash": "10419245519356838000",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/thalang-road-walk.webp",
+              "width": 604
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/phuket-old-town-two-day-itinerary/walking-essentials.webp",
+          "role": "supporting",
+          "alt": "Straw hat, folded linen and a reusable water bottle on a wooden table — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 76216,
+          "sha256": "2795c8d8b0bb80361054242d11360f181513ff1265dbd693920ba89e4887860c",
+          "sourceSha256": "53010ca2acd18ff10a75ca183b09902e12044e70ec36ca8cb2830cafde3e959d",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "c7608fe7-74e7-4eeb-b9c5-825605435e85",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/walking-essentials-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/walking-essentials-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/walking-essentials.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/phuket-old-town-two-day-itinerary/tea-and-a-quiet-pause.webp",
+          "role": "supporting",
+          "alt": "Plain porcelain tea set beside a closed book — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 93782,
+          "sha256": "7d4d539f8149a07ddea2d1627b74e31a33940e814e35ab2e3490d292e558fe22",
+          "sourceSha256": "feffc5bf037a05ddfd45744eba6a06fc636801132afef6d5c6347bcfee84617c",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "303a790b-13cf-4b7b-9fc2-87686ed1d067",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/tea-and-a-quiet-pause-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/tea-and-a-quiet-pause-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/phuket-old-town-two-day-itinerary/tea-and-a-quiet-pause.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 2,
+      "slug": "rainy-day-phuket-town",
+      "images": [
+        {
+          "url": "/images/blog/rainy-day-phuket-town/spa-tea-and-towels.webp",
+          "role": "featured",
+          "alt": "Tea, towels and spa products in Royal Phuket City Hotel’s supplied spa photograph",
+          "width": 1264,
+          "height": 848,
+          "bytes": 65614,
+          "sha256": "70568660e546c6ac7000c6e9e47e99038380fd2ef2bf81767504d460b18eaa5a",
+          "sourceSha256": "b4265543cdb1e2aed5695e411b93a70872c98dc512a348e41fc16ddcc89b89af",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Royal SPa 009.jpg",
+          "sourceDhash": "3560427758985594400",
+          "variants": [
+            {
+              "url": "/images/blog/rainy-day-phuket-town/spa-tea-and-towels-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/rainy-day-phuket-town/spa-tea-and-towels-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/rainy-day-phuket-town/spa-tea-and-towels.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/rainy-day-phuket-town/atrium-indoor-pause.webp",
+          "role": "supporting",
+          "alt": "Indoor seating and lighting in the hotel’s Atrium Lounge",
+          "width": 600,
+          "height": 450,
+          "bytes": 47246,
+          "sha256": "4d05c732c6331b3f10e05f0d1307e9634588582261d5491bda708113289ec2e2",
+          "sourceSha256": "b91107d9a8b345b3648552d993267f8dfc6cf9f33049ca76ee0ba44b9d494053",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Atrium-Lounge-Royal-Phuket-City-Hotel-5.jpg",
+          "sourceDhash": "1008028883667975400",
+          "variants": [
+            {
+              "url": "/images/blog/rainy-day-phuket-town/atrium-indoor-pause.webp",
+              "width": 600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/rainy-day-phuket-town/umbrella-and-raindrops.webp",
+          "role": "supporting",
+          "alt": "Folded umbrella and towel beside a rain-speckled window — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 117008,
+          "sha256": "cd7857acd1e8953c361a9f62519acbea5e3e492c5506c549992e713921c97f47",
+          "sourceSha256": "c3be74911993c77e90b648d38f3195d3aa46941df25ca0d7b09f926bfd60fbd1",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "00b083f7-7249-42de-91c2-add9fee26a4f",
+          "variants": [
+            {
+              "url": "/images/blog/rainy-day-phuket-town/umbrella-and-raindrops-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/rainy-day-phuket-town/umbrella-and-raindrops-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/rainy-day-phuket-town/umbrella-and-raindrops.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/rainy-day-phuket-town/spa-pause-still-life.webp",
+          "role": "supporting",
+          "alt": "Rolled towels, an amber bottle and a ceramic bowl on a tray — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 81406,
+          "sha256": "a156cd69e4bff627cee180b14852215cc3b2306ebd5399ff53a689f6671c21a9",
+          "sourceSha256": "5b79b09d65dcaa1c1b1d837de7ece524e6ea46c71527e23e33ae2fa9a95a0134",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "3a06a11b-389e-4e6d-8fc1-ecc3e247f908",
+          "variants": [
+            {
+              "url": "/images/blog/rainy-day-phuket-town/spa-pause-still-life-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/rainy-day-phuket-town/spa-pause-still-life-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/rainy-day-phuket-town/spa-pause-still-life.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 3,
+      "slug": "phuket-airport-to-phuket-town",
+      "images": [
+        {
+          "url": "/images/blog/phuket-airport-to-phuket-town/hotel-transport-reference.webp",
+          "role": "featured",
+          "alt": "Hotel transport van from Royal Phuket City Hotel’s supplied photograph library",
+          "width": 800,
+          "height": 600,
+          "bytes": 59968,
+          "sha256": "fbb25c5d6eb641e8e8ef75d42d630089994b8a800ea0a87433d49fc700ea905f",
+          "sourceSha256": "d161fa8e3ea66a27335409d8486e800cc31d352e58c930d4e8f299a906908de0",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Hotel_Transportation-Van-Side_resize.jpg",
+          "sourceDhash": "2356423027341199000",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/hotel-transport-reference-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/hotel-transport-reference.webp",
+              "width": 800
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/phuket-airport-to-phuket-town/hotel-arrival-lounge.webp",
+          "role": "supporting",
+          "alt": "A close view of the hotel lobby lounge and table setting",
+          "width": 1500,
+          "height": 1120,
+          "bytes": 104698,
+          "sha256": "0928b259379e8a0eb22cabfef95eb6f729f8ee7562915262569f49d7d07acfa7",
+          "sourceSha256": "a86fb42ef178c497f59d446603cc51d06de8997497414c0a454fce60f0cd0bee",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/RPC Lobby 2.jpg",
+          "sourceDhash": "17364870035217041000",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/hotel-arrival-lounge-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/hotel-arrival-lounge-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/hotel-arrival-lounge.webp",
+              "width": 1500
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/phuket-airport-to-phuket-town/arrival-luggage.webp",
+          "role": "supporting",
+          "alt": "Tan suitcase and cream carry-on bag ready for a journey — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 46892,
+          "sha256": "38558e2d4394d88978f0d7a0f7b167fbd0ae1a3710460d6704f908dc5fe1cca2",
+          "sourceSha256": "beb22f6c01c531bff1bcde9b1a1de5cf8957e695c5cda3ed5ea6e1fe2e29a748",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "b3c80548-5d02-400f-8816-04a048c5da1b",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/arrival-luggage-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/arrival-luggage-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/arrival-luggage.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/phuket-airport-to-phuket-town/travel-accessories.webp",
+          "role": "supporting",
+          "alt": "Travel pouch, charging cable and sunglasses on linen — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 167452,
+          "sha256": "97ebdff663fd6ae59ce657bf8933078ff3f04b7cab8ac2ee3d8a43a388b3ced9",
+          "sourceSha256": "bcb0d4dcf907768ad2e4312cf517a302f12f2c0e108ef57b91de48821df02376",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "93ef4812-1478-4161-9618-fea8b6a78602",
+          "variants": [
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/travel-accessories-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/travel-accessories-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/phuket-airport-to-phuket-town/travel-accessories.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 16,
+      "slug": "meeting-room-seating-layouts",
+      "images": [
+        {
+          "url": "/images/blog/meeting-room-seating-layouts/classroom-meeting-setup.webp",
+          "role": "featured",
+          "alt": "Rows of classroom tables facing the presentation area in a supplied hotel meeting photograph",
+          "width": 1264,
+          "height": 848,
+          "bytes": 138394,
+          "sha256": "e48444495bb93d71b28b73b7e9bc7dfe136f12c09fd4f1467c8e8935e43b3031",
+          "sourceSha256": "43c33de78fce329430c9520f149d82c9276661890affcecb00af00714e1b4922",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/MTG_NM_W04_ballroom_classroom_wide.jpg",
+          "sourceDhash": "14757849263479615000",
+          "variants": [
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/classroom-meeting-setup-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/classroom-meeting-setup-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/classroom-meeting-setup.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/meeting-room-seating-layouts/u-shape-meeting-room.webp",
+          "role": "supporting",
+          "alt": "U-shaped tables with a central floral arrangement in a supplied hotel meeting room photograph",
+          "width": 1000,
+          "height": 667,
+          "bytes": 70168,
+          "sha256": "b53bfa8b5e9183f58a1e6f024f944ae8caebead312fd9f40b7609f3f3a4e6d0f",
+          "sourceSha256": "71f1bcf5e6c54b3a224e37bbecf31fd9ea5a44ae63e9d884a3a059399f055bce",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-5.jpg",
+          "sourceDhash": "8128092364655097000",
+          "variants": [
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/u-shape-meeting-room-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/u-shape-meeting-room-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/u-shape-meeting-room.webp",
+              "width": 1000
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/meeting-room-seating-layouts/delegate-workspace.webp",
+          "role": "supporting",
+          "alt": "Blank notepad, pencil and water glass at a meeting place setting — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 97620,
+          "sha256": "2869bd4661d34415ff974674bbeaa5de6e6f7391de4db499670f36cc8ee3a9d6",
+          "sourceSha256": "f1bb796a9d5814e38007720d2aab34a25e8186ae90c83503b9f50aa24e366477",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "45a5220e-71d9-40e8-8c13-4447f6e99bdb",
+          "variants": [
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/delegate-workspace-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/delegate-workspace-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/delegate-workspace.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/meeting-room-seating-layouts/table-space-detail.webp",
+          "role": "supporting",
+          "alt": "Blank table card, small flower vase and pen — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 43936,
+          "sha256": "b579d400d24cd3ad13a72b11ceb0f60d7aa6e689b7240971fc681a88d7520635",
+          "sourceSha256": "3bd7944839ea20eed5287e2bcb2ed913e6b70a419364c7236c1fdbd15be7048f",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "3c34274c-e741-4db0-a5dc-be93d1f60022",
+          "variants": [
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/table-space-detail-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/table-space-detail-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/meeting-room-seating-layouts/table-space-detail.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 17,
+      "slug": "corporate-event-venue-brief-phuket",
+      "images": [
+        {
+          "url": "/images/blog/corporate-event-venue-brief-phuket/meeting-room-proposal.webp",
+          "role": "featured",
+          "alt": "Meeting tables and presentation area in a supplied Royal Phuket City Hotel room photograph",
+          "width": 1000,
+          "height": 667,
+          "bytes": 54036,
+          "sha256": "824971af06349f767664dfeb3fa20e626e6cbffe02fa9f78080749324da3a3cf",
+          "sourceSha256": "7706a9c3975603c2ed47e618957ff492e061e2fd8e1ac04228e6a71f183dcece",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-9.jpg",
+          "sourceDhash": "2111327242953999400",
+          "variants": [
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/meeting-room-proposal-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/meeting-room-proposal-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/meeting-room-proposal.webp",
+              "width": 1000
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/corporate-event-venue-brief-phuket/event-service-space.webp",
+          "role": "supporting",
+          "alt": "Cocktail tables arranged for a hotel event in the supplied venue library",
+          "width": 1264,
+          "height": 848,
+          "bytes": 91344,
+          "sha256": "d2c32f017848b3e25017ef78bca96388fde61986ad1e118e017998dd44aa7a99",
+          "sourceSha256": "7b69ed671a4a27b389b65f153dbfcfdfb747878ed72c977116c850b2ef69a089",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/MTG_NM_W05_cocktail_setup_wide.jpg",
+          "sourceDhash": "3580837179019030500",
+          "variants": [
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/event-service-space-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/event-service-space-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/event-service-space.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/corporate-event-venue-brief-phuket/venue-brief-materials.webp",
+          "role": "supporting",
+          "alt": "Wooden clipboard with blank paper and a pen — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 88446,
+          "sha256": "9e0d0cf38bb386022d1f2e4af7a4f20568a6bafcc451bb41f27b0893a1153e7c",
+          "sourceSha256": "5050d81f2d40827a7b53ad154b3dd9693d79c97b8d50dbe64b6f4a456a2b98be",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "68b4e92e-b0e8-4b94-88f2-9090c30e1bdf",
+          "variants": [
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/venue-brief-materials-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/venue-brief-materials-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/venue-brief-materials.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/corporate-event-venue-brief-phuket/requirements-notebook.webp",
+          "role": "supporting",
+          "alt": "Blank notebook, envelopes and wooden counting tokens — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 78712,
+          "sha256": "55d25a0d0de2ff2d98d187b36c51ee05d27da4e9ead6d683fe1438a11979c9a2",
+          "sourceSha256": "3cbdfd5cdc8f9ab6e4e29f274abd98648bb47d68664c792ee314ad848717c85d",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "623edc58-69cf-4bcd-a46a-c8bf4955940e",
+          "variants": [
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/requirements-notebook-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/requirements-notebook-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/corporate-event-venue-brief-phuket/requirements-notebook.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 21,
+      "slug": "chinese-wedding-tea-ceremony-phuket",
+      "images": [
+        {
+          "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/family-tea-exchange.webp",
+          "role": "featured",
+          "alt": "Tea cups held during a Chinese wedding ceremony in the hotel’s supplied wedding photographs",
+          "width": 800,
+          "height": 533,
+          "bytes": 83004,
+          "sha256": "c935ba136ae3a3db6164d1f081251bbdcc94acc756e12cf8ac58c9d69d41dfa2",
+          "sourceSha256": "cea53a4ccb715c73772f37430d76318cdda2094eed31b9990cadff38494d7124",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/Wedding YL/RPC-wedding-YL-01.jpg",
+          "sourceDhash": "4194091950096043000",
+          "variants": [
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/family-tea-exchange-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/family-tea-exchange.webp",
+              "width": 800
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/red-tea-ceremony-set.webp",
+          "role": "supporting",
+          "alt": "Red tea tray and cups from the hotel’s supplied Chinese wedding photo library",
+          "width": 800,
+          "height": 918,
+          "bytes": 78500,
+          "sha256": "ae9350323439360c9d041af5629514e85ae621154e59b2db5c235a9df4ac57c4",
+          "sourceSha256": "f74ad7b89c1052d2ecc24501033218490bc4c6c50e56c97a0f51a13bd85faa69",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/Wedding YL/RPC-wedding-YL-05.jpg",
+          "sourceDhash": "3522039881455926000",
+          "variants": [
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/red-tea-ceremony-set-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/red-tea-ceremony-set.webp",
+              "width": 800
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-cups-and-ribbon.webp",
+          "role": "supporting",
+          "alt": "Two porcelain tea cups beside a red ribbon and teapot — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 67142,
+          "sha256": "41f571273655d272b653c7f210f73df697f148357e650f23b7022a174d522657",
+          "sourceSha256": "e5176f61ed6354442f27301dc429eaaab3dfa121bfb41e7fe5acc7e97a1d04e7",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "843ca3d2-cc77-4994-8f8d-b372efe449e8",
+          "variants": [
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-cups-and-ribbon-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-cups-and-ribbon-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-cups-and-ribbon.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-ingredient-choices.webp",
+          "role": "supporting",
+          "alt": "Red dates and lotus seeds beside plain tea cups — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 60336,
+          "sha256": "552ffe3e3d0b5d7a8e073a053c4e4cc75332f38894955ea19478515ae8f35b12",
+          "sourceSha256": "ce56ab09470a54d602e18e34b9dc8e99b5e8655057291dfda46e1e79c1a73241",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "f35fa4b1-3dab-4885-9312-a2e03e3d2057",
+          "variants": [
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-ingredient-choices-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-ingredient-choices-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/chinese-wedding-tea-ceremony-phuket/tea-ingredient-choices.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 22,
+      "slug": "thai-wedding-water-blessing",
+      "images": [
+        {
+          "url": "/images/blog/thai-wedding-water-blessing/water-pouring-ceremony.webp",
+          "role": "featured",
+          "alt": "Water poured over a couple’s hands during a Thai wedding in the supplied hotel photo library",
+          "width": 1264,
+          "height": 848,
+          "bytes": 134702,
+          "sha256": "2c1ce344281ca54e38c5e7cf38f8f1579612ce55faa8ba5ce4f772579445fde2",
+          "sourceSha256": "0f61bc70de63652ce8dcefcef7fd52e14da1daa395f11bae179c9c3710e26bc6",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Wedding/Thai Wedding 007.jpg",
+          "sourceDhash": "15675524961447200000",
+          "variants": [
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/water-pouring-ceremony-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/water-pouring-ceremony-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/water-pouring-ceremony.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/thai-wedding-water-blessing/thai-wedding-detail.webp",
+          "role": "supporting",
+          "alt": "Close detail of joined hands and traditional clothing in supplied Thai wedding photography",
+          "width": 800,
+          "height": 533,
+          "bytes": 83630,
+          "sha256": "5dc2a9d184a5ffcffe58b493879d4d06e75514e042fe0b345daffd3f714c7858",
+          "sourceSha256": "65f22e0c9cc5345e66dff8d2ff885b6aab6d762fc86612517ba10eab26f0cf67",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/Thai Wed/RPC-Thai01.jpg",
+          "sourceDhash": "11429182288252390000",
+          "variants": [
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/thai-wedding-detail-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/thai-wedding-detail.webp",
+              "width": 800
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/thai-wedding-water-blessing/conch-and-water-bowl.webp",
+          "role": "supporting",
+          "alt": "Conch shell, gold-tone water bowl and jasmine flowers — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 82026,
+          "sha256": "51e8ddf3a56b4e97f1e646e03bc7b52acb8dcbdcd3b0cf62a171029cdab09067",
+          "sourceSha256": "889dde9390edefa9902906be000849bf83ee3a1d25636477f5a3a0950288a9d2",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "5c73e1a4-73de-4d47-8069-9f3fed422768",
+          "variants": [
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/conch-and-water-bowl-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/conch-and-water-bowl-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/conch-and-water-bowl.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/thai-wedding-water-blessing/jasmine-and-ceremony-linen.webp",
+          "role": "supporting",
+          "alt": "White jasmine garland, towel and gold-tone tray — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 120208,
+          "sha256": "782e73b0471b6b857b070f1295ecad8026a30a4d650c7829fba9adc50ab7a13e",
+          "sourceSha256": "b70f336385885d920c938ad7bce3d05335eba72cc8611a87e2adce47d4f79478",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "d56ed5e7-9680-4410-b64f-17e57312a536",
+          "variants": [
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/jasmine-and-ceremony-linen-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/jasmine-and-ceremony-linen-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/thai-wedding-water-blessing/jasmine-and-ceremony-linen.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 23,
+      "slug": "indoor-or-outdoor-wedding-phuket",
+      "images": [
+        {
+          "url": "/images/blog/indoor-or-outdoor-wedding-phuket/indoor-banquet-setting.webp",
+          "role": "featured",
+          "alt": "Round banquet tables in a supplied indoor hotel event-room photograph",
+          "width": 1000,
+          "height": 500,
+          "bytes": 54322,
+          "sha256": "1fc281ba8b2c49fcd7ce953c32e66211562065c3ad319c4ec56988c0d9679ea2",
+          "sourceSha256": "c683931cbd7e4f9c967e4f2fa82636fd23fe16af3a8aab5091793de40e888ae8",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Banquet-Royal-Phuket-City-7.jpg",
+          "sourceDhash": "7812642763230662000",
+          "variants": [
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/indoor-banquet-setting-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/indoor-banquet-setting-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/indoor-banquet-setting.webp",
+              "width": 1000
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/indoor-or-outdoor-wedding-phuket/outdoor-ceremony-reference.webp",
+          "role": "supporting",
+          "alt": "An outdoor ceremony scene from the hotel’s supplied wedding photograph library",
+          "width": 800,
+          "height": 1200,
+          "bytes": 84256,
+          "sha256": "91d2e3108069ef3f66a46207f5cbbe04ddf9b75017087012b9620ef64f88bbb3",
+          "sourceSha256": "736ed431a47face4f7eb5588ad04d9cc1f2d4d70da2a5f44d907a546eeebf69b",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/Western Wdding/WeddingDay BT-2033_resize.jpg",
+          "sourceDhash": "16352843160044206000",
+          "variants": [
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/outdoor-ceremony-reference-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/outdoor-ceremony-reference.webp",
+              "width": 800
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/indoor-or-outdoor-wedding-phuket/weather-plan-details.webp",
+          "role": "supporting",
+          "alt": "White flowers and candle beside a rain-speckled window — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 107102,
+          "sha256": "f8adc0b5d4a0f221a64cdc5a70c7495fb8a2502816fac29728db2553f71bb4c7",
+          "sourceSha256": "c6f3efcda28706abfd310bec7dcab1d274c9fc0b147c63196d57685bc309747a",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "d8c62ab1-f519-4028-aa76-b76e19e75e95",
+          "variants": [
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/weather-plan-details-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/weather-plan-details-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/weather-plan-details.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/indoor-or-outdoor-wedding-phuket/chair-sash-and-flowers.webp",
+          "role": "supporting",
+          "alt": "Ivory chair sash tied beside a small white floral sprig — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 140580,
+          "sha256": "e8ce86ea3e1787e4a70d96eb1368ffbe051b3f3093c0302d59bdecba3b387056",
+          "sourceSha256": "acf27add32311236fa862f5282cc094d450703317a33c413b2f59a66d75acaaa",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "960eb15e-8f29-4580-93b9-40009af8f591",
+          "variants": [
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/chair-sash-and-flowers-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/chair-sash-and-flowers-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/indoor-or-outdoor-wedding-phuket/chair-sash-and-flowers.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 25,
+      "slug": "small-wedding-phuket-town",
+      "images": [
+        {
+          "url": "/images/blog/small-wedding-phuket-town/intimate-dining-setting.webp",
+          "role": "featured",
+          "alt": "Tables set for a celebration in Yan Long in the hotel’s supplied photograph library",
+          "width": 800,
+          "height": 533,
+          "bytes": 81196,
+          "sha256": "b711f455034b94bb111bdea94200c7ce1c36ea9e65cf5b8d072c53ab91916ba6",
+          "sourceSha256": "bd0a9b7b7942d3550ee9ebef19b035e8043fa9300023bded4cd3ddabe1337f43",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/Wedding YL/RPC-wedding-YL-03.jpg",
+          "sourceDhash": "17429328209931018000",
+          "variants": [
+            {
+              "url": "/images/blog/small-wedding-phuket-town/intimate-dining-setting-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/intimate-dining-setting.webp",
+              "width": 800
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/small-wedding-phuket-town/wedding-bouquet-detail.webp",
+          "role": "supporting",
+          "alt": "A bridal bouquet in supplied hotel wedding photography",
+          "width": 1264,
+          "height": 848,
+          "bytes": 64102,
+          "sha256": "c24fe2c5b2cbd2d56f1ca22b721b8cb55300eb8841ef393c543197b7d90bbe6e",
+          "sourceSha256": "006fac850e7e1c9fc30876ce59a094ed4c4ca69e2ddc5335fda384876206f21d",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/Wedding/western wedding 2.jpg",
+          "sourceDhash": "10289824436537320000",
+          "variants": [
+            {
+              "url": "/images/blog/small-wedding-phuket-town/wedding-bouquet-detail-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/wedding-bouquet-detail-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/wedding-bouquet-detail.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/small-wedding-phuket-town/intimate-place-settings.webp",
+          "role": "supporting",
+          "alt": "Two place settings with a low white and blush flower arrangement — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 142028,
+          "sha256": "353cfab090c8378efeead81206fd5115e61bfcf3f016124eb6616563090eb42c",
+          "sourceSha256": "bf0d52a28d779b1d4cd58bba7907ded44561fcd9575924464cc8de25ffd3bcb8",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "eb1dfa8c-c63d-4210-9ac8-53d0f0233756",
+          "variants": [
+            {
+              "url": "/images/blog/small-wedding-phuket-town/intimate-place-settings-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/intimate-place-settings-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/intimate-place-settings.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/small-wedding-phuket-town/thoughtful-wedding-favours.webp",
+          "role": "supporting",
+          "alt": "Small ivory favour boxes with bronze ribbons and a white rose — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 118714,
+          "sha256": "bc5d5977114fe333d03d80be81f011a44a8bf2a3f1dd45bee9d9f1e98267e3d4",
+          "sourceSha256": "27e466873d07b8d6a549e214ee0da0699e50f3350f3faa0d234ecbd9a293c40a",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "11105537-53f5-454c-ae81-afd639a3a9ba",
+          "variants": [
+            {
+              "url": "/images/blog/small-wedding-phuket-town/thoughtful-wedding-favours-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/thoughtful-wedding-favours-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/small-wedding-phuket-town/thoughtful-wedding-favours.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": 19,
+      "slug": "product-launch-checklist-phuket",
+      "images": [
+        {
+          "url": "/images/blog/product-launch-checklist-phuket/launch-presentation-setting.webp",
+          "role": "featured",
+          "alt": "Stage and audience setting from the hotel’s supplied product-launch photograph library",
+          "width": 1264,
+          "height": 848,
+          "bytes": 149084,
+          "sha256": "9aceabce45cc38addab5d9e4aaed0724de7ba29c9572e70b1424abfbaea86e3f",
+          "sourceSha256": "c032b63345c7d40907b617f59c46c245e16a1065b0e5d343dbc742f34904563a",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/F45_PL_L01_launch_wide.jpg",
+          "sourceDhash": "10588797200942526000",
+          "variants": [
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/launch-presentation-setting-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/launch-presentation-setting-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/launch-presentation-setting.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/product-launch-checklist-phuket/guest-demonstration-area.webp",
+          "role": "supporting",
+          "alt": "Visitors interacting in an exhibition area in supplied hotel event photography",
+          "width": 1264,
+          "height": 848,
+          "bytes": 121712,
+          "sha256": "8b407e33455fd00dc4a0283b004735447dab32d7ff6504219a982a586cbb15c1",
+          "sourceSha256": "eb008849996525e5557fcc042e633f3dd74d7a4c870bc70e59c9957778aab28e",
+          "origin": "Brand-supplied image library",
+          "sourcePath": "public/images/HOTEL WEBSITE/EVT_EX_L02_booth_interaction_medium.jpg",
+          "sourceDhash": "12442544499399651000",
+          "variants": [
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/guest-demonstration-area-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/guest-demonstration-area-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/guest-demonstration-area.webp",
+              "width": 1264
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/product-launch-checklist-phuket/reveal-planning-still-life.webp",
+          "role": "supporting",
+          "alt": "Empty presentation box and small display base on a wooden surface — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 112114,
+          "sha256": "c256056bb5d65ebc055df4251144d9f7ed7f2eae5ed17ccdd5e9c63a0a319d20",
+          "sourceSha256": "d41e893fc988be6e83ef457c9b3f5dbfee14f2ee9f5f11a8e03068ca2b235d98",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "06e53b35-0338-48d7-bc5a-857542a56a9c",
+          "variants": [
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/reveal-planning-still-life-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/reveal-planning-still-life-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/reveal-planning-still-life.webp",
+              "width": 1600
+            }
+          ]
+        },
+        {
+          "url": "/images/blog/product-launch-checklist-phuket/technical-rehearsal-detail.webp",
+          "role": "supporting",
+          "alt": "Presentation cable, connector and blank cue card — AI-generated editorial illustration",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 76250,
+          "sha256": "eef79f33e41475f3a2ab0ce2c166eda8a5cc3ff7c86c206dddfbc34fbda99e4f",
+          "sourceSha256": "db567ed11545928e28cf4842dc86eb9c51975a11c1a4ab52c61a059ce309016b",
+          "origin": "AI-generated editorial illustration",
+          "requestedModel": "nano_banana_pro",
+          "reportedBackendModel": "nano_banana_2",
+          "jobId": "f372d1df-6ab0-4921-98d9-de5d9a566506",
+          "variants": [
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/technical-rehearsal-detail-640.webp",
+              "width": 640
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/technical-rehearsal-detail-960.webp",
+              "width": 960
+            },
+            {
+              "url": "/images/blog/product-launch-checklist-phuket/technical-rehearsal-detail.webp",
+              "width": 1600
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

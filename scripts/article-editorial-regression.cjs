@@ -16,9 +16,10 @@ function load(relativePath, mocks = {}) {
     if (name in mocks) return mocks[name];
     if (name === "@/lib/constants") return { SITE_CONFIG: { name: "Royal Phuket City Hotel", url: "https://royalphuketcity.com" } };
     if (name === "@/lib/article-editorial") return load("src/lib/article-editorial.ts");
+    if (name === "@/lib/article-content") return load("src/lib/article-content.ts");
     return require(name);
   };
-  vm.runInNewContext(compiled, { require: requireModule, module, exports: module.exports });
+  vm.runInNewContext(compiled, { require: requireModule, module, exports: module.exports, URL });
   return module.exports;
 }
 const { getArticleDates, formatArticleDate, HOTEL_TEAM_AUTHOR } = load("src/lib/article-editorial.ts");
@@ -47,7 +48,7 @@ test("updates cannot predate publication; independent valid update dates are ret
   assert.equal(formatArticleDate("2026-10-10T18:00:00Z"), "11 October 2026");
 });
 
-test("rendered article dates, social metadata and Article schema agree on records and author profile", async () => {
+test("public articles keep timestamps and reading times private while retaining author and canonical metadata", async () => {
   const post = { id: "1", slug: "hotel-guide", title: "Hotel guide", content: "<p>Hotel information</p>", published_at: "2020-01-02T00:00:00Z", updated_at: "2020-02-03T00:00:00Z" };
   const nullComponent = () => null;
   const article = load("src/components/BlogArticle.tsx", {
@@ -68,11 +69,10 @@ test("rendered article dates, social metadata and Article schema agree on record
   assert.equal(schema.author.url, HOTEL_TEAM_AUTHOR.url);
   assert.equal(schema.author["@id"], HOTEL_TEAM_AUTHOR["@id"]);
   assert.match(html, /href="\/hotel-team"/);
-  assert.equal(schema.datePublished, metadata.openGraph.publishedTime);
-  assert.equal(schema.dateModified, metadata.openGraph.modifiedTime);
-  assert.ok(html.includes(`dateTime="${schema.datePublished}"`));
-  assert.ok(html.includes(`dateTime="${schema.dateModified}"`));
-  assert.match(html, /2 January 2020/);
-  assert.match(html, /3 February 2020/);
-  assert.doesNotMatch(html, /Reviewed on/);
+  assert.equal(schema.datePublished, undefined);
+  assert.equal(schema.dateModified, undefined);
+  assert.equal(metadata.openGraph.publishedTime, undefined);
+  assert.equal(metadata.openGraph.modifiedTime, undefined);
+  assert.doesNotMatch(html, /<time|dateTime=|min read|2 January 2020|3 February 2020|Published|Updated/);
+
 });

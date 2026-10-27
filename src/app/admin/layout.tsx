@@ -190,6 +190,7 @@ export default function AdminLayout({
           <p className="px-4 py-2 mt-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Content
           </p>
+          <NavLink href="/admin/blog" label="Blog articles" icon={<span aria-hidden="true">✎</span>} />
           <NavLink
             href="/admin/announcements"
             label="Announcements"

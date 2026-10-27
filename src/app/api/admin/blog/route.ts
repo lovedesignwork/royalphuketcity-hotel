@@ -1,5 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseClient } from "@/lib/supabase";
+import { countArticleWords } from "@/lib/article-content";
+import { validateBlogPublication } from "@/lib/blog-publication";
+import { isBlogSlugAvailable } from "@/lib/blog-path";
+
+async function publicationError(post: Parameters<typeof validateBlogPublication>[0]) {
+  const db = getSupabaseClient();
+  if (!db) throw new Error("Database not configured");
+  const others = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await db.from("blog_posts").select("id, slug, content, featured_image").range(from, from + 999);
+    if (error) throw new Error("Unable to verify image ownership");
+    others.push(...(data || []));
+    if (!data || data.length < 1000) break;
+  }
+  return validateBlogPublication(post, others);
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -78,7 +94,6 @@ export async function POST(request: NextRequest) {
       status = "draft",
       tone,
       target_audience,
-      word_count,
       seo_score,
       scheduled_at,
     } = body;
@@ -88,6 +103,11 @@ export async function POST(request: NextRequest) {
     }
 
     const postSlug = slug || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    if (!isBlogSlugAvailable(postSlug)) return NextResponse.json({ error: "Choose a descriptive article slug that does not use an existing service route." }, { status: 400 });
+    if (status === "published") {
+      const error = await publicationError({ ...body, slug: postSlug });
+      if (error) return NextResponse.json({ error }, { status: 400 });
+    }
 
     const postData = {
       title,
@@ -104,7 +124,7 @@ export async function POST(request: NextRequest) {
       status,
       tone,
       target_audience,
-      word_count: word_count || content.split(/\s+/).length,
+      word_count: countArticleWords(content),
       seo_score,
       published_at: status === "published" ? new Date().toISOString() : null,
       scheduled_at: scheduled_at || null,
@@ -146,13 +166,18 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Post ID is required" }, { status: 400 });
     }
 
+    const { data: existing, error: readError } = await supabase.from("blog_posts").select("*").eq("id", id).maybeSingle();
+    if (readError || !existing) return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    if (updates.slug && updates.slug !== existing.slug && !isBlogSlugAvailable(updates.slug)) return NextResponse.json({ error: "This slug is reserved for an existing page." }, { status: 400 });
+    const candidate = { ...existing, ...updates, id };
+    if (candidate.status === "published") {
+      const error = await publicationError(candidate);
+      if (error) return NextResponse.json({ error }, { status: 400 });
+    }
     updates.updated_at = new Date().toISOString();
-    if (updates.status === "published" && !updates.published_at) {
-      updates.published_at = new Date().toISOString();
-    }
-    if (updates.content) {
-      updates.word_count = updates.content.split(/\s+/).length;
-    }
+    // Editing an article must not move it back to the top of the homepage.
+    updates.published_at = existing.published_at || (candidate.status === "published" ? new Date().toISOString() : null);
+    if (typeof updates.content === "string") updates.word_count = countArticleWords(updates.content);
 
     const { data, error } = await supabase
       .from("blog_posts")

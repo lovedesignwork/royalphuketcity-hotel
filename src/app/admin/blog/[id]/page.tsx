@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState, use, useRef } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { countArticleWords } from "@/lib/article-content";
+import ArticleImageTools from "@/components/ArticleImageTools";
 
 interface Category {
   id: string;
@@ -58,7 +59,6 @@ export default function EditBlogPostPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [post, setPost] = useState<BlogPost | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -76,6 +76,7 @@ export default function EditBlogPostPage({
   const [content, setContent] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
+  const [featuredImageAlt, setFeaturedImageAlt] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [tone, setTone] = useState("professional");
   const [targetAudience, setTargetAudience] = useState("travelers");
@@ -139,6 +140,7 @@ export default function EditBlogPostPage({
       setContent(p.content);
       setMetaDescription(p.meta_description || "");
       setFeaturedImage(p.featured_image || "");
+      setFeaturedImageAlt(p.featured_image_alt || "");
       setCategoryId(p.category_id || "");
       setTone(p.tone || "professional");
       setTargetAudience(p.target_audience || "travelers");
@@ -182,6 +184,7 @@ export default function EditBlogPostPage({
           excerpt,
           content,
           featured_image: featuredImage || null,
+          featured_image_alt: featuredImageAlt,
           meta_description: metaDescription,
           seo_keywords: keywords,
           focus_keyword: focusKeyword,
@@ -241,7 +244,7 @@ export default function EditBlogPostPage({
           title: title || undefined,
           keywords,
           focusKeyword: focusKeyword || keywords[0],
-          wordCount: content.split(/\s+/).length,
+          wordCount: countArticleWords(content),
           tone,
           targetAudience,
           category: selectedCategory?.name,
@@ -444,15 +447,18 @@ export default function EditBlogPostPage({
                 Content
               </label>
               <span className="text-sm text-gray-500">
-                {content.split(/\s+/).filter(Boolean).length} words
+                {countArticleWords(content)} words
               </span>
             </div>
-            <textarea
+            <p className="text-sm text-gray-500 mb-3">Publish 800–1,600 words with one featured image and 2–4 different supporting images. Add alt text, image dimensions and captions; label generated images as editorial illustrations. Dates and reading times stay private. Use original photos assigned only to this article.</p>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Featured image description<input value={featuredImageAlt} onChange={e => setFeaturedImageAlt(e.target.value)} className="block w-full mt-1 mb-4 px-3 py-2 border border-gray-300 rounded-lg" placeholder="Describe the actual photograph" /></label>
+                <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
               rows={25}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none resize-none font-mono text-sm"
             />
+                <ArticleImageTools onInsert={html => setContent(current => current + "\n" + html)} />
           </div>
         </div>
 
@@ -484,7 +490,7 @@ export default function EditBlogPostPage({
             <input
               ref={fileInputRef}
               type="file"
-              accept="image/jpeg,image/png,image/webp,image/gif"
+              accept="image/jpeg,image/png,image/webp,image/avif"
               onChange={handleImageUpload}
               className="hidden"
             />
