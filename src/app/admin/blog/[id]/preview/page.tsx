@@ -28,7 +28,7 @@ export default async function ArticlePreview({ params }: { params: Promise<{ id:
       </div>
       <article>
         <h1 className="font-heading mb-8 text-4xl">{post.title}</h1>
-        <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div className="blog-prose prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
     </div>
   );

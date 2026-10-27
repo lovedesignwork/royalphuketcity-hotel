@@ -9,12 +9,15 @@ import BlogShare from "@/components/BlogShare";
 import { JsonLd } from "@/components/JsonLd";
 import { getPublishedPost, getPublishedPosts, type BlogPost } from "@/lib/blog";
 import { HOTEL_TEAM_AUTHOR, HOTEL_TEAM_PATH } from "@/lib/article-editorial";
-import { prepareArticleContent } from "@/lib/article-content";
+import { articleTopic, prepareArticleContent } from "@/lib/article-content";
 
 async function getRelatedPosts(current: BlogPost) {
   const { posts } = await getPublishedPosts(1, 100);
-  const score = (post: BlogPost) => (post.blog_categories?.slug && post.blog_categories.slug === current.blog_categories?.slug ? 5 : 0)
-    + (post.tags || []).filter(tag => current.tags?.includes(tag)).length;
+  const topic = articleTopic(current);
+  const tags = new Set((current.tags || []).map(tag => tag.toLowerCase()));
+  const score = (post: BlogPost) => (articleTopic(post) === topic ? 20 : 0)
+    + (post.blog_categories?.slug && post.blog_categories.slug === current.blog_categories?.slug ? 1 : 0)
+    + (post.tags || []).filter(tag => tags.has(tag.toLowerCase())).length * 3;
   return posts.filter(post => post.slug !== current.slug).sort((a, b) => score(b) - score(a)).slice(0, 3);
 }
 

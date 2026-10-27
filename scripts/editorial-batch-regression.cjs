@@ -16,7 +16,7 @@ const registry=require('../content/editorial/image-ownership.json');
 const batch=require('../content/editorial/selected-topics.json');
 const posts=batch.map(p=>require('../content/blog/'+p.slug+'.json'));
 const {validateBlogPublication}=load('src/lib/blog-publication.ts');
-const {countArticleWords,prepareArticleContent}=load('src/lib/article-content.ts');
+const {countArticleWords,prepareArticleContent,articleTopic}=load('src/lib/article-content.ts');
 
 test('all ten selected topics have substantial text, four owned images and usable metadata',()=>{
  assert.deepEqual(batch.map(p=>p.topic).sort((a,b)=>a-b),[1,2,3,16,17,19,21,22,23,25]);
@@ -64,4 +64,12 @@ test('contents links point to unique rendered headings',()=>{
  assert.equal(headings.length,2);assert.equal(headings[0].title,'One & two');
  assert.notEqual(headings[0].id,headings[1].id);
  for(const h of headings)assert(html.includes('id="'+h.id+'"'));
+});
+
+test('related article topics distinguish weddings from business events in the shared Events category',()=>{
+ const category={slug:'events'};
+ assert.equal(articleTopic({slug:'meeting-room-seating-layouts',blog_categories:category}),'business-events');
+ assert.equal(articleTopic({slug:'product-launch-checklist-phuket',blog_categories:category}),'business-events');
+ assert.equal(articleTopic({slug:'small-wedding-phuket-town',blog_categories:category}),'weddings');
+ assert.equal(articleTopic({slug:'custom-celebration',tags:['Chinese Ceremonies'],blog_categories:category}),'weddings');
 });

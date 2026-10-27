@@ -15,6 +15,14 @@ export function prepareArticleContent(content: string) {
   return { html, headings };
 }
 
+/** The CMS Events category includes both business events and weddings. */
+export function articleTopic(post: { slug: string; tags?: string[]; blog_categories?: { slug?: string } }) {
+  const terms = `${post.slug} ${(post.tags || []).join(" ")}`.toLowerCase();
+  if (/wedding|bridal|ceremon/.test(terms)) return "weddings";
+  if (/meeting|conference|corporate|launch|gala|mice/.test(terms)) return "business-events";
+  return post.blog_categories?.slug || "travel";
+}
+
 /** Keep publication timestamps private while retaining server-side ordering. */
 export function publicArticle<T extends { published_at?: unknown; updated_at?: unknown; created_at?: unknown; scheduled_at?: unknown }>(post: T) {
   const { published_at, updated_at, created_at, scheduled_at, ...publicFields } = post;
