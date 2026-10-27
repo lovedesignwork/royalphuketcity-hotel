@@ -134,6 +134,14 @@ test("all 15 landing pages render content, breadcrumbs, matching FAQs and unique
     assert(fs.existsSync(path.join(root, "public", data.heroImage)), `${slug}: missing hero`);
     const links = [data.content.callToAction.buttonLink, ...(data.content.planningSections || []).flatMap((section) => section.links.map((link) => link.href))];
     for (const href of links) {
+      if (href.startsWith("https://")) {
+        const url = new URL(href);
+        assert.equal(url.origin, "https://www.google.com");
+        assert.equal(url.pathname, "/maps/dir/");
+        assert.equal(url.searchParams.get("travelmode"), "walking");
+        assert(url.searchParams.get("origin") && url.searchParams.get("destination"));
+        continue;
+      }
       const actualPage = fs.existsSync(path.join(root, "src/app", href, "page.tsx"));
       const knownLanding = Boolean(SEO_PAGES[href.slice(1)]);
       const room = href.startsWith("/rooms-suites/") && Boolean(load("src/lib/room-data.ts").ROOM_DETAILS[href.split("/").pop()]);

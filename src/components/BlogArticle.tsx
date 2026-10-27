@@ -9,6 +9,7 @@ import BlogFeedback from "@/components/BlogFeedback";
 import BlogShare from "@/components/BlogShare";
 import { JsonLd } from "@/components/JsonLd";
 import { getPublishedPost, getPublishedPosts, type BlogPost } from "@/lib/blog";
+import { formatArticleDate, getArticleDates, HOTEL_TEAM_AUTHOR, HOTEL_TEAM_PATH } from "@/lib/article-editorial";
 
 interface RelatedPost {
   id: string;
@@ -42,15 +43,22 @@ export async function generateBlogMetadata({
     };
   }
 
+  const brandedTitle = post.title.includes(SITE_CONFIG.name)
+    ? post.title
+    : `${post.title} | ${SITE_CONFIG.name}`;
+  const dates = getArticleDates(post);
+
   return {
-    title: post.title,
+    // Avoid repeating the hotel name when it is already in the editorial title.
+    title: { absolute: brandedTitle },
+    authors: [{ name: HOTEL_TEAM_AUTHOR.name, url: HOTEL_TEAM_AUTHOR.url }],
     description: post.meta_description || post.excerpt || post.title,
     keywords: post.seo_keywords?.join(", "),
     alternates: {
       canonical: `${SITE_CONFIG.url}${getBlogPath(post.slug)}`,
     },
     openGraph: {
-      title: `${post.title} | Royal Phuket City Hotel`,
+      title: brandedTitle,
       description: post.meta_description || post.excerpt || post.title,
       url: `${SITE_CONFIG.url}${getBlogPath(post.slug)}`,
       siteName: SITE_CONFIG.name,
@@ -64,12 +72,12 @@ export async function generateBlogMetadata({
         : [],
       locale: "en_US",
       type: "article",
-      publishedTime: post.published_at,
-      modifiedTime: post.updated_at || post.published_at,
+      publishedTime: dates.published,
+      modifiedTime: dates.modified,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | Royal Phuket City Hotel`,
+      title: brandedTitle,
       description: post.meta_description || post.excerpt || post.title,
       images: post.featured_image ? [post.featured_image] : [],
     },
@@ -77,19 +85,16 @@ export async function generateBlogMetadata({
 }
 
 function ArticleJsonLd({ post }: { post: BlogPost }) {
+  const dates = getArticleDates(post);
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.meta_description || post.excerpt,
     image: post.featured_image,
-    datePublished: post.published_at,
-    dateModified: post.updated_at || post.published_at,
-    author: {
-      "@type": "Organization",
-      name: "Royal Phuket City Hotel Team",
-      url: SITE_CONFIG.url,
-    },
+    datePublished: dates.published,
+    dateModified: dates.modified,
+    author: HOTEL_TEAM_AUTHOR,
     publisher: {
       "@type": "Organization",
       name: "Royal Phuket City Hotel",
@@ -123,6 +128,7 @@ export default async function BlogPostPage({
 
   const relatedPosts = await getRelatedPosts(post);
   const readingTime = post.word_count ? Math.ceil(post.word_count / 200) : 3;
+  const dates = getArticleDates(post);
 
   return (
     <div>
@@ -146,7 +152,16 @@ export default async function BlogPostPage({
       <section className="py-8 bg-white border-b border-gray-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-6 text-sm text-[--color-text-secondary]">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[--color-text-secondary]">
+              <Link href={HOTEL_TEAM_PATH} className="underline underline-offset-4 hover:text-[--color-accent]">
+                By {HOTEL_TEAM_AUTHOR.name}
+              </Link>
+              {dates.published && (
+                <span>Published <time dateTime={dates.published}>{formatArticleDate(dates.published)}</time></span>
+              )}
+              {dates.showUpdated && dates.modified && (
+                <span>Updated <time dateTime={dates.modified}>{formatArticleDate(dates.modified)}</time></span>
+              )}
               <span>{readingTime} min read</span>
               {post.word_count && (
                 <>
@@ -228,7 +243,9 @@ export default async function BlogPostPage({
                   </div>
                   <div>
                     <p className="font-heading text-lg text-[--color-text-primary]">
-                      Royal Phuket City Hotel Team
+                      <Link href={HOTEL_TEAM_PATH} className="hover:text-[--color-accent] underline underline-offset-4">
+                        {HOTEL_TEAM_AUTHOR.name}
+                      </Link>
                     </p>
                     <p className="text-sm text-[--color-text-secondary]">
                       Your home in Phuket Old Town

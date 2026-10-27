@@ -61,6 +61,18 @@ test("Thai previews remain noindex without prematurely advertising translations"
   assert.equal(page.alternates.languages, undefined);
 });
 
+test("actual Thai launch gate and HTTP noindex stay in place pending professional review", async () => {
+  const env = harness();
+  // Read the real launch setting, not the harness's mocked helper setting.
+  const config = env.load("src/lib/i18n/config.ts");
+  assert.equal(config.SHOW_LANGUAGE_SWITCHER, false,
+    "Thai indexing requires professional language review and an explicit launch decision");
+  const headers = await env.load("next.config.ts").default.headers();
+  const thai = headers.find(({ source }) => source === "/th/:path*");
+  assert(thai, "Thai previews need an HTTP noindex rule even on untranslated fallback pages");
+  assert(thai.headers.some(({ key, value }) => key.toLowerCase() === "x-robots-tag" && /\bnoindex\b/.test(value)));
+});
+
 test("approved language variants have reciprocal self-inclusive alternates", () => {
   const { getPageAlternates } = harness({ thaiLaunched: true }).load("src/lib/seo-utils.ts");
   const en = getPageAlternates("/contact", "en");

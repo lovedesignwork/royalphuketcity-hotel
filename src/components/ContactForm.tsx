@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import CountryPhoneSelector from "./CountryPhoneSelector";
 import { useLocale } from "@/components/i18n/LocaleProvider";
+import { trackInquirySuccess } from "@/lib/analytics-events";
 
 interface FormData {
   name: string;
@@ -74,6 +75,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
+      trackInquirySuccess("contact", response.ok, data);
       setFormData(initialFormData);
       formLoadedAt.current = Date.now();
     } catch (error) {

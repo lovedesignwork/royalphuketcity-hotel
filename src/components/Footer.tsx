@@ -21,6 +21,9 @@ export default async function Footer() {
             <img
               src="/images/logo.svg"
               alt="Royal Phuket City Hotel"
+              width={842}
+              height={340}
+              style={{ aspectRatio: "841.79 / 340.19" }}
               className="h-16 w-auto mb-6"
             />
             <p className="text-[--color-text-secondary] text-xs leading-relaxed">

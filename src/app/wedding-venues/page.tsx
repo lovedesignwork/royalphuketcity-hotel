@@ -91,6 +91,18 @@ export default async function WeddingVenuesPage() {
                 <p className="text-[--color-text-secondary]">
                   {t.planDesc}
                 </p>
+                {locale === "en" && (
+                  <p className="mt-4 text-sm text-[--color-text-secondary]">
+                    Preparing details for your guests? Read our{" "}
+                    <Link
+                      href="/phuket-wedding-guest-information"
+                      className="underline underline-offset-4 hover:text-[#8B7355]"
+                    >
+                      wedding guest information guide
+                    </Link>
+                    .
+                  </p>
+                )}
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a

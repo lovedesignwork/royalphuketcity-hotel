@@ -53,15 +53,15 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
   "phuket-old-town-hotel": {
     slug: "phuket-old-town-hotel",
     title: "Phuket Old Town Hotel",
-    subtitle: "Experience Heritage Hospitality in the Heart of Phuket",
+    subtitle: "Plan Your Stay Around Phuket's Heritage Streets",
     heroImage: "/images/old-town/colorful-sino-portuguese-architecture-phukets-old-town-thailand.jpg",
     metaDescription: "Stay near Phuket Old Town at Royal Phuket City Hotel. Compare 251 rooms and suites, explore local markets, and enjoy an outdoor pool and rooftop dining.",
     seoKeywords: ["Phuket Old Town hotel", "hotel in Phuket Old Town", "Phuket Town accommodation", "heritage hotel Phuket", "hotel near Thalang Road"],
     category: "hotel",
     content: {
       intro: [
-        "Welcome to Royal Phuket City Hotel, the premier accommodation in the heart of Phuket Old Town. Our 19-story landmark hotel offers 251 thoughtfully designed rooms with panoramic views of the city and distant Andaman Sea.",
-        "Located just steps from the historic Sino-Portuguese architecture of Thalang Road, Sunday Walking Street, and the best local restaurants and cafes, our hotel puts you at the center of Phuket's cultural heritage.",
+        "Royal Phuket City Hotel is at 154 Phang-Nga Road in Phuket Town. Our 19-story hotel offers 251 rooms and suites as a base for exploring the nearby Old Town streets.",
+        "Plan your outings around Thalang Road, Soi Romanee and Sunday Walking Street, then return to the hotel for a meal or a break. Check the walking route from the hotel entrance before setting off; the heritage district covers several streets.",
         "Choose a city stay for heritage walks, local food and easy returns to your room between outings. Beach visits and island excursions can be planned separately with transport.",
       ],
       planningSections: [{
@@ -74,10 +74,18 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
           { label: "Compare rooms and suites", href: "/rooms-suites" },
           { label: "Plan an Old Town walk", href: "/things-to-do-phuket-old-town" },
           { label: "Hotel address and directions", href: "/contact" },
+          { label: "Walking directions to Thalang Road", href: "https://www.google.com/maps/dir/?api=1&origin=Royal+Phuket+City+Hotel+Phuket&destination=Thalang+Road+Phuket&travelmode=walking" },
         ],
+      }, {
+        title: "Arrival and walking access",
+        paragraphs: [
+          "For an airport arrival or a beach day, arrange a taxi or ask the hotel about a private transfer. Confirm the fare, pickup point, luggage space and any child-seat requirements before travel. Hotel parking accommodates 350 vehicles.",
+          "If you use a wheelchair or have limited mobility, contact the hotel before choosing a room and ask about the route from the entrance to your room, bathroom access and transport assistance. Old Town pavement conditions and crossings vary; ask for a suitable route rather than assuming every street is step-free.",
+        ],
+        links: [{ label: "Discuss arrival or access requirements", href: "/contact" }],
       }],
       features: [
-        { title: "Prime Location", description: "Steps from Phuket Old Town's historic streets, cafes, and night markets" },
+        { title: "Old Town Base", description: "Phang-Nga Road address for exploring heritage streets, cafes and markets" },
         { title: "Panoramic Views", description: "City and distant sea views from our 19-story landmark building" },
         { title: "251 Rooms", description: "Thoughtfully designed rooms and suites for every traveler" },
         { title: "Full Amenities", description: "Pool, fitness center, restaurants, and meeting facilities" },
@@ -103,7 +111,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
   "4-star-hotel-phuket": {
     slug: "4-star-hotel-phuket",
     title: "4-Star Hotel in Phuket",
-    subtitle: "Premium Comfort at Exceptional Value",
+    subtitle: "Compare Room Sizes, Facilities and Rate Conditions",
     heroImage: "/images/HOTEL WEBSITE/RPC LS ROOM 15.jpg",
     metaDescription: "Explore Royal Phuket City, a 4-star hotel in Phuket Town with 251 rooms, an outdoor pool, fitness centre, spa, restaurants and meeting facilities.",
     seoKeywords: ["4-star hotel Phuket", "four star hotel Phuket", "premium hotel Phuket", "quality hotel Phuket Town", "rated hotel Phuket"],
@@ -124,6 +132,18 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
           { label: "Explore hotel facilities", href: "/facilities" },
           { label: "Compare current hotel offers", href: "/promotions" },
           { label: "Read the hotel policy", href: "/hotel-policy" },
+        ],
+      }, {
+        title: "Compare rooms before comparing rates",
+        paragraphs: [
+          "Premier Superior: 30 sqm. Premier Deluxe: 38 sqm. Suite: 64 sqm with a living room. Executive Suite: 75 sqm with a living room and bathtub. Partial sea-view categories are also listed for Premier Superior and Premier Deluxe; check the exact category on your reservation.",
+          "For each offer, confirm the stay dates and booking deadline, room category, number of guests, breakfast allowance, taxes and service charges, extra-bed charges, payment schedule and cancellation conditions. A package inclusion applies only when it appears in your selected offer and booking confirmation.",
+        ],
+        links: [
+          { label: "Premier Superior — 30 sqm", href: "/rooms-suites/premier-superior" },
+          { label: "Premier Deluxe — 38 sqm", href: "/rooms-suites/premier-deluxe" },
+          { label: "Suite — 64 sqm", href: "/rooms-suites/suite-room" },
+          { label: "Executive Suite — 75 sqm", href: "/rooms-suites/executive-suite" },
         ],
       }],
       features: [
@@ -153,16 +173,16 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
   "luxury-hotel-phuket-city": {
     slug: "luxury-hotel-phuket-city",
     title: "Luxury Hotel Phuket City",
-    subtitle: "Sophisticated Elegance in the Heart of Phuket",
+    subtitle: "Suites, Rooftop Dining and Special-Occasion Planning",
     heroImage: "/images/HOTEL WEBSITE/RPC LS ROOM 21.jpg",
-    metaDescription: "Experience luxury accommodation in Phuket City at Royal Phuket City Hotel. Elegant rooms, fine dining, and premium amenities in a convenient location.",
+    metaDescription: "Plan a suite stay in Phuket City: compare 64 sqm and 75 sqm suites at Royal Phuket City, rooftop dining, spa services and special-occasion arrangements.",
     seoKeywords: ["luxury hotel Phuket City", "upscale hotel Phuket", "elegant hotel Phuket Town", "premium accommodation Phuket", "sophisticated hotel Phuket"],
     category: "hotel",
     content: {
       intro: [
         "For guests considering a luxury stay in Phuket City, Royal Phuket City Hotel offers spacious suites, rooftop dining and on-site wellness facilities in a 4-star city hotel.",
         "From our beautifully appointed suites to our gourmet dining experiences at Yan Long Chinese Restaurant and TWIST Rooftop Bar, every moment is designed for discerning travelers.",
-        "Enjoy the convenience of a city center location with the exclusivity and service of a luxury property.",
+        "Start with the suite layout, then arrange the dining and wellness experiences that matter to your visit. This page focuses on planning a suite stay and a special occasion in the city.",
       ],
       planningSections: [{
         title: "Choose space, views and dining for your stay",
@@ -174,6 +194,18 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
           { label: "See the Executive Suite", href: "/rooms-suites/executive-suite" },
           { label: "Explore TWIST rooftop dining", href: "/twist-rooftop-restaurant-bar" },
           { label: "View wellness facilities", href: "/facilities" },
+        ],
+      }, {
+        title: "Coordinate your occasion before arrival",
+        paragraphs: [
+          "Tell the team your preferred dates, party size, dining preferences and any accessibility requirements. Ask for confirmation of restaurant seating, spa appointments and requested room arrangements; these are separate from simply reserving a suite.",
+          "For a celebration that needs a private venue, compare the wedding and meeting room layouts before choosing accommodation for guests. Capacity depends on the room and seating arrangement, so request a layout and written package quotation for your event.",
+        ],
+        links: [
+          { label: "Compare Suite and Executive Suite", href: "/rooms-suites" },
+          { label: "View celebration venues", href: "/wedding-venues" },
+          { label: "View meeting layouts", href: "/meeting-events" },
+          { label: "Plan with the hotel team", href: "/contact" },
         ],
       }],
       features: [

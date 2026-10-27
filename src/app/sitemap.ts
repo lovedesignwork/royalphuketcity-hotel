@@ -34,6 +34,7 @@ const STATIC_PATHS = [
   "/sustainability/natural-attractions",
   "/sustainability/transportation",
   "/blog",
+  "/hotel-team",
   // Legal policy routes intentionally set noindex and stay out of the sitemap.
   "/accessibility",
 ];

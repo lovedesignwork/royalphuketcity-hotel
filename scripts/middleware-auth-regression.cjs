@@ -39,8 +39,8 @@ function harness({ user = null, admin = null } = {}) {
   }
   const middleware = load("src/middleware.ts").middleware;
   return {
-    run(route, method = "GET", host = "royalphuketcity.com") {
-      return middleware(new NextRequest(`https://${host}${route}`, { method, headers: { host } }));
+    run(route, method = "GET", host = "royalphuketcity.com", requestHeaders = {}) {
+      return middleware(new NextRequest(`https://${host}${route}`, { method, headers: { host, ...requestHeaders } }));
     },
     get sessionChecks() { return sessionChecks; },
     get signOuts() { return signOuts; },
@@ -116,5 +116,18 @@ test("public APIs and localized public pages keep working", async () => {
   assert.equal(api.headers.get("x-middleware-next"), "1");
   const page = await env.run("/th/contact");
   assert.equal(new URL(page.headers.get("x-middleware-rewrite")).pathname, "/contact");
+  assert.equal(env.sessionChecks, 0);
+});
+
+test("Thai preview keeps query and locale while its cookie cannot redirect English visitors before launch", async () => {
+  const env = harness();
+  const preview = await env.run("/th/contact?topic=wedding");
+  assert.equal(preview.headers.get("x-middleware-rewrite"), "https://royalphuketcity.com/contact?topic=wedding");
+  assert.equal(preview.headers.get("x-middleware-request-x-locale"), "th");
+  assert.equal(preview.cookies.get("rpc_locale").value, "th");
+  const english = await env.run("/contact?topic=wedding", "GET", "royalphuketcity.com", { cookie: "rpc_locale=th" });
+  assert.equal(english.headers.get("location"), null);
+  assert.equal(english.headers.get("x-middleware-request-x-locale"), "en");
+  assert.equal(english.headers.get("x-middleware-next"), "1");
   assert.equal(env.sessionChecks, 0);
 });

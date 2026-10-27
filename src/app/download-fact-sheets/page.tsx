@@ -1,5 +1,7 @@
 "use client";
 
+import { trackInquirySuccess } from "@/lib/analytics-events";
+
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -196,6 +198,7 @@ export default function DownloadFactSheetsPage() {
       const data = await response.json();
 
       if (response.ok && data.success === true) {
+        trackInquirySuccess("fact_sheets", response.ok, data);
         setIsUnlocked(true);
         try {
           localStorage.setItem("rpc_download_access", JSON.stringify({ timestamp: new Date().toISOString() }));

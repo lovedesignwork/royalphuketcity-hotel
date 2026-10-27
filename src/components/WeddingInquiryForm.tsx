@@ -8,6 +8,7 @@ import CalendarPicker from "./CalendarPicker";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { getWeddingPageCopy } from "@/lib/i18n/wedding-copy";
 import { localizeHref } from "@/lib/i18n/path";
+import { trackInquirySuccess } from "@/lib/analytics-events";
 
 interface SubmittedData {
   fullName: string;
@@ -90,6 +91,7 @@ export default function WeddingInquiryForm({ compact = false }: { compact?: bool
       const data = await response.json();
 
       if (response.ok && data.success) {
+        trackInquirySuccess("wedding", response.ok, data);
         setSubmittedData({
           ...formData,
           referenceNumber: data.referenceNumber,

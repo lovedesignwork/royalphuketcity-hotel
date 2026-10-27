@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Suspense } from "react";
 import {
   HeroSection,
   SectionHeading,
@@ -29,6 +30,7 @@ export default async function HomePage() {
         title={t.home.heroTitle}
         subtitle={t.home.heroSubtitle}
         image="/images/HOTEL WEBSITE/RPC-Main-Image.jpg"
+        portraitImage="/images/hero/rpc-main-portrait.png"
         imageSizes="(max-width: 768px) 205vh, 100vw"
         imageQuality={60}
         showReserveButton
@@ -119,10 +121,13 @@ export default async function HomePage() {
                 <div className="relative aspect-[3/4] img-hover">
                   <Image
                     src="/images/HOTEL WEBSITE/RPC LS ROOM 19.jpg"
-                    alt="Royal Phuket City Hotel"
+                    alt="Family relaxing together on a sofa at Royal Phuket City Hotel"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    // The landscape source is cropped into a portrait tile;
+                    // request enough pixels for the full image before cropping.
+                    sizes="(min-width: 1024px) 60vw, 120vw"
+                    quality={85}
                   />
                 </div>
               </div>
@@ -325,8 +330,8 @@ export default async function HomePage() {
                 <div className="grid grid-cols-3 gap-6 pb-10 mb-10 border-b border-[--color-border]">
                   {[
                     { value: "9", label: t.home.miceRooms },
-                    { value: "500+", label: t.home.miceCapacity },
-                    { value: "800", label: t.home.miceBallroom },
+                    { value: "2,300", label: t.home.miceCapacity },
+                    { value: "1,637", label: t.home.miceBallroom },
                   ].map((stat) => (
                     <div key={stat.label}>
                       <p className="font-heading text-3xl text-[#806849]">{stat.value}</p>
@@ -605,7 +610,11 @@ export default async function HomePage() {
       </section>
 
       {/* Latest three published articles, independent of the footer. */}
-      {locale === "en" && <LatestBlogs />}
+      {locale === "en" && (
+        <Suspense fallback={null}>
+          <LatestBlogs />
+        </Suspense>
+      )}
 
       {/* Testimonials */}
       <TestimonialSlider />

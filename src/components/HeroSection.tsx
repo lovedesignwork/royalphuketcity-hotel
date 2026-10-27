@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import ReserveButton from "./ReserveButton";
 import SparkleOverlay from "./SparkleOverlay";
+import ResponsiveHeroImage from "./ResponsiveHeroImage";
 
 interface HeroSectionProps {
   title: string;
@@ -13,6 +14,7 @@ interface HeroSectionProps {
   imageAlt?: string;
   imageSizes?: string;
   imageQuality?: number;
+  portraitImage?: string;
   showReserveButton?: boolean;
   height?: "full" | "large" | "medium" | "small";
   overlay?: "dark" | "medium" | "light";
@@ -28,6 +30,7 @@ export default function HeroSection({
   imageAlt,
   imageSizes = "100vw",
   imageQuality = 75,
+  portraitImage,
   showReserveButton = false,
   height = "full",
   overlay = "medium",
@@ -62,7 +65,10 @@ export default function HeroSection({
   return (
     <section className={`relative ${heightClasses[height]} ${height === "small" ? "min-h-[300px] md:min-h-[320px]" : "min-h-[500px]"}`}>
       {/* Background Image */}
-      <Image
+      {portraitImage && height === "full" ? (
+        <ResponsiveHeroImage src={image} portraitSrc={portraitImage}
+          alt={imageAlt || title} sizes={imageSizes} quality={imageQuality} />
+      ) : <Image
         src={image}
         alt={imageAlt || title}
         fill
@@ -71,7 +77,7 @@ export default function HeroSection({
         className="object-cover"
         sizes={imageSizes}
         quality={imageQuality}
-      />
+      />}
 
       {/* Overlay */}
       <div className={`absolute inset-0 ${overlayClasses[overlay]}`} />

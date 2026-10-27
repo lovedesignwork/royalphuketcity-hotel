@@ -7,6 +7,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [currentGaId, setCurrentGaId] = useState("");
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     fetchSettings();
@@ -27,6 +28,7 @@ export default function SettingsPage() {
 
   async function handleSave() {
     setSaving(true);
+    setSaveError("");
     try {
       const res = await fetch("/api/admin/settings", {
         method: "POST",
@@ -35,11 +37,15 @@ export default function SettingsPage() {
       });
       if (res.ok) {
         setSaved(true);
-        setCurrentGaId(gaId);
+        await fetchSettings();
         setTimeout(() => setSaved(false), 3000);
+      } else {
+        const data = await res.json();
+        setSaveError(data.error || "Failed to save settings");
       }
     } catch (err) {
       console.error("Failed to save settings:", err);
+      setSaveError("Failed to save settings. Please try again.");
     } finally {
       setSaving(false);
     }
@@ -90,7 +96,8 @@ export default function SettingsPage() {
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8B7355] focus:border-transparent outline-none transition-all"
             />
             <p className="text-xs text-gray-500 mt-2">
-              You can find this in Google Analytics under Admin → Data Streams → Web
+              You can find this in Google Analytics under Admin → Data Streams → Web.
+              Leave empty to use the default ID configured for the deployment.
             </p>
           </div>
 
@@ -111,6 +118,7 @@ export default function SettingsPage() {
               </span>
             )}
           </div>
+          {saveError && <p role="alert" className="text-sm text-red-600">{saveError}</p>}
         </div>
 
         {currentGaId && (

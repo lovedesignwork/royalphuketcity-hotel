@@ -32,6 +32,9 @@ export default function Header() {
               <img
                 src="/images/logo.svg"
                 alt="Royal Phuket City Hotel"
+                width={842}
+                height={340}
+                style={{ aspectRatio: "841.79 / 340.19" }}
                 className="h-12 w-auto"
               />
             </LocaleLink>
@@ -154,6 +157,9 @@ export default function Header() {
                 <img
                   src="/images/logo.svg"
                   alt="Royal Phuket City Hotel"
+                  width={842}
+                  height={340}
+                  style={{ aspectRatio: "841.79 / 340.19" }}
                   className="h-10 w-auto"
                 />
               </LocaleLink>

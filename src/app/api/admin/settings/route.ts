@@ -1,30 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseClient } from "@/lib/supabase";
+import { revalidateTag } from "next/cache";
+import { ANALYTICS_CONFIG_TAG, getAnalyticsMeasurementId } from "@/lib/analytics-config";
+import { normalizeAnalyticsId } from "@/lib/analytics-id";
 
 export async function GET() {
-  try {
-    const supabase = getSupabaseClient();
-    if (!supabase) {
-      return NextResponse.json({
-        googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
-      });
-    }
-
-    const { data } = await supabase
-      .from("site_settings")
-      .select("*")
-      .eq("key", "google_analytics_id")
-      .single();
-
-    return NextResponse.json({
-      googleAnalyticsId: data?.value || "",
-    });
-  } catch (error) {
-    console.error("Error fetching settings:", error);
-    return NextResponse.json({
-      googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
-    });
-  }
+  return NextResponse.json(
+    { googleAnalyticsId: await getAnalyticsMeasurementId() },
+    { headers: { "Cache-Control": "no-store" } },
+  );
 }
 
 export async function POST(request: NextRequest) {
@@ -35,11 +19,15 @@ export async function POST(request: NextRequest) {
     }
 
     const { googleAnalyticsId } = await request.json();
+    if (typeof googleAnalyticsId !== "string" ||
+      (googleAnalyticsId.trim() !== "" && !normalizeAnalyticsId(googleAnalyticsId))) {
+      return NextResponse.json({ error: "Enter a valid GA4 measurement ID (G-...)" }, { status: 400 });
+    }
 
     const { error } = await supabase.from("site_settings").upsert(
       {
         key: "google_analytics_id",
-        value: googleAnalyticsId,
+        value: normalizeAnalyticsId(googleAnalyticsId),
         updated_at: new Date().toISOString(),
       },
       {
@@ -51,6 +39,7 @@ export async function POST(request: NextRequest) {
       throw error;
     }
 
+    revalidateTag(ANALYTICS_CONFIG_TAG);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error saving settings:", error);

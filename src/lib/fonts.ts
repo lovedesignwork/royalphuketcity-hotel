@@ -19,4 +19,7 @@ export const notoSansThai = Noto_Sans_Thai({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-noto-sans-thai",
   display: "swap",
+  // Load this font when Thai glyphs are actually rendered, without competing
+  // with the English homepage's hero image and fonts during initial load.
+  preload: false,
 });
