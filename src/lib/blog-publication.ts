@@ -1,3 +1,4 @@
+import yanLongOwnership from "../../content/editorial/yanlong-image-ownership.json";
 import ownership from "../../content/editorial/image-ownership.json";
 import { countArticleWords } from "@/lib/article-content";
 
@@ -14,6 +15,11 @@ for (const article of ownership.articles) for (const asset of article.images) {
   identities.set(normaliseImage(asset.url), identity);
   for (const variant of asset.variants) identities.set(normaliseImage(variant.url), identity);
   if ("sourcePath" in asset && asset.sourcePath) identities.set(normaliseImage(asset.sourcePath.replace(/^public/, "")), identity);
+}
+for (const article of yanLongOwnership.articles) for (const asset of article.images) {
+  identities.set(normaliseImage(asset.url), asset.sourceSha256);
+  for (const variant of asset.variants) identities.set(normaliseImage(variant.url), asset.sourceSha256);
+  if (!asset.generated) identities.set(normaliseImage("https://yanlongphuket.com" + asset.sourcePath.replace(/^public/, "")), asset.sourceSha256);
 }
 for (const article of ownership.existingArticles) for (const asset of article.images) {
   if ("sha256" in asset && asset.sha256) identities.set(normaliseImage(asset.url), asset.sha256);

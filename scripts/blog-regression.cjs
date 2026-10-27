@@ -15,6 +15,7 @@ function harness(rows = [], failure = false) {
     const q = {table, filters: [], orders: []}; queries.push(q);
     const result = () => {
       let data = rows.filter(row => q.filters.every(([key, value]) => row[key] === value));
+      if (q.excludeYanLong) data = data.filter(row => row.category_id !== '1a2aa552-ac78-4563-a5b1-6a895e6eeb74');
       if (q.published) data = data.filter(row => !row.published_at || new Date(row.published_at) <= new Date());
       const count = data.length;
       if (q.range) data = data.slice(q.range[0], q.range[1] + 1);
@@ -23,7 +24,7 @@ function harness(rows = [], failure = false) {
     const chain = {
       select(fields) {q.fields = fields; return chain;},
       eq(key, value) {q.filters.push([key,value]); return chain;},
-      or(value) {q.published = value; return chain;},
+      or(value) {if(value.startsWith("category_id"))q.excludeYanLong=true;else q.published = value; return chain;},
       order(key) {q.orders.push(key); return chain;},
       async range(from, to) {q.range = [from,to]; return result();},
       async maybeSingle() {const r=result();return {...r,data:r.data[0] || null};},
@@ -70,6 +71,13 @@ test('future-dated articles remain unavailable in pages, listings and sitemap',a
   const h=harness([{...article,published_at:'2099-01-01T00:00:00Z'}]);
   const blog=h.load('src/lib/blog.ts');
   assert.equal(await blog.getPublishedPost(article.slug),null);
+  assert.equal((await blog.getPublishedPosts()).posts.length,0);
+  assert.equal((await blog.getPublishedPostSitemapEntries()).length,0);
+});
+test('Yan Long articles are excluded from hotel listings, details and sitemap',async()=>{
+  const row={...article,category_id:'1a2aa552-ac78-4563-a5b1-6a895e6eeb74'};
+  const blog=harness([row]).load('src/lib/blog.ts');
+  assert.equal(await blog.getPublishedPost(row.slug),null);
   assert.equal((await blog.getPublishedPosts()).posts.length,0);
   assert.equal((await blog.getPublishedPostSitemapEntries()).length,0);
 });

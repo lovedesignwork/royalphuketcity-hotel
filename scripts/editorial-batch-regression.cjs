@@ -9,7 +9,7 @@ const root = path.resolve(__dirname,'..');
 function load(file) {
  const module={exports:{}};
  const source=ts.transpileModule(fs.readFileSync(path.join(root,file),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText;
- vm.runInNewContext(source,{module,exports:module.exports,URL,require:name=>name==='@/lib/article-content'?load('src/lib/article-content.ts'):name.includes('image-ownership.json')?require('../content/editorial/image-ownership.json'):require(name)});
+ vm.runInNewContext(source,{module,exports:module.exports,URL,require:name=>name==='@/lib/article-content'?load('src/lib/article-content.ts'):name.includes('yanlong-image-ownership.json')?require('../content/editorial/yanlong-image-ownership.json'):name.includes('image-ownership.json')?require('../content/editorial/image-ownership.json'):require(name)});
  return module.exports;
 }
 const registry=require('../content/editorial/image-ownership.json');

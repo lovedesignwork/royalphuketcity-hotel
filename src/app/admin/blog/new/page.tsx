@@ -73,6 +73,8 @@ export default function NewBlogPostPage() {
 
   useEffect(() => {
     fetchCategories();
+    const requestedCategory = new URLSearchParams(window.location.search).get("category");
+    if (requestedCategory) setCategoryId(requestedCategory);
   }, []);
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {

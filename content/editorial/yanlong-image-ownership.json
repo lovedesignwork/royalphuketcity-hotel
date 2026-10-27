@@ -1,0 +1,1027 @@
+{
+  "articles": [
+    {
+      "topic": 1,
+      "slug": "peking-duck-phuket",
+      "title": "Peking Duck in Phuket: What to Expect at Yan Long",
+      "seoTitle": "Peking Duck in Phuket | Yan Long Dining Guide",
+      "meta_description": "Plan a Peking duck meal at Yan Long in Phuket Old Town, with advice on portions, accompaniments, sharing and reservations.",
+      "focus_keyword": "Peking duck Phuket",
+      "category": "Signature dishes",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/signature-peking-duck.webp",
+          "width": 1106,
+          "height": 1082,
+          "bytes": 139068,
+          "alt": "Sliced Peking duck with cucumber, pancakes and sauce",
+          "caption": "Peking duck and its accompaniments from Yan Long’s supplied menu imagery.",
+          "sourceSha256": "aeef0290f05ad149eea01fe5f78cd9d302ae2ef6541cf49f5de82fbdcb5aa8a5",
+          "sourcePath": "public/images/NEW/Peking Duck.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/signature-peking-duck-640.webp",
+              "width": 640,
+              "height": 626,
+              "bytes": 60962,
+              "localPath": "public/images/blog/peking-duck-phuket/signature-peking-duck-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/signature-peking-duck-960.webp",
+              "width": 960,
+              "height": 939,
+              "bytes": 109172,
+              "localPath": "public/images/blog/peking-duck-phuket/signature-peking-duck-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/signature-peking-duck.webp",
+              "width": 1106,
+              "height": 1082,
+              "bytes": 139068,
+              "localPath": "public/images/blog/peking-duck-phuket/signature-peking-duck.webp"
+            }
+          ],
+          "localPath": "public/images/blog/peking-duck-phuket/signature-peking-duck.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-serving-scene.webp",
+          "width": 1264,
+          "height": 848,
+          "bytes": 138998,
+          "alt": "Close view of roast duck being carved beside a dining table",
+          "caption": "A duck-carving scene from the supplied editorial image library.",
+          "sourceSha256": "03704e7148a2da4971bbbc5a539a9e9ee0225c7f550d56bc2369405a9a0965f8",
+          "sourcePath": "public/images/CU08_peking_duck_carve_H.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-serving-scene-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 55326,
+              "localPath": "public/images/blog/peking-duck-phuket/duck-serving-scene-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-serving-scene-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 95480,
+              "localPath": "public/images/blog/peking-duck-phuket/duck-serving-scene-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-serving-scene.webp",
+              "width": 1264,
+              "height": 848,
+              "bytes": 138998,
+              "localPath": "public/images/blog/peking-duck-phuket/duck-serving-scene.webp"
+            }
+          ],
+          "localPath": "public/images/blog/peking-duck-phuket/duck-serving-scene.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-pancake-detail.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 118044,
+          "alt": "Duck skin, cucumber and spring onion on a thin pancake",
+          "caption": "AI-generated editorial illustration. A modest filling leaves room to enjoy the crisp skin.",
+          "sourceSha256": "b1b7e452e5dd18e3510f7da2b3121c3df9f1020278702603001d85ec0c82a101",
+          "sourcePath": "generated:1",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-pancake-detail-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 30242,
+              "localPath": "public/images/blog/peking-duck-phuket/duck-pancake-detail-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-pancake-detail-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 56492,
+              "localPath": "public/images/blog/peking-duck-phuket/duck-pancake-detail-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-phuket/duck-pancake-detail.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 118044,
+              "localPath": "public/images/blog/peking-duck-phuket/duck-pancake-detail.webp"
+            }
+          ],
+          "localPath": "public/images/blog/peking-duck-phuket/duck-pancake-detail.webp"
+        }
+      ]
+    },
+    {
+      "topic": 2,
+      "slug": "dim-sum-lunch-phuket-old-town",
+      "title": "Dim Sum Lunch in Phuket Old Town: A Guide to Yan Long",
+      "seoTitle": "Dim Sum Lunch in Phuket Old Town | Yan Long",
+      "meta_description": "Plan dim sum lunch at Yan Long with service-time guidance, har gow, sharing tips and a practical approach to ordering in rounds.",
+      "focus_keyword": "dim sum lunch Phuket Old Town",
+      "category": "At the table",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/har-gow-and-tea.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 145146,
+          "alt": "Three shrimp dumplings in a bamboo steamer beside amber tea",
+          "caption": "AI-generated editorial illustration. A small first round makes it easier to choose what to try next.",
+          "sourceSha256": "5872da3a7d4089ff4a6cd41d5ae01d3882c7b4ccf11b3a2800d15f75080ea22a",
+          "sourcePath": "generated:2",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/har-gow-and-tea-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 30762,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/har-gow-and-tea-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/har-gow-and-tea-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 63568,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/har-gow-and-tea-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/har-gow-and-tea.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 145146,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/har-gow-and-tea.webp"
+            }
+          ],
+          "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/har-gow-and-tea.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/crystal-shrimp-dumplings.webp",
+          "width": 928,
+          "height": 963,
+          "bytes": 78228,
+          "alt": "Translucent shrimp dumplings with a bamboo steamer and dipping sauce",
+          "caption": "Har gow from Yan Long’s supplied menu imagery.",
+          "sourceSha256": "64270bf227338ee64b0cbbfba0bb0dc041f61b45381de6f9b13e514dc0034875",
+          "sourcePath": "public/images/NEW/HA-GAO.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/crystal-shrimp-dumplings-640.webp",
+              "width": 640,
+              "height": 664,
+              "bytes": 45356,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/crystal-shrimp-dumplings-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/crystal-shrimp-dumplings.webp",
+              "width": 928,
+              "height": 963,
+              "bytes": 78228,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/crystal-shrimp-dumplings.webp"
+            }
+          ],
+          "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/crystal-shrimp-dumplings.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/dim-sum-shared-lunch.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 120880,
+          "alt": "Two diners sharing small dishes at a round restaurant table",
+          "caption": "A shared-lunch scene from the supplied editorial image library.",
+          "sourceSha256": "ed82499e4dc07a36205de54c84bb83d8302e04d7e15b7bbd43c246ada5974ca6",
+          "sourcePath": "public/images/MD08_couple_dimsum_laugh_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/dim-sum-shared-lunch-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 81020,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/dim-sum-shared-lunch-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/dim-sum-lunch-phuket-old-town/dim-sum-shared-lunch.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 120880,
+              "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/dim-sum-shared-lunch.webp"
+            }
+          ],
+          "localPath": "public/images/blog/dim-sum-lunch-phuket-old-town/dim-sum-shared-lunch.webp"
+        }
+      ]
+    },
+    {
+      "topic": 3,
+      "slug": "private-dining-phuket-town",
+      "title": "Planning a Private Dinner in Phuket Town",
+      "seoTitle": "Private Dining in Phuket Town | Yan Long Planning Guide",
+      "meta_description": "Plan a private dinner at Yan Long: room sizes, seating, menu questions, dietary needs and the details to confirm before booking.",
+      "focus_keyword": "private dining Phuket Town",
+      "category": "Gatherings",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-dining-room.webp",
+          "width": 1000,
+          "height": 667,
+          "bytes": 218046,
+          "alt": "Round dining table with white linen and colourful patterned walls",
+          "caption": "A private dining setting from Yan Long’s supplied image library.",
+          "sourceSha256": "fefc12579a24e3dba3d94e3d729cef7eac59c5f1096532a623634b085e149bf3",
+          "sourcePath": "public/images/NEW/Private room1.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-dining-room-640.webp",
+              "width": 640,
+              "height": 427,
+              "bytes": 90078,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-dining-room-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-dining-room-960.webp",
+              "width": 960,
+              "height": 640,
+              "bytes": 190970,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-dining-room-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-dining-room.webp",
+              "width": 1000,
+              "height": 667,
+              "bytes": 218046,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-dining-room.webp"
+            }
+          ],
+          "localPath": "public/images/blog/private-dining-phuket-town/private-dining-room.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-table-setting.webp",
+          "width": 1000,
+          "height": 667,
+          "bytes": 232484,
+          "alt": "White place settings and a glass lazy Susan in a private dining room",
+          "caption": "Confirm your room and seating arrangement with the restaurant.",
+          "sourceSha256": "82708302b0c9d32743a898bc07825df0f46ede3342db0b765f88b6ee8072ff50",
+          "sourcePath": "public/images/NEW/Private room2.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-table-setting-640.webp",
+              "width": 640,
+              "height": 427,
+              "bytes": 97382,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-table-setting-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-table-setting-960.webp",
+              "width": 960,
+              "height": 640,
+              "bytes": 204944,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-table-setting-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-table-setting.webp",
+              "width": 1000,
+              "height": 667,
+              "bytes": 232484,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-table-setting.webp"
+            }
+          ],
+          "localPath": "public/images/blog/private-dining-phuket-town/private-table-setting.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-place-setting.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 79126,
+          "alt": "Folded linen napkin, white porcelain and dark chopsticks at a place setting",
+          "caption": "AI-generated editorial illustration. Small table details help shape a comfortable shared meal.",
+          "sourceSha256": "479f1052cae9719ba6ad868cbe42bfa9b85382f3629bca61a6b3b0d4226b5db2",
+          "sourcePath": "generated:3",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-place-setting-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 23542,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-place-setting-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-place-setting-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 39834,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-place-setting-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/private-dining-phuket-town/private-place-setting.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 79126,
+              "localPath": "public/images/blog/private-dining-phuket-town/private-place-setting.webp"
+            }
+          ],
+          "localPath": "public/images/blog/private-dining-phuket-town/private-place-setting.webp"
+        }
+      ]
+    },
+    {
+      "topic": 4,
+      "slug": "birthday-dinner-phuket-town",
+      "title": "A Birthday Dinner in Phuket Town: Planning a Chinese Sharing Feast",
+      "seoTitle": "Birthday Dinner in Phuket Town | Yan Long",
+      "meta_description": "Plan a birthday dinner at Yan Long with shared dishes, private-room questions, cake arrangements and a simple celebration checklist.",
+      "focus_keyword": "birthday dinner Phuket Town",
+      "category": "Gatherings",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/birthday-dining-scene.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 135860,
+          "alt": "Family gathered around a restaurant table for a celebration",
+          "caption": "A celebration scene from the supplied editorial image library; arrangements are illustrative.",
+          "sourceSha256": "230b76fd0faf0b5b17e9d0fe7ee9bcc1e9276de9befe001178832976fda623ac",
+          "sourcePath": "public/images/MD10_birthday_family_main_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/birthday-dining-scene-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 90840,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/birthday-dining-scene-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/birthday-dining-scene.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 135860,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/birthday-dining-scene.webp"
+            }
+          ],
+          "localPath": "public/images/blog/birthday-dinner-phuket-town/birthday-dining-scene.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/family-celebration-table.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 192952,
+          "alt": "Family sharing a meal in a patterned private dining room",
+          "caption": "A family celebration scene from the supplied editorial image library.",
+          "sourceSha256": "1e4bba13804f6df1ff33f5ace5674e7b74a23fa3a83de485c4388ace70d7da64",
+          "sourcePath": "public/images/FK15_kids_birthday_silk_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/family-celebration-table-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 120518,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/family-celebration-table-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/family-celebration-table.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 192952,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/family-celebration-table.webp"
+            }
+          ],
+          "localPath": "public/images/blog/birthday-dinner-phuket-town/family-celebration-table.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/celebration-sharing-dishes.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 135588,
+          "alt": "Crispy pork belly and vegetables surrounded by individual white bowls",
+          "caption": "AI-generated editorial illustration. Plan a centerpiece and complementary dishes for the table.",
+          "sourceSha256": "1c9bc7eb84a9c640633ce1216893bf0e9fc9c28a846e39309082dbd40c5148cc",
+          "sourcePath": "generated:4",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/celebration-sharing-dishes-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 35380,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/celebration-sharing-dishes-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/celebration-sharing-dishes-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 62136,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/celebration-sharing-dishes-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/birthday-dinner-phuket-town/celebration-sharing-dishes.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 135588,
+              "localPath": "public/images/blog/birthday-dinner-phuket-town/celebration-sharing-dishes.webp"
+            }
+          ],
+          "localPath": "public/images/blog/birthday-dinner-phuket-town/celebration-sharing-dishes.webp"
+        }
+      ]
+    },
+    {
+      "topic": 5,
+      "slug": "business-lunch-phuket-town",
+      "title": "Planning a Business Lunch in Phuket Town at Yan Long",
+      "seoTitle": "Business Lunch in Phuket Town | Yan Long",
+      "meta_description": "Host a well-planned business lunch at Yan Long with guidance on timing, shared menus, privacy, dietary needs and booking details.",
+      "focus_keyword": "business lunch Phuket Town",
+      "category": "Gatherings",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-lunch-table.webp",
+          "width": 1376,
+          "height": 768,
+          "bytes": 160118,
+          "alt": "Two business diners seated at a white-linen restaurant table",
+          "caption": "A business-lunch scene from the supplied editorial image library.",
+          "sourceSha256": "647298b9fbc2f70aa094ffb939a35ed5117e87beea9e245bd9cb530cfc993b0a",
+          "sourcePath": "public/images/MD01_two_businessmen_main_H.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-lunch-table-640.webp",
+              "width": 640,
+              "height": 357,
+              "bytes": 52258,
+              "localPath": "public/images/blog/business-lunch-phuket-town/business-lunch-table-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-lunch-table-960.webp",
+              "width": 960,
+              "height": 536,
+              "bytes": 92136,
+              "localPath": "public/images/blog/business-lunch-phuket-town/business-lunch-table-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-lunch-table.webp",
+              "width": 1376,
+              "height": 768,
+              "bytes": 160118,
+              "localPath": "public/images/blog/business-lunch-phuket-town/business-lunch-table.webp"
+            }
+          ],
+          "localPath": "public/images/blog/business-lunch-phuket-town/business-lunch-table.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-dining-setting.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 155712,
+          "alt": "Colleagues dining around a table against deep green walls",
+          "caption": "A group-lunch scene from the supplied editorial image library.",
+          "sourceSha256": "b7cfe1b76822c3b0a4a5d6728b140900ccffae5810d92678d370b8604feed237",
+          "sourcePath": "public/images/MD11_corporate_lunch_green_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-dining-setting-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 98992,
+              "localPath": "public/images/blog/business-lunch-phuket-town/business-dining-setting-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/business-dining-setting.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 155712,
+              "localPath": "public/images/blog/business-lunch-phuket-town/business-dining-setting.webp"
+            }
+          ],
+          "localPath": "public/images/blog/business-lunch-phuket-town/business-dining-setting.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/lunch-tea-and-steamer.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 96256,
+          "alt": "Bamboo steamer, teacups and an empty side plate on white linen",
+          "caption": "AI-generated editorial illustration. A focused order leaves room for conversation.",
+          "sourceSha256": "fa6b643dc24dfc77476917a4022d37de0dae95bd8ceedb1540cf8f22bd663291",
+          "sourcePath": "generated:5",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/lunch-tea-and-steamer-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 21584,
+              "localPath": "public/images/blog/business-lunch-phuket-town/lunch-tea-and-steamer-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/lunch-tea-and-steamer-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 37386,
+              "localPath": "public/images/blog/business-lunch-phuket-town/lunch-tea-and-steamer-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/business-lunch-phuket-town/lunch-tea-and-steamer.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 96256,
+              "localPath": "public/images/blog/business-lunch-phuket-town/lunch-tea-and-steamer.webp"
+            }
+          ],
+          "localPath": "public/images/blog/business-lunch-phuket-town/lunch-tea-and-steamer.webp"
+        }
+      ]
+    },
+    {
+      "topic": 6,
+      "slug": "family-dining-phuket-old-town",
+      "title": "Family Dining in Phuket Old Town: Ordering for Three Generations",
+      "seoTitle": "Family Dining in Phuket Old Town | Yan Long",
+      "meta_description": "Plan a family meal at Yan Long with advice on sharing, different appetites, children, seating and choosing a balanced Chinese menu.",
+      "focus_keyword": "family restaurant Phuket Old Town",
+      "category": "At the table",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-sharing-table.webp",
+          "width": 1264,
+          "height": 848,
+          "bytes": 167640,
+          "alt": "Several generations seated around a shared Chinese meal",
+          "caption": "A multigenerational dining scene from the supplied editorial image library.",
+          "sourceSha256": "fede1f267225a60dda3d8c01fbf11dc925162ecb960a81cb54b025eb96b5be93",
+          "sourcePath": "public/images/MD07_grandparents_family_green_H.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-sharing-table-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 57934,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/family-sharing-table-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-sharing-table-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 106980,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/family-sharing-table-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-sharing-table.webp",
+              "width": 1264,
+              "height": 848,
+              "bytes": 167640,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/family-sharing-table.webp"
+            }
+          ],
+          "localPath": "public/images/blog/family-dining-phuket-old-town/family-sharing-table.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-dim-sum-moment.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 146958,
+          "alt": "Adult and child sharing dim sum at a restaurant table",
+          "caption": "A family dim sum scene from the supplied editorial image library.",
+          "sourceSha256": "432eb47197b9e0b4837ef6653e99960848fd03642d427b86f93fa60edf67a58d",
+          "sourcePath": "public/images/FK13_dad_son_dimsum_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-dim-sum-moment-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 98200,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/family-dim-sum-moment-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/family-dim-sum-moment.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 146958,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/family-dim-sum-moment.webp"
+            }
+          ],
+          "localPath": "public/images/blog/family-dining-phuket-old-town/family-dim-sum-moment.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/rice-and-vegetables.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 121602,
+          "alt": "Small bowl of rice beside a plate of leafy green vegetables",
+          "caption": "AI-generated editorial illustration. Familiar accompaniments can sit alongside the meal’s centerpiece.",
+          "sourceSha256": "008bcfe1512cb775f101863fbf248826731432cab3697e0deb530de67dab1f55",
+          "sourcePath": "generated:6",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/rice-and-vegetables-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 28192,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/rice-and-vegetables-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/rice-and-vegetables-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 53932,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/rice-and-vegetables-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/family-dining-phuket-old-town/rice-and-vegetables.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 121602,
+              "localPath": "public/images/blog/family-dining-phuket-old-town/rice-and-vegetables.webp"
+            }
+          ],
+          "localPath": "public/images/blog/family-dining-phuket-old-town/rice-and-vegetables.webp"
+        }
+      ]
+    },
+    {
+      "topic": 7,
+      "slug": "chinese-dinner-for-two-phuket",
+      "title": "Chinese Dinner for Two in Phuket: How to Order a Balanced Meal",
+      "seoTitle": "Chinese Dinner for Two in Phuket | Yan Long",
+      "meta_description": "Choose a balanced Chinese dinner for two at Yan Long, with advice on portions, Peking duck, contrasting dishes and table reservations.",
+      "focus_keyword": "Chinese dinner for two Phuket",
+      "category": "At the table",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/dinner-for-two-setting.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 231814,
+          "alt": "Two diners at a round table in a warmly lit private setting",
+          "caption": "A dinner-for-two scene from the supplied editorial image library; table requests need confirmation.",
+          "sourceSha256": "5169d038e27fd5e51244928ab5e7a5ec3937ffc8b58cc1e83db6070f4bbb7919",
+          "sourcePath": "public/images/MD03_couple_romantic_silk_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/dinner-for-two-setting-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 140290,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/dinner-for-two-setting-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/dinner-for-two-setting.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 231814,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/dinner-for-two-setting.webp"
+            }
+          ],
+          "localPath": "public/images/blog/chinese-dinner-for-two-phuket/dinner-for-two-setting.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/shared-meal-detail.webp",
+          "width": 848,
+          "height": 1264,
+          "bytes": 77258,
+          "alt": "Close view of two diners’ hands and dishes on white linen",
+          "caption": "A shared-meal detail from the supplied editorial image library.",
+          "sourceSha256": "678df354eaba135faf4def4d1617758281fb5288b1d4f0166fde1b71e40f0334",
+          "sourcePath": "public/images/CU09_couple_dessert_P.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/shared-meal-detail-640.webp",
+              "width": 640,
+              "height": 954,
+              "bytes": 54454,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/shared-meal-detail-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/shared-meal-detail.webp",
+              "width": 848,
+              "height": 1264,
+              "bytes": 77258,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/shared-meal-detail.webp"
+            }
+          ],
+          "localPath": "public/images/blog/chinese-dinner-for-two-phuket/shared-meal-detail.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/two-place-sharing-meal.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 90548,
+          "alt": "Two white place settings with a small char siu platter and vegetables",
+          "caption": "AI-generated editorial illustration. Choose contrasting dishes that suit two appetites.",
+          "sourceSha256": "2e26b3e106fc6e7d28bbce85c2d87d87d7966507b0e5eac538025b6a9defd720",
+          "sourcePath": "generated:7",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/two-place-sharing-meal-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 27538,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/two-place-sharing-meal-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/two-place-sharing-meal-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 46914,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/two-place-sharing-meal-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/chinese-dinner-for-two-phuket/two-place-sharing-meal.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 90548,
+              "localPath": "public/images/blog/chinese-dinner-for-two-phuket/two-place-sharing-meal.webp"
+            }
+          ],
+          "localPath": "public/images/blog/chinese-dinner-for-two-phuket/two-place-sharing-meal.webp"
+        }
+      ]
+    },
+    {
+      "topic": 12,
+      "slug": "peking-duck-vs-cantonese-roast-duck",
+      "title": "Peking Duck vs Cantonese Roast Duck: What Is the Difference?",
+      "seoTitle": "Peking Duck vs Cantonese Roast Duck | Yan Long",
+      "meta_description": "Compare Peking duck and Cantonese roast duck by skin, seasoning, carving and serving style, with practical questions to ask when ordering.",
+      "focus_keyword": "Peking duck vs roast duck",
+      "category": "Food stories",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/whole-roast-duck.webp",
+          "width": 1200,
+          "height": 805,
+          "bytes": 166918,
+          "alt": "Whole roast duck on a white platter against a dark background",
+          "caption": "Roast-duck imagery from Yan Long’s supplied library; appearance alone does not identify preparation.",
+          "sourceSha256": "ebb312f3695d79ada513e49c6c499ceffa319bf43fcc73f3be0d772eaf3dcb77",
+          "sourcePath": "public/images/YL2_DUCK_dark_moody_resize.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/whole-roast-duck-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 51450,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/whole-roast-duck-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/whole-roast-duck-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 106402,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/whole-roast-duck-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/whole-roast-duck.webp",
+              "width": 1200,
+              "height": 805,
+              "bytes": 166918,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/whole-roast-duck.webp"
+            }
+          ],
+          "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/whole-roast-duck.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 166392,
+          "alt": "Cantonese-style roast duck chopped into thick pieces on a white platter",
+          "caption": "AI-generated editorial illustration. Chopped roast duck illustrates a common Cantonese serving style.",
+          "sourceSha256": "6094df71d96e5bae8e93fa09b40af7f711ee2dd400b5b9f08743dff316971a9f",
+          "sourcePath": "generated:8",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 38178,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 69598,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 166392,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck.webp"
+            }
+          ],
+          "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/cantonese-chopped-duck.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 142584,
+          "alt": "Thin slices of duck with pancakes and cucumber on a white plate",
+          "caption": "AI-generated editorial illustration. Sliced duck and pancakes illustrate a different eating experience.",
+          "sourceSha256": "e46d371c28fc2fe039e0924c72d553fbd91237a4e31256d3fb8fb3edba1a1a13",
+          "sourcePath": "generated:9",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 38474,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 70838,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 142584,
+              "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck.webp"
+            }
+          ],
+          "localPath": "public/images/blog/peking-duck-vs-cantonese-roast-duck/thin-sliced-duck.webp"
+        }
+      ]
+    },
+    {
+      "topic": 25,
+      "slug": "what-to-order-at-yan-long-phuket",
+      "title": "What to Order at Yan Long: A Guide to the Signature Dishes",
+      "seoTitle": "What to Order at Yan Long Phuket | Signature Dish Guide",
+      "meta_description": "Explore Yan Long’s signature dishes, from Peking duck and har gow to roast pork and grouper, and learn how to build a balanced shared meal.",
+      "focus_keyword": "what to order at Yan Long Phuket",
+      "category": "Signature dishes",
+      "images": [
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/honey-bbq-pork.webp",
+          "width": 1200,
+          "height": 805,
+          "bytes": 145238,
+          "alt": "Glazed char siu slices arranged on a white platter",
+          "caption": "Honey BBQ pork from Yan Long’s supplied menu imagery.",
+          "sourceSha256": "8511abb2d56aa78d41a1b98c38d1684cc259ed330d76376ff89c5a2a0936bf34",
+          "sourcePath": "public/images/YL2_CHARSIU_dark_moody_resize.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/honey-bbq-pork-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 46596,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/honey-bbq-pork-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/honey-bbq-pork-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 94262,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/honey-bbq-pork-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/honey-bbq-pork.webp",
+              "width": 1200,
+              "height": 805,
+              "bytes": 145238,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/honey-bbq-pork.webp"
+            }
+          ],
+          "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/honey-bbq-pork.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/crispy-pork-belly.webp",
+          "width": 1200,
+          "height": 805,
+          "bytes": 115652,
+          "alt": "Golden crispy pork belly cut into neat pieces",
+          "caption": "Crispy pork belly brings a different texture from glazed char siu.",
+          "sourceSha256": "0139070a880eaed23f5aae187f2b81d1ceb7fa1e28cf92fa39776693a769bbea",
+          "sourcePath": "public/images/YL2_SIUYUK_dark_moody_resize.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/crispy-pork-belly-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 36782,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/crispy-pork-belly-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/crispy-pork-belly-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 74842,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/crispy-pork-belly-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/crispy-pork-belly.webp",
+              "width": 1200,
+              "height": 805,
+              "bytes": 115652,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/crispy-pork-belly.webp"
+            }
+          ],
+          "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/crispy-pork-belly.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/sweet-sour-grouper.webp",
+          "width": 1200,
+          "height": 805,
+          "bytes": 120540,
+          "alt": "Whole fried grouper with colourful sweet-and-sour sauce",
+          "caption": "Grouper from Yan Long’s supplied menu imagery.",
+          "sourceSha256": "a9d70be1a2ce61b3c9b6132d6393d2811736d454d58d834322bcd7e40f0cad59",
+          "sourcePath": "public/images/YL2_SSFISH_dark_moody_resize.jpg",
+          "generated": false,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/sweet-sour-grouper-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 41050,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/sweet-sour-grouper-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/sweet-sour-grouper-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 78810,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/sweet-sour-grouper-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/sweet-sour-grouper.webp",
+              "width": 1200,
+              "height": 805,
+              "bytes": 120540,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/sweet-sour-grouper.webp"
+            }
+          ],
+          "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/sweet-sour-grouper.webp"
+        },
+        {
+          "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/balanced-cantonese-selection.webp",
+          "width": 1600,
+          "height": 1073,
+          "bytes": 173672,
+          "alt": "Shrimp dumplings, pork belly and green vegetables in separate dishes",
+          "caption": "AI-generated editorial illustration. Think about texture and balance as well as favourite flavours.",
+          "sourceSha256": "c4e51e37ff3a54a6f71b67f8339dcb6bc83e7ce780ead77eaafd310f4629df03",
+          "sourcePath": "generated:10",
+          "generated": true,
+          "variants": [
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/balanced-cantonese-selection-640.webp",
+              "width": 640,
+              "height": 429,
+              "bytes": 39840,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/balanced-cantonese-selection-640.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/balanced-cantonese-selection-960.webp",
+              "width": 960,
+              "height": 644,
+              "bytes": 72264,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/balanced-cantonese-selection-960.webp"
+            },
+            {
+              "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/yanlong/what-to-order-at-yan-long-phuket/balanced-cantonese-selection.webp",
+              "width": 1600,
+              "height": 1073,
+              "bytes": 173672,
+              "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/balanced-cantonese-selection.webp"
+            }
+          ],
+          "localPath": "public/images/blog/what-to-order-at-yan-long-phuket/balanced-cantonese-selection.webp"
+        }
+      ]
+    }
+  ]
+}

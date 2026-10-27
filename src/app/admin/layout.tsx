@@ -146,6 +146,7 @@ export default function AdminLayout({
           <p className="px-4 py-2 mt-6 text-xs font-semibold text-[#8B1E5A] uppercase tracking-wider">
             Yan Long
           </p>
+          <NavLink href="/admin/yanlong/blog" label="Blog articles" icon={<span className="text-xl">✎</span>} />
           <NavLink
             href="/admin/yanlong/reservations"
             label="Reservations"

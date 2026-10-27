@@ -34,7 +34,7 @@ export async function getPublishedPosts(page = 1, limit = 12, category?: string 
   const safeLimit = parseBlogPage(String(limit), 12, 100);
   let query = supabase.from("blog_posts")
     .select(category ? summaryFields.replace("blog_categories(", "blog_categories!inner(") : summaryFields, { count: "exact" })
-    .eq("status", "published")
+    .eq("status", "published").or("category_id.is.null,category_id.neq.1a2aa552-ac78-4563-a5b1-6a895e6eeb74")
     .or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`)
     .order("published_at", { ascending: false })
     .order("id", { ascending: false });
@@ -49,7 +49,7 @@ export const getPublishedPost = cache(async (slug: string): Promise<BlogPost | n
   const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase.from("blog_posts")
-    .select(postFields).eq("slug", slug).eq("status", "published")
+    .select(postFields).eq("slug", slug).eq("status", "published").or("category_id.is.null,category_id.neq.1a2aa552-ac78-4563-a5b1-6a895e6eeb74")
     .or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`)
     .maybeSingle();
   if (error) throw new Error("Unable to load article", { cause: error });
@@ -62,7 +62,7 @@ export async function getPublishedPostSitemapEntries() {
   if (!supabase) return entries;
   for (let from = 0; ; from += 1000) {
     const { data, error } = await supabase.from("blog_posts")
-      .select("slug, updated_at, published_at").eq("status", "published")
+      .select("slug, updated_at, published_at").eq("status", "published").or("category_id.is.null,category_id.neq.1a2aa552-ac78-4563-a5b1-6a895e6eeb74")
       .or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`)
       .order("slug").range(from, from + 999);
     if (error) throw new Error("Unable to load article sitemap", { cause: error });
