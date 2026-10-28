@@ -39,10 +39,13 @@ Copy `.env.example` to `.env.local` and fill in your values:
 cp .env.example .env.local
 ```
 
-Required for contact form functionality:
+Required for admin sign-in and Supabase-backed functionality:
 - `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
-- `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key
-- `RESEND_API_KEY` - Resend API key for email delivery
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Public anon key for admin sign-in and session middleware
+- `SUPABASE_SERVICE_ROLE_KEY` - Server-only Supabase service role key; never prefix it with `NEXT_PUBLIC_`
+
+Optional for contact email delivery:
+- `RESEND_API_KEY` - Resend API key
 
 ## Project Structure
 
@@ -153,6 +156,66 @@ previews require an authenticated admin at `/admin/blog/[id]/preview`. Public
 `?preview=true` URLs do not grant access to drafts.
 
 ## Validation
+
+### Brand Google Analytics reports
+
+`/admin/analytics` reads GA4 through the authenticated `/api/admin/analytics`
+endpoint. Each request checks the user's `admin_users` membership. Reports use
+server-configured property IDs and the Analytics Data API's read-only scope;
+credentials never reach the browser. The Overview page still uses the hotel's
+existing first-party visitor tracking and can differ from GA4.
+
+Set `GA4_HOTEL_PROPERTY_ID`, `GA4_YANLONG_PROPERTY_ID`, `GA4_TWIST_PROPERTY_ID`
+and `GA4_SPA_PROPERTY_ID` to the numeric IDs in Google Analytics Admin.
+`GA4_PROPERTY_ID` remains a fallback for the hotel and is used by SEO reports.
+The measurement ID (`G-…`) is only for website tracking, not report access.
+Enable the Google Analytics Data API in the credential's Google Cloud project
+and grant the reporting service account **Viewer** access on each property.
+See [Google's Data API setup guide](https://developers.google.com/analytics/devguides/reporting/data/v1/quickstart).
+
+For local development, put the downloaded service-account JSON in `.secrets/`
+(Git-ignored) and set `GOOGLE_APPLICATION_CREDENTIALS` to its absolute path in
+`.env.local`. For hosting, set `GA4_SERVICE_ACCOUNT_EMAIL` and `GA4_PRIVATE_KEY`
+as server-only secrets. Literal `\n` in the private key is supported. The existing
+`GOOGLE_SERVICE_ACCOUNT_EMAIL` / `GOOGLE_PRIVATE_KEY` pair is a fallback when no
+dedicated pair is set. Never commit or expose credentials with `NEXT_PUBLIC_`.
+
+The page reports the last 7, 30 or 90 complete days in each property's time zone.
+Successful reports are cached for 60 seconds, separately by brand, property and
+period. Connection failures are explicit and never replaced with local visitor
+counts or fake zeros. Key events reflect GA configuration, not confirmed bookings;
+fact-sheet page views are distinct from download events. GA privacy, sampling and
+processing rules may affect totals. A property without existing tracking cannot
+provide historical data merely by connecting this dashboard.
+
+Verified brand properties (29 October 2026):
+
+| Brand | GA4 property ID |
+| --- | --- |
+| Royal Phuket City | 491565977 |
+| Yan Long | 480341437 |
+| TWIST | 480338245 |
+| Royal Wellness Spa | 561121561 |
+
+Royal Wellness Spa tracking was first installed on 29 October 2026 using web
+stream `G-0D0P2PE6KK`. Earlier periods will legitimately be empty. The website
+records consented public page views; reporting credentials stay in this hotel's
+server environment.
+
+### TWIST shared inbox
+
+The admin sidebar includes `/admin/twist/reservations` and `/admin/twist/inquiries`.
+Both read `public.twist_inquiries` in the hotel Supabase project. Reservations use
+`form_type = 'reservation'`; other form types appear under Inquiries. Admins can
+search, filter, paginate, and update status or internal notes. Status changes do
+not send email. The API verifies the authenticated user's `admin_users` membership
+before using server credentials and returns failures explicitly.
+
+The TWIST website must deploy its shared-inbox form integration for new requests
+to appear. Configure its server-only `INBOX_SUPABASE_URL` and
+`INBOX_SUPABASE_SERVICE_ROLE_KEY` for project `crhzxvbubvyachauomlx` (or its matching
+blog CMS credentials). No credentials are needed in the browser. Existing
+email-only contact messages are not automatically backfilled.
 
 ```bash
 npm run lint

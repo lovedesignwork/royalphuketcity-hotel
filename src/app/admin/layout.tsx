@@ -1,336 +1,97 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowSquareOut, CalendarBlank, ChartBar, ChatCircleText, DownloadSimple, EnvelopeSimple, GearSix, House, List, Megaphone, SignOut, Users, Calculator, X } from "@phosphor-icons/react";
 import { createClient } from "@/lib/supabase/client";
+import HotelInquiryNav from "@/components/admin/HotelInquiryNav";
+import { INQUIRY_CATEGORIES } from "@/lib/inquiry-categories";
+import "./admin.css";
 
-function NavLink({
-  href,
-  icon,
-  label,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}) {
+const groups = [
+  { label: "Workspace", links: [
+    { href: "/admin", label: "Overview", icon: House },
+    { href: "/admin/analytics", label: "Analytics", icon: ChartBar },
+    { href: "/admin/inquiries", label: "Hotel inquiries", icon: EnvelopeSimple },
+  ] },
+  ...[{ slug: "yanlong", label: "Yan Long" }, { slug: "twist", label: "TWIST" }, { slug: "spa", label: "Royal Wellness Spa" }].map((brand) => ({
+    label: brand.label,
+    links: [
+      { href: `/admin/${brand.slug}/reservations`, label: "Reservations", icon: CalendarBlank },
+      { href: `/admin/${brand.slug}/inquiries`, label: "Inquiries", icon: ChatCircleText },
+    ],
+  })),
+  { label: "Manage", links: [
+    { href: "/admin/announcements", label: "Announcements", icon: Megaphone },
+    { href: "/admin/downloads", label: "Downloads", icon: DownloadSimple },
+    { href: "/admin/campaign/kpi-calculator", label: "KPI calculator", icon: Calculator },
+    { href: "/admin/users", label: "Users", icon: Users },
+    { href: "/admin/settings", label: "Settings", icon: GearSix },
+  ] },
+];
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isActive = pathname === href;
-
-  return (
-    <Link
-      href={href}
-      className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group ${
-        isActive
-          ? "bg-[#8B7355]/10 text-[#8B7355]"
-          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-      }`}
-    >
-      <span
-        className={`transition-colors ${
-          isActive ? "text-[#8B7355]" : "text-gray-400 group-hover:text-[#8B7355]"
-        }`}
-      >
-        {icon}
-      </span>
-      <span className="text-sm font-medium">{label}</span>
-    </Link>
-  );
-}
-
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const pathname = usePathname();
-  const [currentUser, setCurrentUser] = useState<{
-    email: string;
-    role: "superadmin" | "admin";
-  } | null>(null);
-
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const menuRef = useRef<HTMLDialogElement>(null);
+  const [currentUser, setCurrentUser] = useState<{ email: string; role: "superadmin" | "admin" } | null>(null);
+  useEffect(() => { setMobileNavOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (mobileNavOpen) menuRef.current?.showModal();
+    else menuRef.current?.close();
+  }, [mobileNavOpen]);
+  useEffect(() => {
+    const breakpoint = window.matchMedia("(min-width: 900px)");
+    const close = () => { if (breakpoint.matches) setMobileNavOpen(false); };
+    breakpoint.addEventListener("change", close);
+    return () => breakpoint.removeEventListener("change", close);
+  }, []);
   useEffect(() => {
     if (pathname === "/admin/login") return;
     let cancelled = false;
     (async () => {
       const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser();
       if (!user || cancelled) return;
-      const { data } = await supabase
-        .from("admin_users")
-        .select("email, role")
-        .eq("id", user.id)
-        .maybeSingle();
-      if (!cancelled && data) {
-        setCurrentUser({ email: data.email, role: data.role });
-      }
+      const { data } = await supabase.from("admin_users").select("email, role").eq("id", user.id).maybeSingle();
+      if (!cancelled && data) setCurrentUser({ email: data.email, role: data.role });
     })();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [pathname]);
-
-  const handleLogout = async () => {
+  async function handleLogout() {
     await fetch("/api/admin/auth/logout", { method: "POST" });
     window.location.href = "/admin/login";
-  };
-
-  // Login page renders without the dashboard chrome (sidebar, top bar).
-  if (pathname === "/admin/login") {
-    return <>{children}</>;
   }
-
-  return (
-    <div className="fixed inset-0 flex bg-gray-50 z-[9999]">
-      {/* Left Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-        {/* Logo */}
-        <div className="p-6 border-b border-gray-100">
-          <Link href="/admin" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#8B7355] rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">R</span>
-            </div>
-            <div>
-              <p className="font-heading font-semibold text-gray-900">
-                Royal Phuket City
-              </p>
-              <p className="text-xs text-gray-500">Admin Panel</p>
-            </div>
-          </Link>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          <p className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-            Main
-          </p>
-          <NavLink
-            href="/admin"
-            label="Dashboard"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/analytics"
-            label="Analytics"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/inquiries"
-            label="Inquiries"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/seo"
-            label="SEO Rankings"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            }
-          />
-
-          <p className="px-4 py-2 mt-6 text-xs font-semibold text-[#8B1E5A] uppercase tracking-wider">
-            Yan Long
-          </p>
-          <NavLink href="/admin/yanlong/blog" label="Blog articles" icon={<span className="text-xl">✎</span>} />
-          <NavLink
-            href="/admin/yanlong/reservations"
-            label="Reservations"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/yanlong/inquiries"
-            label="Inquiries"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-            }
-          />
-
-          <p className="px-4 py-2 mt-6 text-xs font-semibold text-[#6B8E7B] uppercase tracking-wider">
-            Royal Wellness Spa
-          </p>
-          <NavLink
-            href="/admin/spa/reservations"
-            label="Reservations"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/spa/inquiries"
-            label="Inquiries"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-            }
-          />
-
-          <p className="px-4 py-2 mt-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-            Content
-          </p>
-          <NavLink href="/admin/blog" label="Blog articles" icon={<span aria-hidden="true">✎</span>} />
-          <NavLink
-            href="/admin/announcements"
-            label="Announcements"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/downloads"
-            label="Downloads"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            }
-          />
-
-          <p className="px-4 py-2 mt-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-            Campaign
-          </p>
-          <NavLink
-            href="/admin/campaign/kpi-calculator"
-            label="KPI Calculator"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            }
-          />
-
-          <p className="px-4 py-2 mt-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-            Configuration
-          </p>
-          <NavLink
-            href="/admin/users"
-            label="Users"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 3a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            }
-          />
-          <NavLink
-            href="/admin/settings"
-            label="Settings"
-            icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            }
-          />
-
-          <p className="px-4 py-2 mt-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-            External
-          </p>
-          <a
-            href="https://analytics.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors group"
-          >
-            <span className="text-gray-400 group-hover:text-[#8B7355] transition-colors">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.84 2.998v18.004c0 1.656-1.344 3-3 3H4.16c-1.656 0-3-1.344-3-3V2.998c0-1.656 1.344-3 3-3h15.68c1.656 0 3 1.344 3 3zM20.84 21V3c0-.551-.449-1-1-1H4.16c-.551 0-1 .449-1 1v18c0 .551.449 1 1 1h15.68c.551 0 1-.449 1-1z" />
-                <path d="M8.84 13v5h-3v-5h3zm5-4v9h-3V9h3zm5-4v13h-3V5h3z" />
-              </svg>
-            </span>
-            <span className="text-sm font-medium">Google Analytics</span>
-            <svg className="w-3.5 h-3.5 ml-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </nav>
-
-        {/* Bottom Section */}
-        <div className="p-4 border-t border-gray-100">
-          <Link
-            href="/"
-            target="_blank"
-            className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-[#8B7355]/10 hover:text-[#8B7355] rounded-lg transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            <span className="text-sm font-medium">View Website</span>
-          </Link>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
-        <header className="bg-white border-b border-gray-200 flex-shrink-0">
-          <div className="px-8 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <h1 className="text-lg font-semibold text-gray-900">
-                Admin Dashboard
-              </h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="hidden md:inline text-sm text-gray-500">
-                {new Date().toLocaleDateString("en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-              {currentUser && (
-                <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900 leading-tight">
-                      {currentUser.email}
-                    </p>
-                    <p className="text-xs text-gray-500 leading-tight">
-                      {currentUser.role === "superadmin" ? "Superadmin" : "Admin"}
-                    </p>
-                  </div>
-                  <button
-                    onClick={handleLogout}
-                    className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-                    title="Sign out"
-                  >
-                    Sign out
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </header>
-
-        {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-8 bg-gray-50">
-          {children}
-        </main>
-      </div>
+  if (pathname === "/admin/login") return <>{children}</>;
+  const activeGroup = groups.find((group) => group.links.some((link) => link.href === pathname || (link.href !== "/admin" && pathname.startsWith(`${link.href}/`))));
+  const category = pathname.startsWith("/admin/inquiries/") ? INQUIRY_CATEGORIES.find((item) => pathname === `/admin/inquiries/${item.value}`) : undefined;
+  const activePage = category ? `${category.label} inquiries` : activeGroup?.links.find((link) => link.href === pathname || (link.href !== "/admin" && pathname.startsWith(`${link.href}/`)))?.label ?? "Admin";
+  const navigation = <>
+    <Link href="/admin" className="admin-brand" aria-label="Royal Phuket City overview"><Image src="/images/logo.svg" alt="Royal Phuket City Hotel" width={842} height={340} className="admin-brand-logo" /></Link>
+    <nav className="admin-nav" aria-label="Administration">
+      {groups.map((group) => <div className="admin-nav-group" key={group.label}><p className="admin-nav-label">{group.label}</p>{group.links.map(({ href, label, icon: Icon }) => {
+        if (href === "/admin/inquiries") return <HotelInquiryNav key={href} onNavigate={() => setMobileNavOpen(false)} />;
+        const active = pathname === href || (href !== "/admin" && pathname.startsWith(`${href}/`));
+        return <Link key={href} href={href} className="admin-nav-link" aria-current={active ? "page" : undefined}><Icon size={17} aria-hidden="true" /><span>{label}</span></Link>;
+      })}</div>)}
+    </nav>
+    <div className="admin-sidebar-bottom">
+      <a className="admin-nav-link" href="https://analytics.google.com" target="_blank" rel="noopener noreferrer"><ChartBar size={17} aria-hidden="true" />Google Analytics<ArrowSquareOut size={13} className="admin-external" aria-hidden="true" /></a>
+      <Link className="admin-nav-link" href="/" target="_blank" rel="noopener noreferrer"><ArrowSquareOut size={17} aria-hidden="true" />View website</Link>
+      {currentUser && <div className="admin-account"><span className="admin-avatar" aria-hidden="true">{currentUser.email.slice(0, 1).toUpperCase()}</span><div><span title={currentUser.email}>{currentUser.email}</span><small>{currentUser.role === "superadmin" ? "Superadmin" : "Admin"}</small></div><button className="admin-icon-button" onClick={handleLogout} aria-label="Sign out" title="Sign out"><SignOut size={18} /></button></div>}
     </div>
-  );
+  </>;
+  return <div className="admin-shell">
+    <a className="admin-skip" href="#admin-content">Skip to content</a>
+    <aside id="admin-navigation" className="admin-sidebar">{navigation}</aside>
+    <dialog ref={menuRef} id="admin-menu" className="admin-mobile-menu" aria-label="Admin navigation" onClose={() => setMobileNavOpen(false)} onClick={(event) => { if (event.target === event.currentTarget) setMobileNavOpen(false); }}>
+      <div className="admin-mobile-inner"><button className="admin-icon-button admin-menu-close" aria-label="Close navigation" onClick={() => setMobileNavOpen(false)}><X size={20} /></button>{navigation}</div>
+    </dialog>
+    <div className="admin-workspace">
+      <header className="admin-topbar"><div className="admin-breadcrumb"><button className="admin-icon-button admin-menu-toggle" aria-label="Open navigation" aria-controls="admin-menu" aria-expanded={mobileNavOpen} onClick={() => setMobileNavOpen(true)}><List size={21} /></button><span>{activeGroup?.label ?? "Workspace"}</span><span aria-hidden="true">/</span><strong>{activePage}</strong></div><span className="admin-date">{new Date().toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Bangkok" })}<span>Bangkok</span></span></header>
+      <main id="admin-content" className="admin-sheet" tabIndex={-1}>{children}</main>
+    </div>
+  </div>;
 }

@@ -1,3 +1,6 @@
 # Local reference material and audit evidence are not application assets.
 CORR/
 docs/audits/
+# Local reporting credentials must never enter deployment uploads.
+.secrets/
+.env*.local

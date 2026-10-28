@@ -35,6 +35,7 @@ yarn-error.log*
 # Env files
 .env
 .env*.local
+/.secrets/
 
 # Vercel
 .vercel
