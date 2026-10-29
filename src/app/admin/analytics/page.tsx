@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowClockwise, ArrowUpRight, ChartBar, Cursor, MagnifyingGlass, LinkSimple, UsersThree, Robot, GlobeHemisphereWest, Question, EnvelopeSimple, ShoppingBag, PlayCircle, Megaphone, SquaresFour, ChatText, Bell, Handshake, type Icon } from "@phosphor-icons/react";
+import { Desktop, DeviceMobile, DeviceTablet, Television, Eye, SignIn, Heartbeat, MouseSimple, CalendarCheck, DownloadSimple, NotePencil, UserPlus, UserCheck, Lightning } from "@phosphor-icons/react";
 import ReactCountryFlag from "react-country-flag";
 import { StyledSelect } from "@/components/ui/StyledSelect";
 import TrafficChart from "@/components/admin/TrafficChart";
@@ -23,17 +24,29 @@ const channelIcons: Record<string, Icon> = {
   Display: Megaphone, "Paid Other": Megaphone, "Cross-network": SquaresFour,
   SMS: ChatText, "Mobile Push Notifications": Bell, Unassigned: Question,
 };
-function BreakdownIcon({ row, kind }: { row: Ga4Breakdown; kind: "country" | "channel" }) {
+const deviceIcons: Record<string, Icon> = {
+  desktop: Desktop, mobile: DeviceMobile, tablet: DeviceTablet, "smart tv": Television,
+};
+const eventIcons: Record<string, Icon> = {
+  page_view: Eye, session_start: SignIn, user_engagement: Heartbeat,
+  first_visit: UserPlus, click: Cursor, scroll: MouseSimple,
+  reservation_click: CalendarCheck, file_download: DownloadSimple,
+  form_start: NotePencil, form_submit: UserCheck, generate_lead: UserCheck,
+};
+type BreakdownIconKind = "country" | "channel" | "device" | "event";
+function BreakdownIcon({ row, kind }: { row: Ga4Breakdown; kind: BreakdownIconKind }) {
   const [failed, setFailed] = useState(false);
   if (kind === "country") return <span className="ga-row-icon ga-country-flag" aria-hidden="true">
     {!failed && /^[A-Z]{2}$/.test(row.countryCode || "") && row.countryCode !== "ZZ"
       ? <ReactCountryFlag countryCode={row.countryCode!} svg alt="" style={{ width: 20, height: 15 }} onError={() => setFailed(true)} />
       : <GlobeHemisphereWest size={18} />}
   </span>;
-  const ChannelIcon = channelIcons[row.name] || Question;
-  return <span className="ga-row-icon" aria-hidden="true"><ChannelIcon size={17} /></span>;
+  const RowIcon = kind === "device" ? deviceIcons[row.name.toLowerCase()] || Question
+    : kind === "event" ? eventIcons[row.name] || Lightning
+    : channelIcons[row.name] || Question;
+  return <span className="ga-row-icon" aria-hidden="true"><RowIcon size={17} /></span>;
 }
-function Breakdown({ title, unit, rows, iconKind }: { title: string; unit: string; rows: Ga4Breakdown[]; iconKind?: "country" | "channel" }) {
+function Breakdown({ title, unit, rows, iconKind }: { title: string; unit: string; rows: Ga4Breakdown[]; iconKind?: BreakdownIconKind }) {
   return <section className="ga-report-panel"><div className="admin-section-heading"><h2>{title}</h2><span className="admin-total">{unit}</span></div>
     {rows.length ? <ol className="ga-breakdown">{rows.map((row) => <li key={row.name}><span className="ga-breakdown-label">{iconKind && <BreakdownIcon key={row.countryCode || row.name} row={row} kind={iconKind} />}<span>{row.name}</span></span><strong>{count(row.value)}</strong></li>)}</ol> : <p className="admin-empty">No data for this period.</p>}
   </section>;
@@ -94,8 +107,8 @@ export default function AnalyticsPage() {
         <section className="ga-report-panel"><div className="admin-section-heading"><h2>Most visited pages</h2><span className="admin-total">Top 10</span></div><div className="admin-table-wrap"><table className="ga-pages-table"><thead><tr><th>Page</th><th>Views</th><th>Users</th></tr></thead><tbody>{current.pages.map((page) => <tr key={page.path}><td title={page.path}>{page.path === "/" ? "Homepage" : page.path}</td><td>{count(page.views)}</td><td>{count(page.users)}</td></tr>)}</tbody></table></div>{!current.pages.length && <p className="admin-empty">No page views for this period.</p>}</section>
         <Breakdown title="Visitor countries" unit="Total users · top 10" rows={current.countries} iconKind="country" />
         <Breakdown title="Traffic sources" unit="Sessions" rows={current.channels} iconKind="channel" />
-        <Breakdown title="Devices" unit="Total users" rows={current.devices} />
-        <Breakdown title="Events" unit="Event count · top 10" rows={current.events} />
+        <Breakdown title="Devices" unit="Total users" rows={current.devices} iconKind="device" />
+        <Breakdown title="Events" unit="Event count · top 10" rows={current.events} iconKind="event" />
         <section className="ga-report-panel"><div className="admin-section-heading"><h2>Key events</h2></div><p className="ga-key-events">{count(current.totals.keyEvents)}</p><p className="ga-explanation">Events marked as key events in this Google Analytics property. This is not a count of saved inquiries or confirmed reservations.</p>{current.downloads && <div className="ga-downloads"><h3>Fact sheets & downloads page</h3><p><strong>{count(current.downloads.views)}</strong> page views · <strong>{count(current.downloads.users)}</strong> users</p><small>Visits to /download-fact-sheets. Actual file downloads appear separately as events when tracked.</small></div>}</section>
       </div>
       <footer className="ga-footer"><span>Property {current.propertyId} · Retrieved {new Date(current.fetchedAt).toLocaleString("en-GB", { timeZone: "Asia/Bangkok", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} Bangkok</span><p>Reports end yesterday in the property’s time zone and may be cached for up to 60 seconds. Google’s processing and privacy controls can affect totals.</p></footer>
