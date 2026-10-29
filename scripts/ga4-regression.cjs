@@ -21,7 +21,7 @@ function harness(options = {}) {
         return {
           metadata: { timeZone: 'Asia/Bangkok', subjectToThresholding: true },
           rows: [{ dimensionValues: query.dimensions.map(({name}) => ({value: name === 'date' ? '20261028' : name === 'pagePath' ? '/' : name === 'country' ? 'Singapore' : name === 'countryId' ? 'SG' : 'Desktop'})),
-            metricValues: query.metrics.map(({ name }) => ({value: options.malformed ? 'not-a-number' : String({screenPageViews: 120, totalUsers: 80, sessions: 90, engagementRate: 0.75, bounceRate: 0.25, keyEvents: 4, eventCount: 240}[name])})) }],
+            metricValues: query.metrics.map(({ name }) => ({value: options.malformed ? 'not-a-number' : String({screenPageViews: 120, totalUsers: 80, sessions: 90, engagementRate: 0.75, bounceRate: 0.25, averageSessionDuration: 125.75, keyEvents: 4, eventCount: 240}[name])})) }],
         };
       }) } };
     } } }),
@@ -75,7 +75,7 @@ test('GA metrics retain their units, property mapping and complete-day range', a
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('cache-control'), 'private, no-store');
   const body = await response.json();
-  assert.deepEqual(body.totals, { views: 120, users: 80, sessions: 90, engagementRate: 0.75, bounceRate: 0.25, keyEvents: 4 });
+  assert.deepEqual(body.totals, { views: 120, users: 80, sessions: 90, engagementRate: 0.75, bounceRate: 0.25, averageSessionDuration: 125.75, keyEvents: 4 });
   assert.deepEqual(body.countries, [{ name: 'Singapore', value: 80, countryCode: 'SG' }]);
   assert.deepEqual(body.downloads, { views: 120, users: 80 });
   assert.equal(body.daily.length, 7);
@@ -113,6 +113,7 @@ test('Google failures never leak provider messages or become zero reports', asyn
   const empty = await (await harness({ empty: true }).run()).json();
   assert.equal(empty.totals.views, 0);
   assert.equal(empty.totals.bounceRate, 0);
+  assert.equal(empty.totals.averageSessionDuration, 0);
   assert.equal(empty.pages.length, 0);
 });
 test('report dates respect property midnight and leap days', () => {

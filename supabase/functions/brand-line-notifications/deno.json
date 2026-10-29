@@ -1,0 +1,4 @@
+{
+  "compilerOptions": { "allowJs": true, "checkJs": false, "strict": true },
+  "imports": { "libphonenumber-js": "npm:libphonenumber-js@1.12.40" }
+}

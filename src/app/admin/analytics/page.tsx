@@ -7,6 +7,11 @@ import { StyledSelect } from "@/components/ui/StyledSelect";
 import TrafficChart from "@/components/admin/TrafficChart";
 import { ANALYTICS_BRANDS, ANALYTICS_RANGES, type AnalyticsBrand, type AnalyticsRange, type BrandAnalyticsReport, type Ga4Breakdown } from "@/lib/ga4-types";
 
+const duration = (seconds: number) => {
+  if (!Number.isFinite(seconds)) return "—";
+  const rounded = Math.max(0, Math.round(seconds));
+  return `${Math.floor(rounded / 60)}m ${String(rounded % 60).padStart(2, "0")}s`;
+};
 const count = (value: number) => value.toLocaleString();
 const readableDate = (value: string) => new Date(`${value}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 const channelIcons: Record<string, Icon> = {
@@ -81,7 +86,7 @@ export default function AnalyticsPage() {
       <div className="ga-report-context"><div><h2>{name}</h2><p>{readableDate(current.startDate)} – {readableDate(current.endDate)} · {current.timeZone}</p></div><a href={`https://analytics.google.com/analytics/web/#/p${current.propertyId}/reports/intelligenthome`} target="_blank" rel="noopener noreferrer">Open in Google Analytics<ArrowUpRight size={15} aria-hidden="true" /></a></div>
       {current.warnings.length > 0 && <div className="ga-data-notes">{current.warnings.map((warning) => <p key={warning}>{warning}</p>)}</div>}
       <div className="admin-metric-strip ga-metrics" aria-busy={loading}>
-        {[{ label: "Page views", value: count(current.totals.views), description: "Views recorded by GA4" }, { label: "Total users", value: count(current.totals.users), description: "Users across this period" }, { label: "Sessions", value: count(current.totals.sessions), description: "Visits recorded by GA4" }, { label: "Bounce rate", value: `${(current.totals.bounceRate * 100).toFixed(1)}%`, description: "Sessions without engagement" }, { label: "Engagement rate", value: `${(current.totals.engagementRate * 100).toFixed(1)}%`, description: "Engaged sessions / sessions" }].map((metric) => <div className="admin-metric" key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong><small>{metric.description}</small></div>)}
+        {[{ label: "Page views", value: count(current.totals.views), description: "Views recorded by GA4" }, { label: "Total users", value: count(current.totals.users), description: "Users across this period" }, { label: "Sessions", value: count(current.totals.sessions), description: "Visits recorded by GA4" }, { label: "Avg. time on site", value: current.totals.sessions ? duration(current.totals.averageSessionDuration) : "—", description: "Average session duration" }, { label: "Bounce rate", value: `${(current.totals.bounceRate * 100).toFixed(1)}%`, description: "Sessions without engagement" }, { label: "Engagement rate", value: `${(current.totals.engagementRate * 100).toFixed(1)}%`, description: "Engaged sessions / sessions" }].map((metric) => <div className="admin-metric" key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong><small>{metric.description}</small></div>)}
       </div>
       {current.totals.views === 0 && current.totals.users === 0 && <p className="ga-data-notes">Google Analytics returned no visitors or page views for this property in the selected period.</p>}
       <section className="ga-traffic"><div className="admin-section-heading"><h2>Daily page views</h2><span className="admin-total">Complete days · {current.timeZone}</span></div><TrafficChart compact data={current.daily} label={`Daily page views for ${name} from ${current.startDate} to ${current.endDate}`} /></section>

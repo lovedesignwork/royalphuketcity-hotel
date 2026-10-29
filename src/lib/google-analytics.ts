@@ -56,7 +56,7 @@ async function loadReport(brand: AnalyticsBrand, range: AnalyticsRange, property
     limit: String(limit), orderBys: dimensions.length ? [{ metric: { metricName: metrics[0] }, desc: true }] : undefined,
   });
   const reports: Request[] = [
-    request([], ["screenPageViews", "totalUsers", "sessions", "engagementRate", "keyEvents", "bounceRate"]),
+    request([], ["screenPageViews", "totalUsers", "sessions", "engagementRate", "keyEvents", "bounceRate", "averageSessionDuration"]),
     { ...request(["date"], ["screenPageViews"], days), orderBys: [{ dimension: { dimensionName: "date" } }] },
     request(["pagePath"], ["screenPageViews", "totalUsers"]),
     request(["country", "countryId"], ["totalUsers"]),
@@ -85,7 +85,7 @@ async function loadReport(brand: AnalyticsBrand, range: AnalyticsRange, property
   if (result.some((item) => item.metadata?.samplingMetadatas?.length)) warnings.push("Google used sampled data for one or more reports.");
   return {
     source: "Google Analytics 4", brand, propertyId, range, timeZone, startDate: dates[0], endDate: dates[dates.length - 1], fetchedAt: now.toISOString(),
-    totals: { views: metric(totals, 0), users: metric(totals, 1), sessions: metric(totals, 2), engagementRate: metric(totals, 3), keyEvents: metric(totals, 4), bounceRate: metric(totals, 5) },
+    totals: { views: metric(totals, 0), users: metric(totals, 1), sessions: metric(totals, 2), engagementRate: metric(totals, 3), keyEvents: metric(totals, 4), bounceRate: metric(totals, 5), averageSessionDuration: metric(totals, 6) },
     daily: dates.map((date) => ({ date, views: dailyMap.get(date.replaceAll("-", "")) || 0 })),
     pages: (pages.rows || []).map((row, i) => ({ path: row.dimensionValues?.[0]?.value || "(not set)", views: metric(pages, 0, i), users: metric(pages, 1, i) })),
     countries: breakdown(countries).map((row, i) => ({ ...row, countryCode: countries.rows?.[i]?.dimensionValues?.[1]?.value || undefined })),

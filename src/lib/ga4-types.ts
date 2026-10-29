@@ -21,7 +21,7 @@ export interface BrandAnalyticsReport {
   endDate: string;
   timeZone: string;
   fetchedAt: string;
-  totals: { views: number; users: number; sessions: number; engagementRate: number; bounceRate: number; keyEvents: number };
+  totals: { views: number; users: number; sessions: number; engagementRate: number; bounceRate: number; keyEvents: number; averageSessionDuration: number };
   daily: { date: string; views: number }[];
   pages: { path: string; views: number; users: number }[];
   countries: Ga4Breakdown[];
