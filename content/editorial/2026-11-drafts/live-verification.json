@@ -1,0 +1,125 @@
+{
+  "checkedAt": "2026-11-15T07:40:35.064Z",
+  "articles": [
+    {
+      "url": "https://royalphuketcity.com/getting-around-phuket-town-without-car",
+      "status": 200,
+      "sitemap": true,
+      "archive": true,
+      "publicApi": true,
+      "legacyRedirect": 308
+    },
+    {
+      "url": "https://royalphuketcity.com/breakfast-phuket-town-before-booking",
+      "status": 200,
+      "sitemap": true,
+      "archive": true,
+      "publicApi": true,
+      "legacyRedirect": 308
+    },
+    {
+      "url": "https://royalphuketcity.com/hybrid-meeting-phuket-av-checklist",
+      "status": 200,
+      "sitemap": true,
+      "archive": true,
+      "publicApi": true,
+      "legacyRedirect": 308
+    },
+    {
+      "url": "https://royalphuketcity.com/phuket-wedding-menu-dietary-questions",
+      "status": 200,
+      "sitemap": true,
+      "archive": true,
+      "publicApi": true,
+      "legacyRedirect": 308
+    }
+  ],
+  "browser": [
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "width": 1440,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "width": 1440,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "width": 1440,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "width": 1440,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "width": 375,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "width": 375,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "width": 375,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "width": 375,
+      "exactCopy": true,
+      "imagesLoaded": 4,
+      "canonical": true,
+      "metadata": true,
+      "articleSchema": true,
+      "horizontalOverflow": false
+    }
+  ],
+  "publicTotal": 35,
+  "homepageLatestThree": [
+    "phuket-wedding-menu-dietary-questions",
+    "hybrid-meeting-phuket-av-checklist",
+    "breakfast-phuket-town-before-booking"
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "version": 1,
+  "status": "local draft; not in CMS; not published",
+  "approvalRequired": "Final text and all four images per article",
+  "approvedDriveFolder": "https://drive.google.com/drive/folders/1FuYmxAIRW2BiTnjSOaSJFN3cj5JDOhRR",
+  "articles": [
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "title": "Getting Around Phuket Town Without Renting a Car",
+      "wordCount": 929,
+      "json": "../../blog/getting-around-phuket-town-without-car.json",
+      "preview": "transport.html",
+      "contentSha256": "9ed042aeb18e4967e573766ad7e02ee86a28ec7831841b8bc9d45a7af1ca03a9",
+      "jsonSha256": "81e6d7b8222ff6ceba5450c8446b9a16778de60544507625def001b436c47380",
+      "images": [
+        {
+          "role": "cover",
+          "file": "images/transport/0.jpg",
+          "proposedUrl": "/images/blog/getting-around-phuket-town-without-car/old-town-streets.jpg",
+          "alt": "Colourful shophouses lining a street in Phuket Old Town",
+          "caption": "",
+          "width": 2000,
+          "height": 1336,
+          "bytes": 532860,
+          "sha256": "43b1f956768faa3bef0afa92b210c6f76a63c7fc9627cd024b7e5ae189f9b5e4",
+          "driveId": "151q-9jSY29MkhabvtR5_w2vWhg3GxPV1",
+          "driveName": "colorful-sino-portuguese-architecture-phukets-old-town-thailand.jpg",
+          "driveUrl": "https://drive.google.com/file/d/151q-9jSY29MkhabvtR5_w2vWhg3GxPV1/view?usp=drivesdk",
+          "parentIds": [
+            "1QWa_diAIVhYmDe1F28gwEysDGVIZTPOv"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/transport/1.jpg",
+          "proposedUrl": "/images/blog/getting-around-phuket-town-without-car/hotel-entrance.jpg",
+          "alt": "Royal Phuket City Hotel sign beside the covered entrance",
+          "caption": "Save the hotel address and a clear pickup point before going out.",
+          "width": 1500,
+          "height": 1000,
+          "bytes": 512790,
+          "sha256": "9ae3993859e8950c25fa17bf36a6ef2c828ed34d11f9be8abac3084353c2f823",
+          "driveId": "1Xxyngv95xNhLpRCbjCgOzUVRxzRfKD6c",
+          "driveName": "RPC-Entrance.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1Xxyngv95xNhLpRCbjCgOzUVRxzRfKD6c/view?usp=drivesdk",
+          "parentIds": [
+            "1JGQ6mwc17M4CExrQmCUrUoN9xXkllkID"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/transport/2.jpg",
+          "proposedUrl": "/images/blog/getting-around-phuket-town-without-car/bus-at-entrance.jpg",
+          "alt": "Blue and white bus beneath the covered hotel entrance",
+          "caption": "Supplied transport photograph. Confirm current stops and services with the operator or hotel.",
+          "width": 1000,
+          "height": 625,
+          "bytes": 179906,
+          "sha256": "167a5a4e2e97dad575455755c5bcbcdd1def8a7ca8ab074650fd9ef9d4a6948b",
+          "driveId": "1CfOAv99eG13LtRFwdToljlz4z8JXgHfn",
+          "driveName": "Smart-Bus.jpeg",
+          "driveUrl": "https://drive.google.com/file/d/1CfOAv99eG13LtRFwdToljlz4z8JXgHfn/view?usp=drivesdk",
+          "parentIds": [
+            "1JGQ6mwc17M4CExrQmCUrUoN9xXkllkID"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/transport/3.jpg",
+          "proposedUrl": "/images/blog/getting-around-phuket-town-without-car/old-town-evening.jpg",
+          "alt": "Yellow clock-tower building and street lights in Phuket Old Town at night",
+          "caption": "Plan the return journey before setting out for the evening.",
+          "width": 2000,
+          "height": 1125,
+          "bytes": 343838,
+          "sha256": "f1b9c371adaeeab490c24d307bab039d410e8b765edb3b461d7b265f8db20c8c",
+          "driveId": "1v0oZAQRjlRbhGneX5t-GrEfJIFR7irnB",
+          "driveName": "night-view-phuket-old-town-clock-tower-illuminated-with-vibrant-yellow-lights.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1v0oZAQRjlRbhGneX5t-GrEfJIFR7irnB/view?usp=drivesdk",
+          "parentIds": [
+            "1QWa_diAIVhYmDe1F28gwEysDGVIZTPOv"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "title": "Breakfast in Phuket Town: What to Check Before Booking Your Stay",
+      "wordCount": 922,
+      "json": "../../blog/breakfast-phuket-town-before-booking.json",
+      "preview": "breakfast.html",
+      "contentSha256": "bd66e0e5f8041d6e95f880627220268b8891ceb4cfffcb8387241da2b7e380e0",
+      "jsonSha256": "ccdb4ac6bb443dae74b4e423f2215f2e1d71d099978262fbc96e72e8486aeabe",
+      "images": [
+        {
+          "role": "cover",
+          "file": "images/breakfast/0.jpg",
+          "proposedUrl": "/images/blog/breakfast-phuket-town-before-booking/breakfast-spread.jpg",
+          "alt": "Breakfast dishes, pastries, fruit and a glass of juice arranged on a white table",
+          "caption": "",
+          "width": 800,
+          "height": 534,
+          "bytes": 96017,
+          "sha256": "57c2674be8bc6e4a393b28f794c5906f3f936249a818426d6d5626daafcb9d47",
+          "driveId": "1btMqjIc6ver4ImQ6FBG4lSKp7riuFPey",
+          "driveName": "RPC-breakfast-4.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1btMqjIc6ver4ImQ6FBG4lSKp7riuFPey/view?usp=drivesdk",
+          "parentIds": [
+            "1fz36804RHgWaqC-SKRAnrc_HkFSAiboN"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/breakfast/1.jpg",
+          "proposedUrl": "/images/blog/breakfast-phuket-town-before-booking/breakfast-dining-room.jpg",
+          "alt": "Dining room with tables, mixed seating and a breakfast counter",
+          "caption": "Consider the setting as well as the food when planning your mornings.",
+          "width": 800,
+          "height": 600,
+          "bytes": 194868,
+          "sha256": "0bb737d85bbc28c6cf4cff897540bf0d72789249b3ba198a23005f43359ee7d7",
+          "driveId": "1DR-mTWS6XTlpKolrMV7Xkv0HXJTtPD4Y",
+          "driveName": "RPC-breakfast-5.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1DR-mTWS6XTlpKolrMV7Xkv0HXJTtPD4Y/view?usp=drivesdk",
+          "parentIds": [
+            "1fz36804RHgWaqC-SKRAnrc_HkFSAiboN"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/breakfast/2.jpg",
+          "proposedUrl": "/images/blog/breakfast-phuket-town-before-booking/breakfast-buffet.jpg",
+          "alt": "Breakfast buffet dishes arranged along a counter against a blue wall",
+          "caption": "Supplied breakfast photograph; daily selections and package inclusions require confirmation.",
+          "width": 800,
+          "height": 600,
+          "bytes": 196985,
+          "sha256": "5ca1f879f223f317ef62c2342e02b547c639ffde562374199ee45a3c5741a467",
+          "driveId": "17R_PhsOfuL3aHl81pMStUeme37XndPOh",
+          "driveName": "RPC-breakfast-19.jpg",
+          "driveUrl": "https://drive.google.com/file/d/17R_PhsOfuL3aHl81pMStUeme37XndPOh/view?usp=drivesdk",
+          "parentIds": [
+            "1fz36804RHgWaqC-SKRAnrc_HkFSAiboN"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/breakfast/3.jpg",
+          "proposedUrl": "/images/blog/breakfast-phuket-town-before-booking/breakfast-drinks.jpg",
+          "alt": "Juice dispensers, cups and hot-drink equipment at a breakfast station",
+          "caption": "Ask about the current service style and the choices that matter to your group.",
+          "width": 800,
+          "height": 600,
+          "bytes": 185545,
+          "sha256": "61e10effacf0f3b85be0246a3dc7b82f43ca350fd90d3e25666cbf10cb3f094d",
+          "driveId": "1-g1T6sQoYLZvfupvanxPQM6kPadsMYtj",
+          "driveName": "RPC-breakfast-6.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1-g1T6sQoYLZvfupvanxPQM6kPadsMYtj/view?usp=drivesdk",
+          "parentIds": [
+            "1fz36804RHgWaqC-SKRAnrc_HkFSAiboN"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "title": "Planning a Hybrid Meeting in Phuket: An AV and Connectivity Checklist",
+      "wordCount": 891,
+      "json": "../../blog/hybrid-meeting-phuket-av-checklist.json",
+      "preview": "meeting.html",
+      "contentSha256": "79a110cb717dc0c969043901ad838a3a03553c328f9f94408329dce7cca0ba50",
+      "jsonSha256": "1c6448e2af3d6d01c91c6f98e8539bba39194d672142f073a07808791e0eaed6",
+      "images": [
+        {
+          "role": "cover",
+          "file": "images/meeting/0.jpg",
+          "proposedUrl": "/images/blog/hybrid-meeting-phuket-av-checklist/ballroom-meeting.jpg",
+          "alt": "Rows of classroom-style tables facing a stage in a hotel ballroom",
+          "caption": "",
+          "width": 1000,
+          "height": 778,
+          "bytes": 85021,
+          "sha256": "6387680ae2a524263a07909e21e9ecda93bdb808f7709e7ae3bac593ca1a3953",
+          "driveId": "1BYJGqY6YA6BVwu1k5w0pZV2c95E_8Xmf",
+          "driveName": "Ballroom.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1BYJGqY6YA6BVwu1k5w0pZV2c95E_8Xmf/view?usp=drivesdk",
+          "parentIds": [
+            "1JGQ6mwc17M4CExrQmCUrUoN9xXkllkID"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/meeting/1.jpg",
+          "proposedUrl": "/images/blog/hybrid-meeting-phuket-av-checklist/meeting-room-seating.jpg",
+          "alt": "Meeting tables and chairs facing the presentation area in a hotel room",
+          "caption": "Check how speakers and audience questions will be heard from every seating area.",
+          "width": 1000,
+          "height": 750,
+          "bytes": 118312,
+          "sha256": "3434011ee5d873d3fee26b4eb21ec079e1e5c1bb2085b46a5ec738d69c227779",
+          "driveId": "13istFhd7VniTjftsD1ieJ-tiVZVByNXv",
+          "driveName": "Banquet-Royal-Phuket-City-10.jpg",
+          "driveUrl": "https://drive.google.com/file/d/13istFhd7VniTjftsD1ieJ-tiVZVByNXv/view?usp=drivesdk",
+          "parentIds": [
+            "1JGQ6mwc17M4CExrQmCUrUoN9xXkllkID"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/meeting/2.jpg",
+          "proposedUrl": "/images/blog/hybrid-meeting-phuket-av-checklist/u-shaped-meeting.jpg",
+          "alt": "U-shaped meeting tables facing screens in a hotel function room",
+          "caption": "Choose the layout alongside the camera and microphone plan.",
+          "width": 1000,
+          "height": 697,
+          "bytes": 74187,
+          "sha256": "c03f533fd1f8c137b7bad13c73f1e81629062c7db16667cddaaae94ce1c6a761",
+          "driveId": "1jL98j9VDNbXj9Z6n6EJKIwnt-efJz3U3",
+          "driveName": "Banquet-Royal-Phuket-City-4.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1jL98j9VDNbXj9Z6n6EJKIwnt-efJz3U3/view?usp=drivesdk",
+          "parentIds": [
+            "1JGQ6mwc17M4CExrQmCUrUoN9xXkllkID"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/meeting/3.jpg",
+          "proposedUrl": "/images/blog/hybrid-meeting-phuket-av-checklist/presentation-room.jpg",
+          "alt": "Classroom-style seating facing a projection screen in a hotel meeting room",
+          "caption": "Rehearse the programme using the agreed room, files and technical setup.",
+          "width": 1000,
+          "height": 695,
+          "bytes": 74645,
+          "sha256": "dac5483d79094d3c3aed2a0d366e4290aec05521183285c7688f12161c4dc5af",
+          "driveId": "18trOXzFbl_1Mg7gm4ooH6W5KTNHoYcvn",
+          "driveName": "Banquet-Royal-Phuket-City-13.jpg",
+          "driveUrl": "https://drive.google.com/file/d/18trOXzFbl_1Mg7gm4ooH6W5KTNHoYcvn/view?usp=drivesdk",
+          "parentIds": [
+            "1JGQ6mwc17M4CExrQmCUrUoN9xXkllkID"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "title": "Choosing a Phuket Wedding Menu: Dietary Needs and Questions for the Caterer",
+      "wordCount": 907,
+      "json": "../../blog/phuket-wedding-menu-dietary-questions.json",
+      "preview": "wedding.html",
+      "contentSha256": "5566ae72b2cbd3aaacf215c0d8877fbe067335a57bf62810b7cdbad201c671c8",
+      "jsonSha256": "ff6f878fef72bba024c79fd87a5d15ef7c2ad5009d3c86045616a85f857fcf46",
+      "images": [
+        {
+          "role": "cover",
+          "file": "images/wedding/0.jpg",
+          "proposedUrl": "/images/blog/phuket-wedding-menu-dietary-questions/wedding-reception-table.jpg",
+          "alt": "Round wedding reception table with white chairs, tableware and blue floral staging behind it",
+          "caption": "",
+          "width": 800,
+          "height": 534,
+          "bytes": 204352,
+          "sha256": "ad1b03d71f4945a22b7f2ee442634404a069db79a3c01973f776e30c188e4e5f",
+          "driveId": "11F8xQWskEt1mXMMoZJT3jSmlaaZ_5T03",
+          "driveName": "line_oa_chat_240912_092811_resize.jpg",
+          "driveUrl": "https://drive.google.com/file/d/11F8xQWskEt1mXMMoZJT3jSmlaaZ_5T03/view?usp=drivesdk",
+          "parentIds": [
+            "1Ih82DlkBIlV7_DNW3Zc4qBwZeNsOc2Bf"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/wedding/1.jpg",
+          "proposedUrl": "/images/blog/phuket-wedding-menu-dietary-questions/shared-dining-dishes.jpg",
+          "alt": "A selection of plated dishes arranged together on a round dining table",
+          "caption": "Dining photograph from the supplied hotel library. Wedding dishes and package inclusions need separate confirmation.",
+          "width": 800,
+          "height": 533,
+          "bytes": 193143,
+          "sha256": "cddf74b58c85cd27be386883c0586477b4b861dc1b774bb6555d07d83e2f78ea",
+          "driveId": "1M5C-FDUyCnoTZcZgANhdsDuq0hFzr4Vt",
+          "driveName": "_DSF1869_resize.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1M5C-FDUyCnoTZcZgANhdsDuq0hFzr4Vt/view?usp=drivesdk",
+          "parentIds": [
+            "1xvE3vnatxgiv68_lyEQ6LWo6gBRJVn39"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/wedding/2.jpg",
+          "proposedUrl": "/images/blog/phuket-wedding-menu-dietary-questions/wedding-cake.jpg",
+          "alt": "Tiered white wedding cake surrounded by pale flowers",
+          "caption": "Confirm cake supply, handling, ingredient information and service arrangements.",
+          "width": 800,
+          "height": 1200,
+          "bytes": 292339,
+          "sha256": "d48761a9e3c28ee58f33dd343ae922863a0072ecfac460a437e16415c8cd7e6f",
+          "driveId": "13sJJuUoFOGjbUpeB-p36HcxbiN8QL3cn",
+          "driveName": "JJPH3775_resize.jpg",
+          "driveUrl": "https://drive.google.com/file/d/13sJJuUoFOGjbUpeB-p36HcxbiN8QL3cn/view?usp=drivesdk",
+          "parentIds": [
+            "1Ih82DlkBIlV7_DNW3Zc4qBwZeNsOc2Bf"
+          ]
+        },
+        {
+          "role": "supporting",
+          "file": "images/wedding/3.jpg",
+          "proposedUrl": "/images/blog/phuket-wedding-menu-dietary-questions/reception-service-layout.jpg",
+          "alt": "Wedding reception tables beneath chandeliers facing a floral stage",
+          "caption": "Align the final menu and dietary meal list with the seating and service plan.",
+          "width": 800,
+          "height": 533,
+          "bytes": 132804,
+          "sha256": "49342b173330b08b966b1823e111d54c9160409338cc60c90099cbeee2ad6a8a",
+          "driveId": "1SOB0-UAkiJ6KVBovG_TiEyQTLOJNeZZ3",
+          "driveName": "LINE_ALBUM_25.10.2025_251217_4_resize.jpg",
+          "driveUrl": "https://drive.google.com/file/d/1SOB0-UAkiJ6KVBovG_TiEyQTLOJNeZZ3/view?usp=drivesdk",
+          "parentIds": [
+            "1Ih82DlkBIlV7_DNW3Zc4qBwZeNsOc2Bf"
+          ]
+        }
+      ]
+    }
+  ]
+}

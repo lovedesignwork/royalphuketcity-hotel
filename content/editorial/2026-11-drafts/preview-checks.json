@@ -1,0 +1,110 @@
+[
+  {
+    "name": "transport",
+    "width": 1440,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "breakfast",
+    "width": 1440,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "meeting",
+    "width": 1440,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "wedding",
+    "width": 1440,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "index",
+    "width": 1440,
+    "images": 0,
+    "overflow": 0
+  },
+  {
+    "name": "image-review",
+    "width": 1440,
+    "images": 16,
+    "overflow": 0
+  },
+  {
+    "name": "transport",
+    "width": 375,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "breakfast",
+    "width": 375,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "meeting",
+    "width": 375,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "wedding",
+    "width": 375,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "index",
+    "width": 375,
+    "images": 0,
+    "overflow": 0
+  },
+  {
+    "name": "image-review",
+    "width": 375,
+    "images": 16,
+    "overflow": 0
+  },
+  {
+    "name": "transport",
+    "width": 320,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "breakfast",
+    "width": 320,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "meeting",
+    "width": 320,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "wedding",
+    "width": 320,
+    "images": 4,
+    "overflow": 0
+  },
+  {
+    "name": "index",
+    "width": 320,
+    "images": 0,
+    "overflow": 0
+  },
+  {
+    "name": "image-review",
+    "width": 320,
+    "images": 16,
+    "overflow": 0
+  }
+]

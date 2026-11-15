@@ -1,0 +1,433 @@
+{
+  "approved": true,
+  "approval": "Owner approved all four final articles and selected images and instructed publication.",
+  "articles": [
+    {
+      "id": "dd3779e1-fb46-4ec1-885b-a6e31c16d42f",
+      "slug": "getting-around-phuket-town-without-car",
+      "status": "published",
+      "url": "https://royalphuketcity.com/getting-around-phuket-town-without-car",
+      "published_at": "2026-11-15T07:40:29.347+00:00"
+    },
+    {
+      "id": "f109c406-e8e2-46c7-a16a-de72c6603a60",
+      "slug": "breakfast-phuket-town-before-booking",
+      "status": "published",
+      "url": "https://royalphuketcity.com/breakfast-phuket-town-before-booking",
+      "published_at": "2026-11-15T07:40:30.176+00:00"
+    },
+    {
+      "id": "43d95b7a-0677-41f0-9d26-5e4e99ec09b1",
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "status": "published",
+      "url": "https://royalphuketcity.com/hybrid-meeting-phuket-av-checklist",
+      "published_at": "2026-11-15T07:40:30.977+00:00"
+    },
+    {
+      "id": "e3cfb050-34fb-4efe-9294-bc753a713414",
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "status": "published",
+      "url": "https://royalphuketcity.com/phuket-wedding-menu-dietary-questions",
+      "published_at": "2026-11-15T07:40:31.779+00:00"
+    }
+  ],
+  "assets": [
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "originalSha256": "43b1f956768faa3bef0afa92b210c6f76a63c7fc9627cd024b7e5ae189f9b5e4",
+      "driveId": "151q-9jSY29MkhabvtR5_w2vWhg3GxPV1",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/old-town-streets-e7a3d7c2b6e4f487bce1641c93b998650e695887d1759336343737cdd5ff41a6.webp",
+      "path": "old-town-streets-e7a3d7c2b6e4f487bce1641c93b998650e695887d1759336343737cdd5ff41a6.webp",
+      "width": 1600,
+      "height": 1069,
+      "sha256": "e7a3d7c2b6e4f487bce1641c93b998650e695887d1759336343737cdd5ff41a6",
+      "bytes": 216322,
+      "role": "cover"
+    },
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "originalSha256": "9ae3993859e8950c25fa17bf36a6ef2c828ed34d11f9be8abac3084353c2f823",
+      "driveId": "1Xxyngv95xNhLpRCbjCgOzUVRxzRfKD6c",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/hotel-entrance-099e07a7441aa9906a1a07a2e1f7137ec09ca3b2acd1672f5f7b67d6d4f1b043.webp",
+      "path": "hotel-entrance-099e07a7441aa9906a1a07a2e1f7137ec09ca3b2acd1672f5f7b67d6d4f1b043.webp",
+      "width": 1500,
+      "height": 1000,
+      "sha256": "099e07a7441aa9906a1a07a2e1f7137ec09ca3b2acd1672f5f7b67d6d4f1b043",
+      "bytes": 231714,
+      "role": "supporting"
+    },
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "originalSha256": "167a5a4e2e97dad575455755c5bcbcdd1def8a7ca8ab074650fd9ef9d4a6948b",
+      "driveId": "1CfOAv99eG13LtRFwdToljlz4z8JXgHfn",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/bus-at-entrance-bec74682cf8b5d0994e35d479fc00aeca5a00d19fbb3093bdf5aca6455d20ca9.webp",
+      "path": "bus-at-entrance-bec74682cf8b5d0994e35d479fc00aeca5a00d19fbb3093bdf5aca6455d20ca9.webp",
+      "width": 1000,
+      "height": 625,
+      "sha256": "bec74682cf8b5d0994e35d479fc00aeca5a00d19fbb3093bdf5aca6455d20ca9",
+      "bytes": 110344,
+      "role": "supporting"
+    },
+    {
+      "slug": "getting-around-phuket-town-without-car",
+      "originalSha256": "f1b9c371adaeeab490c24d307bab039d410e8b765edb3b461d7b265f8db20c8c",
+      "driveId": "1v0oZAQRjlRbhGneX5t-GrEfJIFR7irnB",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/old-town-evening-002aeab0957d8da93fc5d3beb00cd8f40482fd4198f74337be4eebd143f007ad.webp",
+      "path": "old-town-evening-002aeab0957d8da93fc5d3beb00cd8f40482fd4198f74337be4eebd143f007ad.webp",
+      "width": 1600,
+      "height": 900,
+      "sha256": "002aeab0957d8da93fc5d3beb00cd8f40482fd4198f74337be4eebd143f007ad",
+      "bytes": 174702,
+      "role": "supporting"
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "originalSha256": "57c2674be8bc6e4a393b28f794c5906f3f936249a818426d6d5626daafcb9d47",
+      "driveId": "1btMqjIc6ver4ImQ6FBG4lSKp7riuFPey",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/breakfast-spread-74523b439fec4ab7dd0a1ba50c7639b36466b64491bf88cd825134cbaa8fa786.webp",
+      "path": "breakfast-spread-74523b439fec4ab7dd0a1ba50c7639b36466b64491bf88cd825134cbaa8fa786.webp",
+      "width": 800,
+      "height": 534,
+      "sha256": "74523b439fec4ab7dd0a1ba50c7639b36466b64491bf88cd825134cbaa8fa786",
+      "bytes": 45340,
+      "role": "cover"
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "originalSha256": "0bb737d85bbc28c6cf4cff897540bf0d72789249b3ba198a23005f43359ee7d7",
+      "driveId": "1DR-mTWS6XTlpKolrMV7Xkv0HXJTtPD4Y",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/breakfast-dining-room-dd2f2efa34743c81017c563969d2b5c0e6e5c53c989941cdb2b5bc5d7ffdedcf.webp",
+      "path": "breakfast-dining-room-dd2f2efa34743c81017c563969d2b5c0e6e5c53c989941cdb2b5bc5d7ffdedcf.webp",
+      "width": 800,
+      "height": 600,
+      "sha256": "dd2f2efa34743c81017c563969d2b5c0e6e5c53c989941cdb2b5bc5d7ffdedcf",
+      "bytes": 108666,
+      "role": "supporting"
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "originalSha256": "5ca1f879f223f317ef62c2342e02b547c639ffde562374199ee45a3c5741a467",
+      "driveId": "17R_PhsOfuL3aHl81pMStUeme37XndPOh",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/breakfast-buffet-589f630193a12c91cb6969da5fb049303b7bae1873a5baca8809c9fb5f152b55.webp",
+      "path": "breakfast-buffet-589f630193a12c91cb6969da5fb049303b7bae1873a5baca8809c9fb5f152b55.webp",
+      "width": 800,
+      "height": 600,
+      "sha256": "589f630193a12c91cb6969da5fb049303b7bae1873a5baca8809c9fb5f152b55",
+      "bytes": 106002,
+      "role": "supporting"
+    },
+    {
+      "slug": "breakfast-phuket-town-before-booking",
+      "originalSha256": "61e10effacf0f3b85be0246a3dc7b82f43ca350fd90d3e25666cbf10cb3f094d",
+      "driveId": "1-g1T6sQoYLZvfupvanxPQM6kPadsMYtj",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/breakfast-drinks-785a2e874f589034fda13616788616f34cdd1fc870b2e0d857013ffe24d4b4c6.webp",
+      "path": "breakfast-drinks-785a2e874f589034fda13616788616f34cdd1fc870b2e0d857013ffe24d4b4c6.webp",
+      "width": 800,
+      "height": 600,
+      "sha256": "785a2e874f589034fda13616788616f34cdd1fc870b2e0d857013ffe24d4b4c6",
+      "bytes": 96604,
+      "role": "supporting"
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "originalSha256": "6387680ae2a524263a07909e21e9ecda93bdb808f7709e7ae3bac593ca1a3953",
+      "driveId": "1BYJGqY6YA6BVwu1k5w0pZV2c95E_8Xmf",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/ballroom-meeting-be27a858c800b2609a237addd7d402794626f443b139c41069e84b80e2354dc8.webp",
+      "path": "ballroom-meeting-be27a858c800b2609a237addd7d402794626f443b139c41069e84b80e2354dc8.webp",
+      "width": 1000,
+      "height": 778,
+      "sha256": "be27a858c800b2609a237addd7d402794626f443b139c41069e84b80e2354dc8",
+      "bytes": 74690,
+      "role": "cover"
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "originalSha256": "3434011ee5d873d3fee26b4eb21ec079e1e5c1bb2085b46a5ec738d69c227779",
+      "driveId": "13istFhd7VniTjftsD1ieJ-tiVZVByNXv",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/meeting-room-seating-17181f2267a4e40f58a18a309b3ac12d87247d3dff7f9f130fed4e3909af5670.webp",
+      "path": "meeting-room-seating-17181f2267a4e40f58a18a309b3ac12d87247d3dff7f9f130fed4e3909af5670.webp",
+      "width": 1000,
+      "height": 750,
+      "sha256": "17181f2267a4e40f58a18a309b3ac12d87247d3dff7f9f130fed4e3909af5670",
+      "bytes": 86276,
+      "role": "supporting"
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "originalSha256": "c03f533fd1f8c137b7bad13c73f1e81629062c7db16667cddaaae94ce1c6a761",
+      "driveId": "1jL98j9VDNbXj9Z6n6EJKIwnt-efJz3U3",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/u-shaped-meeting-fe4a61c3747a8724530ea6f2c9d32930fd1d26386369f0c5fa9bfe274f18de0f.webp",
+      "path": "u-shaped-meeting-fe4a61c3747a8724530ea6f2c9d32930fd1d26386369f0c5fa9bfe274f18de0f.webp",
+      "width": 1000,
+      "height": 697,
+      "sha256": "fe4a61c3747a8724530ea6f2c9d32930fd1d26386369f0c5fa9bfe274f18de0f",
+      "bytes": 65918,
+      "role": "supporting"
+    },
+    {
+      "slug": "hybrid-meeting-phuket-av-checklist",
+      "originalSha256": "dac5483d79094d3c3aed2a0d366e4290aec05521183285c7688f12161c4dc5af",
+      "driveId": "18trOXzFbl_1Mg7gm4ooH6W5KTNHoYcvn",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/presentation-room-9aca5c4da6566281d1bbf970f4d2f7b25ab6efdadfafab7368aad59f84845155.webp",
+      "path": "presentation-room-9aca5c4da6566281d1bbf970f4d2f7b25ab6efdadfafab7368aad59f84845155.webp",
+      "width": 1000,
+      "height": 695,
+      "sha256": "9aca5c4da6566281d1bbf970f4d2f7b25ab6efdadfafab7368aad59f84845155",
+      "bytes": 65092,
+      "role": "supporting"
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "originalSha256": "ad1b03d71f4945a22b7f2ee442634404a069db79a3c01973f776e30c188e4e5f",
+      "driveId": "11F8xQWskEt1mXMMoZJT3jSmlaaZ_5T03",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/wedding-reception-table-98cbcf4f82a6b4498a1d2660d2beaee71eb6429f55d7f586730c3a6a72c4f004.webp",
+      "path": "wedding-reception-table-98cbcf4f82a6b4498a1d2660d2beaee71eb6429f55d7f586730c3a6a72c4f004.webp",
+      "width": 800,
+      "height": 534,
+      "sha256": "98cbcf4f82a6b4498a1d2660d2beaee71eb6429f55d7f586730c3a6a72c4f004",
+      "bytes": 86614,
+      "role": "cover"
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "originalSha256": "cddf74b58c85cd27be386883c0586477b4b861dc1b774bb6555d07d83e2f78ea",
+      "driveId": "1M5C-FDUyCnoTZcZgANhdsDuq0hFzr4Vt",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/shared-dining-dishes-6d35b01c2f66150f851b9e153022c0ac861fd3d437f7ea13a6557ca74655f275.webp",
+      "path": "shared-dining-dishes-6d35b01c2f66150f851b9e153022c0ac861fd3d437f7ea13a6557ca74655f275.webp",
+      "width": 800,
+      "height": 533,
+      "sha256": "6d35b01c2f66150f851b9e153022c0ac861fd3d437f7ea13a6557ca74655f275",
+      "bytes": 98038,
+      "role": "supporting"
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "originalSha256": "d48761a9e3c28ee58f33dd343ae922863a0072ecfac460a437e16415c8cd7e6f",
+      "driveId": "13sJJuUoFOGjbUpeB-p36HcxbiN8QL3cn",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/wedding-cake-76516ba52d39fa14fe609f8f3e5ecb4871d7fa2b85f7d4e6b2e7c72d92635915.webp",
+      "path": "wedding-cake-76516ba52d39fa14fe609f8f3e5ecb4871d7fa2b85f7d4e6b2e7c72d92635915.webp",
+      "width": 800,
+      "height": 1200,
+      "sha256": "76516ba52d39fa14fe609f8f3e5ecb4871d7fa2b85f7d4e6b2e7c72d92635915",
+      "bytes": 79258,
+      "role": "supporting"
+    },
+    {
+      "slug": "phuket-wedding-menu-dietary-questions",
+      "originalSha256": "49342b173330b08b966b1823e111d54c9160409338cc60c90099cbeee2ad6a8a",
+      "driveId": "1SOB0-UAkiJ6KVBovG_TiEyQTLOJNeZZ3",
+      "url": "https://crhzxvbubvyachauomlx.supabase.co/storage/v1/object/public/blog-images/reception-service-layout-d4b2e264e11f6755948f9d595770896999a15a5eb0a2f680f0d9cae513b09412.webp",
+      "path": "reception-service-layout-d4b2e264e11f6755948f9d595770896999a15a5eb0a2f680f0d9cae513b09412.webp",
+      "width": 800,
+      "height": 533,
+      "sha256": "d4b2e264e11f6755948f9d595770896999a15a5eb0a2f680f0d9cae513b09412",
+      "bytes": 44756,
+      "role": "supporting"
+    }
+  ],
+  "status": "published",
+  "baseline": [
+    {
+      "id": "d5e9f699-64f2-42a8-bc2d-dab0ce3db846",
+      "slug": "ultimate-relaxation-spa-wellness-guide",
+      "hash": "98a1f86754aca7c43f9e468982a0f03664207f9c02ab74ec0195cafc717d65fe"
+    },
+    {
+      "id": "17ae1a90-f04f-4389-a6e5-d2ab1f25a475",
+      "slug": "culinary-journey-twist-rooftop-restaurant",
+      "hash": "9bac786a8b8624c8486a68778816c9e33a0b194f0df877242fa314becf87037f"
+    },
+    {
+      "id": "aafd6f88-e1c5-4554-a0aa-3d2ecbce9d32",
+      "slug": "phuket-wedding-reception-checklist",
+      "hash": "1582ee0643155034b51aa2ac5cd64851fffa8ce09dd0bac0ac2e677353522156"
+    },
+    {
+      "id": "75df003a-7910-4fb6-9934-91ddf5e98704",
+      "slug": "family-room-or-suite-phuket",
+      "hash": "9a9e581662577f391fdcd853b859bcdcbafad09f09192fcf8008efd1a2bea83b"
+    },
+    {
+      "id": "157c8ce8-651d-467e-a726-cb6a58e7199a",
+      "slug": "shared-chinese-meal-phuket-town",
+      "hash": "b4616e9f8d6e177748a578928b67ac8bed9c99b23cb361f1cf40adb383899688"
+    },
+    {
+      "id": "8d2c4c81-c12d-46f3-ac12-99ffb0a21c8c",
+      "slug": "phuket-wedding-reception-timeline",
+      "hash": "da1f50eb95e7b8be8da6d809de206a02fc57dc55da5bfcc544df0b615129a6bb"
+    },
+    {
+      "id": "ca770654-7d1b-42c3-b160-360e6d1956d9",
+      "slug": "best-street-food-near-royal-phuket-city",
+      "hash": "55b7b0f65807d4d9081dcd327d7ebe6d14b705a134e6721474f365784cf5396d"
+    },
+    {
+      "id": "6403e832-6499-4a4e-9b0a-e0726a1d011c",
+      "slug": "royal-phuket-city-hotel-sustainability-journey",
+      "hash": "3b107826ca11709689bd230a856f5e1c615e96f6d9e21061947cf0d0c1601fcf"
+    },
+    {
+      "id": "89819e14-6874-47b8-8aa6-6177895477c2",
+      "slug": "meeting-rooms-phuket-checklist",
+      "hash": "d39f4ebc7d6803bd3a418414e9a91e48c1a8d4d3869b55e7162a13b2b138c227"
+    },
+    {
+      "id": "732b8da1-a4d1-4cb3-8d82-1b2dbc339c37",
+      "slug": "phuket-town-or-patong",
+      "hash": "c3fed9b1ada707aa329354d9b415eaeed99b8940b0cd1edad3d78032d2e3583a"
+    },
+    {
+      "id": "cc402a52-fc5a-4cb0-8580-b91b7bb8e0fc",
+      "slug": "rooftop-dinner-phuket-town",
+      "hash": "ac4195fbd3926fe9420a29a6cdfd1636cc70c2a02e2679b44ac55dd792498a6a"
+    },
+    {
+      "id": "eca91ae6-484c-4358-b1d9-66bab7c99dd3",
+      "slug": "planning-dream-wedding-royal-phuket-city",
+      "hash": "2a92c60b119f9c5f9e8647ad0af179ec9747a4b387efbc18d1d30ec59d061bbb"
+    },
+    {
+      "id": "981e26ec-c3eb-4396-9472-d1894da15da4",
+      "slug": "compare-phuket-wedding-packages",
+      "hash": "dbc9c31c32839789c577585b1621ea431b8304d49a8cc7cca650870f9e7fecbe"
+    },
+    {
+      "id": "a1d7fd95-f62c-4a74-82a9-366c6958bc1d",
+      "slug": "vegetarian-dining-phuket-town",
+      "hash": "0369e07dfbadff060f051c94593987bf4db7bec09eb9daff326d6d99710ad533"
+    },
+    {
+      "id": "b80a2672-886e-49d8-b26c-f18c954c1638",
+      "slug": "residential-conference-phuket",
+      "hash": "6344f82fc077b901d839980ed20341366a417ae542b7c25736ec53822d93cbb5"
+    },
+    {
+      "id": "daa93d88-bf5c-469a-93e4-943e2a4b29ce",
+      "slug": "top-10-things-to-do-in-phuket-old-town",
+      "hash": "16f946d39dba17042b2b301736248542d25d74cbe974979c22fcdf27145138b4"
+    },
+    {
+      "id": "bf3b18fa-add1-4dfa-a15e-ea272dcb56fe",
+      "slug": "conference-agenda-planning-phuket",
+      "hash": "aa78dfb1695d5d80de49a1b19b075da74dd9e0f4788244bf2935e54db98f5900"
+    },
+    {
+      "id": "08c73754-6db8-4ae7-8745-c7a0e7d33be0",
+      "slug": "phuket-hotel-arrival-departure",
+      "hash": "8e53e392c12771913406f493d63a03c0d9e1afa36bf0eeeabc33a9fb60731371"
+    },
+    {
+      "id": "83106d5a-6ccb-4294-9219-d6165380821f",
+      "slug": "hotel-or-villa-phuket",
+      "hash": "59fe21af855b59cd2ee684824829d1c31f693e3b54cddf46992f65753e400d0f"
+    },
+    {
+      "id": "c34457dc-afed-4a5c-8b4b-9c5b491850c8",
+      "slug": "dim-sum-phuket-town-guide",
+      "hash": "b64ad5849657c66f621d22dd5200c58b2cd0c62722fa97a7690a5af0f370f06e"
+    },
+    {
+      "id": "27a2242c-52a6-4f8b-8cf2-2abd2bae08e3",
+      "slug": "phuket-wedding-guest-information",
+      "hash": "7e27cdb110d9860e070878e5e9e1f755e8224655eaa8560eb021dfab999bcc75"
+    },
+    {
+      "id": "5e43cedf-4324-4206-919c-a6c43f77ad61",
+      "slug": "phuket-old-town-two-day-itinerary",
+      "hash": "7d4dbcecb26a4075ad47b654d246de55ba2982de0415b865fe5fa62669993907"
+    },
+    {
+      "id": "136ccb4b-7f6e-49f2-8a2d-ab5903c1ab12",
+      "slug": "rainy-day-phuket-town",
+      "hash": "695ef6b74164fdd04f92c054eec9198d9eeacdd75f1e0d3e5868e1c5a7e173d6"
+    },
+    {
+      "id": "24593881-d0ec-4d1b-8541-9fd672ce3a41",
+      "slug": "phuket-airport-to-phuket-town",
+      "hash": "885482fbc39f60dc2f47313327e3d623d0605f3f9f4525725a78f6447003372e"
+    },
+    {
+      "id": "0de2e59a-2766-476a-8e79-775c604fa988",
+      "slug": "meeting-room-seating-layouts",
+      "hash": "66048a1088defc988cbc8ee282b37887e359221f60ecbbac900639d1e87d7179"
+    },
+    {
+      "id": "abf1ee52-6c38-4450-8500-a4adaaefa840",
+      "slug": "corporate-event-venue-brief-phuket",
+      "hash": "6795a91c792459ae1e17d390cdf9be7c636bd0fb93e5127a23089cc7783e2e43"
+    },
+    {
+      "id": "92fe1b57-e62d-4311-9740-5fd86a72cd76",
+      "slug": "chinese-wedding-tea-ceremony-phuket",
+      "hash": "305f4005732937dd872185c74f9b36ee0278e0d22c3b85cb3f342d3626f9bfc9"
+    },
+    {
+      "id": "7489fb5b-dc19-4a53-9ddf-8e4312dccabe",
+      "slug": "thai-wedding-water-blessing",
+      "hash": "05649eda2aac8c4c922e166fe63aebb1685a13fa2814069a7e651fbe75280771"
+    },
+    {
+      "id": "f7e3f95c-8c4f-466d-b613-33e951cebd5f",
+      "slug": "indoor-or-outdoor-wedding-phuket",
+      "hash": "c4b46a63e12cf6856f166ad6caec8bb6dee56d8b662a3c44d2edab7c1851cabf"
+    },
+    {
+      "id": "c23120f8-161f-4916-90ad-1f89bdc6eabe",
+      "slug": "small-wedding-phuket-town",
+      "hash": "4617bd14ed4b6d5c09ec00e06a4d054eae955ef37d1957ffd375bc46dac7542d"
+    },
+    {
+      "id": "a7b4755a-92e9-4606-9c28-fcf7ed2f9418",
+      "slug": "product-launch-checklist-phuket",
+      "hash": "f79320789725a48d44d3e00868822f7c754091176c5709870a9c60c3f0b0b9ea"
+    },
+    {
+      "id": "7b85a318-b46f-4267-9d01-fb0341cac1b6",
+      "slug": "business-lunch-phuket-town",
+      "hash": "d767e6ea9a8c4070958d3ce27ae1b23d70f8af9122061bdb8703e20543a3bbd3"
+    },
+    {
+      "id": "add75cb3-d6a5-4fdd-88ae-f81b4ee022fe",
+      "slug": "birthday-dinner-phuket-town",
+      "hash": "eaa3b52b581ee28fea9a1eb586f4e855efbb45d64bc81dc776f18f69eeab347f"
+    },
+    {
+      "id": "b469ee10-85ed-4de8-b409-5d21f8e0d29e",
+      "slug": "dim-sum-lunch-phuket-old-town",
+      "hash": "66f415e92756cb023a5d8962f988cca3dc053d9702c33e908f0d1201396c54f3"
+    },
+    {
+      "id": "0ba1d4e8-56ed-4d55-b8ba-dd27fb6bea82",
+      "slug": "what-to-order-at-yan-long-phuket",
+      "hash": "9e0e78f60251fb3657aaf22db25d8142e20e65613e1fb9b82dd4a22fdfd4aa2b"
+    },
+    {
+      "id": "fb732293-c1bb-4843-87b2-a5bf6a477b3f",
+      "slug": "peking-duck-vs-cantonese-roast-duck",
+      "hash": "65c16b055055327afe77ce2d4aeeb8e38eeef5fa5a13af81d16a358f72854836"
+    },
+    {
+      "id": "4402c46e-dade-4f75-8a76-3dbee0df6458",
+      "slug": "chinese-dinner-for-two-phuket",
+      "hash": "ebddc548c921d68a9ad7749288e9b1db8f9410cd4f1f3d66e19f03cb34c9b098"
+    },
+    {
+      "id": "b26e4ce5-c13b-434f-94ee-f64336872f9e",
+      "slug": "family-dining-phuket-old-town",
+      "hash": "9a061197b151831b9ef59792c6c4b94d9d6a6b7b4729c0290a35c75ff1134572"
+    },
+    {
+      "id": "13b9b1ac-a7bb-40f6-bb5b-7ace1f98b207",
+      "slug": "private-dining-phuket-town",
+      "hash": "2be7a8a8f26cf67e62779d2bb225d5996cfece20bdf83f731273fe5df48e76cb"
+    },
+    {
+      "id": "ca2cd495-9395-47c9-aaaf-5b8fa576a76d",
+      "slug": "peking-duck-phuket",
+      "hash": "56f85bc9e73ddc64a614fbc7687ea3942c2437a0013bd5f7276c941717da361c"
+    }
+  ],
+  "completedAt": "2026-11-15T07:40:32.210Z",
+  "preexistingRecordsUnchanged": 40
+}
