@@ -86,6 +86,9 @@ articles are unpublished. `PRE_FOOTER_COPY` controls the introduction.
 footer, using the site's existing container and locale routing. It is excluded
 from admin and the dedicated mobile app by the existing site chrome. Changes
 apply across public website pages; no CMS edits are needed to maintain this list.
+Below 768px, categories start collapsed and can be opened independently with
+keyboard-accessible buttons. Tablet and desktop categories stay expanded.
+`src/components/PreFooterCategory.tsx` owns this responsive disclosure behavior.
 
 ## Pages
 

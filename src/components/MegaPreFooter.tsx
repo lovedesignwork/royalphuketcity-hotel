@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localizeHref } from "@/lib/i18n/path";
 import { PRE_FOOTER_COPY, PRE_FOOTER_GROUPS } from "@/lib/pre-footer";
+import PreFooterCategory from "./PreFooterCategory";
 
 export default function MegaPreFooter({ locale }: { locale: Locale }) {
   return (
@@ -27,12 +28,9 @@ export default function MegaPreFooter({ locale }: { locale: Locale }) {
             {PRE_FOOTER_COPY.blog[locale]}
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-x-8 gap-y-9 pt-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="grid grid-cols-1 gap-x-8 pt-3 md:grid-cols-2 md:gap-y-9 md:pt-8 lg:grid-cols-3 xl:grid-cols-6">
           {PRE_FOOTER_GROUPS.map((group) => (
-            <div key={group.id} className="min-w-0">
-              <h3 className="mb-3 font-heading text-xl leading-snug">
-                {group.title[locale]}
-              </h3>
+            <PreFooterCategory key={group.id} id={group.id} title={group.title[locale]}>
               <ul>
                 {group.links.map((link) => (
                   <li key={link.href} className="min-w-0">
@@ -46,7 +44,7 @@ export default function MegaPreFooter({ locale }: { locale: Locale }) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </PreFooterCategory>
           ))}
         </div>
       </div>
