@@ -3,6 +3,7 @@ import { getLocale } from "@/lib/i18n/get-locale";
 import { getDictionary } from "@/lib/i18n/messages";
 import { localizeHref } from "@/lib/i18n/path";
 import LocaleFooterLink from "./FooterLink";
+import MegaPreFooter from "./MegaPreFooter";
 
 export default async function Footer() {
   const locale = await getLocale();
@@ -13,6 +14,8 @@ export default async function Footer() {
     : "text-xs text-[--color-text-secondary] hover:text-[#806849] transition-colors uppercase tracking-wider";
 
   return (
+    <>
+    <MegaPreFooter locale={locale} />
     <footer className="bg-white border-t border-gray-200">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
@@ -173,5 +176,6 @@ export default async function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

@@ -73,6 +73,20 @@ src/
     └── ...
 ```
 
+## Mega pre-footer links
+
+The public website's pre-footer directory is managed in `src/lib/pre-footer.ts`.
+Edit `PRE_FOOTER_GROUPS` to add, rename, reorder or remove categories and links;
+each link has an English/Thai label and one internal destination. Use an existing
+relevant page or a published blog article's canonical URL. Check publication and
+the destination before adding a link, and remove or replace links when their
+articles are unpublished. `PRE_FOOTER_COPY` controls the introduction.
+
+`src/components/MegaPreFooter.tsx` renders the shared directory above the contact
+footer, using the site's existing container and locale routing. It is excluded
+from admin and the dedicated mobile app by the existing site chrome. Changes
+apply across public website pages; no CMS edits are needed to maintain this list.
+
 ## Pages
 
 | Route | Description |
