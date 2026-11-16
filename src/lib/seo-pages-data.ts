@@ -12,6 +12,7 @@ export interface GEOContent {
 export interface SeoPageData {
   slug: string;
   title: string;
+  h1?: string;
   subtitle: string;
   heroImage: string;
   metaDescription: string;
@@ -51,61 +52,150 @@ export interface SeoPageData {
 export const SEO_PAGES: Record<string, SeoPageData> = {
   // Phuket Hotel Pages
   "phuket-old-town-hotel": {
-    slug: "phuket-old-town-hotel",
-    title: "Phuket Old Town Hotel",
-    subtitle: "Plan Your Stay Around Phuket's Heritage Streets",
-    heroImage: "/images/old-town/colorful-sino-portuguese-architecture-phukets-old-town-thailand.jpg",
-    metaDescription: "Stay near Phuket Old Town at Royal Phuket City Hotel. Compare 251 rooms and suites, explore local markets, and enjoy an outdoor pool and rooftop dining.",
-    seoKeywords: ["Phuket Old Town hotel", "hotel in Phuket Old Town", "Phuket Town accommodation", "heritage hotel Phuket", "hotel near Thalang Road"],
-    category: "hotel",
-    content: {
-      intro: [
-        "Royal Phuket City Hotel is at 154 Phang-Nga Road in Phuket Town. Our 19-story hotel offers 251 rooms and suites as a base for exploring the nearby Old Town streets.",
-        "Plan your outings around Thalang Road, Soi Romanee and Sunday Walking Street, then return to the hotel for a meal or a break. Check the walking route from the hotel entrance before setting off; the heritage district covers several streets.",
-        "Choose a city stay for heritage walks, local food and easy returns to your room between outings. Beach visits and island excursions can be planned separately with transport.",
+    "slug": "phuket-old-town-hotel",
+    "title": "Hotel in Phuket Town",
+    "subtitle": "Rooms, dining and an outdoor pool on Phang-Nga Road",
+    "heroImage": "/images/old-town/colorful-sino-portuguese-architecture-phukets-old-town-thailand.jpg",
+    "metaDescription": "Stay at Royal Phuket City Hotel, a hotel in Phuket Town with rooms and suites, an outdoor pool and dining. Explore room options and plan your city stay.",
+    "seoKeywords": [
+      "hotel in phuket town",
+      "phuket town hotel",
+      "Phuket Old Town hotel",
+      "Phuket Town accommodation",
+      "hotel near Thalang Road"
+    ],
+    "category": "hotel",
+    "content": {
+      "intro": [
+        "Royal Phuket City Hotel is a hotel in Phuket Town at 154 Phang-Nga Road, with 251 rooms and suites. Stay here for time in the Old Town streets, meals in the city or a meeting in town, with an outdoor pool and dining options in the hotel.",
+        "Start with the room layout that suits your trip, then compare the details of your chosen rate. Whether you are travelling as a couple, with family or for work, confirm the guest numbers, bedding and any essential requests before booking.",
+        "Plan your city outings around the places you want to visit. Thalang Road, Soi Romanee and the surrounding heritage streets offer a starting point; check your route from the hotel entrance and leave room for a return to the hotel between activities."
       ],
-      planningSections: [{
-        title: "Plan a stay around the Old Town streets",
-        paragraphs: [
-          "Our address is 154 Phang-Nga Road, Talad Yai, Phuket. Use the hotel as a starting point for Thalang Road, Soi Romanee and the surrounding shophouse streets. Begin with a morning walk, return during the afternoon heat, and leave another evening free for local food. Sunday stays give you the chance to visit the Walking Street market on Thalang Road.",
-          "Compare the room photographs and layouts before choosing: Premier Superior rooms offer 30 sqm, Premier Deluxe rooms 38 sqm, and suites add separate living space. Check your selected rate for breakfast and cancellation terms. Standard check-in starts at 2:00 PM and check-out is at noon; contact reservations if your flights require different arrangements.",
-        ],
-        links: [
-          { label: "Compare rooms and suites", href: "/rooms-suites" },
-          { label: "Plan an Old Town walk", href: "/things-to-do-phuket-old-town" },
-          { label: "Hotel address and directions", href: "/contact" },
-          { label: "Walking directions to Thalang Road", href: "https://www.google.com/maps/dir/?api=1&origin=Royal+Phuket+City+Hotel+Phuket&destination=Thalang+Road+Phuket&travelmode=walking" },
-        ],
-      }, {
-        title: "Arrival and walking access",
-        paragraphs: [
-          "For an airport arrival or a beach day, arrange a taxi or ask the hotel about a private transfer. Confirm the fare, pickup point, luggage space and any child-seat requirements before travel. Hotel parking accommodates 350 vehicles.",
-          "If you use a wheelchair or have limited mobility, contact the hotel before choosing a room and ask about the route from the entrance to your room, bathroom access and transport assistance. Old Town pavement conditions and crossings vary; ask for a suitable route rather than assuming every street is step-free.",
-        ],
-        links: [{ label: "Discuss arrival or access requirements", href: "/contact" }],
-      }],
-      features: [
-        { title: "Old Town Base", description: "Phang-Nga Road address for exploring heritage streets, cafes and markets" },
-        { title: "Panoramic Views", description: "City and distant sea views from our 19-story landmark building" },
-        { title: "251 Rooms", description: "Thoughtfully designed rooms and suites for every traveler" },
-        { title: "Full Amenities", description: "Pool, fitness center, restaurants, and meeting facilities" },
+      "planningSections": [
+        {
+          "title": "Choose a room that fits your stay",
+          "paragraphs": [
+            "Premier Superior rooms are listed at 30 sqm and Premier Deluxe rooms at 38 sqm. The Suite offers 64 sqm with a separate living room; the Executive Suite is 75 sqm with living and dining space. Compare the photographs and exact category details to decide which arrangement you will use.",
+            "Room size and permitted occupancy are different questions. Tell reservations how many adults and children are travelling, including children’s ages, and ask which bedding arrangement can be confirmed. Check breakfast, payment and cancellation conditions for the specific offer you select."
+          ],
+          "links": [
+            {
+              "label": "Compare rooms and suites",
+              "href": "/rooms-suites"
+            },
+            {
+              "label": "See current hotel offers",
+              "href": "/promotions"
+            },
+            {
+              "label": "Room or suite for a family?",
+              "href": "/family-room-or-suite-phuket"
+            }
+          ]
+        },
+        {
+          "title": "Plan your time in Phuket Old Town",
+          "paragraphs": [
+            "Use the hotel’s Phang-Nga Road address to plan visits to Thalang Road, Soi Romanee and the nearby shophouse streets. Choose a few stops that interest you instead of fitting every attraction into one outing. Our Old Town guides can help you build a city-focused day.",
+            "If Sunday Walking Street is part of your plan, check the current market arrangements before setting out. For a beach visit or an excursion elsewhere on the island, arrange the journey separately and confirm the return trip. A Phuket Town stay gives you a city base; beach access depends on your chosen outing."
+          ],
+          "links": [
+            {
+              "label": "Explore Old Town activities",
+              "href": "/things-to-do-phuket-old-town"
+            },
+            {
+              "label": "Plan two days in Old Town",
+              "href": "/phuket-old-town-two-day-itinerary"
+            },
+            {
+              "label": "Read the Sunday Walking Street guide",
+              "href": "/phuket-sunday-walking-street"
+            }
+          ]
+        },
+        {
+          "title": "Make time for the pool and hotel dining",
+          "paragraphs": [
+            "The outdoor swimming pool and fitness centre are on the third floor. The hotel also has restaurants and Royal Wellness Spa. Review the facilities and dining pages for the services that matter to your stay, and confirm current opening arrangements directly when planning around them.",
+            "Breakfast, restaurant meals, spa treatments and transport should be checked against your booking rather than assumed included. If a meal is important to your plans, ask about reservations, dietary requests and the current service arrangements before relying on it."
+          ],
+          "links": [
+            {
+              "label": "View hotel facilities",
+              "href": "/facilities"
+            },
+            {
+              "label": "Explore hotel dining",
+              "href": "/dining"
+            },
+            {
+              "label": "Check breakfast arrangements",
+              "href": "/breakfast-phuket-town-before-booking"
+            }
+          ]
+        },
+        {
+          "title": "Confirm arrival and booking details",
+          "paragraphs": [
+            "The published hotel policy lists check-in from 2:00 PM and check-out at noon. Early check-in and late check-out are subject to availability and may carry an additional charge. Contact reservations with your dates and expected arrival time if you need a different arrangement.",
+            "For an airport transfer, ask about availability, the pickup point, luggage space and the full charge. If you have access requirements, discuss the entrance-to-room route, bathroom arrangement and transport needs before choosing a room. Check walking routes individually; Old Town pavements and crossings vary."
+          ],
+          "links": [
+            {
+              "label": "Hotel address and directions",
+              "href": "/contact"
+            },
+            {
+              "label": "Read the hotel policy",
+              "href": "/hotel-policy"
+            },
+            {
+              "label": "Plan airport transport",
+              "href": "/phuket-airport-to-phuket-town"
+            }
+          ]
+        }
       ],
-      highlights: [
-        "Walking distance to Sunday Walking Street",
-        "Near Sino-Portuguese heritage buildings",
-        "Close to local markets and street food",
-        "Easy access to temples and museums",
-        "Check-in from 2:00 PM; check-out at noon",
-        "Multiple dining options on-site",
+      "features": [
+        {
+          "title": "Phang-Nga Road Location",
+          "description": "A city address for planning visits to Phuket Old Town"
+        },
+        {
+          "title": "Rooms and Suites",
+          "description": "Compare room sizes, layouts and the details of your chosen category"
+        },
+        {
+          "title": "Pool and Fitness",
+          "description": "Outdoor swimming pool and fitness centre on the third floor"
+        },
+        {
+          "title": "Hotel Dining",
+          "description": "Restaurant options for meals during your stay; confirm bookings and inclusions"
+        }
       ],
-      callToAction: {
-        title: "Book Your Stay in Phuket Old Town",
-        description: "Experience the charm of historic Phuket from our perfectly located hotel.",
-        buttonText: "View Rooms & Rates",
-        buttonLink: "/rooms-suites",
-      },
+      "highlights": [
+        "154 Phang-Nga Road, Talad Yai, Phuket",
+        "251 rooms and suites",
+        "Premier rooms and larger suite layouts",
+        "Outdoor swimming pool and fitness centre",
+        "Hotel restaurants and Royal Wellness Spa",
+        "Check-in from 2:00 PM; check-out at noon"
+      ],
+      "callToAction": {
+        "title": "Plan Your Stay in Phuket Town",
+        "description": "Compare rooms and current offers, then contact reservations about the details that matter to your trip.",
+        "buttonText": "View Rooms & Rates",
+        "buttonLink": "/rooms-suites"
+      }
     },
-    relatedPages: ["4-star-hotel-phuket", "heritage-hotel-phuket", "things-to-do-phuket-old-town"],
+    "relatedPages": [
+      "4-star-hotel-phuket",
+      "heritage-hotel-phuket",
+      "things-to-do-phuket-old-town"
+    ],
+    "h1": "Your Phuket Town Hotel for a City Stay"
   },
 
   "4-star-hotel-phuket": {

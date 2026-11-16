@@ -75,7 +75,7 @@ export default async function SeoPage({ params }: PageProps) {
       }} />
       {/* Hero Section */}
       <HeroSection
-        title={pageData.title}
+        title={pageData.h1 ?? pageData.title}
         subtitle={pageData.subtitle}
         image={pageData.heroImage}
         height="medium"
