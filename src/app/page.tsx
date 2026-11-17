@@ -180,6 +180,19 @@ export default async function HomePage() {
                   {t.home.uspLead}
                 </p>
 
+              {locale === "en" && (
+                <p className="mb-10 max-w-lg text-[--color-text-secondary] leading-relaxed">
+                  Plan your city stay with our{" "}
+                  <LocaleHomeLink
+                    href="/phuket-old-town-hotel"
+                    className="text-[--color-text-primary] underline underline-offset-4 hover:text-[--color-accent]"
+                  >
+                    Phuket Old Town hotel
+                  </LocaleHomeLink>
+                  {" "}guide for room options, facilities and local outings.
+                </p>
+              )}
+
               {/* USP List */}
               <div className="space-y-7">
                 {[

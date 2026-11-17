@@ -53,10 +53,10 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
   // Phuket Hotel Pages
   "phuket-old-town-hotel": {
     "slug": "phuket-old-town-hotel",
-    "title": "Hotel in Phuket Town",
+    "title": "Phuket Old Town Hotel",
     "subtitle": "Rooms, dining and an outdoor pool on Phang-Nga Road",
     "heroImage": "/images/old-town/colorful-sino-portuguese-architecture-phukets-old-town-thailand.jpg",
-    "metaDescription": "Stay at Royal Phuket City Hotel, a hotel in Phuket Town with rooms and suites, an outdoor pool and dining. Explore room options and plan your city stay.",
+    "metaDescription": "Choose Royal Phuket City Hotel for a Phuket Old Town hotel stay. Compare rooms and suites, an outdoor pool and dining on Phang-Nga Road in Phuket Town.",
     "seoKeywords": [
       "hotel in phuket town",
       "phuket town hotel",
@@ -199,7 +199,7 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
       "heritage-hotel-phuket",
       "things-to-do-phuket-old-town"
     ],
-    "h1": "Your Phuket Town Hotel for a City Stay"
+    "h1": "Your Phuket Old Town Hotel for a City Stay"
   },
 
   "4-star-hotel-phuket": {
