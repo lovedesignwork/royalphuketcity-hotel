@@ -1,0 +1,55 @@
+{
+  "accessedDate": "2026-11-17",
+  "source": "Local Falcon signed-in Chrome UI; existing reports",
+  "business": "Royal Phuket City Hotel",
+  "placeId": "ChIJDc4mVfgxUDARUz1SNzNLqH0",
+  "grid": {
+    "size": "5x5",
+    "radiusKm": 2,
+    "spacingKm": 1,
+    "centre": [
+      7.8829425,
+      98.3949019
+    ]
+  },
+  "scans": [
+    {
+      "keyword": "hotel in phuket town",
+      "dateShown": "2026-11-16 07:54",
+      "report": "https://app.localfalcon.com/reports/view/ee37a6b4baa1524",
+      "arp": 20,
+      "atrp": 20.96,
+      "solv": 0,
+      "foundPoints": 1,
+      "totalPoints": 25,
+      "rating": 4.3,
+      "reviews": 2712
+    },
+    {
+      "keyword": "hotel phuket town",
+      "dateShown": "2026-11-15 02:21",
+      "report": "https://app.localfalcon.com/reports/view/9adb70ceece77c9",
+      "arp": 10,
+      "atrp": 19.68,
+      "solv": 4
+    },
+    {
+      "keyword": "meeting room phuket",
+      "dateShown": "2026-11-15 02:22",
+      "report": "https://app.localfalcon.com/reports/view/7cc876d4cdfbff4",
+      "arp": 10.82,
+      "atrp": 12.04,
+      "solv": 4
+    }
+  ],
+  "scanTimezone": "Not independently verified",
+  "aiFlagsUnverified": [
+    "Missing business description",
+    "No active posts"
+  ],
+  "actions": {
+    "newScans": 0,
+    "profileEdits": 0,
+    "campaignsCreated": 0
+  }
+}

@@ -90,6 +90,10 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
             {
               "label": "Room or suite for a family?",
               "href": "/family-room-or-suite-phuket"
+            },
+            {
+              "label": "Choose the best Phuket Town hotel for your stay",
+              "href": "/best-hotel-phuket-town"
             }
           ]
         },
@@ -324,11 +328,12 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
 
   "best-hotel-phuket-town": {
     slug: "best-hotel-phuket-town",
-    title: "Choosing a Hotel in Phuket Town",
+    title: "Best Hotel in Phuket Town?",
+    h1: "Choosing the Best Hotel in Phuket Town for Your Stay",
     subtitle: "Compare Location, Rooms and Facilities for Your Trip",
     heroImage: "/images/HOTEL WEBSITE/RPC Lobby 1.jpg",
     metaDescription: "Choosing the best hotel for your Phuket Town trip? Compare Royal Phuket City's room sizes, Old Town location, pool, dining and booking conditions.",
-    seoKeywords: ["best hotel Phuket Town", "top hotel near Phuket Old Town", "recommended hotel Phuket", "highest rated hotel Phuket Town", "best accommodation Phuket"],
+    seoKeywords: ["best hotel in Phuket Town", "best hotel Phuket Town", "hotel near Phuket Old Town", "Phuket Town accommodation"],
     category: "hotel",
     content: {
       intro: [
@@ -346,6 +351,28 @@ export const SEO_PAGES: Record<string, SeoPageData> = {
           { label: "Check the location and guest review links", href: "/contact" },
           { label: "Compare room layouts", href: "/rooms-suites" },
           { label: "Review packages and conditions", href: "/promotions" },
+        ],
+      }, {
+        title: "Match your room to the people travelling",
+        paragraphs: [
+          "Compare the space you will actually use. Premier Superior rooms are listed at 30 sqm and Premier Deluxe rooms at 38 sqm. A 64 sqm Suite adds a separate living room, while the 75 sqm Executive Suite provides living and dining space. A larger room can be useful for a longer stay, but check the permitted occupancy and bedding separately from the floor area.",
+          "For a family trip, send reservations the number of adults, the children's ages and any extra-bed or connecting-room requests. For a couple or a work trip, compare your preferred category's photographs, desk space and room facilities. Confirm availability and the conditions of your chosen rate before booking.",
+        ],
+        links: [
+          { label: "Compare all rooms and suites", href: "/rooms-suites" },
+          { label: "Plan a family hotel stay", href: "/family-hotel-phuket" },
+        ],
+      }, {
+        title: "Choose a city base for your Phuket plans",
+        paragraphs: [
+          "Royal Phuket City Hotel is at 154 Phang-Nga Road in Phuket Town. Use the hotel location map to plan your route to Thalang Road, Soi Romanee and the heritage streets. If your holiday also includes beaches or an airport transfer, allow for those separate journeys when comparing a city hotel with other areas of Phuket.",
+          "Look beyond the room when making your shortlist: the hotel has an outdoor pool, a fitness centre, restaurants and meeting spaces. Check current opening arrangements, breakfast inclusions and any reservation requirements for the services you plan to use. For a wedding or meeting, contact the relevant team about event space and guest accommodation together.",
+        ],
+        links: [
+          { label: "Explore the hotel in Phuket Town", href: "/phuket-old-town-hotel" },
+          { label: "View pool and hotel facilities", href: "/facilities" },
+          { label: "Plan a wedding in Phuket", href: "/wedding-venues" },
+          { label: "Compare Phuket meeting venues", href: "/meeting-events" },
         ],
       }],
       features: [

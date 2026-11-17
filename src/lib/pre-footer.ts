@@ -27,6 +27,7 @@ export const PRE_FOOTER_GROUPS: PreFooterGroup[] = [
     title: { en: "Stay in Phuket", th: "ที่พักในภูเก็ต" },
     links: [
       { label: { en: "Phuket Old Town hotel", th: "โรงแรมใกล้เมืองเก่าภูเก็ต" }, href: "/phuket-old-town-hotel" },
+      { label: { en: "Choosing your Phuket Town hotel", th: "เลือกโรงแรมในเมืองภูเก็ต" }, href: "/best-hotel-phuket-town" },
       { label: { en: "Rooms & suites", th: "ห้องพักและห้องสวีท" }, href: "/rooms-suites" },
       { label: { en: "4-star hotel in Phuket", th: "โรงแรม 4 ดาวในภูเก็ต" }, href: "/4-star-hotel-phuket" },
       { label: { en: "Family stays in Phuket", th: "ที่พักสำหรับครอบครัวในภูเก็ต" }, href: "/family-hotel-phuket" },

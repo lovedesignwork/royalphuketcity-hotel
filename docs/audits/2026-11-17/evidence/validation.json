@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-17",
+  "typecheck": "passed",
+  "technicalSeoRegression": {
+    "passed": 9,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 9
+  },
+  "build": {
+    "initial": "compiled then worker failed with Node heap exhaustion",
+    "retry": "passed",
+    "command": "NODE_OPTIONS=--max-old-space-size=4096 npm run build"
+  },
+  "diffWhitespace": "passed",
+  "deployment": {
+    "triggered": false,
+    "status": "not deployed"
+  },
+  "searchConsole": {
+    "verified": false,
+    "blocker": "Saved private key is not a usable PEM key; read-only query failed at decoding"
+  },
+  "screamingFrog": {
+    "crawlId": "2cb1a6a8-8c11-4daf-a7cb-3f84aff8f217",
+    "completed": 199,
+    "postCrawlComplete": true,
+    "html": 118,
+    "indexableHtml": 112,
+    "responses": {
+      "200": 198,
+      "301": 1
+    },
+    "originalConfigurationRestored": true
+  }
+}

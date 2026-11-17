@@ -17,16 +17,16 @@ type MiceText = Pick<
 
 export const meetingPage = {
   en: {
-    metaTitle: "Meeting & Events",
+    metaTitle: "Phuket Meeting Venue",
     metaDesc:
-      "Host successful meetings and events at Royal Phuket City Hotel. 9 versatile meeting rooms with state-of-the-art AV equipment and dedicated event planning support.",
-    heroTitle: "All-In-One Venue for All Kinds of Events",
+      "Find your Phuket meeting venue at Royal Phuket City Hotel in Phuket Town. Compare 9 meeting rooms, layouts and AV facilities, then request an event proposal.",
+    heroTitle: "Phuket Meeting Venue & Conference Rooms",
     heroSubtitle: "Meeting & Events",
     heroDesc: "Flexible, elegant, and fully-equipped spaces for every kind of event.",
     introLabel: "From boardroom briefings to grand galas – we host it all.",
-    introTitle: "Phuket's Expansive Meetings & Events Destination",
+    introTitle: "Meetings & Events in Phuket Town",
     introP1:
-      "At Royal Phuket City Hotel, we provide more than just event space - we create experiences. As the largest venue in Southern Thailand, our hotel offers 9 fully equipped rooms, including a 1,637 sqm grand ballroom that can host up to 2,300 guests in theatre style or 1,100 in banquet format.",
+      "Royal Phuket City Hotel is a Phuket meeting venue on Phang-Nga Road in Phuket Town, with 9 meeting rooms for boardroom discussions, seminars, conferences and banquets. Compare room layouts and capacities below, including the 1,637 sqm grand ballroom listed for up to 2,300 guests in theatre style or 1,100 in banquet format. Final capacity depends on your event layout and production requirements.",
     introP2:
       "Whether it's a boardroom discussion or a multi-day conference, we offer customizable layouts, advanced audio-visual technology, and a dedicated planning team to make your event effortless and successful.",
     rooms: "Meeting Rooms",

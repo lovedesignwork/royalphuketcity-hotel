@@ -8,16 +8,16 @@ type WeddingText = Pick<
 
 export const weddingPage = {
   en: {
-    metaTitle: "Wedding Venues",
+    metaTitle: "Wedding Venue in Phuket Town",
     metaDesc:
-      "Create unforgettable wedding memories at Royal Phuket City Hotel. 27+ years of experience, elegant venues for up to 500 guests, and dedicated wedding planning team.",
-    heroTitle: "The Venue of Your Dreams, The Service You Deserve",
+      "Plan your wedding in Phuket at Royal Phuket City Hotel in Phuket Town. Explore ceremony options, catering and guest accommodation, then request a proposal.",
+    heroTitle: "Wedding Venue in Phuket Town",
     heroSubtitle: "Wedding Venues",
     heroDesc: "Flexible Packages, Personal Touches, and Total Freedom",
     introLabel: "Weddings at Royal Phuket City",
-    introTitle: "Perfectly Planned, Beautifully Executed",
+    introTitle: "Plan Your Wedding in Phuket",
     introBody:
-      "Welcome to Royal Phuket City Hotel, the premier destination for weddings in Phuket. With over 27 years of experience, we craft bespoke weddings that are beautiful, seamless, and unforgettable. Whether you're planning an intimate ceremony or a grand celebration, our flexible venues, dedicated team, and full-service packages make it all possible - your love story, your way.",
+      "Plan your wedding in Phuket at Royal Phuket City Hotel on Phang-Nga Road in Phuket Town. Bring your ceremony, reception, catering and guest accommodation together at one hotel. Explore Thai, Chinese, Western and other ceremony options below, then share your preferred date, guest count and dining plans with our wedding team for a proposal tailored to your celebration.",
     planLabel: "Start Planning Today",
     planTitle: "Contact Our Wedding Team",
     planDesc: "Let our experienced wedding planners help you create your perfect day.",
