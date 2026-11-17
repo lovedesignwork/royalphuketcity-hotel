@@ -7,6 +7,8 @@ import SectionHeading from "@/components/SectionHeading";
 import WeddingPhotoSlider from "@/components/WeddingPhotoSlider";
 import WeddingInquiryForm from "@/components/WeddingInquiryForm";
 import WeddingGallery from "@/components/WeddingGallery";
+import VenuePlanningGuide from "@/components/VenuePlanningGuide";
+import { WEDDING_PLANNING_GUIDE } from "@/lib/venue-planning-data";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n/get-locale";
 import { localizeHref } from "@/lib/i18n/path";
@@ -73,6 +75,8 @@ export default async function WeddingVenuesPage() {
           </div>
         </div>
       </section>
+
+      {locale === "en" && <VenuePlanningGuide guide={WEDDING_PLANNING_GUIDE} />}
 
       {/* Photo Slider */}
       <WeddingPhotoSlider />

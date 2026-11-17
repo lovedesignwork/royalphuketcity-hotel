@@ -26,12 +26,12 @@ export const meetingPage = {
     introLabel: "From boardroom briefings to grand galas – we host it all.",
     introTitle: "Meetings & Events in Phuket Town",
     introP1:
-      "Royal Phuket City Hotel is a Phuket meeting venue on Phang-Nga Road in Phuket Town, with 9 meeting rooms for boardroom discussions, seminars, conferences and banquets. Compare room layouts and capacities below, including the 1,637 sqm grand ballroom listed for up to 2,300 guests in theatre style or 1,100 in banquet format. Final capacity depends on your event layout and production requirements.",
+      "Royal Phuket City Hotel is a Phuket meeting venue on Phang-Nga Road in Phuket Town, with 9 meeting rooms for boardroom discussions, seminars, conferences and banquets. The 1,637 sqm Grand Ballroom is listed for up to 2,300 guests in theatre seating. Compare the separate classroom, cocktail and banquet capacities below; final capacity depends on your layout and production requirements.",
     introP2:
-      "Whether it's a boardroom discussion or a multi-day conference, we offer customizable layouts, advanced audio-visual technology, and a dedicated planning team to make your event effortless and successful.",
+      "Plan your room layout, audiovisual requirements, catering and delegate accommodation with the events team. Send your date, agenda and attendee count to request a proposal specifying the spaces, equipment and services for your programme.",
     rooms: "Meeting Rooms",
     ballroom: "sqm Ballroom",
-    capacity: "Max Capacity",
+    capacity: "Theatre Capacity",
     parking: "Parking Spaces",
     requestLabel: "Request a Proposal",
     requestTitle: "Contact Our Events Team",
@@ -46,7 +46,7 @@ export const meetingPage = {
       {
         title: "State-of-the-Art Technology",
         description:
-          "HD projectors, LED walls, wireless presentation systems, and video conferencing capabilities in every room.",
+          "Discuss projectors, displays, microphones and presentation needs with the team. Confirm equipment availability, room suitability and charges for your event.",
       },
       {
         title: "Dedicated Event Team",
@@ -70,19 +70,19 @@ export const meetingPage = {
       "Royal Phuket City Hotel is proud to be recognized as a certified MICE Venue by the Thailand Convention & Exhibition Bureau (TCEB). With SHA and Green Hotel certifications, we are committed to providing a clean, safe, and environmentally responsible venue for your events.",
     whyChoose: "Why Choose Us?",
     whyItems: [
-      "Southern Thailand's largest indoor venue",
+      "1,637 sqm Grand Ballroom in Phuket Town",
       "27+ years of professional experience",
       "SHA & Green Hotel certified",
       "High-speed Wi-Fi, LED displays, and AV equipment",
-      "Flexible room configurations for 10 to 2,300 guests",
+      "Boardroom, classroom, theatre and banquet configurations",
       "On-site banquet, catering, tech, and security teams",
       "Over 350 parking spaces for guests",
     ],
     floorLabel: "Precision, Performance, Prestige",
     floorTitle: "Meetings & Banquet Room Capacity",
     floorP1:
-      "Meetings & Banquet Rooms at 2nd Floor are flexible to your conference and events depend from your capacity of guests. We can tailor made to any occasion and fulfill any requirement for a party of 10 to 2,300 guests with eleven banquets and meeting rooms. A big ballroom is suitable for your party, staff party and other celebrations. Our unique style is innovative, efficient and effective.",
-    floorP2: "Find out the capacity and dimensions of our state-of-the-art meeting room and banquet halls.",
+      "The meeting and banquet rooms are on the second floor. Compare individual rooms and combined configurations using the floor plan and capacity table. Combined-room rows represent alternative layouts, not additional rooms that can all be booked separately at the same time.",
+    floorP2: "Capacities differ by seating style and are a planning reference. A dash means no figure is listed. Confirm your final layout with the events team, allowing for staging, production equipment and catering space.",
     scroll: "← Scroll to see all columns",
     table: {
       name: "Name",
@@ -97,6 +97,7 @@ export const meetingPage = {
       buffet: "Buffet",
       setTable: "Set Table",
       sqm: "(Sq.m.)",
+      metres: "(m)",
       pax: "(Pax)",
     },
     equipLabel: "Crafted Events in a Custom Setting",
@@ -196,12 +197,12 @@ export const meetingPage = {
     introLabel: "จากห้องบอร์ดไปจนถึงงานเลี้ยงใหญ่ เราจัดได้ทั้งหมด",
     introTitle: "ศูนย์ประชุมและงานอีเวนต์ที่ใหญ่ในภูเก็ต",
     introP1:
-      "ที่โรงแรมรอยัล ภูเก็ต ซิตี้ เราให้มากกว่าห้องว่าง เราจัดประสบการณ์งานให้จบในที่เดียว ในฐานะสถานที่ในร่มที่ใหญ่ที่สุดในภาคใต้ มีห้องประชุมพร้อมใช้ 9 ห้อง รวมบอลรูม 1,637 ตร.ม. รองรับได้ถึง 2,300 ที่นั่งแบบเธียเตอร์ หรือ 1,100 ที่นั่งแบบโต๊ะจีน",
+      "โรงแรมรอยัล ภูเก็ต ซิตี้ ตั้งอยู่บนถนนพังงาในตัวเมืองภูเก็ต มีห้องประชุม 9 ห้องสำหรับการประชุม สัมมนา และงานเลี้ยง แกรนด์บอลรูมมีพื้นที่ 1,637 ตร.ม. รองรับสูงสุด 2,300 ท่านในผังเธียเตอร์ โปรดเปรียบเทียบความจุแบบคลาสเรียน ค็อกเทล และจัดเลี้ยงในตาราง โดยความจุจริงขึ้นอยู่กับผังและอุปกรณ์ของงาน",
     introP2:
       "ไม่ว่าจะเป็นการประชุมเล็กหรือคอนเฟอเรนซ์หลายวัน เราปรับผังห้องได้ มีระบบเสียงแสงทันสมัย และมีทีมวางแผนดูแลให้งานเดินลื่น",
     rooms: "ห้องประชุม",
     ballroom: "ตร.ม. บอลรูม",
-    capacity: "รองรับสูงสุด",
+    capacity: "ความจุผังเธียเตอร์",
     parking: "ที่จอดรถ",
     requestLabel: "ขอใบเสนอราคา",
     requestTitle: "คุยกับทีมงานอีเวนต์",
@@ -215,7 +216,7 @@ export const meetingPage = {
     services: [
       {
         title: "เทคโนโลยีพร้อมใช้",
-        description: "โปรเจกเตอร์ความละเอียดสูง ผนัง LED ระบบพรีเซนต์ไร้สาย และวิดีโอคอนเฟอเรนซ์ในทุกห้อง",
+        description: "แจ้งความต้องการโปรเจกเตอร์ จอ ไมโครโฟน และระบบนำเสนอ พร้อมยืนยันอุปกรณ์ที่พร้อมใช้ ความเหมาะสมกับห้อง และค่าใช้จ่ายกับทีมงาน",
       },
       {
         title: "ทีมงานเฉพาะงาน",
@@ -236,19 +237,19 @@ export const meetingPage = {
       "โรงแรมรอยัล ภูเก็ต ซิตี้ เป็นสถานที่จัดงานที่ได้รับการรับรองจากสำนักงานส่งเสริมการจัดประชุมและนิทรรศการ (TCEB) พร้อมมาตรฐาน SHA และโรงแรมสีเขียว เพื่อให้สถานที่สะอาด ปลอดภัย และรับผิดชอบต่อสิ่งแวดล้อม",
     whyChoose: "ทำไมต้องที่นี่",
     whyItems: [
-      "สถานที่ในร่มที่ใหญ่ที่สุดในภาคใต้",
+      "แกรนด์บอลรูมพื้นที่ 1,637 ตร.ม. ในตัวเมืองภูเก็ต",
       "ประสบการณ์จัดงานมืออาชีพกว่า 27 ปี",
       "มาตรฐาน SHA และโรงแรมสีเขียว",
       "ไวไฟความเร็วสูง จอ LED และระบบเสียงแสงครบ",
-      "ปรับห้องได้ตั้งแต่ 10 ถึง 2,300 ท่าน",
+      "ผังบอร์ดรูม คลาสเรียน เธียเตอร์ และจัดเลี้ยง",
       "ทีมจัดเลี้ยง ครัว ช่างเทคนิค และรักษาความปลอดภัยอยู่ในโรงแรม",
       "ที่จอดรถกว่า 350 คัน",
     ],
     floorLabel: "แม่นยำ พร้อมใช้ น่าเชื่อถือ",
     floorTitle: "ความจุห้องประชุมและห้องจัดเลี้ยง",
     floorP1:
-      "ห้องประชุมและห้องจัดเลี้ยงชั้น 2 ปรับตามจำนวนแขกได้ เรามี 11 ห้อง รองรับงาน 10 ถึง 2,300 ท่าน บอลรูมใหญ่เหมาะกับงานเลี้ยง งานปีใหม่บริษัท และงานฉลองอื่น ๆ จัดให้เข้ากับลักษณะงาน ไม่ยัดรูปแบบเดียวทุกเคส",
-    floorP2: "ดูขนาดห้องและความจุของห้องประชุมและห้องจัดเลี้ยงได้ด้านล่าง",
+      "ห้องประชุมและห้องจัดเลี้ยงอยู่บนชั้น 2 เปรียบเทียบห้องเดี่ยวและรูปแบบห้องที่เปิดรวมกันได้จากแผนผังและตารางความจุ แถวห้องรวมเป็นตัวเลือกการจัดพื้นที่ ไม่ใช่จำนวนห้องเพิ่มเติมที่จองแยกพร้อมกันได้ทั้งหมด",
+    floorP2: "ความจุแตกต่างกันตามผังที่นั่งและใช้เป็นข้อมูลวางแผนเบื้องต้น เครื่องหมายขีดหมายถึงไม่มีตัวเลขระบุ โปรดยืนยันผังสุดท้ายกับทีมงานโดยเผื่อพื้นที่เวที อุปกรณ์ และอาหาร",
     scroll: "← เลื่อนดูคอลัมน์ทั้งหมด",
     table: {
       name: "ชื่อห้อง",
@@ -263,6 +264,7 @@ export const meetingPage = {
       buffet: "บุฟเฟต์",
       setTable: "โต๊ะจีน",
       sqm: "(ตร.ม.)",
+      metres: "(ม.)",
       pax: "(ท่าน)",
     },
     equipLabel: "อุปกรณ์ครบ สำหรับงานที่ออกแบบเอง",

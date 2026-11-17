@@ -6,6 +6,8 @@ import HeroSection from "@/components/HeroSection";
 import SectionHeading from "@/components/SectionHeading";
 import MICEPhotoSlider from "@/components/MICEPhotoSlider";
 import EventInquiryForm from "@/components/EventInquiryForm";
+import VenuePlanningGuide from "@/components/VenuePlanningGuide";
+import { MEETING_PLANNING_GUIDE } from "@/lib/venue-planning-data";
 import { SITE_CONFIG } from "@/lib/constants";
 import { MICE_EVENT_TYPE_SLUGS } from "@/lib/mice-event-types-data";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -328,8 +330,8 @@ export default async function MeetingEventsPage() {
             </div>
             <div className="relative aspect-[4/3] img-hover">
               <Image
-                src="/images/HOTEL WEBSITE/MTG_MW_14_champagne_clink_closeup.jpg"
-                alt="Conference room"
+                src="/images/HOTEL WEBSITE/Ballroom.jpg"
+                alt="Grand Ballroom at Royal Phuket City Hotel in Phuket Town"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -338,6 +340,8 @@ export default async function MeetingEventsPage() {
           </div>
         </div>
       </section>
+
+      {locale === "en" && <VenuePlanningGuide guide={MEETING_PLANNING_GUIDE} />}
 
       {/* CTA - Request a Proposal */}
       <section className="py-16 md:py-20 bg-[#8B7355]/10">
@@ -475,7 +479,7 @@ export default async function MeetingEventsPage() {
       </section>
 
       {/* Meeting Rooms Floor Plan */}
-      <section className="py-20 md:py-28 bg-[--color-surface]">
+      <section id="floor-plan" className="py-20 md:py-28 bg-[--color-surface] scroll-mt-24">
         <div className="container mx-auto px-6">
           <SectionHeading
             label={t.floorLabel}
@@ -504,8 +508,9 @@ export default async function MeetingEventsPage() {
 
           {/* Meeting Room Capacities Table */}
           <p className="text-xs text-gray-400 mb-2 md:hidden">{t.scroll}</p>
-          <div className="overflow-x-auto">
+          <div id="room-capacities" className="overflow-x-auto scroll-mt-24">
             <table className="w-full min-w-[1000px]">
+              <caption className="sr-only">{t.floorTitle}</caption>
               {/* Header */}
               <thead>
                 <tr className="bg-[#8B7355] text-white">
@@ -516,7 +521,7 @@ export default async function MeetingEventsPage() {
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
                     <div>{t.table.height}</div>
-                    <div className="text-xs opacity-80">{t.table.sqm}</div>
+                    <div className="text-xs opacity-80">{t.table.metres}</div>
                   </th>
                   <th className="text-center py-4 px-4 text-sm font-normal">
                     <div>{t.table.classroom}</div>

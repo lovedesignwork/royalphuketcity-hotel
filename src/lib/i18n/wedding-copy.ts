@@ -13,14 +13,14 @@ export const weddingPage = {
       "Plan your wedding in Phuket at Royal Phuket City Hotel in Phuket Town. Explore ceremony options, catering and guest accommodation, then request a proposal.",
     heroTitle: "Wedding Venue in Phuket Town",
     heroSubtitle: "Wedding Venues",
-    heroDesc: "Flexible Packages, Personal Touches, and Total Freedom",
+    heroDesc: "Ceremonies, receptions, catering and guest accommodation in Phuket Town",
     introLabel: "Weddings at Royal Phuket City",
     introTitle: "Plan Your Wedding in Phuket",
     introBody:
       "Plan your wedding in Phuket at Royal Phuket City Hotel on Phang-Nga Road in Phuket Town. Bring your ceremony, reception, catering and guest accommodation together at one hotel. Explore Thai, Chinese, Western and other ceremony options below, then share your preferred date, guest count and dining plans with our wedding team for a proposal tailored to your celebration.",
     planLabel: "Start Planning Today",
     planTitle: "Contact Our Wedding Team",
-    planDesc: "Let our experienced wedding planners help you create your perfect day.",
+    planDesc: "Share your date, guest count and ceremony plans to request a wedding proposal.",
     inquiry: "Inquiry for Wedding",
     brochure: "Download Brochure",
     servicesLabel: "Full-Service Wedding Planning",
@@ -89,20 +89,20 @@ export const weddingPage = {
     allInLabel: "More Than Just a Wedding Venue",
     allInTitle: "All-in-One Wedding Service",
     allInBody:
-      "We offer full-service wedding planning with in-house chefs, floral designers, AV teams, and experienced consultants. You'll find it easy to plan your day, from the engagement ceremony to the after-party. Prefer your own suppliers? No problem - we're flexible too.",
+      "Plan ceremony and reception arrangements with the hotel wedding team, including catering, décor, audiovisual needs and guest accommodation. If you want to bring your own suppliers, discuss access, setup times and any conditions before confirming your arrangements.",
     allInItems: [
-      "Diverse menus to suit any cuisine and budget",
-      "Cost-saving, flexible bar service",
-      "Discounted hotel rates for out-of-town guests",
-      "One event at a time - our full attention is on you",
-      "Custom options available - your day, your way",
-      "We handle the details so you can relax and enjoy",
+      "Discuss menus, dining styles and dietary requirements",
+      "Request beverage options and an itemised quotation",
+      "Ask about room availability and rates for visiting guests",
+      "Confirm venue use, access times and privacy arrangements",
+      "Discuss décor, entertainment and outside supplier requirements",
+      "Agree the ceremony and reception schedule with the team",
     ],
     specialist: "Talk to Our Wedding Venue Specialist",
     lovedLabel: "Fully Customizable Spaces and Bespoke Wedding Packages",
     lovedTitle: "Phuket's Most Loved\nWedding Venue",
     lovedBody:
-      "Your wedding day should be as unique as your love story. From our exclusive 1600 sqm private ballroom to a stress-free planning process led by experienced consultants, we make sure every detail is perfect. Whether it's Thai or Chinese traditions, custom décor, or a specially crafted menu - everything is designed just for you.",
+      "The 1,637 sqm Grand Ballroom provides space to plan a ceremony and reception around your traditions, dining style and guest count. Discuss the placement of tables, stage, décor and dance floor with the wedding team, and confirm the final layout and venue-use arrangements in your proposal.",
     certLabel: "A New Standard for Weddings in Phuket",
     certTitle: "Certified Excellence",
     certBody:
@@ -137,7 +137,7 @@ export const weddingPage = {
       },
       {
         title: "Large-Scale Capacity",
-        desc: "We offer a large grand ballroom for up to 2,300 guests, plus 9-11 meeting and function rooms all on a single level - ideal for large celebrations, parallel sessions and breakouts. With over 27 years of experience, our dedicated team knows how to design and run smooth large-scale events.",
+        desc: "The hotel has 9 meeting rooms and a 1,637 sqm Grand Ballroom. The published maximum of 2,300 is for theatre seating; wedding reception capacity depends on your banquet layout, stage and other event requirements. Compare the room table and confirm your seating plan with the team.",
       },
       {
         title: "Ample Parking Spaces",
@@ -160,7 +160,7 @@ export const weddingPage = {
     miceLabel: "Planning a Corporate Event?",
     miceTitle: "Explore Our MICE Facilities",
     miceDesc:
-      "From boardroom briefings to grand galas, our 9 fully equipped meeting rooms and 1,637 sqm grand ballroom can host up to 2,300 guests with state-of-the-art technology.",
+      "Compare 9 meeting rooms and the 1,637 sqm Grand Ballroom for conferences, seminars and banquets. The ballroom is listed for up to 2,300 in theatre seating; capacities vary by layout.",
     miceCta: "Explore Meeting & Events",
     typeDream: "Your Dream",
     typeAtHotel: "at Royal Phuket City Hotel",
@@ -301,7 +301,7 @@ export const weddingPage = {
       "เมนูหลากหลาย เลือกตามงบและรสชาติได้",
       "บริการเครื่องดื่มยืดหยุ่น ประหยัดกว่าจัดเอง",
       "เรทห้องพิเศษสำหรับแขกต่างจังหวัด",
-      "จัดทีละงาน ให้ความใส่ใจเต็มที่",
+      "ยืนยันพื้นที่ใช้สอย เวลาเข้าจัดงาน และเงื่อนไขความเป็นส่วนตัว",
       "ปรับรายละเอียดได้ วันของคุณ แบบของคุณ",
       "เราจัดการรายละเอียด คุณได้ฉลองอย่างสบาย",
     ],
@@ -309,7 +309,7 @@ export const weddingPage = {
     lovedLabel: "ห้องจัดได้ตามแบบ และแพ็กเกจที่ตัดตามงาน",
     lovedTitle: "สถานที่จัดงานแต่ง\nที่คู่ภูเก็ตไว้ใจ",
     lovedBody:
-      "วันแต่งควรเป็นของคู่คุณจริง ๆ ห้องบอลรูมส่วนตัวกว่า 1,600 ตร.ม. และทีมที่ปรึกษาที่คุยงานให้จบ ไม่ต้องวิ่งหาทุกอย่างเอง ไม่ว่าจะพิธีไทย พิธีจีน ตกแต่งเฉพาะงาน หรือเมนูที่ออกแบบมาให้แขกของคุณ เราจัดตามนั้น",
+      "แกรนด์บอลรูมมีพื้นที่ 1,637 ตร.ม. ให้คุณวางแผนพิธีและงานเลี้ยงตามประเพณี รูปแบบอาหาร และจำนวนแขก ปรึกษาทีมงานเรื่องตำแหน่งโต๊ะ เวที ของตกแต่ง และฟลอร์เต้นรำ พร้อมยืนยันผังและเงื่อนไขการใช้สถานที่ในใบเสนอราคา",
     certLabel: "มาตรฐานใหม่ของงานแต่งในภูเก็ต",
     certTitle: "มาตรฐานที่ตรวจสอบได้",
     certBody:
@@ -344,7 +344,7 @@ export const weddingPage = {
       },
       {
         title: "รองรับงานใหญ่",
-        desc: "บอลรูมใหญ่รองรับได้ถึง 2,300 ท่าน และมีห้องประชุม 9-11 ห้องอยู่ชั้นเดียวกัน เหมาะกับงานใหญ่และกิจกรรมคู่ขนาน ทีมงานจัดงานขนาดใหญ่มาแล้วกว่า 27 ปี",
+        desc: "โรงแรมมีห้องประชุม 9 ห้องและแกรนด์บอลรูมพื้นที่ 1,637 ตร.ม. ความจุสูงสุด 2,300 ท่านเป็นผังเธียเตอร์ ความจุงานเลี้ยงแต่งงานขึ้นอยู่กับผังโต๊ะ เวที และพื้นที่กิจกรรม ควรดูตารางความจุและยืนยันผังกับทีมงาน",
       },
       {
         title: "ที่จอดรถเพียงพอ",
@@ -367,7 +367,7 @@ export const weddingPage = {
     miceLabel: "กำลังวางแผนงานองค์กร?",
     miceTitle: "ดูห้องประชุมและงานอีเวนต์",
     miceDesc:
-      "จากห้องบอร์ดไปจนถึงงานเลี้ยงใหญ่ ห้องประชุม 9 ห้องและบอลรูม 1,637 ตร.ม. รองรับได้ถึง 2,300 ท่าน พร้อมระบบเสียงแสงครบ",
+      "เปรียบเทียบห้องประชุม 9 ห้องและแกรนด์บอลรูมพื้นที่ 1,637 ตร.ม. สำหรับการประชุม สัมมนา และงานเลี้ยง บอลรูมรองรับสูงสุด 2,300 ท่านในผังเธียเตอร์ โดยความจุแตกต่างกันตามผังห้อง",
     miceCta: "ดูห้องประชุมและงานอีเวนต์",
     typeDream: "งานในแบบที่คุณอยากได้",
     typeAtHotel: "ที่โรงแรมรอยัล ภูเก็ต ซิตี้",
