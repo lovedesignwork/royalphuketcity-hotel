@@ -3,13 +3,17 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 export const brands = {
   hotel: { name: 'Royal Phuket City Hotel', prefix: 'RPC', color: '#333333', tint: '#F7F4EF', logoBackground: '#333333' },
   yanlong: { name: 'Yan Long', prefix: 'YL', color: '#861D50', tint: '#FBF3F7', logoBackground: '#861D50' },
-  twist: { name: 'TWIST Rooftop Restaurant & Bar', prefix: 'TW', color: '#7C3AED', tint: '#F6F2FC', logoBackground: '#7C3AED' },
+  twist: { name: 'TWIST Rooftop Restaurant & Bar', prefix: 'TW', color: '#7C3AED', tint: '#F6F2FC', logoBackground: '#7C3AED', senderName: 'TWIST Rooftop', senderIcon: 'twist-avatar.png' },
   spa: { name: 'Royal Wellness Spa', prefix: 'RWS', color: '#F5F0E6', tint: '#F8F4E9', headerText: '#594829' },
 };
 const text = (value, options = {}) => ({ type: 'text', text: String(value ?? '') || 'Not provided', size: 'sm', color: '#202937', wrap: true, ...options });
 const box = (contents, options = {}) => ({ type: 'box', layout: 'vertical', contents, ...options });
 const label = (value) => text(value.toUpperCase(), { size: 'xxs', color: '#78818C' });
 const titleCase = (value) => String(value).replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+export function inquiryBrand(job) {
+  // The hotel contact form can explicitly address TWIST. Never guess from guest prose.
+  return job.brand === 'hotel' && job.source_table === 'contact_submissions' && job.row_snapshot.inquiry_type === 'twist' ? 'twist' : job.brand;
+}
 export function phoneCountry(value) {
   const number = String(value || '').trim().replace(/^00/, '+');
   // Do not infer a country for local, incomplete or non-geographic numbers.
@@ -34,7 +38,7 @@ function chunks(value, length = 1400) {
   return result;
 }
 export function inquiryDetails(job) {
-  const brand = brands[job.brand];
+  const brand = brands[inquiryBrand(job)];
   if (!brand) throw new Error('unknown-brand');
   const r = job.row_snapshot;
   const reservation = job.source_table.endsWith('_reservations') || r.form_type === 'reservation';
@@ -57,9 +61,10 @@ export function inquiryDetails(job) {
 }
 export function inquiryLineMessage(job, assetBase) {
   const d = inquiryDetails(job);
+  const brandKey = inquiryBrand(job);
   if (!/^https:\/\//.test(assetBase)) throw new Error('invalid-logo-url');
   const messageChunks = chunks(d.message);
-  const logo = box([{ type: 'image', url: `${assetBase.replace(/\/$/, '')}/${job.brand}.png`, size: 'full', aspectRatio: job.brand === 'yanlong' || job.brand === 'twist' ? '4:1' : '5:2', aspectMode: 'fit' }], { width: '126px', flex: 0, ...(d.brand.logoBackground ? { backgroundColor: d.brand.logoBackground, cornerRadius: '4px' } : {}) });
+  const logo = box([{ type: 'image', url: `${assetBase.replace(/\/$/, '')}/${brandKey}.png`, size: 'full', aspectRatio: brandKey === 'yanlong' || brandKey === 'twist' ? '4:1' : '5:2', aspectMode: 'fit' }], { width: '126px', flex: 0, ...(d.brand.logoBackground ? { backgroundColor: d.brand.logoBackground, cornerRadius: '4px' } : {}) });
   const header = box([logo, box([
     text('NEW REQUEST', { size: 'xxs', color: d.brand.headerText || '#FFFFFF', align: 'end' }),
     text(d.reference, { size: 'xs', color: d.brand.headerText || '#FFFFFF', weight: 'bold', align: 'end' }),
@@ -72,6 +77,8 @@ export function inquiryLineMessage(job, assetBase) {
   ], { spacing: 'xl', paddingAll: '22px' });
   const bubbles = [{ type: 'bubble', size: 'giga', header, body }, ...messageChunks.slice(1).map((chunk, i) => ({ type: 'bubble', size: 'giga', body: box([label(d.brand.name), text(`${d.reference} · note ${i + 2}/${messageChunks.length}`, { weight: 'bold' }), text(chunk)], { paddingAll: '22px', spacing: 'lg' }) }))];
   const result = { type: 'flex', altText: `${d.brand.name} · ${d.category} · ${d.name}`.slice(0, 400), contents: bubbles.length === 1 ? bubbles[0] : { type: 'carousel', contents: bubbles } };
+  // Override the shared bot's message identity, without renaming the account for other brands.
+  if (d.brand.senderName) result.sender = { name: d.brand.senderName, iconUrl: `${assetBase.replace(/\/$/, '')}/${d.brand.senderIcon}` };
   if (bubbles.length > 12 || new TextEncoder().encode(JSON.stringify(result.contents)).length > (bubbles.length === 1 ? 30000 : 50000)) throw new Error('message-too-large');
   return result;
 }

@@ -186,6 +186,7 @@ export default function ContactForm() {
               <option value="corporate">{t.form.event}</option>
               <option value="wedding">{t.form.wedding}</option>
               <option value="dining">{t.nav.dining}</option>
+              <option value="twist">{t.nav.twist}</option>
               <option value="feedback">{t.form.feedback}</option>
             </select>
             <svg

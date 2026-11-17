@@ -36,6 +36,46 @@ test('TWIST names, booking fields, unpaid spa status and Bangkok dates map corre
   const spa = inquiryDetails(job('spa','spa_reservations',{payment_status:'pending',amount:1200,service:'Thai Massage'}));
   assert.ok(spa.details.some(([k,v])=>k==='Payment' && v==='Pending'));
 });
+test('TWIST contact and reservations use the TWIST sender, logo and violet palette', async () => {
+  const { inquiryLineMessage } = await load('line-message.mjs');
+  for (const form_type of ['contact', 'reservation']) {
+    for (const message of ['Please contact me.', 'Long guest note. '.repeat(200)]) {
+      const result = inquiryLineMessage(job('twist', 'twist_inquiries', { form_type, message }), base + '/');
+      assert.deepEqual(result.sender, { name: 'TWIST Rooftop', iconUrl: `${base}/twist-avatar.png` });
+      assert.ok(result.sender.name.length <= 20);
+      assert.ok(result.altText.startsWith('TWIST Rooftop Restaurant & Bar ·'));
+      assert.ok(!JSON.stringify(result).includes('Royal Phuket City Hotel'));
+      const card = result.contents.type === 'carousel' ? result.contents.contents[0] : result.contents;
+      assert.equal(card.header.backgroundColor, '#7C3AED');
+      assert.equal(card.header.contents[0].contents[0].url, `${base}/twist.png`);
+      assert.equal(card.body.contents[1].backgroundColor, '#F6F2FC');
+    }
+  }
+  for (const brand of ['hotel', 'yanlong', 'spa']) {
+    assert.equal(inquiryLineMessage(job(brand), base).sender, undefined);
+  }
+});
+test('TWIST sender icon meets LINE PNG, square and size requirements', async () => {
+  const fs = require('node:fs');
+  const bytes = fs.readFileSync(path.resolve(__dirname, '../public/images/line/twist-avatar.png'));
+  const meta = await require('sharp')(bytes).metadata();
+  assert.equal(meta.format, 'png');
+  assert.equal(meta.width, meta.height);
+  assert.ok(bytes.length < 1024 * 1024);
+});
+test('explicit hotel-form TWIST inquiries get TWIST branding without guessing from guest text', async () => {
+  const { inquiryLineMessage, inquiryBrand } = await load('line-message.mjs');
+  const addressed = job('hotel', 'contact_submissions', { inquiry_type: 'twist' });
+  assert.equal(inquiryBrand(addressed), 'twist');
+  const message = inquiryLineMessage(addressed, base);
+  assert.equal(message.sender.name, 'TWIST Rooftop');
+  assert.equal(message.contents.header.backgroundColor, '#7C3AED');
+  assert.ok(JSON.stringify(message).includes(`${base}/twist.png`));
+  assert.ok(JSON.stringify(message).includes('TW-12345678'));
+  const general = job('hotel', 'contact_submissions', { inquiry_type: 'reservation', message: 'Hotel room booking, perhaps dinner at TWIST too.' });
+  assert.equal(inquiryBrand(general), 'hotel');
+  assert.equal(inquiryLineMessage(general, base).sender, undefined);
+});
 test('long multilingual guest notes survive in continuation cards with valid limits', async () => {
   const { inquiryLineMessage } = await load('line-message.mjs');
   const note = 'สวัสดี 🌺\n'.repeat(950);
