@@ -6,7 +6,7 @@ import { isMobileAppAlias, isMobileAppPath, isMobileHost } from "@/lib/mobile";
 function hideDesktopChrome(pathname: string): boolean {
   // Admin has its own navigation and main landmark. Keep the public site's
   // hidden links out of the keyboard order and accessibility tree.
-  if (pathname === "/admin" || pathname.startsWith("/admin/")) return true;
+  if (pathname === "/internalreport" || pathname === "/admin" || pathname.startsWith("/admin/")) return true;
   if (isMobileAppPath(pathname) || isMobileAppAlias(pathname)) return true;
   if (typeof window !== "undefined" && isMobileHost(window.location.host)) {
     return true;

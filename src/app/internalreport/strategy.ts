@@ -1,0 +1,152 @@
+export const keywordGroups = [
+  {
+    title: "Venue and 2027 packages",
+    note: "Capture couples comparing venues and ready to ask about a date, space or package.",
+    items: [
+      {
+        target: "Phuket Town wedding venue",
+        terms: ["phuket town wedding venue", "phuket wedding venues", "wedding venue phuket", "wedding in phuket", "สถานที่จัดงานแต่งงาน ภูเก็ต", "โรงแรมจัดงานแต่งงาน ภูเก็ต"],
+        path: "/wedding-venues",
+        action: "Keep the hub as the primary venue page. Put Phuket Town, guest accommodation, venue choices and the proposal CTA together above the fold.",
+      },
+      {
+        target: "Hotel ballroom and Grand Ballroom",
+        terms: ["hotel wedding venue phuket", "hotel ballroom wedding phuket", "grand ballroom wedding phuket"],
+        path: "/wedding-venues#wedding-planning",
+        action: "Give the ballroom a dedicated section with Events-approved seated capacities, floor plan, stage and dance-floor options. Link to the published function-room specifications.",
+      },
+      {
+        target: "2027 packages and all-inclusive intent",
+        terms: ["phuket wedding packages", "phuket wedding packages 2027", "all inclusive wedding packages phuket", "แพ็กเกจแต่งงาน ภูเก็ต"],
+        path: "/wedding-venues",
+        action: "Add an approved 2027 package section with date validity, inclusions, exclusions, minimum guests, taxes and service charges, and a proposal CTA. Define what ‘all-inclusive’ covers before using the label.",
+      },
+    ],
+  },
+  {
+    title: "Cultural weddings and banquets",
+    note: "Use the existing ceremony pages to answer specific planning questions and pass the chosen ceremony into the enquiry.",
+    items: [
+      {
+        target: "Chinese wedding banquet and tea ceremony",
+        terms: ["chinese wedding banquet phuket", "tea ceremony venue phuket", "พิธียกน้ำชา ภูเก็ต"],
+        path: "/wedding-venues/chinese-wedding",
+        action: "Show tea ceremony setup, banquet menus or sample courses, table layouts and how families can combine events. Link to Yan Long where relevant.",
+      },
+      {
+        target: "LGBTQ+ and same-sex weddings",
+        terms: ["lgbtq wedding phuket", "same sex wedding phuket"],
+        path: "/wedding-venues/lgbtq-wedding",
+        action: "Show inclusive planning options, ceremony layouts and consented event photos. Describe venue services and direct registration questions to official resources.",
+      },
+      {
+        target: "Muslim weddings and nikah",
+        terms: ["muslim wedding phuket", "nikah venue phuket"],
+        path: "/wedding-venues/muslim-wedding",
+        action: "Explain confirmed nikah setup, private space, catering arrangements and any outside partners. Have the events team confirm dietary and certification claims.",
+      },
+      {
+        target: "Thai wedding ceremony",
+        terms: ["thai wedding phuket"],
+        path: "/wedding-venues/thai-wedding",
+        action: "Show which ceremony elements the hotel can arrange, expected timing and optional reception formats. Link the enquiry to this ceremony.",
+      },
+      {
+        target: "Western wedding ceremony",
+        terms: ["western wedding phuket"],
+        path: "/wedding-venues/western-wedding",
+        action: "Show a sample ceremony-to-dinner schedule, celebrant arrangements, seating and a plan for rain where applicable.",
+      },
+      {
+        target: "Engagement ceremony",
+        terms: ["engagement ceremony phuket"],
+        path: "/wedding-venues/engagement-ceremony",
+        action: "Show ceremony-only and ceremony-plus-meal options, with a confirmed guest range and a direct proposal CTA.",
+      },
+    ],
+  },
+  {
+    title: "Intimate weddings and evening after-parties",
+    note: "Answer venue-fit questions early, particularly for couples planning dinner and a separate evening celebration.",
+    items: [
+      {
+        target: "Rooftop venue and intimate receptions",
+        terms: ["phuket rooftop wedding venue", "intimate wedding venue phuket", "rooftop wedding reception phuket"],
+        path: "/wedding-venues#wedding-planning",
+        action: "Show seated and standing capacities, accessibility, photos of reception layouts and a weather fallback. Link to TWIST for venue context.",
+      },
+      {
+        target: "Evening wedding after-party",
+        terms: ["wedding after party phuket", "evening wedding after party venue phuket"],
+        path: "/twist-rooftop-restaurant-bar",
+        action: "Add a wedding after-party enquiry path from TWIST and the wedding hub. Confirm buyout terms, service hours, music limits and wet-weather arrangements with Events.",
+      },
+    ],
+  },
+];
+
+export const audit = [
+  {
+    priority: "P0",
+    title: "Make it easier to ask for a proposal",
+    evidence: "The hub already links to the enquiry form. The form requires a partner name, phone, country and exact date alongside name and email. The guest slider defaults to 100 and spans 20–2,300 in steps of 10.",
+    action: "Ask first for name, email, a date or ‘still deciding’, and a guest estimate. Make secondary details optional, keep the selected venue or ceremony, and use the shared numeric stepper for accurate counts. Align API validation and keep the reference-number confirmation.",
+    check: "Complete the flow on mobile with keyboard input and confirm the sales inbox receives one enquiry with the correct venue and date status.",
+    path: "/wedding-venues#wedding-inquiry",
+    owner: "Web + Events",
+  },
+  {
+    priority: "P0",
+    title: "Make the ballroom capacity clear",
+    evidence: "The meeting capacity table lists the Grand Ballroom at 2,300 theatre, 2,000 cocktail, 600 buffet banquet and 1,000 set-menu banquet. The Thai wedding page says ‘up to 2,300 guests’ without naming the layout, and the enquiry slider also reaches 2,300.",
+    action: "Carry the Events-approved figures and a link to the capacity table into wedding materials. Identify how stages and dance floors affect seated capacity, and align the enquiry hints with the selected venue.",
+    check: "Compare each published number against the Events capacity sheet and verify the ballroom and Thai ceremony pages agree.",
+    path: "/wedding-venues/thai-wedding",
+    owner: "Events + Web",
+  },
+  {
+    priority: "P0",
+    title: "Answer 2027 package questions before the form",
+    evidence: "The website offers a guide to comparing proposals, and the hub offers a general fact-sheet link. Couples still need specific 2027 terms to compare the hotel’s offer.",
+    action: "Publish approved 2027 package details in HTML near the proposal CTA, including dates, guest bands, catering, room-block terms, extras and payment timing. Offer a wedding-specific brochure as a secondary action.",
+    check: "Have Events verify the copy and confirm the package and brochure CTAs preserve enquiry context.",
+    path: "/compare-phuket-wedding-packages",
+    owner: "Events + Marketing",
+  },
+  {
+    priority: "P1",
+    title: "Give each ceremony page a clear local purpose",
+    evidence: "Screaming Frog found all six ceremony pages indexable and self-canonical. Their titles and H1s currently name the ceremony without a Phuket location. Source review found a screen-reader-only keyword list on these pages.",
+    action: "Use natural Phuket Town wording and add visible details about setup, menus, timing and verified real events. Remove the hidden keyword list and link from relevant guides and venues to the matching ceremony.",
+    check: "Re-crawl titles, H1s and canonicals. Review Google Search Console query-to-page alignment after the release.",
+    path: "/wedding-venues/chinese-wedding",
+    owner: "Marketing + Web",
+  },
+  {
+    priority: "P1",
+    title: "Connect TWIST with the wedding enquiry",
+    evidence: "TWIST has its own restaurant page and the wedding hub promotes an after-party. The restaurant and wedding uses warrant clear, distinct booking paths.",
+    action: "Add verified private-event details and a ‘Request an after-party proposal’ link from both pages. Carry the after-party interest into the wedding form and provide a venue contact fallback.",
+    check: "Verify both entry points on mobile and confirm restaurant bookings and wedding proposals reach their intended teams.",
+    path: "/twist-rooftop-restaurant-bar",
+    owner: "Events + TWIST + Web",
+  },
+  {
+    priority: "P1",
+    title: "Measure enquiries through to a tour",
+    evidence: "The form already invokes the wedding-success analytics helper after a successful response. This review did not send a live enquiry or reconcile event counts with the sales inbox.",
+    action: "Use the existing generate_lead event with form_id=wedding, add proposal CTA and form-start events, and keep a weekly count of qualified enquiries, tours and confirmed bookings. Record landing page, venue and ceremony without sending names, email or phone to analytics.",
+    check: "Reconcile one controlled successful submission with analytics and the inbox. Track proposal clicks, completion rate and qualified enquiries by landing page.",
+    path: "/wedding-venues#wedding-inquiry",
+    owner: "Analytics + Events",
+  },
+  {
+    priority: "P2",
+    title: "Review legacy search landing pages",
+    evidence: "Serpstat still returns legacy www wedding URLs and Phuket wedding fair terms from 2020–2021. The crawl confirms the current wedding hub’s clean, self-canonical URL.",
+    action: "Check the old URLs and incoming links. Redirect only genuine equivalents, and guide visitors from useful archived pages to the current wedding proposal. Use canonical URLs in all new links.",
+    check: "Validate final status, redirect chains and Google-selected canonicals before and after publication.",
+    path: "/wedding-venues",
+    owner: "Web + SEO",
+  },
+];

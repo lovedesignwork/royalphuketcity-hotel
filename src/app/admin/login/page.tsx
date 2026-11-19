@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const from = searchParams.get("from") || "/admin";
   const errorParam = searchParams.get("error");
@@ -38,7 +37,7 @@ function LoginForm() {
 
     // Hard navigation so the middleware re-checks admin_users with the
     // newly written cookies.
-    window.location.href = from.startsWith("/admin") ? from : "/admin";
+    window.location.href = from === "/internalreport" || from.startsWith("/admin") ? from : "/admin";
   };
 
   return (

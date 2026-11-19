@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
         ],
       },
       { source: "/admin/:path*", headers: noindex },
+      { source: "/internalreport", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       { source: "/m/:path*", headers: noindex },
       { source: "/:path*", has: [{ type: "host" as const, value: "m\\.royalphuketcity\\.com" }], headers: noindex },
       ...(!SHOW_LANGUAGE_SWITCHER ? [{ source: "/th/:path*", headers: noindex }] : []),

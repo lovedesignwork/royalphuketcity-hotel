@@ -1,0 +1,90 @@
+[
+  {
+    "path": "/wedding-venues",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues",
+    "title": "Wedding Venue in Phuket Town | Royal Phuket City Hotel",
+    "h1": "Wedding Venue in Phuket Town"
+  },
+  {
+    "path": "/wedding-venues/engagement-ceremony",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues/engagement-ceremony",
+    "title": "Engagement Ceremony | Royal Phuket City Hotel",
+    "h1": "Engagement Ceremony"
+  },
+  {
+    "path": "/wedding-venues/thai-wedding",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues/thai-wedding",
+    "title": "Thai Wedding | Royal Phuket City Hotel",
+    "h1": "Thai Wedding"
+  },
+  {
+    "path": "/wedding-venues/chinese-wedding",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues/chinese-wedding",
+    "title": "Chinese Wedding | Royal Phuket City Hotel",
+    "h1": "Chinese Wedding"
+  },
+  {
+    "path": "/wedding-venues/muslim-wedding",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues/muslim-wedding",
+    "title": "Muslim Wedding | Royal Phuket City Hotel",
+    "h1": "Muslim Wedding"
+  },
+  {
+    "path": "/wedding-venues/western-wedding",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues/western-wedding",
+    "title": "Western Wedding | Royal Phuket City Hotel",
+    "h1": "Western Wedding"
+  },
+  {
+    "path": "/wedding-venues/lgbtq-wedding",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/wedding-venues/lgbtq-wedding",
+    "title": "LGBTQ+ Wedding | Royal Phuket City Hotel",
+    "h1": "LGBTQ+ Wedding"
+  },
+  {
+    "path": "/meeting-events",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/meeting-events",
+    "title": "Phuket Meeting Venue | Royal Phuket City Hotel",
+    "h1": "Phuket Meeting Venue & Conference Rooms"
+  },
+  {
+    "path": "/twist-rooftop-restaurant-bar",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/twist-rooftop-restaurant-bar",
+    "title": "TWIST Rooftop Restaurant & Bar | Royal Phuket City Hotel",
+    "h1": "TWIST Rooftop Restaurant & Bar"
+  },
+  {
+    "path": "/download-fact-sheets",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/download-fact-sheets",
+    "title": "Hotel Brochures & Fact Sheets | Royal Phuket City Hotel",
+    "h1": "Downloads"
+  },
+  {
+    "path": "/phuket-wedding-guest-information",
+    "status": 200,
+    "indexable": "Indexable",
+    "canonical": "https://royalphuketcity.com/phuket-wedding-guest-information",
+    "title": "Preparing Guest Information for a Phuket Wedding | Royal Phuket City Hotel",
+    "h1": "Preparing Guest Information for a Phuket Wedding"
+  }
+]

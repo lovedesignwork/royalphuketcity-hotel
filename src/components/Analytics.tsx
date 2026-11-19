@@ -76,7 +76,7 @@ export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isAdmin = /^\/(?:th\/)?admin(?:\/|$)/.test(pathname);
+  const isAdmin = pathname === "/internalreport" || /^\/(?:th\/)?admin(?:\/|$)/.test(pathname);
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [desktopMeasurementId, setDesktopMeasurementId] = useState<string>();
   const fallbackId = normalizeAnalyticsId(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);

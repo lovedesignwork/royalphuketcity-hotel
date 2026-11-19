@@ -110,6 +110,37 @@ test("canonical mobile-host admin requests redirect to desktop authentication", 
   assert.equal(response.headers.get("location"), "https://royalphuketcity.com/api/admin/blog?page=2");
 });
 
+test("the wedding report uses admin authorization and keeps responses private", async () => {
+  const anonymous = await harness().run("/internalreport");
+  const login = new URL(anonymous.headers.get("location"));
+  assert.equal(login.pathname, "/admin/login");
+  assert.equal(login.searchParams.get("from"), "/internalreport");
+  assert.equal(anonymous.headers.get("x-middleware-next"), null);
+
+  const nonAdmin = await harness({ user: { id: "guest-user" } }).run("/internalreport");
+  assert.equal(new URL(nonAdmin.headers.get("location")).searchParams.get("error"), "not-admin");
+
+  const staff = harness({ user: { id: "staff-user" }, admin: { id: "staff-user", role: "admin" } });
+  const allowed = await staff.run("/internalreport?market=US&view=ai");
+  assert.equal(allowed.headers.get("x-middleware-next"), "1");
+  assert.equal(allowed.headers.get("cache-control"), "private, no-store");
+  assert.equal((await staff.run("/admin/login?from=%2Finternalreport")).headers.get("location"), "https://royalphuketcity.com/internalreport");
+});
+
+test("the report's locale and mobile-host entry points canonicalize before routing", async () => {
+  const env = harness();
+  for (const [route, host] of [
+    ["/th/internalreport?view=ai", "royalphuketcity.com"],
+    ["/th/internalreport?view=ai", "m.royalphuketcity.com"],
+    ["/internalreport?view=ai", "m.royalphuketcity.com"],
+  ]) {
+    const result = await env.run(route, "GET", host);
+    assert.equal(result.headers.get("location"), "https://royalphuketcity.com/internalreport?view=ai");
+    assert.equal(result.headers.get("x-middleware-rewrite"), null);
+  }
+  assert.equal(env.sessionChecks, 0);
+});
+
 test("public APIs and localized public pages keep working", async () => {
   const env = harness();
   const api = await env.run("/api/contact", "POST");

@@ -56,7 +56,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  if (pathname === "/th/admin" || pathname.startsWith("/th/admin/")) {
+  if (pathname === "/th/internalreport" || pathname === "/th/admin" || pathname.startsWith("/th/admin/")) {
     const destination = new URL(
       `${stripLocalePrefix(pathname)}${request.nextUrl.search}`,
       mobileHost ? "https://royalphuketcity.com" : request.url
@@ -64,7 +64,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(destination, 308);
   }
 
-  const isAdminPage = pathname === "/admin" || pathname.startsWith("/admin/");
+  const isInternalReport = pathname === "/internalreport";
+  const isAdminPage = isInternalReport || pathname === "/admin" || pathname.startsWith("/admin/");
   const isAdminApi = pathname === "/api/admin" || pathname.startsWith("/api/admin/");
   const isLoginPage = pathname === "/admin/login";
   const isLogoutApi = pathname === "/api/admin/auth/logout";
@@ -181,7 +182,8 @@ export async function middleware(request: NextRequest) {
         .maybeSingle();
 
       if (adminRow) {
-        return NextResponse.redirect(new URL("/admin", request.url));
+        const from = request.nextUrl.searchParams.get("from");
+        return NextResponse.redirect(new URL(from === "/internalreport" ? from : "/admin", request.url));
       }
     }
     return response;
@@ -217,6 +219,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (isInternalReport) response.headers.set("Cache-Control", "private, no-store");
   return response;
 }
 
