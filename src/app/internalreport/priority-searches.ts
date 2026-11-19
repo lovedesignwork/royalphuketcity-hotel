@@ -4,6 +4,16 @@ type SearchGroup = {
   queries: ReadonlyArray<readonly [query: string, page?: string]>;
 };
 
+export const chromeRankingChecks = [
+  {
+    market: "TH",
+    query: "phuket town hotel",
+    position: 6,
+    url: "https://royalphuketcity.com/phuket-old-town-hotel",
+    checkedOn: "2026-11-20",
+  },
+];
+
 export const prioritySearches: readonly SearchGroup[] = [
   {
     title: "Hotel stays",

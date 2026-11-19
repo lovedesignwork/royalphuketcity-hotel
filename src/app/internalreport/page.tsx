@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import crawl from "./crawl-snapshot.json";
 import priorityMetrics from "./priority-search-metrics.json";
-import { prioritySearches } from "./priority-searches";
+import { chromeRankingChecks, prioritySearches } from "./priority-searches";
 import snapshot from "./search-snapshot.json";
 import { audit, keywordGroups } from "./strategy";
 import s from "./report.module.css";
@@ -45,6 +45,7 @@ const mapsReports = [
   ["wedding in phuket", "https://app.localfalcon.com/reports/view/6533713d2fb0f20"],
 ];
 const number = new Intl.NumberFormat("en");
+const shortDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
 const thMetrics: Record<string, { volume: number }> = snapshot.metrics.TH;
 const usMetrics: Record<string, { volume: number; difficulty: number | null }> = snapshot.metrics.US;
 const uberVolumes: Record<string, number> = {
@@ -59,6 +60,7 @@ type Market = (typeof snapshot.markets)[number];
 type RankingRow = {
   query: string;
   position?: number;
+  checkedOn?: string;
   checkedThrough?: number;
   url?: string;
   targetPage?: string;
@@ -95,7 +97,10 @@ function SearchResults({ rows, title }: { rows: RankingRow[]; title: string }) {
           const positionLabel = row.position !== undefined ? `#${row.position}` : row.checkedThrough ? `No match in top ${row.checkedThrough}` : "Unverified";
           return (
             <tr key={`${row.query}-${row.url ?? row.targetPage}-${row.position}`} role="row">
-              <td role="cell" className={s.position}><span className={s.mobileLabel} aria-hidden="true">Google · </span>{positionLabel}</td>
+              <td role="cell" className={s.position}>
+                <span className={s.mobileLabel} aria-hidden="true">Google · </span>{positionLabel}
+                {row.checkedOn && <small>Chrome check · <time dateTime={row.checkedOn}>{shortDate.format(new Date(row.checkedOn))}</time></small>}
+              </td>
               <th scope="row" role="rowheader">
                 <span dir="auto">{row.query}</span>
                 <a href={row.url ?? row.targetPage}>{pageLabel}</a>
@@ -110,7 +115,7 @@ function SearchResults({ rows, title }: { rows: RankingRow[]; title: string }) {
   );
 }
 
-function PriorityResults({ market }: { market: Market }) {
+function PriorityResults({ market, chromeChecks }: { market: Market; chromeChecks: RankingRow[] }) {
   const ranked = new Map<string, Market["rows"][number]>();
   for (const row of market.rows) {
     const query = row.query.toLowerCase();
@@ -119,11 +124,11 @@ function PriorityResults({ market }: { market: Market }) {
   }
 
   return <>
-    <p className={s.tableNote}>{marketNames[market.market]} · 20 Nov 2026. “Unverified” means the available data gives no position for that exact wording. “No match in top” refers to the results Serpstat returned for that query.</p>
+    <p className={s.tableNote}>{marketNames[market.market]} · 20 Nov 2026. Positions come from Serpstat or a labelled Google search in Chrome. “No match in top” refers to the results Serpstat returned for that query.</p>
     {prioritySearches.map((group) => {
       const rows = group.queries.map(([query, targetPage = group.page]): RankingRow => {
         const keyword = query.toLowerCase();
-        const rank = ranked.get(keyword);
+        const rank = chromeChecks.find((row) => row.query === keyword) ?? ranked.get(keyword);
         if (rank) return { ...rank, query };
         const demand = priorityDemand[market.market]?.[keyword];
         const previousVolume = market.market === "TH" ? thMetrics[keyword]?.volume : market.market === "US" ? usMetrics[keyword]?.volume : undefined;
@@ -149,9 +154,11 @@ function PriorityResults({ market }: { market: Market }) {
 
 function RankingTable({ marketCode, mode }: { marketCode: string; mode: string }) {
   const market = snapshot.markets.find((entry) => entry.market === marketCode) ?? snapshot.markets[0];
-  const rows = market.rows.filter((row) => {
+  const chromeChecks = chromeRankingChecks.filter((row) => row.market === market.market);
+  const measurements = mode === "ranked" ? [...market.rows, ...chromeChecks].sort((a, b) => a.position - b.position) : market.rows;
+  const rows = measurements.filter((row) => {
     if (mode === "wedding") return weddingPattern.test(row.query) || row.url.includes("/wedding");
-    if (mode === "ai") return row.ai === "url" || row.ai === "domain";
+    if (mode === "ai") return "ai" in row && (row.ai === "url" || row.ai === "domain");
     return row.position <= 10;
   });
 
@@ -166,8 +173,8 @@ function RankingTable({ marketCode, mode }: { marketCode: string; mode: string }
         <a key={value} href={`?market=${market.market}&view=${value}#rankings`} aria-current={mode === value ? "true" : undefined}>{label}</a>
       ))}
     </nav>
-    {mode === "top" ? <PriorityResults market={market} /> : <>
-      <p className={s.tableNote}>{rows.length} {rows.length === 1 ? "result" : "results"} · {marketNames[market.market]} · Serpstat snapshot retrieved 20 Nov 2026.</p>
+    {mode === "top" ? <PriorityResults market={market} chromeChecks={chromeChecks} /> : <>
+      <p className={s.tableNote}>{rows.length} {rows.length === 1 ? "result" : "results"} · {marketNames[market.market]} · 20 Nov 2026. Chrome checks are labelled in the table.</p>
       {rows.length ? <SearchResults rows={rows} title={`${marketNames[market.market]} search rankings`} /> : <p className={s.empty}>Serpstat returned no non-branded results for this view in {marketNames[market.market]}.</p>}
     </>}
     <p className={s.tableNote}>Serpstat returned positions through 100 for Thailand and the US, and through 10 for the UK. Ranked pages reflect the URLs returned by Serpstat, including older URLs.</p>
@@ -296,6 +303,7 @@ export default async function InternalReport({ searchParams }: { searchParams: P
           <SectionHeading title="Sources and crawl coverage">Measurements are dated snapshots. Google rank, Maps grid visibility, AI citations and lead conversion describe different outcomes.</SectionHeading>
           <ul className={s.sources}>
             <li><strong>Serpstat</strong> · 20 Nov. Domain rankings and exact-query estimates for Thailand, the UK and the US. The report shows non-branded results relevant to the hotel’s audience. <a href="https://serpstat.com/">Serpstat</a></li>
+            <li><strong>Google Search in Chrome</strong> · 20 Nov. A manual check counted organic web results for “Phuket Town Hotel” in one Thailand browser session. Positions may vary by search location and session. <a href="https://www.google.com/search?q=phuket+town+hotel">View Google search</a></li>
             <li><strong>Ubersuggest</strong> · 20 Nov. The available Thailand/Thai keyword overview showed 70 searches/month, SEO difficulty 23 and ฿39.74 CPC for “wedding venue phuket.” Logged-out access limited the additional data. <a href={uberUrl}>Keyword overview</a></li>
             <li><strong>Screaming Frog</strong> · 20 Nov. Focused 11-URL crawl plus live content and source review. All 11 returned HTTP 200 and were indexable and self-canonical. <Link href="/wedding-venues" prefetch={false}>Live wedding hub</Link></li>
             <li><strong>Local Falcon</strong> · 17 Nov Maps baselines and 20 Nov ChatGPT and Gemini prompt samples. <a href="https://app.localfalcon.com/reports">Scan history</a></li>
