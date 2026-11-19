@@ -1,0 +1,23 @@
+{
+  "TH": {
+    "meeting room phuket": { "volume": 90, "overview": false },
+    "wedding banquet venues": { "volume": 10, "overview": false },
+    "wedding venues in phuket thailand": { "volume": 10, "overview": false }
+  },
+  "UK": {
+    "hotel in phuket town": { "volume": 110, "overview": false, "checkedThrough": 20 },
+    "wedding banquet venues": { "volume": 10, "overview": false },
+    "wedding venues in phuket thailand": { "volume": 10, "overview": false },
+    "best hotel in phuket town": { "volume": 10, "overview": false, "checkedThrough": 20 },
+    "phuket town hotel": { "volume": 110, "overview": false, "checkedThrough": 19 }
+  },
+  "US": {
+    "best hotel in phuket town": { "volume": 10, "overview": false },
+    "hotel in phuket town": { "volume": 210, "overview": false },
+    "the best hotel in phuket town": { "volume": 1, "overview": false },
+    "wedding venue phuket": { "volume": 170, "overview": false, "checkedThrough": 18 },
+    "wedding banquet venues": { "volume": 110, "overview": false },
+    "wedding venues in phuket thailand": { "volume": 10, "overview": true },
+    "phuket town hotel": { "volume": 210, "overview": false }
+  }
+}

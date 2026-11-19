@@ -67,6 +67,8 @@
 .controls a { display: inline-flex; align-items: center; padding: 0.35rem 0.72rem; min-height: 2.3rem; border: 1px solid var(--line); border-radius: 0.3rem; text-decoration: none; font-size: 0.84rem; font-weight: 600; }
 .controls a:hover { background: var(--panel); }
 .controls a[aria-current="true"] { background: var(--dark); border-color: var(--dark); color: #fff4e8; }
+.searchGroup { margin-top: 1.7rem; }
+.searchGroup h3 { margin-bottom: 0.6rem; }
 .rankTable { text-align: start; width: 100%; table-layout: fixed; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .rankTable thead { background: var(--panel); color: var(--muted); }
 .rankTable :is(th, td) { padding: 0.72rem 0.8rem; text-align: start; vertical-align: top; }
@@ -78,6 +80,7 @@
 .rankTable tbody a { display: block; font-weight: 400; font-size: 0.81rem; }
 .position { color: var(--accent); font-weight: 700; }
 .volume, .citation { color: var(--muted); }
+.volume small { display: block; font-size: 0.75rem; }
 .mobileLabel { display: none; }
 .empty { padding: 0.9rem 1rem; background: var(--panel); }
 .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem clamp(1rem, 4vw, 3.5rem); }

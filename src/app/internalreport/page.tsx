@@ -4,6 +4,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import crawl from "./crawl-snapshot.json";
+import priorityMetrics from "./priority-search-metrics.json";
+import { prioritySearches } from "./priority-searches";
 import snapshot from "./search-snapshot.json";
 import { audit, keywordGroups } from "./strategy";
 import s from "./report.module.css";
@@ -24,7 +26,8 @@ const sections = [
 ];
 const marketNames: Record<string, string> = { TH: "Thailand", UK: "United Kingdom", US: "United States" };
 const modes = [
-  ["top", "Top 10"],
+  ["top", "Priority searches"],
+  ["ranked", "Top 10"],
   ["wedding", "Wedding terms"],
   ["ai", "AI citations"],
 ];
@@ -52,10 +55,20 @@ const uberVolumes: Record<string, number> = {
   "wedding phuket packages": 40,
   "best wedding venue phuket": 10,
 };
+type Market = (typeof snapshot.markets)[number];
+type RankingRow = {
+  query: string;
+  position?: number;
+  checkedThrough?: number;
+  url?: string;
+  targetPage?: string;
+  volume?: number;
+  volumeSource?: string;
+  ai?: string;
+};
+const priorityDemand: Record<string, Record<string, { volume: number; overview: boolean; checkedThrough?: number }>> = priorityMetrics;
 const weddingPattern = /wedding|marry|แต่ง\s*งาน|เว\s*ด\s*ดิ้\s*ง|หมั้น|น้ำชา|nikah/i;
-const topCount = snapshot.markets.reduce((sum, market) => sum + market.rows.filter((row) => row.position <= 10).length, 0);
 const thaiRows = snapshot.markets.find((market) => market.market === "TH")!.rows;
-const thaiTopCount = thaiRows.filter((row) => row.position <= 10).length;
 const thaiCitationCount = thaiRows.filter((row) => row.ai === "url" || row.ai === "domain").length;
 
 function SectionHeading({ title, children }: { title: string; children: React.ReactNode }) {
@@ -69,6 +82,69 @@ function Demand({ term }: { term: string }) {
     usMetrics[term] && `US ${number.format(usMetrics[term].volume)}${usMetrics[term].difficulty == null ? "" : ` (KD ${usMetrics[term].difficulty})`}`,
   ].filter(Boolean);
   return evidence.length ? <small>{evidence.join(" / ")}</small> : <small>No data returned</small>;
+}
+
+function SearchResults({ rows, title }: { rows: RankingRow[]; title: string }) {
+  return (
+    <table className={s.rankTable} role="table" aria-label={title}>
+      <thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Google position</th><th role="columnheader" scope="col">Search query and page</th><th role="columnheader" scope="col">Est. searches/mo</th><th role="columnheader" scope="col">Google AI Overview</th></tr></thead>
+      <tbody role="rowgroup">
+        {rows.map((row) => {
+          const pathname = row.url ? new URL(row.url).pathname : row.targetPage;
+          const pageLabel = row.url ? (pathname === "/" ? "Homepage" : pathname) : `Target page · ${pathname}`;
+          const positionLabel = row.position !== undefined ? `#${row.position}` : row.checkedThrough ? `No match in top ${row.checkedThrough}` : "Unverified";
+          return (
+            <tr key={`${row.query}-${row.url ?? row.targetPage}-${row.position}`} role="row">
+              <td role="cell" className={s.position}><span className={s.mobileLabel} aria-hidden="true">Google · </span>{positionLabel}</td>
+              <th scope="row" role="rowheader">
+                <span dir="auto">{row.query}</span>
+                <a href={row.url ?? row.targetPage}>{pageLabel}</a>
+              </th>
+              <td role="cell" className={s.volume}>{row.volume === undefined ? "No estimate" : number.format(row.volume)}{row.volume !== undefined && <span className={s.mobileLabel} aria-hidden="true"> est. searches/mo</span>}{row.volumeSource && <small>{row.volumeSource}</small>}</td>
+              <td role="cell" className={s.citation}><span className={s.mobileLabel} aria-hidden="true">AI Overview · </span>{row.ai ? aiLabels[row.ai] : "Unverified"}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+function PriorityResults({ market }: { market: Market }) {
+  const ranked = new Map<string, Market["rows"][number]>();
+  for (const row of market.rows) {
+    const query = row.query.toLowerCase();
+    const current = ranked.get(query);
+    if (!current || row.position < current.position) ranked.set(query, row);
+  }
+
+  return <>
+    <p className={s.tableNote}>{marketNames[market.market]} · 20 Nov 2026. “Unverified” means the available data gives no position for that exact wording. “No match in top” refers to the results Serpstat returned for that query.</p>
+    {prioritySearches.map((group) => {
+      const rows = group.queries.map(([query, targetPage = group.page]): RankingRow => {
+        const keyword = query.toLowerCase();
+        const rank = ranked.get(keyword);
+        if (rank) return { ...rank, query };
+        const demand = priorityDemand[market.market]?.[keyword];
+        const previousVolume = market.market === "TH" ? thMetrics[keyword]?.volume : market.market === "US" ? usMetrics[keyword]?.volume : undefined;
+        const serpstatVolume = demand?.volume ?? previousVolume;
+        const ubersuggest = market.market === "TH" && serpstatVolume === undefined ? uberVolumes[keyword] : undefined;
+        return {
+          query,
+          targetPage,
+          checkedThrough: demand?.checkedThrough,
+          volume: serpstatVolume ?? ubersuggest,
+          volumeSource: ubersuggest === undefined ? undefined : "Ubersuggest",
+          ai: demand ? (demand.overview ? "shown" : "none") : undefined,
+        };
+      });
+
+      return <div className={s.searchGroup} key={group.title}>
+        <h3>{group.title}</h3>
+        <SearchResults rows={rows} title={`${group.title} searches in ${marketNames[market.market]}`} />
+      </div>;
+    })}
+  </>;
 }
 
 function RankingTable({ marketCode, mode }: { marketCode: string; mode: string }) {
@@ -90,29 +166,11 @@ function RankingTable({ marketCode, mode }: { marketCode: string; mode: string }
         <a key={value} href={`?market=${market.market}&view=${value}#rankings`} aria-current={mode === value ? "true" : undefined}>{label}</a>
       ))}
     </nav>
-    <p className={s.tableNote}>
-      {rows.length} result {rows.length === 1 ? "row" : "rows"} · {marketNames[market.market]} · Serpstat snapshot retrieved 20 Nov 2026.
-      {" "}Repeat queries can have multiple ranking URLs. Traffic and volumes can overlap across variants.
-    </p>
-    {rows.length ? (
-      <table className={s.rankTable} role="table" aria-label={`${marketNames[market.market]} search rankings`}>
-        <thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Google</th><th role="columnheader" scope="col">Query and ranking URL</th><th role="columnheader" scope="col">Est. searches/mo</th><th role="columnheader" scope="col">Google AI Overview</th></tr></thead>
-        <tbody role="rowgroup">
-          {rows.map((row) => (
-            <tr key={`${row.query}-${row.url}-${row.position}`} role="row">
-              <td role="cell" className={s.position}><span className={s.mobileLabel} aria-hidden="true">Google </span>#{row.position}</td>
-              <th scope="row" role="rowheader">
-                <span dir="auto">{row.query}</span>
-                <a href={row.url}>{row.url.replace("https://", "")}</a>
-              </th>
-              <td role="cell" className={s.volume}>{number.format(row.volume)}<span className={s.mobileLabel} aria-hidden="true"> est. searches/mo</span></td>
-              <td role="cell" className={s.citation}><span className={s.mobileLabel} aria-hidden="true">AI Overview · </span>{aiLabels[row.ai]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    ) : <p className={s.empty}>Serpstat returned no rows for this view in {marketNames[market.market]}.</p>}
-    <p className={s.tableNote}>UK coverage is limited to top-10 rows. The Thailand and US views also include wedding and citation signals from the full returned top-100 datasets. Older www URLs can reflect earlier crawl or ranking states.</p>
+    {mode === "top" ? <PriorityResults market={market} /> : <>
+      <p className={s.tableNote}>{rows.length} {rows.length === 1 ? "result" : "results"} · {marketNames[market.market]} · Serpstat snapshot retrieved 20 Nov 2026.</p>
+      {rows.length ? <SearchResults rows={rows} title={`${marketNames[market.market]} search rankings`} /> : <p className={s.empty}>Serpstat returned no non-branded results for this view in {marketNames[market.market]}.</p>}
+    </>}
+    <p className={s.tableNote}>Serpstat returned positions through 100 for Thailand and the US, and through 10 for the UK. Ranked pages reflect the URLs returned by Serpstat, including older URLs.</p>
   </>;
 }
 
@@ -154,7 +212,7 @@ export default async function InternalReport({ searchParams }: { searchParams: P
           </nav>
           <div className={s.summary}>
             <h2>Start with the proposal journey</h2>
-            <p>Give the wedding hub a clear 2027 offer, surface the ballroom’s seated banquet capacities, and make the first enquiry easier to complete. Thailand has {thaiTopCount} tracked top-10 organic rows overall and zero wedding rows in that tier. The strongest wedding row is <strong>#15</strong> for “wedding banquet venues.” The two historical wedding Maps scans each show <strong>0% top-three coverage</strong>.</p>
+            <p>Give the wedding hub a clear 2027 offer, surface the ballroom’s seated banquet capacities, and make the first enquiry easier to complete. The Thailand snapshot shows <strong>#15</strong> for “wedding banquet venues” and <strong>#19</strong> for “meeting room phuket.” The two historical wedding Maps scans each show <strong>0% top-three coverage</strong>.</p>
           </div>
         </div>
 
@@ -182,7 +240,7 @@ export default async function InternalReport({ searchParams }: { searchParams: P
         </section>
 
         <section className={`${s.container} ${s.section}`} id="rankings">
-          <SectionHeading title="Google organic rankings">Review all {topCount} position 1–10 rows returned across Thailand, the UK and the US. Use Wedding terms to see the current wedding opportunities, including positions outside the top 10.</SectionHeading>
+          <SectionHeading title="Google organic rankings">See what travelers, event planners and couples search for when choosing a hotel or venue in Phuket. Switch markets to compare available positions and search estimates for non-branded queries.</SectionHeading>
           <RankingTable marketCode={params.market ?? "TH"} mode={mode} />
         </section>
 
@@ -199,7 +257,7 @@ export default async function InternalReport({ searchParams }: { searchParams: P
             </div>
             <div>
               <h3>Google AI Overviews · Serpstat</h3>
-              <p>{thaiCitationCount} Thailand keyword/URL rows carry a hotel-domain or exact-URL citation signal. The returned Thailand wedding rows carry zero citation signals.</p>
+              <p>{thaiCitationCount} non-branded results in the Thailand snapshot carry a hotel-domain or exact-URL citation signal. The returned Thailand wedding results carry zero citation signals.</p>
               <p>Open <a href="?market=TH&view=ai#rankings">Thailand AI citations</a> or <a href="?market=US&view=ai#rankings">US AI citations</a> to see the query, organic Google position, and AI citation type. Serpstat’s citation flags carry no numeric citation order.</p>
               <p className={s.tableNote}><a href="https://developers.google.com/search/docs/appearance/ai-features">Google’s AI features documentation</a> explains how sources vary by query and answer.</p>
             </div>
@@ -237,7 +295,7 @@ export default async function InternalReport({ searchParams }: { searchParams: P
         <section className={`${s.container} ${s.section}`} id="sources">
           <SectionHeading title="Sources and crawl coverage">Measurements are dated snapshots. Google rank, Maps grid visibility, AI citations and lead conversion describe different outcomes.</SectionHeading>
           <ul className={s.sources}>
-            <li><strong>Serpstat</strong> · 20 Nov. Thailand 95 and US 32 domain-ranking rows through position 100, plus 21 UK top-10 rows. Keyword volumes were checked against the Thailand and US databases. <a href="https://serpstat.com/">Serpstat</a></li>
+            <li><strong>Serpstat</strong> · 20 Nov. Domain rankings and exact-query estimates for Thailand, the UK and the US. The report shows non-branded results relevant to the hotel’s audience. <a href="https://serpstat.com/">Serpstat</a></li>
             <li><strong>Ubersuggest</strong> · 20 Nov. The available Thailand/Thai keyword overview showed 70 searches/month, SEO difficulty 23 and ฿39.74 CPC for “wedding venue phuket.” Logged-out access limited the additional data. <a href={uberUrl}>Keyword overview</a></li>
             <li><strong>Screaming Frog</strong> · 20 Nov. Focused 11-URL crawl plus live content and source review. All 11 returned HTTP 200 and were indexable and self-canonical. <Link href="/wedding-venues" prefetch={false}>Live wedding hub</Link></li>
             <li><strong>Local Falcon</strong> · 17 Nov Maps baselines and 20 Nov ChatGPT and Gemini prompt samples. <a href="https://app.localfalcon.com/reports">Scan history</a></li>
