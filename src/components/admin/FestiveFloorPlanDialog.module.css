@@ -1,0 +1,73 @@
+.dialog {
+  width: min(56rem, calc(100vw - 1.5rem));
+  max-height: calc(100dvh - 1.5rem);
+  inset: 0;
+  margin: auto;
+  border: 1px solid #e8e7e2;
+  border-radius: 14px;
+  background: #faf9f6;
+  color: #292b28;
+  overflow: auto;
+}
+
+.dialog[open] { display: flex; flex-direction: column; }
+.dialog::backdrop { background: rgb(28 24 18 / 65%); }
+
+.header, .tools {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem clamp(.75rem, 2.5vw, 1.25rem);
+  border-bottom: 1px solid #e8e7e2;
+}
+
+.header { align-items: flex-start; }
+.tools { align-items: center; flex-wrap: wrap; }
+.muted { margin-top: .2rem; color: #565851; font-size: .8rem; }
+
+.iconButton, .refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 44px;
+  padding-inline: .65rem;
+  border: 1px solid #d9d6cd;
+  border-radius: 8px;
+  background: white;
+  font-size: .8rem;
+  flex: none;
+}
+
+.iconButton { width: 44px; }
+.iconButton:hover, .refresh:hover { background: #f3f1ed; }
+
+.legend { display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .8rem; }
+.legend li { display: inline-flex; align-items: center; gap: .4rem; }
+.key { width: .7rem; height: .7rem; flex: none; border: 1px solid #607b47; border-radius: 2px; background: #a6c190; }
+.key[data-status="booked"] { border-color: #a22328; background: #e84a4f; }
+.key[data-status="held"] { border: 2px dashed #a22328; background: #f8c5c6; }
+.key[data-status="pending"] { border: 2px dashed #84622d; background: #f3e0b8; }
+
+.selection, .message { padding: .6rem clamp(.75rem, 2.5vw, 1.25rem); font-size: .82rem; }
+.selection { min-height: 2.3rem; }
+.message { color: #69463e; }
+.viewport { min-height: 10rem; overflow: auto; overscroll-behavior: contain; background: #000; }
+.plan { position: relative; isolation: isolate; min-width: 34rem; }
+.plan img { display: block; width: 100%; height: auto; }
+
+.table { position: absolute; border-radius: 3px; }
+.table[data-status="available"] { outline: 1px solid #a6c190; }
+.table[data-status="booked"] { outline: 2px solid #ff5358; }
+.table[data-status="held"] { outline: 2px dashed #ff797d; }
+.table:is([data-status="booked"], [data-status="held"])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #ff5358;
+  mix-blend-mode: color;
+}
+.table[data-status="pending"] { outline: 2px dashed #ffda8d; }
+.table:hover, .table[aria-pressed="true"] { box-shadow: 0 0 0 3px #fff; }
+.dialog .table:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }

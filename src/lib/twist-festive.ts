@@ -25,16 +25,31 @@ export function isStaffSource(value: unknown): value is StaffSource {
 
 export type FestiveTable = { table_id: string; zone: string; capacity: number };
 
+export const twistOrigin = "https://twistphuket.com";
+
+export type FestiveFloorPlan = {
+  image: { src: string; width: number; height: number };
+  coordinates: { width: number; height: number };
+  tables: { id: string; bounds: [number, number, number, number] }[];
+};
+
 export type EventBooking = {
   id: string;
   table_id: string;
   status: "pending" | "paid" | "staff_confirmed";
-  guests: number;
-  guest_name: string;
+  guests: number | null;
+  guest_name: string | null;
   guest_email: string | null;
   guest_phone: string | null;
   staff_source: StaffSource | null;
   staff_notes: string | null;
 };
 
-export type FestiveBookings = { tables: FestiveTable[]; bookings: EventBooking[] };
+export type FestiveBookings = { tables: FestiveTable[]; bookings: EventBooking[]; floorPlan: FestiveFloorPlan | null };
+
+export function festiveTableStatus(booking: EventBooking | undefined) {
+  if (!booking) return "Available";
+  if (booking.staff_source === "house") return "Held by staff";
+  if (booking.status === "pending") return "Payment pending";
+  return "Booked";
+}

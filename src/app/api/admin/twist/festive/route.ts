@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
-import { festiveEvents, isFestiveEvent, isStaffSource } from "@/lib/twist-festive";
+import { festiveEvents, isFestiveEvent, isStaffSource, twistOrigin, type FestiveFloorPlan } from "@/lib/twist-festive";
 
 const bookingsTable = "twist_festive_bookings";
 const tableCatalog = "twist_festive_table_catalog";
@@ -31,6 +31,21 @@ function isSameOrigin(request: NextRequest) {
   return origin === request.nextUrl.origin && request.headers.get("sec-fetch-site") !== "cross-site";
 }
 
+async function readFloorPlan(): Promise<FestiveFloorPlan | null> {
+  try {
+    const response = await fetch(twistOrigin + "/api/festive/floor-plan", {
+      next: { revalidate: 3600 }, signal: AbortSignal.timeout(3000),
+    });
+    if (!response.ok) return null;
+    const plan = await response.json() as FestiveFloorPlan;
+    if (!plan.image?.src?.startsWith("/festive/") || !plan.image.width || !plan.image.height ||
+        !plan.coordinates?.width || !plan.coordinates.height || !Array.isArray(plan.tables)) return null;
+    return plan;
+  } catch {
+    return null;
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const auth = await authorize();
@@ -39,14 +54,15 @@ export async function GET(request: NextRequest) {
     if (!isFestiveEvent(eventId)) return json({ error: "Choose a listed event." }, 400);
 
     const db = createServiceRoleClient();
-    const [tables, bookings] = await Promise.all([
+    const [tables, bookings, floorPlan] = await Promise.all([
       db.from(tableCatalog).select("table_id,zone,capacity").order("position"),
       db.from(bookingsTable).select(bookingColumns).eq("event_id", eventId)
         .in("status", ["pending", "paid", "staff_confirmed"]),
+      readFloorPlan(),
     ]);
     const error = tables.error ?? bookings.error;
     if (error) return failed(error, "Could not load tables. Please retry.");
-    return json({ tables: tables.data, bookings: bookings.data });
+    return json({ tables: tables.data, bookings: bookings.data, floorPlan });
   } catch {
     return json({ error: "Could not load tables. Please retry." }, 503);
   }
@@ -60,15 +76,19 @@ export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => null);
     const eventId: unknown = body?.event;
     const source: unknown = body?.source;
+    const isHold = source === "house";
     const name = typeof body?.name === "string" ? body.name.trim() : "";
     const phone = typeof body?.phone === "string" ? body.phone.trim() : "";
     const notes = typeof body?.notes === "string" ? body.notes.trim() : "";
+    const guests = isHold ? null : body?.guests;
     if (!isFestiveEvent(eventId) || !isStaffSource(source) ||
         typeof body.table !== "string" || !/^[OABCD][1-8]$/.test(body.table) ||
-        !Number.isInteger(body.guests) || body.guests < 1 || body.guests > 4 ||
-        name.length < 2 || name.length > 100 || notes.length > 1000 ||
-        (phone !== "" && (!/^\+[1-9]\d{6,14}$/.test(phone) || !isValidPhoneNumber(phone)))) {
-      return json({ error: "Check the event, table, guest details and booking source." }, 400);
+        notes.length > 1000 || (!isHold && (
+          !Number.isInteger(guests) || guests < 1 || guests > 4 || name.length < 2 || name.length > 100 ||
+          (phone !== "" && (!/^\+[1-9]\d{6,14}$/.test(phone) || !isValidPhoneNumber(phone)))
+        ))) {
+      return json({ error: isHold ? "Choose a valid event and table, and keep notes within 1,000 characters." :
+        "Check the event, table, guest details and booking source." }, 400);
     }
 
     const event = festiveEvents[eventId];
@@ -76,24 +96,24 @@ export async function POST(request: NextRequest) {
     const { data: table, error: tableError } = await db.from(tableCatalog)
       .select("capacity").eq("table_id", body.table).maybeSingle();
     if (tableError) return failed(tableError, "Could not check the table. Please retry.");
-    if (!table || body.guests > table.capacity) {
-      return json({ error: "Choose a table that fits the party." }, 400);
+    if (!table || (!isHold && guests > table.capacity)) {
+      return json({ error: isHold ? "Select a valid table." : "Choose a table that fits the party." }, 400);
     }
 
     const { data, error } = await db.from(bookingsTable).insert({
       event_id: eventId,
       event_date: event.date,
       table_id: body.table,
-      guests: body.guests,
-      guest_name: name,
-      guest_phone: phone || null,
+      guests,
+      guest_name: isHold ? null : name,
+      guest_phone: isHold ? null : phone || null,
       status: "staff_confirmed",
       staff_source: source,
       staff_created_by: auth.adminId,
       staff_notes: notes || null,
       checkout_key: crypto.randomUUID(),
     }).select(bookingColumns).single();
-    if (error?.code === "23505") return json({ error: "That table is already booked or has a payment pending. Choose another table." }, 409);
+    if (error?.code === "23505") return json({ error: "That table is unavailable. Choose another table." }, 409);
     if (error) return failed(error, "Could not save the table booking. Please retry.");
     return json({ booking: data }, 201);
   } catch {

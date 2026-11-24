@@ -1,17 +1,19 @@
 "use client";
 
-import { ArrowClockwise } from "@phosphor-icons/react";
+import { ArrowClockwise, MapTrifold } from "@phosphor-icons/react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import CountryPhoneSelector from "@/components/CountryPhoneSelector";
 import { NumberStepper } from "@/components/ui/NumberStepper";
 import { StyledSelect } from "@/components/ui/StyledSelect";
+import { FestiveFloorPlanDialog } from "./FestiveFloorPlanDialog";
 import { festiveEvents, isFestiveEvent, staffSources, type EventBooking, type FestiveBookings as BookingData, type FestiveEventId } from "@/lib/twist-festive";
 
 const endpoint = "/api/admin/twist/festive";
 const eventOptions = Object.entries(festiveEvents).map(([value, { name, dateLabel }]) => ({
   value, label: `${name} · ${dateLabel}`,
 }));
-const sourceOptions = Object.entries(staffSources).map(([value, label]) => ({ value, label }));
+const sourceOptions = Object.entries(staffSources).filter(([value]) => value !== "house").map(([value, label]) => ({ value, label }));
+const actionOptions = [{ value: "booking", label: "Staff booking" }, { value: "hold", label: "Hold table" }];
 const input = "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm";
 const label = "mb-1.5 block text-xs font-medium text-gray-600";
 const button = "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-gray-300 px-3 text-sm font-medium hover:bg-[#f3f1ed]";
@@ -29,7 +31,6 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
 
 export default function FestiveBookings() {
   const [event, setEvent] = useState<FestiveEventId>("christmas26");
-  const [working, setWorking] = useState(false);
 
   return <div className="admin-overview [overflow-wrap:anywhere]">
     <header className="admin-page-heading">
@@ -38,18 +39,14 @@ export default function FestiveBookings() {
         <p>See who has each table and reserve tables for bookings taken by staff.</p>
       </div>
     </header>
-    <div className="mb-6 max-w-sm">
-      <StyledSelect label="Event" value={event} options={eventOptions} disabled={working}
-        onChange={(next) => { if (isFestiveEvent(next)) setEvent(next); }} />
-    </div>
-    <a className="mb-4 inline-flex min-h-11 items-center text-sm font-semibold text-[#6d573e] underline xl:hidden" href="#festive-create-heading">Add a staff booking</a>
-    <EventDesk key={event} event={event} working={working} setWorking={setWorking} />
+    <EventDesk key={event} event={event} onEventChange={setEvent} />
   </div>;
 }
 
-function EventDesk({ event, working, setWorking }: {
-  event: FestiveEventId; working: boolean; setWorking: (value: boolean) => void;
+function EventDesk({ event, onEventChange }: {
+  event: FestiveEventId; onEventChange: (event: FestiveEventId) => void;
 }) {
+  const [working, setWorking] = useState(false);
   const [data, setData] = useState<BookingData | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -58,13 +55,16 @@ function EventDesk({ event, working, setWorking }: {
   const [notice, setNotice] = useState("");
   const [refresh, setRefresh] = useState(0);
   const [tableId, setTableId] = useState("");
+  const [action, setAction] = useState("booking");
   const [guests, setGuests] = useState(2);
   const [source, setSource] = useState("phone");
   const [phone, setPhone] = useState("");
   const [releasing, setReleasing] = useState<EventBooking | null>(null);
   const listHeading = useRef<HTMLHeadingElement>(null);
+  const floorPlanDialog = useRef<HTMLDialogElement>(null);
+  const isHold = action === "hold";
   const occupied = new Set(data?.bookings.map((booking) => booking.table_id));
-  const tableOptions = (data?.tables ?? []).filter((table) => table.capacity >= guests && !occupied.has(table.table_id))
+  const tableOptions = (data?.tables ?? []).filter((table) => (isHold || table.capacity >= guests) && !occupied.has(table.table_id))
     .map((table) => ({ value: table.table_id, label: `Table ${table.table_id} · ${table.zone} · ${table.capacity} seats` }));
   const availableTable = tableOptions.some(({ value }) => value === tableId);
 
@@ -93,14 +93,15 @@ function EventDesk({ event, working, setWorking }: {
     try {
       const { booking } = await request<{ booking: EventBooking }>(endpoint, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ event, table: tableId, name: fields.get("guestName"),
-          notes: fields.get("notes"), guests, phone: source === "house" ? "" : phone, source }),
+        body: JSON.stringify({ event, table: tableId, notes: fields.get("notes"),
+          ...(isHold ? { source: "house" } : { source, name: fields.get("guestName"), guests, phone }) }),
       });
       setData((current) => current && { ...current, bookings: [...current.bookings, booking] });
       form.reset();
       setPhone("");
       setTableId("");
-      setNotice(`Table ${booking.table_id} is booked for ${booking.guest_name}.`);
+      setNotice(isHold ? `Table ${booking.table_id} is on hold and unavailable online.` :
+        `Table ${booking.table_id} is booked for ${booking.guest_name}.`);
     } catch (error) {
       setFormError(error instanceof Error ? error.message : "Could not save the booking.");
     } finally {
@@ -132,6 +133,22 @@ function EventDesk({ event, working, setWorking }: {
   }
 
   return <>
+    <div className="mb-6 flex flex-wrap items-end gap-3">
+      <div className="w-full min-w-0 max-w-sm sm:w-auto sm:grow">
+        <StyledSelect label="Event" value={event} options={eventOptions} disabled={working}
+          onChange={(next) => { if (isFestiveEvent(next)) onEventChange(next); }} />
+      </div>
+      <button type="button" className={button} aria-haspopup="dialog" aria-controls="festive-floor-plan"
+        disabled={working} onClick={() => {
+          if (!loading) setRefresh((value) => value + 1);
+          floorPlanDialog.current?.showModal();
+        }}>
+        <MapTrifold size={18} aria-hidden="true" /> Open floor plan
+      </button>
+    </div>
+    <FestiveFloorPlanDialog dialogRef={floorPlanDialog} event={event} data={data} loading={loading} loadError={loadError}
+      onRefresh={() => setRefresh((value) => value + 1)} />
+    <a className="mb-4 inline-flex min-h-11 items-center text-sm font-semibold text-[#6d573e] underline xl:hidden" href="#festive-create-heading">Book or hold a table</a>
     {notice && <p className="mb-4 text-sm font-medium text-emerald-800" role="status">{notice}</p>}
     {loadError && <div className="admin-error mb-4" role="alert"><span>{loadError}</span>
       <button type="button" onClick={() => setRefresh((value) => value + 1)} disabled={loading}>Retry</button>
@@ -140,7 +157,7 @@ function EventDesk({ event, working, setWorking }: {
       <section className="min-w-0 self-start rounded-xl border border-gray-200" aria-labelledby="festive-list-heading" aria-busy={loading}>
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 sm:px-5">
           <div className="min-w-0">
-            <h2 id="festive-list-heading" ref={listHeading} tabIndex={-1} className="font-semibold">Table bookings</h2>
+            <h2 id="festive-list-heading" ref={listHeading} tabIndex={-1} className="font-semibold">Table bookings and holds</h2>
             {data && <p className="mt-1 text-xs text-gray-600">{data.tables.length - occupied.size} tables available out of {data.tables.length}</p>}
           </div>
           <button type="button" className={button} disabled={loading || working} onClick={() => setRefresh((value) => value + 1)}>
@@ -148,21 +165,22 @@ function EventDesk({ event, working, setWorking }: {
           </button>
         </div>
         {loading && !data && <p role="status" className="p-5 text-sm text-gray-600">Loading table bookings…</p>}
-        {data && !data.bookings.length && <p className="p-5 text-sm text-gray-600">No tables booked for this event yet.</p>}
+        {data && !data.bookings.length && <p className="p-5 text-sm text-gray-600">No bookings or holds for this event yet.</p>}
         {data && data.bookings.length > 0 && <ul role="list" className="divide-y divide-gray-200">
           {data.tables.map((table) => {
             const booking = data.bookings.find(({ table_id }) => table_id === table.table_id);
             if (!booking) return null;
+            const isHeld = booking.staff_source === "house";
             const status = booking.status === "paid" ? "Paid" :
               booking.status === "pending" ? "Payment pending" : "Booked by staff";
             return <li key={booking.id} className="min-w-0 px-4 py-4 sm:px-5">
               <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3 gap-y-2 sm:gap-x-5">
                 <div><p className="font-semibold">Table {table.table_id}</p><p className="text-xs text-gray-600">{table.zone}</p></div>
                 <div>
-                  <p className="font-semibold">{booking.guest_name}</p>
-                  <p className="mt-1 text-xs text-gray-600">
+                  <p className="font-semibold">{isHeld ? "Held by staff" : booking.guest_name}</p>
+                  {!isHeld && <p className="mt-1 text-xs text-gray-600">
                     {booking.guests} {booking.guests === 1 ? "guest" : "guests"} · {booking.staff_source ? staffSources[booking.staff_source] : "Online"} · {status}
-                  </p>
+                  </p>}
                   {(booking.guest_phone || booking.guest_email) && <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs">
                     {booking.guest_phone && <a className="underline" href={`tel:${booking.guest_phone}`}>{booking.guest_phone}</a>}
                     {booking.guest_email && <a className="underline" href={`mailto:${booking.guest_email}`}>{booking.guest_email}</a>}
@@ -174,7 +192,7 @@ function EventDesk({ event, working, setWorking }: {
                     <p className="text-sm">Release table {table.table_id} and make it available online?</p>
                     {releaseError && <p role="alert" className="mt-2 text-sm text-red-800">{releaseError}</p>}
                     <div className="mt-2 flex flex-wrap gap-2">
-                      <button type="button" className={button} disabled={working} onClick={() => setReleasing(null)}>Keep booking</button>
+                      <button type="button" className={button} disabled={working} onClick={() => setReleasing(null)}>{isHeld ? "Keep hold" : "Keep booking"}</button>
                       <button type="button" className={primary} disabled={working} onClick={release}>{working ? "Releasing…" : "Confirm release"}</button>
                     </div>
                   </div>}
@@ -185,36 +203,41 @@ function EventDesk({ event, working, setWorking }: {
         </ul>}
       </section>
       <section aria-labelledby="festive-create-heading" className="min-w-0 self-start rounded-xl border border-gray-200 bg-[#faf9f6] p-4 sm:p-5">
-        <h2 id="festive-create-heading" tabIndex={-1} className="scroll-mt-4 text-base font-semibold">Add a staff booking</h2>
-        <p className="mt-1 text-xs text-gray-600">Saving reserves the table online for this event.</p>
+        <h2 id="festive-create-heading" tabIndex={-1} className="scroll-mt-4 text-base font-semibold">Book or hold a table</h2>
+        <p className="mt-1 text-xs text-gray-600">{isHold ? "A hold marks the table unavailable online until you release it." :
+          "Saving a booking reserves the table for this event."}</p>
         <form onSubmit={save} className="mt-4">
           <fieldset disabled={working} className="grid w-full min-w-0 grid-cols-[minmax(0,1fr)] gap-4">
-            <legend className="sr-only">Staff booking details</legend>
-            <div>
+            <legend className="sr-only">Table details</legend>
+            <StyledSelect label="Action" value={action} options={actionOptions} disabled={working}
+              onChange={(value) => { setAction(value); setFormError(""); }} />
+            {!isHold && <div>
               <label htmlFor="festive-guest-count" className={label}>Guests</label>
               <NumberStepper id="festive-guest-count" min={1} max={4} value={guests}
                 onChange={(value) => { setGuests(value); setFormError(""); }} />
-            </div>
+            </div>}
             <StyledSelect label="Table" value={availableTable ? tableId : ""} options={tableOptions}
               disabled={!tableOptions.length || loading || working}
               onChange={(next) => { setTableId(next); setFormError(""); }} />
-            {data && !tableOptions.length && <p className="-mt-3 text-xs text-gray-600">No tables fit this party size.</p>}
+            {data && !tableOptions.length && <p className="-mt-3 text-xs text-gray-600">{isHold ? "No tables are available." : "No tables fit this party size."}</p>}
+            {!isHold && <>
             <StyledSelect label="Booking source" value={source} options={sourceOptions} onChange={setSource} disabled={working} />
             <div>
-              <label htmlFor="festive-guest-name" className={label}>{source === "house" ? "Block name" : "Guest name"}</label>
+              <label htmlFor="festive-guest-name" className={label}>Guest name</label>
               <input id="festive-guest-name" name="guestName" className={input} autoComplete="off" required minLength={2} maxLength={100} />
             </div>
-            {source !== "house" && <div>
+            <div>
               <label htmlFor="festive-guest-phone" className={label}>Guest phone (optional)</label>
               <CountryPhoneSelector id="festive-guest-phone" value={phone} onChange={setPhone} />
-            </div>}
+            </div>
+            </>}
             <div>
               <label htmlFor="festive-staff-note" className={label}>Staff notes (optional)</label>
               <textarea id="festive-staff-note" name="notes" className={input} maxLength={1000} rows={2} />
             </div>
             {formError && <p role="alert" className="text-sm text-red-800">{formError}</p>}
             <button type="submit" className={primary} disabled={!availableTable || loading || working}>
-              {working && !releasing ? "Saving…" : "Book table"}
+              {working && !releasing ? "Saving…" : isHold ? "Hold table" : "Book table"}
             </button>
           </fieldset>
         </form>
