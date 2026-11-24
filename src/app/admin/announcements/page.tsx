@@ -2,6 +2,14 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { CalendarBlank } from "@phosphor-icons/react";
+
+const phuketDate = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Bangkok",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
 
 interface Announcement {
   id: string;
@@ -49,10 +57,10 @@ function AnnouncementModal({
   const [isActive, setIsActive] = useState(announcement?.is_active || false);
   const [displayOrder, setDisplayOrder] = useState(announcement?.display_order || 0);
   const [startDate, setStartDate] = useState(
-    announcement?.start_date ? announcement.start_date.split("T")[0] : ""
+    announcement?.start_date ? phuketDate.format(new Date(announcement.start_date)) : ""
   );
   const [endDate, setEndDate] = useState(
-    announcement?.end_date ? announcement.end_date.split("T")[0] : ""
+    announcement?.end_date ? phuketDate.format(new Date(announcement.end_date)) : ""
   );
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -110,8 +118,8 @@ function AnnouncementModal({
         button_text: buttonText,
         is_active: isActive,
         display_order: displayOrder,
-        start_date: startDate ? new Date(startDate).toISOString() : null,
-        end_date: endDate ? new Date(endDate).toISOString() : null,
+        start_date: startDate ? new Date(startDate + "T00:00:00+07:00").toISOString() : null,
+        end_date: endDate ? new Date(endDate + "T23:59:59.999+07:00").toISOString() : null,
       };
 
       const res = await fetch("/api/admin/announcements", {
@@ -381,6 +389,7 @@ function AnnouncementModal({
                 />
               </div>
             </div>
+            <p className="text-xs text-gray-600">Schedule dates use Phuket time.</p>
 
             {/* Display Order */}
             <div>
@@ -535,7 +544,7 @@ export default function AnnouncementsPage() {
         <div>
           <p className="text-sm text-blue-800">
             <strong>Active announcements</strong> will be displayed on the homepage between the hero section and the welcome section.
-            Only the first active announcement (by display order) will be shown at a time.
+            Up to two announcements will be shown at a time, in display order.
           </p>
         </div>
       </div>
@@ -641,8 +650,9 @@ export default function AnnouncementsPage() {
                     </span>
                     {(announcement.start_date || announcement.end_date) && (
                       <span className="text-xs text-gray-500">
-                        📅 {announcement.start_date?.split("T")[0] || "∞"} to{" "}
-                        {announcement.end_date?.split("T")[0] || "∞"}
+                        <CalendarBlank size={14} className="mr-1 inline-block align-text-bottom" aria-hidden="true" />
+                        {announcement.start_date ? phuketDate.format(new Date(announcement.start_date)) : "Anytime"} to{" "}
+                        {announcement.end_date ? phuketDate.format(new Date(announcement.end_date)) : "No end date"}
                       </span>
                     )}
                   </div>

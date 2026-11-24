@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "twistphuket.com",
+        pathname: "/festive/**",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
       },
       {

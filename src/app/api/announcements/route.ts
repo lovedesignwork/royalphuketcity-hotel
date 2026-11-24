@@ -14,7 +14,8 @@ export async function GET() {
       .from("announcements")
       .select("*")
       .eq("is_active", true)
-      .order("display_order", { ascending: true });
+      .order("display_order", { ascending: true })
+      .order("created_at", { ascending: false });
 
     if (error) {
       console.error("Error fetching active announcement:", error);
@@ -44,10 +45,7 @@ export async function GET() {
       return true;
     });
 
-    // Return only the first valid announcement
-    return NextResponse.json({ 
-      announcements: validAnnouncements.slice(0, 1) 
-    });
+    return NextResponse.json({ announcements: validAnnouncements.slice(0, 2) });
   } catch (error) {
     console.error("Error in announcements API:", error);
     return NextResponse.json({ announcements: [] });

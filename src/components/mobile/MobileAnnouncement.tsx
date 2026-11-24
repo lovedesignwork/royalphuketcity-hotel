@@ -18,17 +18,17 @@ interface Announcement {
 }
 
 export default function MobileAnnouncement() {
-  const [announcement, setAnnouncement] = useState<Announcement | null>(null);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
 
   useEffect(() => {
     let cancelled = false;
     async function load() {
       try {
-        const res = await fetch("/api/announcements");
+        const res = await fetch("/api/announcements", { cache: "no-store" });
         if (!res.ok) return;
         const data = await res.json();
-        if (!cancelled && data.announcements?.[0]) {
-          setAnnouncement(data.announcements[0]);
+        if (!cancelled) {
+          setAnnouncements(data.announcements ?? []);
         }
       } catch {
         /* keep home usable without the banner */
@@ -40,8 +40,16 @@ export default function MobileAnnouncement() {
     };
   }, []);
 
-  if (!announcement) return null;
+  if (!announcements.length) return null;
 
+  return (
+    <section aria-label="Special announcements" className="grid gap-4">
+      {announcements.map((announcement) => <MobileAnnouncementCard key={announcement.id} announcement={announcement} />)}
+    </section>
+  );
+}
+
+function MobileAnnouncementCard({ announcement }: { announcement: Announcement }) {
   const innerHref =
     announcement.link_type === "internal" && announcement.internal_slug
       ? `/promotions/${announcement.internal_slug}`
@@ -62,7 +70,7 @@ export default function MobileAnnouncement() {
           />
         </div>
       ) : null}
-      <div className="p-4">
+      <div className="min-w-0 p-4 [overflow-wrap:anywhere]">
         <p className="font-heading text-lg leading-tight">{announcement.title}</p>
         {announcement.subtitle ? (
           <p className="mt-1 text-sm text-[var(--m-muted)]">{announcement.subtitle}</p>
