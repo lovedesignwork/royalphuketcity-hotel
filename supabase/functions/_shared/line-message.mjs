@@ -59,16 +59,82 @@ export function inquiryDetails(job) {
     received: r.created_at && Number.isFinite(Date.parse(r.created_at)) ? new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(r.created_at)) : null,
   };
 }
+function messageHeader(brandKey, assetBase, status, reference) {
+  const brand = brands[brandKey];
+  const color = brand.headerText || '#FFFFFF';
+  const logo = box([{
+    type: 'image', url: `${assetBase}/${brandKey}.png`, size: 'full',
+    aspectRatio: brandKey === 'yanlong' || brandKey === 'twist' ? '4:1' : '5:2', aspectMode: 'fit',
+  }], { width: '126px', flex: 0, ...(brand.logoBackground ? { backgroundColor: brand.logoBackground, cornerRadius: '4px' } : {}) });
+  return box([logo, box([
+    text(status, { size: 'xxs', color, align: 'end' }),
+    ...(reference ? [text(reference, { size: 'xs', color, weight: 'bold', align: 'end' })] : []),
+  ], { spacing: 'sm', flex: 1 })], { layout: 'horizontal', spacing: 'lg', alignItems: 'center', backgroundColor: brand.color, paddingAll: '22px' });
+}
+
+function detailRows(rows) {
+  return rows.map(([name, value]) => box([
+    text(name, { size: 'xs', color: '#616B7A', flex: 2 }),
+    text(value, { size: 'sm', flex: 4 }),
+  ], { layout: 'horizontal', spacing: 'md' }));
+}
+
+function festiveLineMessage(booking, assetBase) {
+  const { status, reference, event_name, event_date, event_time, table_id, table_zone, guests, child_tickets,
+    package_name, ticket_rate, amount_cents, guest_name, guest_email, guest_phone } = booking;
+  if (status !== 'paid') throw new Error('unconfirmed-festive-payment');
+  if (!Number.isSafeInteger(amount_cents) || amount_cents <= 0) throw new Error('invalid-festive-amount');
+  const brand = brands.twist;
+  const amount = new Intl.NumberFormat('en-TH', {
+    style: 'currency', currency: 'THB', currencyDisplay: 'narrowSymbol', minimumFractionDigits: amount_cents % 100 ? 2 : 0,
+  }).format(amount_cents / 100);
+  const date = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Bangkok', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  }).format(new Date(event_date + 'T00:00:00+07:00'));
+  const children = child_tickets ?? 0;
+  const adults = guests - children;
+  const tickets = child_tickets == null ? `${guests} ${guests === 1 ? 'guest' : 'guests'}` : [
+    adults && `${adults} ${adults === 1 ? 'adult' : 'adults'}`,
+    children && `${children} ${children === 1 ? 'child' : 'children'}`,
+  ].filter(Boolean).join(' · ');
+  const rows = [
+    ['Table', table_zone ? `${table_id} · ${table_zone}` : table_id],
+    ['Tickets', tickets],
+    ...(package_name ? [['Package', package_name]] : []),
+    ...(ticket_rate === 'early_bird' ? [['Buffet rate', 'Early Bird']] : []),
+    ['Reference', reference],
+  ];
+  const body = box([
+    box([
+      text(event_name, { size: 'xl', weight: 'bold' }),
+      text(date, { size: 'xs', color: '#526171' }),
+      ...(event_time ? [text(event_time + ' Phuket time', { size: 'xs', color: '#526171' })] : []),
+    ], { spacing: 'xs' }),
+    box([
+      box([text('Amount paid', { size: 'xs', weight: 'bold' }), text('Pay Solutions', { size: 'xxs', color: '#526171' })], { spacing: 'xs', flex: 3 }),
+      text(amount, { size: 'xl', weight: 'bold', color: '#5924A6', align: 'end', flex: 4 }),
+    ], { layout: 'horizontal', alignItems: 'center', spacing: 'sm', backgroundColor: brand.tint, cornerRadius: '6px', paddingAll: '12px' }),
+    box(detailRows(rows), { spacing: 'sm' }),
+    { type: 'separator', color: '#E6E8EB' },
+    box([label('Guest'), text(guest_name, { size: 'md', weight: 'bold' }),
+      text(guest_email || 'Email not provided', { size: 'xs', color: '#526171' }), phoneLine(guest_phone)], { spacing: 'xs' }),
+  ], { spacing: 'lg', paddingAll: '20px' });
+  return {
+    type: 'flex',
+    altText: `Paid TWIST booking · ${event_name} · Table ${table_id} · ${amount} · ${reference}`.slice(0, 400),
+    sender: { name: brand.senderName, iconUrl: `${assetBase}/${brand.senderIcon}` },
+    contents: { type: 'bubble', size: 'giga', header: messageHeader('twist', assetBase, 'PAID BOOKING'), body },
+  };
+}
+
 export function inquiryLineMessage(job, assetBase) {
+  if (!/^https:\/\//.test(assetBase)) throw new Error('invalid-logo-url');
+  assetBase = assetBase.replace(/\/$/, '');
+  if (job.brand === 'twist' && job.source_table === 'twist_festive_bookings') return festiveLineMessage(job.row_snapshot, assetBase);
   const d = inquiryDetails(job);
   const brandKey = inquiryBrand(job);
-  if (!/^https:\/\//.test(assetBase)) throw new Error('invalid-logo-url');
   const messageChunks = chunks(d.message);
-  const logo = box([{ type: 'image', url: `${assetBase.replace(/\/$/, '')}/${brandKey}.png`, size: 'full', aspectRatio: brandKey === 'yanlong' || brandKey === 'twist' ? '4:1' : '5:2', aspectMode: 'fit' }], { width: '126px', flex: 0, ...(d.brand.logoBackground ? { backgroundColor: d.brand.logoBackground, cornerRadius: '4px' } : {}) });
-  const header = box([logo, box([
-    text('NEW REQUEST', { size: 'xxs', color: d.brand.headerText || '#FFFFFF', align: 'end' }),
-    text(d.reference, { size: 'xs', color: d.brand.headerText || '#FFFFFF', weight: 'bold', align: 'end' }),
-  ], { spacing: 'sm', flex: 1 })], { layout: 'horizontal', spacing: 'lg', alignItems: 'center', backgroundColor: d.brand.color, paddingAll: '22px' });
+  const header = messageHeader(brandKey, assetBase, 'NEW REQUEST', d.reference);
   const body = box([
     box([text(d.name, { size: 'lg', weight: 'bold' }), text(d.email || 'Email not provided', { size: 'xs', color: '#637083' }), phoneLine(d.phone)], { spacing: 'xs' }),
     box(d.details.map(([name, value]) => box([text(name, { size: 'xs', color: '#737B87', flex: 2 }), text(value, { size: 'sm', flex: 4 })], { layout: 'horizontal', spacing: 'md' })), { spacing: 'md', paddingAll: '18px', backgroundColor: d.brand.tint, cornerRadius: '6px' }),
@@ -78,7 +144,7 @@ export function inquiryLineMessage(job, assetBase) {
   const bubbles = [{ type: 'bubble', size: 'giga', header, body }, ...messageChunks.slice(1).map((chunk, i) => ({ type: 'bubble', size: 'giga', body: box([label(d.brand.name), text(`${d.reference} · note ${i + 2}/${messageChunks.length}`, { weight: 'bold' }), text(chunk)], { paddingAll: '22px', spacing: 'lg' }) }))];
   const result = { type: 'flex', altText: `${d.brand.name} · ${d.category} · ${d.name}`.slice(0, 400), contents: bubbles.length === 1 ? bubbles[0] : { type: 'carousel', contents: bubbles } };
   // Override the shared bot's message identity, without renaming the account for other brands.
-  if (d.brand.senderName) result.sender = { name: d.brand.senderName, iconUrl: `${assetBase.replace(/\/$/, '')}/${d.brand.senderIcon}` };
+  if (d.brand.senderName) result.sender = { name: d.brand.senderName, iconUrl: `${assetBase}/${d.brand.senderIcon}` };
   if (bubbles.length > 12 || new TextEncoder().encode(JSON.stringify(result.contents)).length > (bubbles.length === 1 ? 30000 : 50000)) throw new Error('message-too-large');
   return result;
 }
