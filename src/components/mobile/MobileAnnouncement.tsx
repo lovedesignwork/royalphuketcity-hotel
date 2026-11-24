@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import { isTwistFestivePoster } from "@/lib/twist-festive";
+import FestiveAnnouncementDetails, { festiveAnnouncementActionClass } from "../FestiveAnnouncementDetails";
 import MobileLink from "./MobileLink";
 
 interface Announcement {
@@ -58,6 +60,7 @@ function MobileAnnouncementCard({ announcement }: { announcement: Announcement }
   const externalHref =
     announcement.link_type === "external" ? announcement.external_url : null;
   const isPoster = isTwistFestivePoster(announcement.image);
+  const actionLabel = isPoster ? announcement.button_text + " · " + announcement.title : undefined;
 
   const body = (
     <div className="relative overflow-hidden rounded-[16px] bg-[var(--m-card)]">
@@ -72,7 +75,18 @@ function MobileAnnouncementCard({ announcement }: { announcement: Announcement }
           />
         </div>
       ) : null}
-      <div className="min-w-0 p-4 [overflow-wrap:anywhere]">
+      {isPoster ? (
+        <FestiveAnnouncementDetails
+          title={announcement.title}
+          subtitle={announcement.subtitle}
+          action={(innerHref || externalHref) && (
+            <span className={`${festiveAnnouncementActionClass} max-w-[44%] shrink-0`} aria-hidden="true">
+              <span className="hidden text-xs font-semibold [overflow-wrap:anywhere] min-[420px]:inline">{announcement.button_text}</span>
+              <ArrowRight size={16} className="shrink-0" />
+            </span>
+          )}
+        />
+      ) : <div className="min-w-0 p-4 [overflow-wrap:anywhere]">
         <p className="font-heading text-lg leading-tight">{announcement.title}</p>
         {announcement.subtitle ? (
           <p className="mt-1 text-sm text-[var(--m-muted)]">{announcement.subtitle}</p>
@@ -82,16 +96,16 @@ function MobileAnnouncementCard({ announcement }: { announcement: Announcement }
             {announcement.button_text}
           </p>
         ) : null}
-      </div>
+      </div>}
     </div>
   );
 
   if (innerHref) {
-    return <MobileLink href={innerHref}>{body}</MobileLink>;
+    return <MobileLink href={innerHref} aria-label={actionLabel}>{body}</MobileLink>;
   }
   if (externalHref) {
     return (
-      <a href={externalHref} target="_blank" rel="noopener noreferrer">
+      <a href={externalHref} target="_blank" rel="noopener noreferrer" aria-label={actionLabel}>
         {body}
       </a>
     );

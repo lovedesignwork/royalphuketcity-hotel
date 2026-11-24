@@ -5,6 +5,7 @@ import { ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { isTwistFestivePoster } from "@/lib/twist-festive";
+import FestiveAnnouncementDetails, { festiveAnnouncementActionClass } from "./FestiveAnnouncementDetails";
 
 interface Announcement {
   id: string;
@@ -75,26 +76,54 @@ function AnnouncementCard({ announcement, paired }: { announcement: Announcement
   const isPoster = isTwistFestivePoster(announcement.image);
   const imagePosition = announcement.image?.endsWith("/nye-fireworks-hero.webp") ? "lg:object-right" : "";
 
+  if (announcement.image && isPoster) {
+    return (
+      <article className={`flex min-w-0 flex-col overflow-hidden border border-[#8B7355]/30 bg-[#1a1a2e] shadow-2xl ${paired ? "" : "mx-auto w-full max-w-xl"}`}>
+        <div className="relative aspect-[70/99]">
+          <Image
+            src={announcement.image}
+            alt={announcement.image_alt || announcement.title}
+            fill
+            sizes="(max-width: 1023px) calc(100vw - 3rem), 576px"
+            className="object-contain"
+          />
+        </div>
+        <FestiveAnnouncementDetails
+          title={announcement.title}
+          subtitle={announcement.subtitle}
+          action={linkHref && (
+            <Link href={linkHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}
+              aria-label={announcement.button_text + " · " + announcement.title}
+              className={`${festiveAnnouncementActionClass} max-w-[44%] shrink-0 hover:bg-[#87694c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d9bc92]`}>
+              <span className="hidden text-xs font-semibold [overflow-wrap:anywhere] min-[420px]:inline">{announcement.button_text}</span>
+              <ArrowRight size={16} className="shrink-0" aria-hidden="true" />
+            </Link>
+          )}
+        />
+      </article>
+    );
+  }
+
   return (
     <article className="relative flex min-w-0 flex-col bg-[#1a1a2e] border border-[#8B7355]/30 overflow-hidden shadow-2xl">
 
       <div className={`grid flex-1 ${paired ? "grid-rows-[auto_1fr]" : "lg:grid-cols-2"}`}>
         {/* Image Side */}
         {announcement.image && (
-          <div className={`relative min-w-0 ${isPoster ? "aspect-[70/99]" : paired ? "aspect-video" : "aspect-video lg:aspect-auto lg:min-h-[450px]"}`}>
+          <div className={`relative min-w-0 ${paired ? "aspect-video" : "aspect-video lg:aspect-auto lg:min-h-[450px]"}`}>
             <Image
               src={announcement.image}
               alt={announcement.image_alt || announcement.title}
               fill
-              sizes={`(max-width: 1023px) calc(100vw - 3rem), ${isPoster || paired ? "576px" : "1100px"}`}
-              className={isPoster ? "object-contain" : `object-cover ${imagePosition}`}
+              sizes={`(max-width: 1023px) calc(100vw - 3rem), ${paired ? "576px" : "1100px"}`}
+              className={`object-cover ${imagePosition}`}
             />
 
-            {!isPoster && <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
               <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-[#8B7355]/60" />
               <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#8B7355]/60 lg:hidden" />
               <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#8B7355]/60" />
-            </div>}
+            </div>
           </div>
         )}
 
