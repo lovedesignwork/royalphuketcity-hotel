@@ -77,17 +77,24 @@ function AnnouncementCard({ announcement, paired }: { announcement: Announcement
   const imagePosition = announcement.image?.endsWith("/nye-fireworks-hero.webp") ? "lg:object-right" : "";
 
   if (announcement.image && isPoster) {
+    const poster = (
+      <Image
+        src={announcement.image}
+        alt={announcement.image_alt || announcement.title}
+        fill
+        sizes="(max-width: 1023px) calc(100vw - 3rem), 576px"
+        className="object-contain"
+      />
+    );
     return (
       <article className={`flex min-w-0 flex-col overflow-hidden border border-[#8B7355]/30 bg-[#1a1a2e] shadow-2xl ${paired ? "" : "mx-auto w-full max-w-xl"}`}>
-        <div className="relative aspect-[70/99]">
-          <Image
-            src={announcement.image}
-            alt={announcement.image_alt || announcement.title}
-            fill
-            sizes="(max-width: 1023px) calc(100vw - 3rem), 576px"
-            className="object-contain"
-          />
-        </div>
+        {linkHref ? (
+          <Link href={linkHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}
+            aria-label={`View event details for ${announcement.title}`}
+            className="relative block aspect-[70/99] hover:brightness-95 focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#d9bc92]">
+            {poster}
+          </Link>
+        ) : <div className="relative aspect-[70/99]">{poster}</div>}
         <FestiveAnnouncementDetails
           title={announcement.title}
           subtitle={announcement.subtitle}
