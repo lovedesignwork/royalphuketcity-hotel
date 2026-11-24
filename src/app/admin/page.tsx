@@ -68,7 +68,7 @@ export default function AdminDashboard() {
     {error && <div className="admin-error" role="alert"><span>{error} {data && "Showing the last successful update."}</span><button onClick={fetchStats} disabled={refreshing}>Retry</button></div>}
     <section className="admin-desks" aria-label="Restaurant and spa guest desks">
       <div className="admin-desks-intro"><span>Guest desks</span><p>Reservations & inquiries</p></div>
-      {desks.map((desk) => <div className="admin-desk" key={desk.path}><div><h2>{desk.name}</h2><span>{desk.description}</span></div><div className="admin-desk-links"><Link href={`/admin/${desk.path}/reservations`} aria-label={`${desk.name} reservations`}>Reservations<ArrowUpRight size={13} aria-hidden="true" /></Link><Link href={`/admin/${desk.path}/inquiries`} aria-label={`${desk.name} inquiries`}>Inquiries<ArrowUpRight size={13} aria-hidden="true" /></Link></div></div>)}
+      {desks.map((desk) => <div className="admin-desk" key={desk.path}><div><h2>{desk.name}</h2><span>{desk.description}</span></div><div className="admin-desk-links flex-wrap"><Link href={`/admin/${desk.path}/reservations`} aria-label={`${desk.name} reservations`}>Reservations<ArrowUpRight size={13} aria-hidden="true" /></Link><Link href={`/admin/${desk.path}/inquiries`} aria-label={`${desk.name} inquiries`}>Inquiries<ArrowUpRight size={13} aria-hidden="true" /></Link>{desk.path === "twist" && <Link href="/admin/twist/festive">Festive bookings<ArrowUpRight size={13} aria-hidden="true" /></Link>}</div></div>)}
     </section>
     <div className="admin-overview-grid">
       <div className="admin-overview-primary">

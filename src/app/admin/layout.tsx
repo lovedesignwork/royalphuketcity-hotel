@@ -21,6 +21,7 @@ const groups = [
     links: [
       { href: `/admin/${brand.slug}/reservations`, label: "Reservations", icon: CalendarBlank },
       { href: `/admin/${brand.slug}/inquiries`, label: "Inquiries", icon: ChatCircleText },
+      ...(brand.slug === "twist" ? [{ href: "/admin/twist/festive", label: "Festive bookings", icon: CalendarBlank }] : []),
     ],
   })),
   { label: "Manage", links: [
