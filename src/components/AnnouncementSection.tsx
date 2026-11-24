@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
+import { isTwistFestivePoster } from "@/lib/twist-festive";
 
 interface Announcement {
   id: string;
@@ -40,6 +41,7 @@ export default function AnnouncementSection() {
   }, []);
 
   if (!announcements.length) return null;
+  const paired = announcements.length > 1;
 
   return (
     <section id="announcements" aria-labelledby="homepage-announcements-heading" className="py-20 md:py-28 bg-white relative overflow-hidden">
@@ -55,8 +57,8 @@ export default function AnnouncementSection() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto grid gap-8">
-          {announcements.map((announcement) => <AnnouncementCard key={announcement.id} announcement={announcement} />)}
+        <div className={`max-w-6xl mx-auto grid gap-8 ${paired ? "lg:grid-cols-2" : ""}`}>
+          {announcements.map((announcement) => <AnnouncementCard key={announcement.id} announcement={announcement} paired={paired} />)}
         </div>
       </div>
 
@@ -65,37 +67,39 @@ export default function AnnouncementSection() {
   );
 }
 
-function AnnouncementCard({ announcement }: { announcement: Announcement }) {
+function AnnouncementCard({ announcement, paired }: { announcement: Announcement; paired: boolean }) {
   const linkHref = announcement.link_type === "internal" && announcement.internal_slug
     ? `/promotions/${announcement.internal_slug}`
     : announcement.link_type === "external" ? announcement.external_url : null;
   const isExternal = announcement.link_type === "external";
+  const isPoster = isTwistFestivePoster(announcement.image);
   const imagePosition = announcement.image?.endsWith("/nye-fireworks-hero.webp") ? "lg:object-right" : "";
 
   return (
-    <article className="relative bg-[#1a1a2e] border border-[#8B7355]/20 overflow-hidden shadow-2xl">
+    <article className="relative flex min-w-0 flex-col bg-[#1a1a2e] border border-[#8B7355]/30 overflow-hidden shadow-2xl">
 
-      <div className="grid lg:grid-cols-2 gap-0">
+      <div className={`grid flex-1 ${paired ? "grid-rows-[auto_1fr]" : "lg:grid-cols-2"}`}>
         {/* Image Side */}
         {announcement.image && (
-          <div className="relative aspect-video lg:aspect-auto lg:min-h-[450px]">
+          <div className={`relative min-w-0 ${isPoster ? "aspect-[70/99]" : paired ? "aspect-video" : "aspect-video lg:aspect-auto lg:min-h-[450px]"}`}>
             <Image
               src={announcement.image}
               alt={announcement.image_alt || announcement.title}
               fill
-              sizes="(max-width: 1023px) 100vw, 1100px"
-              className={`object-cover ${imagePosition}`}
+              sizes={`(max-width: 1023px) calc(100vw - 3rem), ${isPoster || paired ? "576px" : "1100px"}`}
+              className={isPoster ? "object-contain" : `object-cover ${imagePosition}`}
             />
 
-            {/* Decorative frame corners */}
-            <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-[#8B7355]/60" />
-            <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#8B7355]/60 lg:hidden" />
-            <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#8B7355]/60" />
+            {!isPoster && <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+              <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-[#8B7355]/60" />
+              <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#8B7355]/60 lg:hidden" />
+              <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#8B7355]/60" />
+            </div>}
           </div>
         )}
 
         {/* Content Side */}
-        <div className={`min-w-0 p-6 sm:p-8 lg:p-12 flex flex-col justify-center [overflow-wrap:anywhere] ${!announcement.image ? 'lg:col-span-2 text-center items-center' : ''}`}>
+        <div className={`min-w-0 p-6 sm:p-8 flex flex-col [overflow-wrap:anywhere] ${!paired ? "justify-center lg:p-12" : ""} ${!announcement.image ? "row-span-2 lg:col-span-2 text-center items-center" : ""}`}>
           {/* Subtitle/Date */}
           {announcement.subtitle && (
             <div className="inline-flex items-center gap-3 mb-6">
@@ -107,7 +111,7 @@ function AnnouncementCard({ announcement }: { announcement: Announcement }) {
           )}
 
           {/* Title */}
-          <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
+          <h3 className={`font-heading text-3xl md:text-4xl text-white mb-6 leading-tight ${!paired ? "lg:text-5xl" : ""}`}>
             {announcement.title}
           </h3>
 
@@ -128,7 +132,7 @@ function AnnouncementCard({ announcement }: { announcement: Announcement }) {
           {linkHref && (
             <Link href={linkHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}
               aria-label={announcement.button_text + " · " + announcement.title}
-              className="inline-flex min-h-11 items-center gap-3 rounded-lg bg-[#71583c] px-6 py-3 font-medium text-white hover:bg-[#87694c] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d9bc92]">
+              className={`inline-flex min-h-11 items-center gap-3 rounded-lg bg-[#71583c] px-6 py-3 font-medium text-white hover:bg-[#87694c] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d9bc92] ${paired ? "mt-auto" : ""}`}>
               {announcement.button_text}<ArrowRight size={18} className="shrink-0" aria-hidden="true" />
             </Link>
           )}

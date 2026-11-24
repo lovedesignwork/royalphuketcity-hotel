@@ -27,6 +27,10 @@ export type FestiveTable = { table_id: string; zone: string; capacity: number };
 
 export const twistOrigin = "https://twistphuket.com";
 
+export function isTwistFestivePoster(image?: string | null) {
+  return !!image && image.startsWith(twistOrigin + "/festive/") && image.endsWith("-flyer.webp");
+}
+
 export type FestiveFloorPlan = {
   image: { src: string; width: number; height: number };
   coordinates: { width: number; height: number };

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { isTwistFestivePoster } from "@/lib/twist-festive";
 import MobileLink from "./MobileLink";
 
 interface Announcement {
@@ -56,17 +57,18 @@ function MobileAnnouncementCard({ announcement }: { announcement: Announcement }
       : null;
   const externalHref =
     announcement.link_type === "external" ? announcement.external_url : null;
+  const isPoster = isTwistFestivePoster(announcement.image);
 
   const body = (
     <div className="relative overflow-hidden rounded-[16px] bg-[var(--m-card)]">
       {announcement.image ? (
-        <div className="relative h-36">
+        <div className={`relative ${isPoster ? "aspect-[70/99]" : "h-36"}`}>
           <Image
             src={announcement.image}
             alt={announcement.image_alt || announcement.title}
             fill
-            sizes="400px"
-            className="object-cover"
+            sizes="(max-width: 480px) calc(100vw - 2rem), 420px"
+            className={isPoster ? "object-contain" : "object-cover"}
           />
         </div>
       ) : null}
