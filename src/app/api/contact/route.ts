@@ -106,9 +106,17 @@ export async function POST(request: NextRequest) {
             : `Contact Form: ${subject || "New Inquiry"} - ${inquiry_type || "General"}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            ${isWeddingInquiry ? `
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td align="center" bgcolor="#FAF6EE" style="padding: 24px 16px; background-color: #FAF6EE; border-bottom: 2px solid #BEA16F; color: #30291F;">
+                  <img src="https://royalphuketcity.com/images/Logo-Royal-Phuket-City-WHITE.png" alt="Royal Phuket City Hotel" width="180" height="73" style="display: block; width: 180px; max-width: 100%; height: auto; border: 0; color: #30291F; font-family: Arial, sans-serif;" />
+                </td>
+              </tr>
+            </table>` : `
             <div style="background-color: #8B7355; padding: 20px; text-align: center;">
               <h1 style="color: white; margin: 0;">Royal Phuket City Hotel</h1>
-            </div>
+            </div>`}
             <div style="padding: 30px; background-color: #f9f9f9;">
               <h2 style="color: #333; border-bottom: 2px solid #8B7355; padding-bottom: 10px;">
                 ${isEventInquiry ? "New Event Inquiry" : "New Contact Form Submission"}
