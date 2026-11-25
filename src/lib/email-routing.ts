@@ -40,6 +40,8 @@ export const EMAIL_ASSIGNMENTS: Record<InquiryChannel, EmailAssignment> = {
       `marketing@${HOTEL}`,
       `sales@${HOTEL}`,
       `reservation@${HOTEL}`,
+      `manthana.s@${HOTEL}`,
+      `wedding@${HOTEL}`,
     ],
   },
   rooms: {
