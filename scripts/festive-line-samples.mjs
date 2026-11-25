@@ -4,7 +4,7 @@ const assetBase = 'https://royalphuketcity.com/images/line';
 
 export const festiveLineSamples = [
   {
-    reference: 'TWIST-XMAS-SAMPLE',
+    reference: 'TWIST-251',
     event_name: 'Christmas Gala Dinner',
     event_date: '2026-12-24',
     event_time: '18:30–22:30',
@@ -20,7 +20,7 @@ export const festiveLineSamples = [
     guest_phone: '+66800000000',
   },
   {
-    reference: 'TWIST-NYE-SAMPLE',
+    reference: 'TWIST-NY251',
     event_name: 'New Year’s Eve 2027',
     event_date: '2026-12-31',
     event_time: '18:30–00:30',

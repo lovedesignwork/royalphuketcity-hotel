@@ -59,17 +59,32 @@ export function inquiryDetails(job) {
     received: r.created_at && Number.isFinite(Date.parse(r.created_at)) ? new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(r.created_at)) : null,
   };
 }
-function messageHeader(brandKey, assetBase, status, reference) {
-  const brand = brands[brandKey];
-  const color = brand.headerText || '#FFFFFF';
-  const logo = box([{
+function messageLogo(brandKey, assetBase) {
+  return {
     type: 'image', url: `${assetBase}/${brandKey}.png`, size: 'full',
     aspectRatio: brandKey === 'yanlong' || brandKey === 'twist' ? '4:1' : '5:2', aspectMode: 'fit',
-  }], { width: '126px', flex: 0, ...(brand.logoBackground ? { backgroundColor: brand.logoBackground, cornerRadius: '4px' } : {}) });
+  };
+}
+
+function messageHeader(brandKey, assetBase, heading, reference) {
+  const brand = brands[brandKey];
+  const color = brand.headerText || '#FFFFFF';
+  const logo = box([messageLogo(brandKey, assetBase)], {
+    width: '126px', flex: 0, ...(brand.logoBackground ? { backgroundColor: brand.logoBackground, cornerRadius: '4px' } : {}),
+  });
   return box([logo, box([
-    text(status, { size: 'xxs', color, align: 'end' }),
+    text(heading, { size: 'xxs', color, align: 'end' }),
     ...(reference ? [text(reference, { size: 'xs', color, weight: 'bold', align: 'end' })] : []),
   ], { spacing: 'sm', flex: 1 })], { layout: 'horizontal', spacing: 'lg', alignItems: 'center', backgroundColor: brand.color, paddingAll: '22px' });
+}
+
+function festiveHeader(eventName, assetBase) {
+  const heading = eventName === 'Christmas Gala Dinner' ? ['Christmas', 'Gala Dinner'] : ['New Year’s', 'Eve 2027'];
+  return box([
+    box([messageLogo('twist', assetBase)], { width: '108px', flex: 0 }),
+    box(heading.map((line) => text(line, { size: 'md', color: '#FFFFFF', weight: 'bold', align: 'end' })),
+      { spacing: 'xs', flex: 1 }),
+  ], { layout: 'horizontal', spacing: 'md', alignItems: 'center', backgroundColor: '#60063F', paddingAll: '16px' });
 }
 
 function detailRows(rows) {
@@ -80,7 +95,7 @@ function detailRows(rows) {
 }
 
 function festiveLineMessage(booking, assetBase) {
-  const { status, reference, event_name, event_date, event_time, table_id, table_zone, guests, child_tickets,
+  const { status, reference, event_name, table_id, table_zone, guests, child_tickets,
     package_name, ticket_rate, amount_cents, guest_name, guest_email, guest_phone } = booking;
   if (status !== 'paid') throw new Error('unconfirmed-festive-payment');
   if (!Number.isSafeInteger(amount_cents) || amount_cents <= 0) throw new Error('invalid-festive-amount');
@@ -88,9 +103,6 @@ function festiveLineMessage(booking, assetBase) {
   const amount = new Intl.NumberFormat('en-TH', {
     style: 'currency', currency: 'THB', currencyDisplay: 'narrowSymbol', minimumFractionDigits: amount_cents % 100 ? 2 : 0,
   }).format(amount_cents / 100);
-  const date = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Asia/Bangkok', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
-  }).format(new Date(event_date + 'T00:00:00+07:00'));
   const children = child_tickets ?? 0;
   const adults = guests - children;
   const tickets = child_tickets == null ? `${guests} ${guests === 1 ? 'guest' : 'guests'}` : [
@@ -106,11 +118,6 @@ function festiveLineMessage(booking, assetBase) {
   ];
   const body = box([
     box([
-      text(event_name, { size: 'xl', weight: 'bold' }),
-      text(date, { size: 'xs', color: '#526171' }),
-      ...(event_time ? [text(event_time + ' Phuket time', { size: 'xs', color: '#526171' })] : []),
-    ], { spacing: 'xs' }),
-    box([
       box([text('Amount paid', { size: 'xs', weight: 'bold' }), text('Pay Solutions', { size: 'xxs', color: '#526171' })], { spacing: 'xs', flex: 3 }),
       text(amount, { size: 'xl', weight: 'bold', color: '#5924A6', align: 'end', flex: 4 }),
     ], { layout: 'horizontal', alignItems: 'center', spacing: 'sm', backgroundColor: brand.tint, cornerRadius: '6px', paddingAll: '12px' }),
@@ -123,7 +130,7 @@ function festiveLineMessage(booking, assetBase) {
     type: 'flex',
     altText: `Paid TWIST booking · ${event_name} · Table ${table_id} · ${amount} · ${reference}`.slice(0, 400),
     sender: { name: brand.senderName, iconUrl: `${assetBase}/${brand.senderIcon}` },
-    contents: { type: 'bubble', size: 'giga', header: messageHeader('twist', assetBase, 'PAID BOOKING'), body },
+    contents: { type: 'bubble', size: 'giga', header: festiveHeader(event_name, assetBase), body },
   };
 }
 
