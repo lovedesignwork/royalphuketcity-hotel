@@ -18,8 +18,11 @@ test('phone flags resolve international and shared codes without guessing local 
 });
 test('all six sources have branded, button-free cards and no internal/payment identifiers', async () => {
   const { inquiryLineMessage } = await load('line-message.mjs');
+  const senderNames = { hotel: 'Royal Phuket City', yanlong: 'Yan Long', twist: 'TWIST Rooftop', spa: 'Royal Wellness Spa' };
   for (const [brand, source] of [['hotel','contact_submissions'],['yanlong','yanlong_contact_submissions'],['yanlong','yanlong_reservations'],['twist','twist_inquiries'],['spa','spa_reservations'],['spa','spa_contact_submissions']]) {
     const message = inquiryLineMessage(job(brand, source, { notes: 'INTERNAL_SECRET', transaction_id: 'PAYMENT_SECRET' }), base);
+    assert.deepEqual(message.sender, { name: senderNames[brand], iconUrl: `${base}/${brand}-avatar.png` });
+    assert.ok(message.sender.name.length <= 20);
     const serialized = JSON.stringify(message);
     assert.ok(serialized.includes(`${base}/${brand}.png`));
     assert.ok(!serialized.includes('INTERNAL_SECRET') && !serialized.includes('PAYMENT_SECRET'));
@@ -51,17 +54,17 @@ test('TWIST contact and reservations use the TWIST sender, logo and violet palet
       assert.equal(card.body.contents[1].backgroundColor, '#F6F2FC');
     }
   }
-  for (const brand of ['hotel', 'yanlong', 'spa']) {
-    assert.equal(inquiryLineMessage(job(brand), base).sender, undefined);
-  }
 });
-test('TWIST sender icon meets LINE PNG, square and size requirements', async () => {
+test('each sender icon meets LINE PNG, square and size requirements', async () => {
+  const { brands } = await load('line-message.mjs');
   const fs = require('node:fs');
-  const bytes = fs.readFileSync(path.resolve(__dirname, '../public/images/line/twist-avatar.png'));
-  const meta = await require('sharp')(bytes).metadata();
-  assert.equal(meta.format, 'png');
-  assert.equal(meta.width, meta.height);
-  assert.ok(bytes.length < 1024 * 1024);
+  for (const brand of Object.keys(brands)) {
+    const bytes = fs.readFileSync(path.resolve(__dirname, `../public/images/line/${brand}-avatar.png`));
+    const meta = await require('sharp')(bytes).metadata();
+    assert.equal(meta.format, 'png');
+    assert.equal(meta.width, meta.height);
+    assert.ok(bytes.length < 1024 * 1024);
+  }
 });
 test('explicit hotel-form TWIST inquiries get TWIST branding without guessing from guest text', async () => {
   const { inquiryLineMessage, inquiryBrand } = await load('line-message.mjs');
@@ -74,7 +77,7 @@ test('explicit hotel-form TWIST inquiries get TWIST branding without guessing fr
   assert.ok(JSON.stringify(message).includes('TW-12345678'));
   const general = job('hotel', 'contact_submissions', { inquiry_type: 'reservation', message: 'Hotel room booking, perhaps dinner at TWIST too.' });
   assert.equal(inquiryBrand(general), 'hotel');
-  assert.equal(inquiryLineMessage(general, base).sender, undefined);
+  assert.deepEqual(inquiryLineMessage(general, base).sender, { name: 'Royal Phuket City', iconUrl: `${base}/hotel-avatar.png` });
 });
 test('long multilingual guest notes survive in continuation cards with valid limits', async () => {
   const { inquiryLineMessage } = await load('line-message.mjs');

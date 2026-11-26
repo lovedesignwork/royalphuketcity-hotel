@@ -8,7 +8,8 @@ const {createClient}=require('@supabase/supabase-js');
  const {data,error}=await db.storage.getBucket(bucket);
  if(error){const {error:createError}=await db.storage.createBucket(bucket,{public:true,fileSizeLimit:1048576,allowedMimeTypes:['image/png']});if(createError)throw new Error('Could not create logo bucket');}
  else if(!data.public)throw new Error('Existing logo bucket is private; inspect before changing it');
- for(const brand of ['hotel','yanlong','twist','spa','twist-avatar']){
+ const brands=['hotel','yanlong','twist','spa'];
+ for(const brand of brands.flatMap(name=>[name,`${name}-avatar`])){
   const {error}=await db.storage.from(bucket).upload(`${brand}.png`,fs.readFileSync(`public/images/line/${brand}.png`),{contentType:'image/png',upsert:true,cacheControl:'86400'});
   if(error)throw new Error(`Could not upload ${brand} logo`);
   const {data:{publicUrl}}=db.storage.from(bucket).getPublicUrl(`${brand}.png`);

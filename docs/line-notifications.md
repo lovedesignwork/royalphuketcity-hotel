@@ -1,6 +1,6 @@
 # LINE inquiry notifications
 
-All four brands route to **RPC Notification**, through **RPC Info**, channel `2009136536` (`@279ledfe`). The integration runs in the shared Supabase project `crhzxvbubvyachauomlx`, independently of localhost and the websites' deployments.
+All four brands route to **RPC Notification** through **DirectLine**. The integration runs in the shared Supabase project `crhzxvbubvyachauomlx`, independently of localhost and the websites' deployments.
 
 ## Coverage
 
@@ -17,11 +17,11 @@ An AFTER INSERT trigger records each newly saved submission in `brand_line_outbo
 
 The templates follow Seven Marine's header, guest details, tinted request details and guest note layout. Each brand has its own real PNG logo and brand colors. There are no buttons, action links or quick replies. Long notes continue in additional carousel cards. Staff-only notes and transaction identifiers are excluded.
 
-TWIST contact and reservation messages also set LINE's per-message sender to **TWIST Rooftop**, using the real white TWIST logo on a violet (`#7C3AED`) square PNG avatar. The card retains the same violet header and pale violet details panel. Other brands keep their existing sender settings. LINE still appends the shared official account attribution; its account profile and chat-list identity are not changed. Already sent or frozen retry payloads retain their original branding.
+Each brand sets its sender name and square PNG logo above the card. LINE displays **Royal Phuket City**, **Yan Long**, **TWIST Rooftop**, or **Royal Wellness Spa** and appends the DirectLine account attribution. Already sent messages and frozen retry payloads retain their original branding.
 
 The hotel contact form includes an explicit TWIST inquiry option. `contact_submissions` records with `inquiry_type = 'twist'` receive the same TWIST card/sender, while retaining the existing hotel queue and destination. General hotel requests remain hotel-branded even if guest prose mentions TWIST; the worker does not guess a brand from message text.
 
-Publish `public/images/line/twist-avatar.png` to the public `line-brand-assets` bucket before deploying the updated `brand-line-notifications` worker. The PNG is a 512 × 512 canvas with the existing white TWIST logo centered, and is under LINE's 1 MB limit. [LINE sender identity rules](https://developers.line.biz/en/docs/messaging-api/icon-nickname-switch/).
+Publish the `*-avatar.png` files in `public/images/line/` to the public `line-brand-assets` bucket before deploying the updated `brand-line-notifications` worker. The avatars are 512 × 512 PNGs below LINE's 1 MB limit. [LINE sender identity rules](https://developers.line.biz/en/docs/messaging-api/icon-nickname-switch/).
 
 The `rpc-brand-line-notifications` database cron runs every minute. It invokes the `brand-line-notifications` Edge Function using a dedicated secret stored in Vault. Jobs are claimed with a two-minute lease and `FOR UPDATE SKIP LOCKED`. The exact message and recipient are frozen before delivery. Each job UUID is also LINE's retry key, including the first attempt. HTTP 409 counts as accepted only with LINE's accepted-request receipt. Temporary errors back off; permanent errors and uncertain retries older than 20 hours require attention to avoid duplicate messages outside LINE's retry window. `sent` means accepted by LINE, not proof that a person read it.
 
@@ -31,10 +31,9 @@ The signed `rpc-line-webhook` discovers the explicitly named group. It checks LI
 
 Edge Function secrets:
 
-- `LINE_CHANNEL_ACCESS_TOKEN`, `LINE_CHANNEL_SECRET`: existing RPC Info credentials.
-- `LINE_CHANNEL_ID`: `2009136536` (operator metadata).
-- `LINE_EXPECTED_BOT_ID`, `LINE_EXPECTED_GROUP_NAME`: verified bot and `RPC Notification`.
-- `LINE_RECIPIENT_ID`: the verified group's ID.
+- `LINE_CHANNEL_ACCESS_TOKEN`, `LINE_CHANNEL_SECRET`, `LINE_CHANNEL_ID`: production DirectLine settings.
+- `LINE_EXPECTED_BOT_ID`, `LINE_EXPECTED_GROUP_NAME`: settings for the existing group-discovery webhook. DirectLine uses its own incoming webhook.
+- `LINE_RECIPIENT_ID`: DirectLine's verified ID for `RPC Notification`.
 - `LINE_WORKER_SECRET`: dedicated random worker credential.
 - Optional `LINE_ASSET_BASE_URL`: defaults to this project's public `line-brand-assets` bucket.
 

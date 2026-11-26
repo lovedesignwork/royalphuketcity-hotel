@@ -1,11 +1,12 @@
 // Shared by the deployed worker, offline tests and visual previews. No buttons/actions.
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 export const brands = {
-  hotel: { name: 'Royal Phuket City Hotel', prefix: 'RPC', color: '#333333', tint: '#F7F4EF', logoBackground: '#333333' },
-  yanlong: { name: 'Yan Long', prefix: 'YL', color: '#861D50', tint: '#FBF3F7', logoBackground: '#861D50' },
-  twist: { name: 'TWIST Rooftop Restaurant & Bar', prefix: 'TW', color: '#7C3AED', tint: '#F6F2FC', logoBackground: '#7C3AED', senderName: 'TWIST Rooftop', senderIcon: 'twist-avatar.png' },
-  spa: { name: 'Royal Wellness Spa', prefix: 'RWS', color: '#F5F0E6', tint: '#F8F4E9', headerText: '#594829' },
+  hotel: { name: 'Royal Phuket City Hotel', senderName: 'Royal Phuket City', prefix: 'RPC', color: '#333333', tint: '#F7F4EF', logoBackground: '#333333' },
+  yanlong: { name: 'Yan Long', senderName: 'Yan Long', prefix: 'YL', color: '#861D50', tint: '#FBF3F7', logoBackground: '#861D50' },
+  twist: { name: 'TWIST Rooftop Restaurant & Bar', senderName: 'TWIST Rooftop', prefix: 'TW', color: '#7C3AED', tint: '#F6F2FC', logoBackground: '#7C3AED' },
+  spa: { name: 'Royal Wellness Spa', senderName: 'Royal Wellness Spa', prefix: 'RWS', color: '#F5F0E6', tint: '#F8F4E9', headerText: '#594829' },
 };
+const messageSender = (brandKey, assetBase) => ({ name: brands[brandKey].senderName, iconUrl: `${assetBase}/${brandKey}-avatar.png` });
 const text = (value, options = {}) => ({ type: 'text', text: String(value ?? '') || 'Not provided', size: 'sm', color: '#202937', wrap: true, ...options });
 const box = (contents, options = {}) => ({ type: 'box', layout: 'vertical', contents, ...options });
 const label = (value) => text(value.toUpperCase(), { size: 'xxs', color: '#78818C' });
@@ -129,7 +130,7 @@ function festiveLineMessage(booking, assetBase) {
   return {
     type: 'flex',
     altText: `Paid TWIST booking · ${event_name} · Table ${table_id} · ${amount} · ${reference}`.slice(0, 400),
-    sender: { name: brand.senderName, iconUrl: `${assetBase}/${brand.senderIcon}` },
+    sender: messageSender('twist', assetBase),
     contents: { type: 'bubble', size: 'giga', header: festiveHeader(event_name, assetBase), body },
   };
 }
@@ -149,9 +150,7 @@ export function inquiryLineMessage(job, assetBase) {
     ...(d.received ? [text(d.received, { size: 'xxs', color: '#78818C' })] : []),
   ], { spacing: 'xl', paddingAll: '22px' });
   const bubbles = [{ type: 'bubble', size: 'giga', header, body }, ...messageChunks.slice(1).map((chunk, i) => ({ type: 'bubble', size: 'giga', body: box([label(d.brand.name), text(`${d.reference} · note ${i + 2}/${messageChunks.length}`, { weight: 'bold' }), text(chunk)], { paddingAll: '22px', spacing: 'lg' }) }))];
-  const result = { type: 'flex', altText: `${d.brand.name} · ${d.category} · ${d.name}`.slice(0, 400), contents: bubbles.length === 1 ? bubbles[0] : { type: 'carousel', contents: bubbles } };
-  // Override the shared bot's message identity, without renaming the account for other brands.
-  if (d.brand.senderName) result.sender = { name: d.brand.senderName, iconUrl: `${assetBase}/${d.brand.senderIcon}` };
+  const result = { type: 'flex', altText: `${d.brand.name} · ${d.category} · ${d.name}`.slice(0, 400), sender: messageSender(brandKey, assetBase), contents: bubbles.length === 1 ? bubbles[0] : { type: 'carousel', contents: bubbles } };
   if (bubbles.length > 12 || new TextEncoder().encode(JSON.stringify(result.contents)).length > (bubbles.length === 1 ? 30000 : 50000)) throw new Error('message-too-large');
   return result;
 }
